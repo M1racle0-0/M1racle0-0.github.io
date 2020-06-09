@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>UE4笔记（一）</title>
+      <link href="/2020/06/08/%E8%99%9A%E5%B9%BB4%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+      <url>/2020/06/08/%E8%99%9A%E5%B9%BB4%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="UE4学习笔记（一）"><a href="#UE4学习笔记（一）" class="headerlink" title="UE4学习笔记（一）"></a>UE4学习笔记（一）</h1><p><a href="https://docs.unrealengine.com/zh-CN/index.html" target="_blank" rel="noopener">UE4官方文档</a>  </p><h2 id="界面系统"><a href="#界面系统" class="headerlink" title="界面系统"></a>界面系统</h2><p><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/DefaultInterface_Windows.jp2" alt="">  </p><ul><li><ol><li>选卡栏和菜单栏  </li></ol></li><li><ol start="2"><li>工具栏  </li></ol></li><li><ol start="3"><li>模式  </li></ol></li><li><ol start="4"><li>内容浏览器  </li></ol></li><li><ol start="5"><li>视口  </li></ol></li><li><ol start="6"><li>世界大纲视图  </li></ol></li><li><ol start="7"><li>详细信息   </li></ol></li></ul><hr><h3 id="选卡栏"><a href="#选卡栏" class="headerlink" title="选卡栏"></a>选卡栏</h3><p>关卡编辑器的顶部有一个选卡，提供了当前正在编辑器的关卡的名称。其他编辑器窗口的选卡可以停靠在该选卡的旁边，以便快速地、方便地进行导航，这和网页浏览器类似。<br><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/TabBar.jp2" alt=""><br>选卡名称本身将会反应出当前正在编辑的是哪个关卡。这种方式在整个编辑器中都是一致的 - 以当前正在编辑的资源命名编辑器选卡。<br>选卡栏的右侧是当前项目的名称。 </p><hr><h3 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h3><p>它提供了对编辑器中处理关卡时所用通用工具和命令的访问权限。<br><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/MenuBar/MenuBar_Windows.jp2" alt=""><br>该命令行控制台是个文本框，允许您输入编辑器可以识别的特殊控制台命令。该文本框有自动补全的功能，它可以自动列出和文本框中当前输入的文本匹配的所有命令.  </p><hr><h3 id="工具栏"><a href="#工具栏" class="headerlink" title="工具栏"></a>工具栏</h3><p><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/Toolbar/toolbar.jp2" alt=""><br>这里提供了一组快速访问常用工具和操作的命令。  </p><hr><h3 id="视口"><a href="#视口" class="headerlink" title="视口"></a>视口</h3><p>Viewport（视口） 面板是进入到虚幻编辑器中创建的世界的窗口。<br><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/Viewports/viewports_LE.jp2" alt=""><br>该面板包含了一组视口，每个视口都可以最大化,使其填充整个面板，且提供了在其中一种正交视图(顶视图、侧视图、前视图)或透视图显示世界的功能，使您可以充分地控制显示的内容及显示方式.  </p><hr><h3 id="详细信息"><a href="#详细信息" class="headerlink" title="详细信息"></a>详细信息</h3><p><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/Details/details_panel.jp2" alt=""><br>包含了关于视口中当前选中对象的信息、工具及功能。它包含了用于移动、旋转及缩放Actor的变换编辑框，显示了选中Actor的所有可编辑属性，并提供了和视口中选中Actor类型相关的其他编辑功能。比如，选中的Actor可以导出到FBX文件中，并可以转换为另一种兼容类型。”选项详情“面板还允许您查看这些选中的Actor所使用的材质（如果存在），并可以快速地打开它们进行编辑。  </p><hr><h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><p>模式（Modes） 面板包含用于编辑器的各种工具模式的选择。这些模式针对特定任务更改关卡编辑器主要行为，例如将新资源放入世界场景、创建几何笔刷和体积、在网格体上绘图、生成植物以及塑造地形。<br><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/Modes/LE_Tools2.jp2" alt="">  </p><ul><li>TIP:<br>  您可以通过点击选卡右上角的小 “X” 来关闭任何面板。您也可以通过右击面板，然后在弹出的关联菜单中点击 Hide Tab（隐藏选卡），来隐藏任何面板。要想再次显示您已经关闭的面板，在 Window(窗口) 菜单中点击那个面板的名称即可。  </li></ul><p>模式 代表关卡编辑器可以处于的各种不同编辑模式，使得可以启用特定的编辑界面和工作流程来编辑特定类型的 Actor 或几何体  </p><hr><h3 id="世界大纲视图"><a href="#世界大纲视图" class="headerlink" title="世界大纲视图"></a>世界大纲视图</h3><p><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/SceneOutliner/scene_outliner.jp2" alt=""><br>World Outliner（世界大纲视图） 面板以层次化的树状图形式显示了场景中的所有Actor。您可以从 世界大纲视图 中直接选择及修改Actor。您也可以使用 Info(信息) 下拉列表来打开额外的竖栏来显示关卡、图层或ID名称。  </p><hr><h3 id="图层"><a href="#图层" class="headerlink" title="图层"></a>图层</h3><p>图层（Layers） 面板允许您组织关卡中的Actor<br><img src="https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/Layers/LayerInfra.jp2" alt=""><br>图层提供了快速选择和控制相关Actor组可视性的能力。 您可以使用您的图层来快速整理一个场景， 只留下您正在处理的几何体和Actor。例如，您可能正在处理一个由多个模块组成的 多层建筑。通过将每个楼层分配到一个图层，您可以隐藏您不在处理的每个楼层， 使顶视图更易于管理。 </p><hr>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> UE4 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于博客文档语法 markdown 记录</title>
       <link href="/2020/06/03/Markdown/"/>
       <url>/2020/06/03/Markdown/</url>
