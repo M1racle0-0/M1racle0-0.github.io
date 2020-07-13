@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="UE4笔记（二）, M1racle0-0">
+    <meta name="keywords" content="UE4笔记（三）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>UE4笔记（二） | M1racle0-0</title>
+    <title>UE4笔记（三） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">UE4笔记（二）</h1>
+                    <h1 class="description center-align post-title">UE4笔记（三）</h1>
                 </div>
             </div>
         </div>
@@ -391,7 +391,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-04
+                    2020-07-12
                 </div>
                 
 
@@ -405,7 +405,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    946
+                    983
                 </div>
                 
 
@@ -422,37 +422,30 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4学习笔记（二）"><a href="#UE4学习笔记（二）" class="headerlink" title="UE4学习笔记（二）"></a>UE4学习笔记（二）</h1><h2 id="关于光照重建问题的解决方法"><a href="#关于光照重建问题的解决方法" class="headerlink" title="关于光照重建问题的解决方法"></a>关于光照重建问题的解决方法</h2><p>有两种解决方法。</p>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>点击构建中的仅构建光照(三角中）。<img src="https://img-blog.csdnimg.cn/20200301164635423.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Fsenp3,size_16,color_FFFFFF,t_70" alt=""></p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>右侧搜索light，在光照的变换中将固定改为可移动。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200217135620377.png" alt=""></p>
-<h3 id="光源的移动性差别："><a href="#光源的移动性差别：" class="headerlink" title="光源的移动性差别："></a>光源的移动性差别：</h3><p><strong>Stationary:</strong></p>
-<p>固定光源是保持固定位置不变的光源，但你可以改变光源的亮度和颜色等。这是与静态光源的主要不同之处，静态光源在gameplay期间不会改变。但是，如果在运行时更改亮度，请注意它仅影响直接光照。间接（反射）光照不会改变，因为它是在光照系统（Lightmass）中预先计算的。</p>
-<p><strong>Mobile:</strong></p>
-<p>可移动光源使用完全动态的光照，一切都可以在游戏中改变，但其性能消耗极大，通常而言与光源影响的范围成正比（投射完全动态的光照和阴影。可修改位置、旋转、颜色、亮度、衰减、半径等所有属性。其投射的光照不会烘焙到光照贴图中，在无全局光照方法时不支持间接光照。）</p>
-<p><strong>Static:</strong></p>
-<p>在运行时完全无法更改或移动的光源。这些光源仅在光照贴图中计算，一旦处理完，对性能没有进一步影响。可移动对象不能与静态光源集成，因此静态光源的用途是有限的。</p>
-<p>静态照明仅使用光照贴图，因此它们的阴影会在游戏前烘焙。这意味着，它们不能让移动（动态）对象产生阴影。如果要照明的对象也是静态的，就能够产生面积（接触）阴影。</p>
-<p>主要应用对象是移动平台上的低性能设备。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200217135623122.png" alt=""></p>
-<p><a href="https://docs.unrealengine.com/zh-CN/Engine/Rendering/LightingAndShadows/LightMobility/index.html" target="_blank" rel="noopener">关于光源移动性的具体文档</a></p>
-<h2 id="Landscape室外地形创建（并使用第三人称游戏模式游玩）"><a href="#Landscape室外地形创建（并使用第三人称游戏模式游玩）" class="headerlink" title="Landscape室外地形创建（并使用第三人称游戏模式游玩）"></a>Landscape室外地形创建（并使用第三人称游戏模式游玩）</h2><p>landscape能为世界场景创建地形山脉、山谷、起伏或倾斜的地面，甚至洞穴的开口并通过一系列工具轻松修改其形状和外观</p>
-<h3 id="打开地形工具方法"><a href="#打开地形工具方法" class="headerlink" title="打开地形工具方法"></a>打开地形工具方法</h3><p>1.在模式中选中landscape （快捷键为shift+2）</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Landscape/Landscape_Modes.webp" alt=""></p>
-<p>2.在放置actors中的all classes（所有类中）选择地形landscape或通过搜索</p>
-<h3 id="地形创建"><a href="#地形创建" class="headerlink" title="地形创建"></a>地形创建</h3><p>manage中导入你的地形材质创建基础地形大小，Sculpt（雕刻）中修改地形形状，Paint中修改部分地形外观。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Landscape/Editing/Landscape_ManageMode.webp" alt=""></p>
-<p><a href="https://docs.unrealengine.com/zh-CN/Engine/Landscape/QuickStart/3/index.html" target="_blank" rel="noopener">具体关于Sculpt工具使用方法</a></p>
-<h4 id="灰度图和高度图"><a href="#灰度图和高度图" class="headerlink" title="灰度图和高度图"></a>灰度图和高度图</h4><p>在PS中，将高度图的模式改为灰度，16位通道，UE4的格式只支持.RAW和.PNG。</p>
-<h3 id="植被的碰撞设置"><a href="#植被的碰撞设置" class="headerlink" title="植被的碰撞设置"></a>植被的碰撞设置</h3><p><a href="https://docs.unrealengine.com/zh-CN/Engine/Foliage/index.html" target="_blank" rel="noopener">笔刷使用方法</a></p>
-<p>一开始用画笔刷上的物体是没有碰撞体积的。选中要加上碰撞的植物模型，先进入网格体界面，查看是否有简单碰撞，如果没有就用凸包分解创建碰撞模型（性能消耗大）或者直接用盒体等创建。模型碰撞完成之后，进入外部的碰撞预设，改为BlockAll或其他碰撞方式。</p>
-<h3 id="关于官方第三人称模型的使用方法"><a href="#关于官方第三人称模型的使用方法" class="headerlink" title="关于官方第三人称模型的使用方法"></a>关于官方第三人称模型的使用方法</h3><p>两种方式实现。</p>
-<h4 id="1添加第三人称标准模块"><a href="#1添加第三人称标准模块" class="headerlink" title="1添加第三人称标准模块"></a>1添加第三人称标准模块</h4><p>在ThirdPersonBP中选择Character加入场景。点击人体模型，在细节中选择ThirdPersonCharacter（自身）搜索possess,在Pawn中自动控制玩家设为玩家0。</p>
-<h4 id="2游戏模式设置"><a href="#2游戏模式设置" class="headerlink" title="2游戏模式设置"></a>2游戏模式设置</h4><p>在actor中搜索玩家出生点，放置在建立好的世界中。</p>
-<p>打开世界场景设置</p>
-<p>在Game Mode中建立游戏模式，例如第三人称游戏模式或者第一人称。</p>
-<p>在Default Pawn Class中选择操控人物</p>
-<h2 id="项目实现中其他遇到的问题"><a href="#项目实现中其他遇到的问题" class="headerlink" title="项目实现中其他遇到的问题"></a>项目实现中其他遇到的问题</h2><p>我建议看文档 ^_^</p>
+                <h1 id="UE4学习笔记（三）"><a href="#UE4学习笔记（三）" class="headerlink" title="UE4学习笔记（三）"></a>UE4学习笔记（三）</h1><h2 id="关于蓝图的概念"><a href="#关于蓝图的概念" class="headerlink" title="关于蓝图的概念"></a>关于蓝图的概念</h2><p>虚幻引擎中的蓝图-<u>可视化脚本系统</u>，可视化意味着将代码变成了一个个可见的模块，蓝图就是封装了很多现成的逻辑，它方便了基础系统的创建和逻辑的工程化分层。小型游戏完全可以使用蓝图制作。</p>
+<p>UE4推出的蓝图系统，更深的意义是帮助设计人员快速设计原型，完成与程序开发人员的交流。</p>
+<h3 id="组件概念"><a href="#组件概念" class="headerlink" title="组件概念"></a>组件概念</h3><p>是可添加到Actor的一项功能，组件不可独立存在，但在将其添加到Actor后，该Actor便可以访问并可以使用该组件所提供的功能。</p>
+<p>一旦添加了用于定义 Actor 的组件，请注意，即使不提供任何 <strong>Blueprint</strong> 脚本（或 C++ 代码）也可将 Actor 放置在关卡中，就像汽车一样（在真实世界中，汽车本身就是一个物体，无需驾驶员告诉汽车该做什么）。 由于“油门踏板”是一个组件，通过脚本或代码，您可表示已踩下了踏板，从而为汽车加速提供了逻辑。 可以此种方式访问每个组件（打开车灯、按喇叭、开启收音机、转动方向盘等）</p>
+<p><u>在这里写到一半的时候，发现自己基础知识掌握不牢固 很多术语不会，所以搁浅了蓝图的学习，重新开始学习整个引擎的构造基础，大概时长为两周。</u></p>
+<h2 id="杂"><a href="#杂" class="headerlink" title="杂"></a>杂</h2><h6 id="在虚幻引擎中，何谓Actor？"><a href="#在虚幻引擎中，何谓Actor？" class="headerlink" title="在虚幻引擎中，何谓Actor？"></a>在虚幻引擎中，何谓Actor？</h6><p>一个或多个组件共同作为单一实体来运行</p>
+<h6 id="有一个大规模团队，并且希望加速资源的共享。您可以做些什么来帮助共享美术资源？"><a href="#有一个大规模团队，并且希望加速资源的共享。您可以做些什么来帮助共享美术资源？" class="headerlink" title="有一个大规模团队，并且希望加速资源的共享。您可以做些什么来帮助共享美术资源？"></a>有一个大规模团队，并且希望加速资源的共享。您可以做些什么来帮助共享美术资源？</h6><p>与团队成员共享衍生数据缓存</p>
+<h6 id="将项目移动到一个虚幻引擎的新预览版本时，您收到一条消息，提示插件不受支持。如何绕过此问题并启动您的项目？"><a href="#将项目移动到一个虚幻引擎的新预览版本时，您收到一条消息，提示插件不受支持。如何绕过此问题并启动您的项目？" class="headerlink" title="将项目移动到一个虚幻引擎的新预览版本时，您收到一条消息，提示插件不受支持。如何绕过此问题并启动您的项目？"></a>将项目移动到一个虚幻引擎的新预览版本时，您收到一条消息，提示插件不受支持。如何绕过此问题并启动您的项目？</h6><p>从.uproject文件中移除插件</p>
+<h6 id="想要将蓝图项目发送给另一名开发者。该开发者需要-uproject文件以及哪些必需文件夹才能运行该项目？"><a href="#想要将蓝图项目发送给另一名开发者。该开发者需要-uproject文件以及哪些必需文件夹才能运行该项目？" class="headerlink" title="想要将蓝图项目发送给另一名开发者。该开发者需要.uproject文件以及哪些必需文件夹才能运行该项目？"></a>想要将蓝图项目发送给另一名开发者。该开发者需要.uproject文件以及哪些必需文件夹才能运行该项目？</h6><p>Content和Config文件夹</p>
+<h6 id="想要覆盖游戏模式，使之应用于整个项目。需要在哪里操作才能实现？"><a href="#想要覆盖游戏模式，使之应用于整个项目。需要在哪里操作才能实现？" class="headerlink" title="想要覆盖游戏模式，使之应用于整个项目。需要在哪里操作才能实现？"></a>想要覆盖游戏模式，使之应用于整个项目。需要在哪里操作才能实现？</h6><p>项目设置</p>
+<h6 id="项目菜单上有一个关卡需要使用单独的游戏模式。会在编辑器的什么地方设置该游戏模式？"><a href="#项目菜单上有一个关卡需要使用单独的游戏模式。会在编辑器的什么地方设置该游戏模式？" class="headerlink" title="项目菜单上有一个关卡需要使用单独的游戏模式。会在编辑器的什么地方设置该游戏模式？"></a>项目菜单上有一个关卡需要使用单独的游戏模式。会在编辑器的什么地方设置该游戏模式？</h6><p>世界场景设置</p>
+<h6 id="将项目设置为当启动编辑器时就会加载贴图文件。可以在“项目设置”中执行此修改吗？"><a href="#将项目设置为当启动编辑器时就会加载贴图文件。可以在“项目设置”中执行此修改吗？" class="headerlink" title="将项目设置为当启动编辑器时就会加载贴图文件。可以在“项目设置”中执行此修改吗？"></a>将项目设置为当启动编辑器时就会加载贴图文件。可以在“项目设置”中执行此修改吗？</h6><p>可以，贴图设置和模式设置就在这里。</p>
+<h6 id="在开发过程中，你决定要添加平台。在哪里可以方便地为项目添加平台？"><a href="#在开发过程中，你决定要添加平台。在哪里可以方便地为项目添加平台？" class="headerlink" title="在开发过程中，你决定要添加平台。在哪里可以方便地为项目添加平台？"></a>在开发过程中，你决定要添加平台。在哪里可以方便地为项目添加平台？</h6><p>项目设置</p>
+<h6 id="场景中有一种粒子效果只在游戏视图下查看时才运行。想要看到这种粒子效果运行，最快的方法是什么？"><a href="#场景中有一种粒子效果只在游戏视图下查看时才运行。想要看到这种粒子效果运行，最快的方法是什么？" class="headerlink" title="场景中有一种粒子效果只在游戏视图下查看时才运行。想要看到这种粒子效果运行，最快的方法是什么？"></a>场景中有一种粒子效果只在游戏视图下查看时才运行。想要看到这种粒子效果运行，最快的方法是什么？</h6><p>按 G 键启用游戏视图（Game View）。</p>
+<p>其它方法</p>
+<p>1.进入“在编辑器中运行（Play in Editor）”模式。</p>
+<p>2.以独立窗口启动游戏。</p>
+<p>3.模拟游戏。</p>
+<h6 id="构建了一个场景，想要从多个预设的角度快速查看它。使用哪个虚幻引擎快捷方式效果最好？"><a href="#构建了一个场景，想要从多个预设的角度快速查看它。使用哪个虚幻引擎快捷方式效果最好？" class="headerlink" title="构建了一个场景，想要从多个预设的角度快速查看它。使用哪个虚幻引擎快捷方式效果最好？"></a>构建了一个场景，想要从多个预设的角度快速查看它。使用哪个虚幻引擎快捷方式效果最好？</h6><p>书签</p>
+<h6 id="优化C盘空间"><a href="#优化C盘空间" class="headerlink" title="优化C盘空间"></a>优化C盘空间</h6><p>1.在epic中的设置 将保管库的位置移到C盘外</p>
+<p>2.缓存位置转移</p>
+<p><a href="https://blog.csdn.net/cc13813194235/article/details/53424866" target="_blank" rel="noopener">CSDN方法</a></p>
+<h6 id="创建了一个基于蓝图的可移植项目。为什么可以将其更改为基于台式机且可使用C-代码的项目？"><a href="#创建了一个基于蓝图的可移植项目。为什么可以将其更改为基于台式机且可使用C-代码的项目？" class="headerlink" title="创建了一个基于蓝图的可移植项目。为什么可以将其更改为基于台式机且可使用C++代码的项目？"></a>创建了一个基于蓝图的可移植项目。为什么可以将其更改为基于台式机且可使用C++代码的项目？</h6><p>初始项目创建是默认设置，而非永久设置。</p>
+<h6 id="为何应在项目设置中设置目标平台？"><a href="#为何应在项目设置中设置目标平台？" class="headerlink" title="为何应在项目设置中设置目标平台？"></a>为何应在项目设置中设置目标平台？</h6><p>设置您的目标平台将禁用非必要的设置</p>
 
             </div>
             <hr/>
@@ -478,7 +471,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/07/04/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">http://M1racle0-0.github.io/2020/07/04/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/07/12/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">http://M1racle0-0.github.io/2020/07/12/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -685,9 +678,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/12/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">
                     <div class="card-image">
@@ -706,9 +700,9 @@ UE4推出的蓝图系统，更深
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -717,6 +711,7 @@ UE4推出的蓝图系统，更深
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -735,57 +730,29 @@ UE4推出的蓝图系统，更深
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/01/%E8%99%9A%E5%B9%BB4%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+                <a href="/2020/07/04/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="UE4笔记（一）">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="UE4笔记（二）">
                         
-                        <span class="card-title">UE4笔记（一）</span>
+                        <span class="card-title">UE4笔记（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4学习笔记（一）UE4官方文档  
-界面系统  
+                            UE4学习笔记（二）关于光照重建问题的解决方法有两种解决方法。
+方法一点击构建中的仅构建光照(三角中）。
+方法二右侧搜索light，在光照的变换中将固定改为可移动。
 
-
-选卡栏和菜单栏  
-
-
-
-工具栏  
-
-
-
-模式  
-
-
-
-内容浏览器  
-
-
-
-视口  
-
-
-
-世界大纲视图  
-
-
-
-详细信息   
-
-
-
-
-选卡栏关卡编辑器的顶部有一个选卡，提
+光源的移动性差别：Stationary:
+固定光源是保持固定位置不变的光
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-04
                             </span>
                         <span class="publish-author">
                             
