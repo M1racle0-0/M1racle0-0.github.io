@@ -398,7 +398,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-17
+                    2020-07-19
                 </div>
                 
 
@@ -422,46 +422,46 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4学习笔记（四）"><a href="#UE4学习笔记（四）" class="headerlink" title="UE4学习笔记（四）"></a>UE4学习笔记（四）</h1><h2 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h2><h4 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h4><p>规范的命名可以节省大量的时间</p>
+                <h1 id="UE4学习笔记（四）"><a href="#UE4学习笔记（四）" class="headerlink" title="UE4学习笔记（四）"></a>UE4学习笔记（四）</h1><h2 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h2><h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><p>规范的命名可以节省大量的时间</p>
 <p>例如：</p>
 <p>SM_Rock_00  - Static Mesh for a Rock version 00  静态网格体的岩石   SM为静态网格体</p>
 <p>T_Rock__00_BC - Base Color Texture for a Rock version 00  岩石的底色纹理 版本是“00” </p>
 <p>SKM_RockBunch_00 - Skeletal Mesh for Rocks version 00  岩石的骨骼网格体 版本是“00”</p>
 <p>_N 法线贴图</p>
-<h4 id="纹理的创建"><a href="#纹理的创建" class="headerlink" title="纹理的创建"></a>纹理的创建</h4><p>纹理的长和宽必须始终是2的幂数（不一定为正方形 ),不规范的纹理无法进行多级渐进纹理，意味着无论摄像机离多远，它所占据的内存不变</p>
-<h4 id="处理阿尔法信息"><a href="#处理阿尔法信息" class="headerlink" title="处理阿尔法信息"></a>处理阿尔法信息</h4><p>嵌入式或单独阿尔法通道</p>
+<h3 id="纹理的创建"><a href="#纹理的创建" class="headerlink" title="纹理的创建"></a>纹理的创建</h3><p>纹理的长和宽必须始终是2的幂数（不一定为正方形 ),不规范的纹理无法进行多级渐进纹理，意味着无论摄像机离多远，它所占据的内存不变</p>
+<h3 id="处理阿尔法信息"><a href="#处理阿尔法信息" class="headerlink" title="处理阿尔法信息"></a>处理阿尔法信息</h3><p>嵌入式或单独阿尔法通道</p>
 <p>嵌入阿尔法开销是单独阿尔法的两倍，因为存储再这张纹理中的信息未经压缩就导入进虚幻引擎，意味着它被导入虚幻引擎后，你会得到纹理的完整分辨率</p>
 <p>单独阿尔法的好处是 相对于底色尺寸，能单独控制阿尔法通道大小</p>
-<h4 id="纹理保存和UE4支持的各种纹理格式"><a href="#纹理保存和UE4支持的各种纹理格式" class="headerlink" title="纹理保存和UE4支持的各种纹理格式"></a>纹理保存和UE4支持的各种纹理格式</h4><p>PNG PSD TGA 支持嵌入式阿尔法通道</p>
+<h3 id="纹理保存和UE4支持的各种纹理格式"><a href="#纹理保存和UE4支持的各种纹理格式" class="headerlink" title="纹理保存和UE4支持的各种纹理格式"></a>纹理保存和UE4支持的各种纹理格式</h3><p>PNG PSD TGA 支持嵌入式阿尔法通道</p>
 <p>BMP FLOAT IPG EXR DDS HDR</p>
 <p>(HDR立方体贴图导入UE4用于光照时，纹理长宽不用是2的幂，唯一)</p>
-<h4 id="多级渐进纹理"><a href="#多级渐进纹理" class="headerlink" title="多级渐进纹理"></a>多级渐进纹理</h4><p>可以将多级渐进纹理看作是纹理的细节层次，纹理被导入UE4后就会生成多级渐进纹理.</p>
-<p><img src="Markdown%5C%E5%A4%9A%E6%B8%90%E8%BF%9B%E7%BA%B9%E7%90%86%E9%93%BE.png" alt="">多级渐进纹理链  在Level of Deatail - LOD Bias 设置</p>
+<h3 id="多级渐进纹理"><a href="#多级渐进纹理" class="headerlink" title="多级渐进纹理"></a>多级渐进纹理</h3><p>可以将多级渐进纹理看作是纹理的细节层次，纹理被导入UE4后就会生成多级渐进纹理.</p>
+<p><img src="https://s1.ax1x.com/2020/07/19/UWqaB8.png" alt=""><br>多级渐进纹理链  在Level of Deatail - LOD Bias 设置</p>
 <p>假设纹理再屏幕上只占据了100或200个像素点或者离玩家有100米或200米远，我们没必要显示纹理的完整清晰度，在很多使用多级渐进纹理的项目中，你通常会看到第二级或者第三级的渐进纹理，这样可以减少内存消耗，只有当纹理占据当前屏幕很大一部分的时候，你才能看见第一级纹理。</p>
-<h4 id="纹理组（Texture-Group"><a href="#纹理组（Texture-Group" class="headerlink" title="纹理组（Texture Group)"></a>纹理组（Texture Group)</h4><p>纹理组实际上控制着项目中渲染纹理的实际大小、还控制着纹理的缩放程度以及GPU会对纹理采用何种类型的纹理过滤</p>
+<h3 id="纹理组（Texture-Group"><a href="#纹理组（Texture-Group" class="headerlink" title="纹理组（Texture Group)"></a>纹理组（Texture Group)</h3><p>纹理组实际上控制着项目中渲染纹理的实际大小、还控制着纹理的缩放程度以及GPU会对纹理采用何种类型的纹理过滤</p>
 <p>假如你发现项目的纹理内存不够用了，纹理组是一种很好的方式来一次性修改LOD偏差</p>
 <p><a href="https://docs.unrealengine.com/zh-CN/Engine/Content/Types/Textures/SupportAndSettings/index.html" target="_blank" rel="noopener">纹理组的官方文档</a></p>
-<h2 id="源控制（协同开发）"><a href="#源控制（协同开发）" class="headerlink" title="源控制（协同开发）"></a>源控制（协同开发）</h2><h4 id="源代码管理软件"><a href="#源代码管理软件" class="headerlink" title="源代码管理软件"></a>源代码管理软件</h4><p>用来存储、跟踪项目文件，并将其共享给其他希望一同开发的人员。</p>
+<h2 id="源控制（协同开发）"><a href="#源控制（协同开发）" class="headerlink" title="源控制（协同开发）"></a>源控制（协同开发）</h2><h3 id="源代码管理软件"><a href="#源代码管理软件" class="headerlink" title="源代码管理软件"></a>源代码管理软件</h3><p>用来存储、跟踪项目文件，并将其共享给其他希望一同开发的人员。</p>
 <p>UE4最常用的是Perforce和Subversion 都能完成三点：</p>
 <p>1.Sync Data (同步数据)</p>
 <p>2.Add/Remove Data （添加删除数据)</p>
 <p>3.Revert Data （恢复数据）</p>
-<h2 id="静态网格体"><a href="#静态网格体" class="headerlink" title="静态网格体"></a>静态网格体</h2><h4 id="材质ID"><a href="#材质ID" class="headerlink" title="材质ID"></a>材质ID</h4><p>所有对象都至少拥有一个材质ID，材质ID有助于确定多边形面使用的材质类型，但对象每多用一个材质ID，他就需要被多渲染一次，例如一个物体上有五个材质ID，他就需要先被渲染五次然后通过一次最终渲染显示出来。</p>
-<h4 id="光照贴图"><a href="#光照贴图" class="headerlink" title="光照贴图"></a>光照贴图</h4><p>光照贴图是专门用来保存光线和阴影复杂信息的纹理，这是因为纹理的开销很低，非常适合存储这类数据，并且将光照计算信息保存在纹理中意味着我们在运行的时候几乎能以零成本获得这些信息。</p>
-<p><img src="markdown%5C%E5%85%89%E7%85%A7%E8%B4%B4%E5%9B%BE.png" alt=""></p>
+<h2 id="静态网格体"><a href="#静态网格体" class="headerlink" title="静态网格体"></a>静态网格体</h2><h3 id="材质ID"><a href="#材质ID" class="headerlink" title="材质ID"></a>材质ID</h3><p>所有对象都至少拥有一个材质ID，材质ID有助于确定多边形面使用的材质类型，但对象每多用一个材质ID，他就需要被多渲染一次，例如一个物体上有五个材质ID，他就需要先被渲染五次然后通过一次最终渲染显示出来。</p>
+<h3 id="光照贴图"><a href="#光照贴图" class="headerlink" title="光照贴图"></a>光照贴图</h3><p>光照贴图是专门用来保存光线和阴影复杂信息的纹理，这是因为纹理的开销很低，非常适合存储这类数据，并且将光照计算信息保存在纹理中意味着我们在运行的时候几乎能以零成本获得这些信息。</p>
+<p><img src="https://s1.ax1x.com/2020/07/19/UWqtjP.md.png" alt=""></p>
 <p>左侧为光照贴图，右侧为阴影贴图</p>
 <p>1.光照贴图的RGB通道中存储着不同类型的数值，看起来像五颜六色的维诺图。是由不同的区域的光照信息写入RBG通道中造成的。</p>
 <p>2.阴影贴图的红色和绿色表示不同的阴影信息，所有的阴影数据全部写入了阴影贴图的RGB通道</p>
 <p>光照贴图需要对象上的每一张面都位于0到1的UV空间中，这些面在UV通道中不能相互重叠</p>
 <p><a href="https://docs.unrealengine.com/zh-CN/Engine/Content/Types/StaticMeshes/HowTo/UVChannels/index.html" target="_blank" rel="noopener">使用UV通道的官方文档</a></p>
 <p><a href="https://docs.unrealengine.com/zh-CN/Engine/Content/Types/StaticMeshes/AutoGeneratedLightmaps/index.html" target="_blank" rel="noopener">生成光照贴图UV的官方文档</a></p>
-<h4 id="碰撞"><a href="#碰撞" class="headerlink" title="碰撞"></a>碰撞</h4><p>两种方法进行创建</p>
+<h3 id="碰撞"><a href="#碰撞" class="headerlink" title="碰撞"></a>碰撞</h3><p>两种方法进行创建</p>
 <p>1.在DCC中进行创建然后把它和集合体一起导入</p>
 <p>UCX_  碰撞盒命名  UCX _ (FullNameOfMesh) _ Number  在DCC中命名后选择导出FBX，导入UE4中系统会自动根据UCX_将他更改为碰撞盒</p>
 <p>2.在虚幻引擎内进行创建</p>
 <p>（窗口）凸分解可以为不规则物体创建碰撞参数</p>
-<h5 id="过度绘制"><a href="#过度绘制" class="headerlink" title="过度绘制"></a>过度绘制</h5><p>当你处理透明或不透明材质时，会出现过度绘制，他表示许多透明纹理相互重叠时GPU必须重复绘制这些纹理。过度绘制没法彻底消除，只能限制它，多用于植被。</p>
-<h4 id="LOD"><a href="#LOD" class="headerlink" title="LOD"></a>LOD</h4><p>表示”细节层次”，相当于模型的副本，只是三角面数量减少了，有时材质指令的数量也会减小</p>
+<h4 id="过度绘制"><a href="#过度绘制" class="headerlink" title="过度绘制"></a>过度绘制</h4><p>当你处理透明或不透明材质时，会出现过度绘制，他表示许多透明纹理相互重叠时GPU必须重复绘制这些纹理。过度绘制没法彻底消除，只能限制它，多用于植被。</p>
+<h3 id="LOD"><a href="#LOD" class="headerlink" title="LOD"></a>LOD</h3><p>表示”细节层次”，相当于模型的副本，只是三角面数量减少了，有时材质指令的数量也会减小</p>
 <p>如果模型只占屏幕中一两百个像素时，就没有必要显示它的所有面，更好的办法是显示一个分辨率更低的但轮廓相同的模型，只有标准模型一半数量的顶点，从而达到减小内存的方式，在开发VR应用时这点尤为重要，模型都应具备某些细节层次，你可以设置随意数量的细节层次，但超过一定数量后，它实际上就会对你的项目不利。</p>
 <p>网格体面数的缩减量通常应该减少75%、35%最后是12%。</p>
 
@@ -696,33 +696,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/07/16/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/">
+                <a href="/2020/07/19/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="UE4笔记（四）">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="虚幻四笔记（五）">
                         
-                        <span class="card-title">UE4笔记（四）</span>
+                        <span class="card-title">虚幻四笔记（五）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4学习笔记（四）纹理命名规范规范的命名可以节省大量的时间
-例如：
-SM_Rock_00  - Static Mesh for a Rock version 00  静态网格体的岩石   SM为静态网格体
-T_Rock__00_BC - 
+                            UE4笔记（五)材质PBRPBR的全称为 Physical Based Rendering(基于物理的渲染)，基于物理的渲染意味着我们根据事实模拟光线，而不是根据主观想法，光线的最终效果会更加准确且自然。
+PBR是两个做卡通渲染风格的工作室
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-19
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -730,15 +727,6 @@ T_Rock__00_BC -
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/UE4/">
-                        <span class="chip bg-color">UE4</span>
-                    </a>
-                    
                 </div>
                 
             </div>
