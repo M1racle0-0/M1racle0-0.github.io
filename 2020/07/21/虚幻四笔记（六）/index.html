@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="UE4笔记（五）, M1racle0-0">
+    <meta name="keywords" content="UE4笔记（六）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>UE4笔记（五） | M1racle0-0</title>
+    <title>UE4笔记（六） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">UE4笔记（五）</h1>
+                    <h1 class="description center-align post-title">UE4笔记（六）</h1>
                 </div>
             </div>
         </div>
@@ -391,21 +391,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-19
+                    2020-07-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-19
+                    2020-07-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2,484
+                    1,944
                 </div>
                 
 
@@ -422,75 +422,74 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4笔记（五"><a href="#UE4笔记（五" class="headerlink" title="UE4笔记（五)"></a>UE4笔记（五)</h1><h2 id="材质"><a href="#材质" class="headerlink" title="材质"></a>材质</h2><h3 id="PBR"><a href="#PBR" class="headerlink" title="PBR"></a>PBR</h3><p>PBR的全称为 Physical Based Rendering(基于物理的渲染)，基于物理的渲染意味着我们根据事实模拟光线，而不是根据主观想法，光线的最终效果会更加准确且自然。</p>
-<p>PBR是两个做卡通渲染风格的工作室合作的产物，因此PBR在卡通渲染方面也很不错，PBR有助于我们变准话美工管线，因为材质无论遇到怎样的光照都能做出相同反应（这意味着我们不需要根据物体的光照环境创建多个材质或者纹理）</p>
-<p><u>This is the same type of redering pipeline that you will find in programs like Vary.</u></p>
-<h3 id="材质域-Material-Domain"><a href="#材质域-Material-Domain" class="headerlink" title="材质域(Material Domain)"></a>材质域(Material Domain)</h3><p>只需要改变材质域、混合模式和着色模式就可以变换材质来满足各种不同的需求。</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515160927312.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>Material Domain (材质域）决定了材质属性的评估方式</p>
-<p>Blend Mode（混合模式） 决定了材质的颜色，以及材质与背景融合的方式</p>
-<p>Shading Modeal（着色模型） 决定了输入将如何䄦来创建材质的最终颜色</p>
-<p><u>例如，如果你想实现玻璃材质，应该讲混合模式改为“透明”，根据你是否希望玻璃对光线做出反应，将着色模型改为“无光照”或者“默认带光照”</u></p>
-<p>材质域、混合模式和着色模型不能在运行时更改</p>
-<h3 id="What-is-a-Material？-材质"><a href="#What-is-a-Material？-材质" class="headerlink" title="What is a Material？(材质)"></a>What is a Material？(材质)</h3><p>材质是UE4用于表示并调整对象纹理外观的方式，使用材质编辑器创建。材质实际上是由一块一块的HLSL（高级着色器语言）组成，UE4材质编辑中的许多函数都是直接由HLSL函数构成的。</p>
-<p>材质需要先编译才能在游戏中使用或者显示。一旦材质被编译好了，它就变成静态的了，不能在程序运行时更改。</p>
-<p>可以使用一种材质将其应用到项目中的各种不同材质上。</p>
-<h3 id="材质实例（Meterial-Instance）"><a href="#材质实例（Meterial-Instance）" class="headerlink" title="材质实例（Meterial Instance）"></a>材质实例（Meterial Instance）</h3><p>上个模块我们提到不可以在运行时更改材质，这个特性会对当下的游戏开发带了不少的困扰，例如动态的游戏场景，而材质实例就是为了解决这个问题存在的。</p>
-<p>材质实例是材质的特殊版本。它允许我们在游戏运行的时候修改材质中的参数和纹理而不需要重新编译材质，这让材质实例的迭代变得非常快，所以你几乎可以实时看到变化效果，你还可以通过时间轴和蓝图与材质实例进行交互。</p>
-<p>当你使用单独的材质实例的时候，其性能优势很有限，而当你使用大量的材质实例而不是材质的时候他的性能优势就会逐渐显示出来。</p>
-<p>材质实例非常的灵活，你可以设置一个主材质，然后在材质实例中设置许多的参数以便后期调整材质，而无需编写大量复杂的着色器代码（Shader Code）。</p>
-<h3 id="主材质（Master-Material"><a href="#主材质（Master-Material" class="headerlink" title="主材质（Master Material)"></a>主材质（Master Material)</h3><p>主材质是一种用未完成许多任务的材质，可以在项目中满足对象的不同材质需求</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164106538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164117415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>左侧是Base_Color 可以使用取色器将材质设置成任意颜色</p>
-<p>右侧是纹理参数节点，它允许我们在材质实例中添加任意纹理</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164341431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>标量参数，标量参数控制标量变量，允许我们更改材质实例中的参数，以便增加或者减少材质实例的某种效果</p>
-<h4 id="主材质的注意事项"><a href="#主材质的注意事项" class="headerlink" title="主材质的注意事项"></a>主材质的注意事项</h4><p>不要尝试将一种主材质用于所有对象，它会让材质臃肿不堪，最终导致性能问题，可以所有的透明物体使用一种材质，所有的半透明使用一种，主角使用一种，武器使用一种。</p>
-<h2 id="主材质的概念"><a href="#主材质的概念" class="headerlink" title="主材质的概念"></a>主材质的概念</h2><h3 id="材质函数（Material-Function）"><a href="#材质函数（Material-Function）" class="headerlink" title="材质函数（Material Function）"></a>材质函数（Material Function）</h3><p>材质函数允许你共享并复用材质图标的部分内容。UE4自带了诸多材质函数，比如确定场景对象的位置、鼠标在屏幕中位置等函数。你可以方便地将代码封装成材质函数，然后通过材质库分享代码。</p>
-<p>材质函数允许你共享材质代码，从而在你调整全局效果时减少维护代码的麻烦</p>
-<h3 id="RGB遮罩打包（RGB-Mask-Packing）"><a href="#RGB遮罩打包（RGB-Mask-Packing）" class="headerlink" title="RGB遮罩打包（RGB Mask Packing）"></a>RGB遮罩打包（RGB Mask Packing）</h3><p>将不同的纹理保存在同一张纹理的RGB通道中，能有效的减少纹理的占用量。</p>
-<p>在使用RGB遮罩打包的时候要注明RGB通道中各自保存的纹理类型。</p>
-<h3 id="静态开关-Static-switches"><a href="#静态开关-Static-switches" class="headerlink" title="静态开关 (Static switches)"></a>静态开关 (Static switches)</h3><p>他允许你启用或者禁用材质中的整条代码路径。<br>        <u>比如你可以将视差法线贴图放在静态开关内，因为其开销很大，所以可以只在需要的时候开启它就可以了。</u></p>
-<h3 id="特性层级开关（Feature-Level-Switch）"><a href="#特性层级开关（Feature-Level-Switch）" class="headerlink" title="特性层级开关（Feature Level Switch）"></a>特性层级开关（Feature Level Switch）</h3><p>它可以让材质在任何目标设备上运行。</p>
-<p><u>例如ES2：用于安卓等移动设备。SM5可以获得最高等级的精细度</u></p>
-<h2 id="实践部分"><a href="#实践部分" class="headerlink" title="实践部分"></a>实践部分</h2><h3 id="主材质"><a href="#主材质" class="headerlink" title="主材质"></a>主材质</h3><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515223946279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>简单讲一下 </p>
-<p>在UE4中创建一个新的材质，完成相关的蓝图设计。</p>
-<p>这张图创建的材质包括了底色（Base Color)，金属(Metallic)，粗糙程度(Roughness)，法线贴图(Normal) </p>
-<p>在Base_color中有一个Swtich判断显示纹理还是显示取色器颜色。</p>
-<p>Meallic中添加一个参数控制金属光泽</p>
-<p>在Roughness中 lerp()函数为线性插值函数，能上调或调低粗糙度数值，先导入粗糙纹理，在纹理取样类型设置中改为“遮罩”并转换成参数，中间来获取遮罩参数，筛选纹理的RGB通道再连接至lerp函数中的阿尔法通道，通过两个参数的调节控制粗糙程度</p>
-<p>导入法线贴图，将采样类型设置为法线。</p>
-<p>完成主材质制作。 更名、分组对于后期管理很重要。</p>
-<h4 id="改为玻璃对象的主材质"><a href="#改为玻璃对象的主材质" class="headerlink" title="改为玻璃对象的主材质"></a>改为玻璃对象的主材质</h4><p>玻璃的主要属性就是透明，然而我们发现现在主材质的Opacity属性是黑色的，即不可操作。而要打开这个参数我们需要将主材质的属性切换为Translucent，然后就会发现粗糙度相关的点变为了不可操作，而Opacity被打开了。我们按住1点击屏幕创建一个常量，将其链接到Opacity上，即可调整当前材质的透明度。</p>
-<h3 id="材质函数"><a href="#材质函数" class="headerlink" title="材质函数"></a>材质函数</h3><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122149422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>创建材质函数，进入蓝图进行创建 <u>控制纹理缩放的材质函数</u></p>
-<p>TexCoord[0]是贴图坐标系，它反映的是只坐标的变化。<br>        Input Texture_Scaling是一个输入节点，在这里我们用来表示坐标缩放的大小。<br>        Multiply是相乘的意思，即将坐标与缩放相乘获得最终的坐标，然后相乘的坐标作为输出结果</p>
-<h4 id="材质函数的应用"><a href="#材质函数的应用" class="headerlink" title="材质函数的应用"></a>材质函数的应用</h4><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122727116.png" alt=""></p>
-<p>将材质函数拖入主材质中，MF_Title 为拖入的材质函数，在左侧创建一个参数作为函数的输入，控制缩放的材质大小</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122852524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>将函数的输出与纹理、粗糙度等建立联系，输入位置为UVs</p>
-<h3 id="材质实例"><a href="#材质实例" class="headerlink" title="材质实例"></a>材质实例</h3><p>材质实例和主材质具有父子关系，子类只能继承或使用父类拥有的属性。</p>
-<h4 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h4><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516153410274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>1.左侧，右键点击一个材质，在弹出的菜单中选择创建材质实例<br>        2.在内容浏览器的空白处右键可以在材质子菜单中找到材质实例</p>
-<h4 id="材质实例的使用"><a href="#材质实例的使用" class="headerlink" title="材质实例的使用"></a>材质实例的使用</h4><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516160627181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>可以看见他包含了我刚才创建的Base_Color、Metallic、Normal、Roughness。</p>
-<p>Scalar Parameter Values中包含控制创建的材质函数输入值，相当于其他选项。（因为没有直接连接到主材质上</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516214329317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>在通用字段下可以修改父材质的属性和函数。</p>
-<p>【two sides】：双面。如果勾选中了这个属性，则材质将会双面渲染，双面指的是内面和外面。</p>
-<p>【Dithered LODTransition】：颤化LOD过滤。它用于植被系统。（这个选项违背了父材质系统的初衷，因此请谨慎使用）</p>
-<p>【Shading Model】：如果不想创建材质又想快速的看到效果可以使用这个东西。</p>
-<h2 id="顶点动画"><a href="#顶点动画" class="headerlink" title="顶点动画"></a>顶点动画</h2><p>顶点动画以极低的开销实现复杂对象的微妙运动，如水面、树叶、布料等。顶点动画完全由GPU完成，完全不使用CPU。这使得每一帧的渲染开销都很低。</p>
-<p>缺点是其互动性低，即CPU和我们所处理的逻辑无法获取到动画的偏移量。因此无法用于任何与游戏互动相关的部分，比如交互和碰撞。</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516220152564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>在这颗植物中，只有叶子在随风飘摇，而树干则没有动态的效果。因此我们需要将叶子与树干分离，使用两个静态网格体或者使用两个不同的材质，如上图。其中TreeBark材质为静态的材质，而下面的CherryTree_Wind则是设置了顶点动画的材质。</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516220525736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>其中上侧的TextureSample设置为Mask，将其RGB链接到BaseColor成为底色，而Alpha链接到OpacityMask上。同时拖入一张法线贴图，使其拥有法线效果。</p>
-<p>这样一张静态的材质就做好了。</p>
-<p>而动态的产生依赖于左边的3个模块，分别是两个常量和一个SimpleGrassWind效果，图中链接的3个常量点是必须要设置的参数，设置后将风模块链接到主材质的World Position Offset，即可将风的动态效果映射到世界坐标偏移上，从而产生动态的效果，注意选择双面。</p>
-
+                <h1 id="UE4笔记（六"><a href="#UE4笔记（六" class="headerlink" title="UE4笔记（六)"></a>UE4笔记（六)</h1><h2 id="性能与优化"><a href="#性能与优化" class="headerlink" title="性能与优化"></a>性能与优化</h2><h3 id="纹理流送（Texture-Streaming）"><a href="#纹理流送（Texture-Streaming）" class="headerlink" title="纹理流送（Texture Streaming）"></a>纹理流送（Texture Streaming）</h3><p>纹理流送能在摄影机接近场景对象或者远离场景对象时流送不同的细节层次。</p>
+<p>纹理流送设有一个缓存池：一片专门用于缓存多级渐进纹理的内存区域。随着纹理不断远离摄像机，他们会变得越来越小，在纹理流送池中占用的内存也越来越少直到不再占用任何内存，接近摄像头就会变得越来越大，所占内存也会越大。</p>
+<p>如果遇见纹理流送池的可用空间不足，就说明内存池预先分配的空间太少。如果要增加内存池大小：</p>
+<p>1.打开UE4控制台，点击“~”键打开控制台。</p>
+<p>2.输入“r.Streaming.PoolSize=5000”   (r.Streaming.PoolSize=SizeInMB(取决于你的项目情况))</p>
+<p>还能打开文件夹中的DefaultEngine.ini文件，在/Script/Engine.RendererSettings下输入“r.Streaming.PoolSize=5000”,这是一种方法在UE4每次启动后自动获得正确的流送池大小。</p>
+<h3 id="强制纹理不流送-Forcing-Textures-to-never-stream"><a href="#强制纹理不流送-Forcing-Textures-to-never-stream" class="headerlink" title="强制纹理不流送(Forcing Textures to never stream)"></a>强制纹理不流送(Forcing Textures to never stream)</h3><p>它能确保始终显示最高分辨率的纹理，可以将靠近用户体验的纹理使用“永不流送”，比如UI元素，文本元素。</p>
+<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><p>使你的纹理永远维持在最高分辨率</p>
+<p>1.打开一张纹理图</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U534l8.md.png" alt="纹理图片"></p>
+<p>2.在层次细节中勾选从不流送</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53WfP.png" alt="从不流送"></p>
+<p>3.在压缩栏中 将压缩设置改为“用户界面”</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53RYt.png" alt="压缩设置-用户界面"></p>
+<p>这会让它的渲染开销变得非常大，不仅是在内存中，而且屏幕绘制开销也会变大，因为他没有压缩，它永远都不会使用其他渐进纹理，即使它在屏幕中只占200或100像素和占2000像素的开销是一样的。</p>
+<p><u>让你获得最高质量的效果，影响性能</u></p>
+<h2 id="LOD与合并静态网格体"><a href="#LOD与合并静态网格体" class="headerlink" title="LOD与合并静态网格体"></a>LOD与合并静态网格体</h2><h3 id="LOD的自动创建工具（Automatic-LOD-Creation-Tools）"><a href="#LOD的自动创建工具（Automatic-LOD-Creation-Tools）" class="headerlink" title="LOD的自动创建工具（Automatic LOD Creation Tools）"></a>LOD的自动创建工具（Automatic LOD Creation Tools）</h3><p>1.选择一个静态网格体，打开静态网格编辑器</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53toR.md.png" alt="静态网格-女神"></p>
+<p>2.找到LOD setting分组（LOD设置），有一个属性“LOD Group”</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53ZZj.png" alt="LOD group"></p>
+<p>LOD中预存了许多类型的分组，比如Foliage、HightDetail等，当你选择其中一个的时候，UE4会读取BaseEngine.ini中的配置数据，并按照预设好的配置为该静态网格体生成指定规格的LOD数据；</p>
+<p><img src="https://img-blog.csdnimg.cn/20200518220609695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53Asg.png" alt="High"></p>
+<p>例如我这里选择了HighDetail的分组，它的LOD数量变为了6。LOD导入功能让你导入LOD级别</p>
+<h3 id="手动修改LOD参数（Manual-LOD-Setup）"><a href="#手动修改LOD参数（Manual-LOD-Setup）" class="headerlink" title="手动修改LOD参数（Manual LOD Setup）"></a>手动修改LOD参数（Manual LOD Setup）</h3><p>上面我们已经生成了六个LOD级别，通过LOD选取器选择我们想要调节的LOD级别</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U531QU.png" alt="手动"></p>
+<p>我这里选择的为LOD1，可以在下面的LOD1的参数配置修改中修改LOD1参数，比如融合阈值，它表示着当两个顶点（取决于你选择的内容）小于阈值时将会自动合并，从而减少渲染分支。</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U533yF.png" alt="手动设置LOD1"></p>
+<p>上图表示当屏幕大小为多少倍时将会启用当前的LOD。此处是默认值，因为我们用的是系统自带的，可以手动修改定制。</p>
+<p>回到UE4中，点击一个指定的静态网格体，我们可以在细节面板中找到LOD，并将“Forced Lod Model”设置为指定值，这样就可以强制渲染该网格体为指定的LOD等级而不受到屏幕距离的影响。</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53JeJ.png" alt="强制"></p>
+<p>如果将重载最小LOD打开，将最小LOD调为2，意味着一开始使用LOD2，然后持续显示LOD直到看到最小的LOD，这样能根据关卡需求直接调整LOD而不用打开静态网格</p>
+<h3 id="Actor融合工具（Merge-Actor-Tool）"><a href="#Actor融合工具（Merge-Actor-Tool）" class="headerlink" title="Actor融合工具（Merge Actor Tool）"></a>Actor融合工具（Merge Actor Tool）</h3><p><img src="https://s1.ax1x.com/2020/07/21/U53Yw9.md.png" alt="ACtor"></p>
+<p>左边的图片有58个静态网格体，14种不同的材质，51K的三角形，使用过Actor融合工具后转换为一个静态网格体，一个材质，三角形不变。这有效的减少了整体的渲染消耗，无论是内存占用还是屏幕的渲染开销。（减少了13种材质，外加他们的漫反射、粗糙程度、法线贴图）</p>
+<p>融合Actor时，选中所有需要融合的网格体，然后在菜单栏中找到窗口→开发者工具→合并Actor</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53KJ0.png" alt="ACtor组合"></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53QzT.png" alt="合并"></p>
+<p>简单说一下设置内容：</p>
+<p>1.零处的枢轴点（Pivot Point at Zero）:  它会保证合并后的枢纽点位于0点，从而方便操作</p>
+<p>2.合并物理数据  (Merge Physics Data) ：合并物理数据</p>
+<p>3.将顶点数据烘焙为网格体（Bake Vertex Data to Mesh）：它会合并顶点动画等Mesh数据，保证顶点动画等信息在合并后能正常使用</p>
+<p>下面关于LOD选项类型  <u>建议使用Use specific LOD level，这非常重要！</u></p>
+<p><img src="https://img-blog.csdnimg.cn/20200518224713113.png" alt=""></p>
+<p>Use all LOD levels:当前的使用所有LOD层级不允许我们选择或调整新材质的创建方式，它的作用是获取所有当前信息，创建一个完整的大网格体然后使用所有的LOD  </p>
+<p>Use specific LOD level：这样所有的网格体就会使用同一个LOD，尽量写0因为不确定是否所有的网格体都具有相同的LOD设置，只有LOD0是所有网格体都共同拥有的。</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53eds.png" alt="高级"></p>
+<p>在高级选项下有”生成光照贴图UV“和”目标光照贴图分辨率“</p>
+<p>用于确保光照贴图是根据光照计算并添加到UV通道中</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U538L4.png" alt="下面"></p>
+<p>进行材质设置之前一定要在前面LOD设置中选择Use specific LOD level</p>
+<p>选择合并材质，按照所选的网格体进行材质的数据选择。</p>
+<p> 下面的地形剔除，选用地形剔除意味着任何与地形相交的网格体的不可见部分都会被剔除</p>
+<p>最后是”替换源Actor“：用新生成的网格体替换被选中和融合的Actor</p>
+<p>在融合时为了避免融合出错，我们可以选中要融合的网格体之后按Ctrl+C，此时这些网格体将会被以代码的形式储存下来：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200518225228214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>一旦出错只需要复制这些代码然后粘贴在世界大纲视图中即可</p>
+<h3 id="分层细节层级工具（Hierarchical-Level-of-Detail-Tool）HLOD"><a href="#分层细节层级工具（Hierarchical-Level-of-Detail-Tool）HLOD" class="headerlink" title="分层细节层级工具（Hierarchical Level of Detail Tool）HLOD"></a>分层细节层级工具（Hierarchical Level of Detail Tool）HLOD</h3><p>Actor融合工具虽然效果好，但是有一点不方便，我们需要一些额外的步骤用于在融合错误对象时进行补救，HLOD的优点在于你可以随时撤销和删除生成的群集或融合后的网格体，引擎在后台为你记录了所有的操作，你可以随时重新推倒再来一遍。</p>
+<p>窗口→世界设置→LOD System 确保在LOD系统分段中打开启动层级LOD系统</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53kQS.png" alt="LOD系统"></p>
+<p>点击窗口打开层级LOD大纲视图</p>
+<p><img src="https://img-blog.csdnimg.cn/2020051822594152.png" alt=""></p>
+<p>点击生成群集</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53uiq.png" alt="构建 (2)"></p>
+<p>这一步大体工作如下：在世界大体将这些网格体分组，然后将组内物体合并。网格体细节不变，但是将会赋予这几个分组（比如两三个）两三个纹理和材质，这样当摄像机远离的时候将极大的降低渲染相同对象的消耗<br>生成结束之后我们点击生成代理网格体<u>（这一步相当于融合Actor）</u></p>
+<p>一些层级LOD设置</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53MWV.png" alt="构建3"></p>
+<p>群集生成设置（Cluster generation settings）：它的作用是HLOD系统会查看关卡，并且放置许多体积，然后为体积中的所有Actor都生成一个新的网格体，例如在一个组有30个网格体，HLOD将他们转化为两到三个网格体，细节程度仍然不变，但它会获取这两到三个网格体，赋予它们两到三种材质和两到三张纹理</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
             </div>
             <hr/>
 
@@ -515,7 +514,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/07/19/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">http://M1racle0-0.github.io/2020/07/19/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/07/21/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">http://M1racle0-0.github.io/2020/07/21/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -722,9 +721,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/21/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">
                     <div class="card-image">
@@ -743,9 +743,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -754,6 +754,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -772,27 +773,25 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/16/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/">
+                <a href="/2020/07/19/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="UE4笔记（四）">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="UE4笔记（五）">
                         
-                        <span class="card-title">UE4笔记（四）</span>
+                        <span class="card-title">UE4笔记（五）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4学习笔记（四）纹理命名规范规范的命名可以节省大量的时间
-例如：
-SM_Rock_00  - Static Mesh for a Rock version 00  静态网格体的岩石   SM为静态网格体
-T_Rock__00_BC - 
+                            UE4笔记（五)材质PBRPBR的全称为 Physical Based Rendering(基于物理的渲染)，基于物理的渲染意味着我们根据事实模拟光线，而不是根据主观想法，光线的最终效果会更加准确且自然。
+PBR是两个做卡通渲染风格的工作室
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-19
                             </span>
                         <span class="publish-author">
                             
