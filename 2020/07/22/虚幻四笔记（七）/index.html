@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="UE4笔记（六）, M1racle0-0">
+    <meta name="keywords" content="UE4笔记（七）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>UE4笔记（六） | M1racle0-0</title>
+    <title>UE4笔记（七） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">UE4笔记（六）</h1>
+                    <h1 class="description center-align post-title">UE4笔记（七）</h1>
                 </div>
             </div>
         </div>
@@ -391,21 +391,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-21
+                    2020-07-22
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-21
+                    2020-07-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1,944
+                    3,906
                 </div>
                 
 
@@ -422,73 +422,140 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4笔记（六"><a href="#UE4笔记（六" class="headerlink" title="UE4笔记（六)"></a>UE4笔记（六)</h1><h2 id="性能与优化"><a href="#性能与优化" class="headerlink" title="性能与优化"></a>性能与优化</h2><h3 id="纹理流送（Texture-Streaming）"><a href="#纹理流送（Texture-Streaming）" class="headerlink" title="纹理流送（Texture Streaming）"></a>纹理流送（Texture Streaming）</h3><p>纹理流送能在摄影机接近场景对象或者远离场景对象时流送不同的细节层次。</p>
-<p>纹理流送设有一个缓存池：一片专门用于缓存多级渐进纹理的内存区域。随着纹理不断远离摄像机，他们会变得越来越小，在纹理流送池中占用的内存也越来越少直到不再占用任何内存，接近摄像头就会变得越来越大，所占内存也会越大。</p>
-<p>如果遇见纹理流送池的可用空间不足，就说明内存池预先分配的空间太少。如果要增加内存池大小：</p>
-<p>1.打开UE4控制台，点击“~”键打开控制台。</p>
-<p>2.输入“r.Streaming.PoolSize=5000”   (r.Streaming.PoolSize=SizeInMB(取决于你的项目情况))</p>
-<p>还能打开文件夹中的DefaultEngine.ini文件，在/Script/Engine.RendererSettings下输入“r.Streaming.PoolSize=5000”,这是一种方法在UE4每次启动后自动获得正确的流送池大小。</p>
-<h3 id="强制纹理不流送-Forcing-Textures-to-never-stream"><a href="#强制纹理不流送-Forcing-Textures-to-never-stream" class="headerlink" title="强制纹理不流送(Forcing Textures to never stream)"></a>强制纹理不流送(Forcing Textures to never stream)</h3><p>它能确保始终显示最高分辨率的纹理，可以将靠近用户体验的纹理使用“永不流送”，比如UI元素，文本元素。</p>
-<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><p>使你的纹理永远维持在最高分辨率</p>
-<p>1.打开一张纹理图</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U534l8.md.png" alt=""></p>
-<p>2.在层次细节中勾选从不流送</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53WfP.png" alt=""></p>
-<p>3.在压缩栏中 将压缩设置改为“用户界面”</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53RYt.png" alt=""></p>
-<p>这会让它的渲染开销变得非常大，不仅是在内存中，而且屏幕绘制开销也会变大，因为他没有压缩，它永远都不会使用其他渐进纹理，即使它在屏幕中只占200或100像素和占2000像素的开销是一样的。</p>
-<p><u>让你获得最高质量的效果，影响性能</u></p>
-<h2 id="LOD与合并静态网格体"><a href="#LOD与合并静态网格体" class="headerlink" title="LOD与合并静态网格体"></a>LOD与合并静态网格体</h2><h3 id="LOD的自动创建工具（Automatic-LOD-Creation-Tools）"><a href="#LOD的自动创建工具（Automatic-LOD-Creation-Tools）" class="headerlink" title="LOD的自动创建工具（Automatic LOD Creation Tools）"></a>LOD的自动创建工具（Automatic LOD Creation Tools）</h3><p>1.选择一个静态网格体，打开静态网格编辑器</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53toR.md.png" alt=""></p>
-<p>2.找到LOD setting分组（LOD设置），有一个属性“LOD Group”</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53ZZj.png" alt=""></p>
-<p>LOD中预存了许多类型的分组，比如Foliage、HightDetail等，当你选择其中一个的时候，UE4会读取BaseEngine.ini中的配置数据，并按照预设好的配置为该静态网格体生成指定规格的LOD数据；</p>
-<p><img src="https://img-blog.csdnimg.cn/20200518220609695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53Asg.png" alt=""></p>
-<p>例如我这里选择了HighDetail的分组，它的LOD数量变为了6。LOD导入功能让你导入LOD级别</p>
-<h3 id="手动修改LOD参数（Manual-LOD-Setup）"><a href="#手动修改LOD参数（Manual-LOD-Setup）" class="headerlink" title="手动修改LOD参数（Manual LOD Setup）"></a>手动修改LOD参数（Manual LOD Setup）</h3><p>上面我们已经生成了六个LOD级别，通过LOD选取器选择我们想要调节的LOD级别</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U531QU.png" alt=""></p>
-<p>我这里选择的为LOD1，可以在下面的LOD1的参数配置修改中修改LOD1参数，比如融合阈值，它表示着当两个顶点（取决于你选择的内容）小于阈值时将会自动合并，从而减少渲染分支。</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U533yF.png" alt=""></p>
-<p>上图表示当屏幕大小为多少倍时将会启用当前的LOD。此处是默认值，因为我们用的是系统自带的，可以手动修改定制。</p>
-<p>回到UE4中，点击一个指定的静态网格体，我们可以在细节面板中找到LOD，并将“Forced Lod Model”设置为指定值，这样就可以强制渲染该网格体为指定的LOD等级而不受到屏幕距离的影响。</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53JeJ.png" alt=""></p>
-<p>如果将重载最小LOD打开，将最小LOD调为2，意味着一开始使用LOD2，然后持续显示LOD直到看到最小的LOD，这样能根据关卡需求直接调整LOD而不用打开静态网格</p>
-<h3 id="Actor融合工具（Merge-Actor-Tool）"><a href="#Actor融合工具（Merge-Actor-Tool）" class="headerlink" title="Actor融合工具（Merge Actor Tool）"></a>Actor融合工具（Merge Actor Tool）</h3><p><img src="https://s1.ax1x.com/2020/07/21/U53Yw9.md.png" alt=""></p>
-<p>左边的图片有58个静态网格体，14种不同的材质，51K的三角形，使用过Actor融合工具后转换为一个静态网格体，一个材质，三角形不变。这有效的减少了整体的渲染消耗，无论是内存占用还是屏幕的渲染开销。（减少了13种材质，外加他们的漫反射、粗糙程度、法线贴图）</p>
-<p>融合Actor时，选中所有需要融合的网格体，然后在菜单栏中找到窗口→开发者工具→合并Actor</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53KJ0.png" alt=""></p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53QzT.png" alt=""></p>
-<p>简单说一下设置内容：</p>
-<p>1.零处的枢轴点（Pivot Point at Zero）:  它会保证合并后的枢纽点位于0点，从而方便操作</p>
-<p>2.合并物理数据  (Merge Physics Data) ：合并物理数据</p>
-<p>3.将顶点数据烘焙为网格体（Bake Vertex Data to Mesh）：它会合并顶点动画等Mesh数据，保证顶点动画等信息在合并后能正常使用</p>
-<p>下面关于LOD选项类型  <u>建议使用Use specific LOD level，这非常重要！</u></p>
-<p><img src="https://img-blog.csdnimg.cn/20200518224713113.png" alt=""></p>
-<p>Use all LOD levels:当前的使用所有LOD层级不允许我们选择或调整新材质的创建方式，它的作用是获取所有当前信息，创建一个完整的大网格体然后使用所有的LOD  </p>
-<p>Use specific LOD level：这样所有的网格体就会使用同一个LOD，尽量写0因为不确定是否所有的网格体都具有相同的LOD设置，只有LOD0是所有网格体都共同拥有的。</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53eds.png" alt=""></p>
-<p>在高级选项下有”生成光照贴图UV“和”目标光照贴图分辨率“</p>
-<p>用于确保光照贴图是根据光照计算并添加到UV通道中</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U538L4.png" alt=""></p>
-<p>进行材质设置之前一定要在前面LOD设置中选择Use specific LOD level</p>
-<p>选择合并材质，按照所选的网格体进行材质的数据选择。</p>
-<p> 下面的地形剔除，选用地形剔除意味着任何与地形相交的网格体的不可见部分都会被剔除</p>
-<p>最后是”替换源Actor“：用新生成的网格体替换被选中和融合的Actor</p>
-<p>在融合时为了避免融合出错，我们可以选中要融合的网格体之后按Ctrl+C，此时这些网格体将会被以代码的形式储存下来：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200518225228214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>一旦出错只需要复制这些代码然后粘贴在世界大纲视图中即可</p>
-<h3 id="分层细节层级工具（Hierarchical-Level-of-Detail-Tool）HLOD"><a href="#分层细节层级工具（Hierarchical-Level-of-Detail-Tool）HLOD" class="headerlink" title="分层细节层级工具（Hierarchical Level of Detail Tool）HLOD"></a>分层细节层级工具（Hierarchical Level of Detail Tool）HLOD</h3><p>Actor融合工具虽然效果好，但是有一点不方便，我们需要一些额外的步骤用于在融合错误对象时进行补救，HLOD的优点在于你可以随时撤销和删除生成的群集或融合后的网格体，引擎在后台为你记录了所有的操作，你可以随时重新推倒再来一遍。</p>
-<p>窗口→世界设置→LOD System 确保在LOD系统分段中打开启动层级LOD系统</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53kQS.png" alt=""></p>
-<p>点击窗口打开层级LOD大纲视图</p>
-<p><img src="https://img-blog.csdnimg.cn/2020051822594152.png" alt=""></p>
-<p>点击生成群集</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53uiq.png" alt=""></p>
-<p>这一步大体工作如下：在世界大体将这些网格体分组，然后将组内物体合并。网格体细节不变，但是将会赋予这几个分组（比如两三个）两三个纹理和材质，这样当摄像机远离的时候将极大的降低渲染相同对象的消耗<br>生成结束之后我们点击生成代理网格体<u>（这一步相当于融合Actor）</u></p>
-<p>一些层级LOD设置</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53MWV.png" alt=""></p>
-<p>群集生成设置（Cluster generation settings）：它的作用是HLOD系统会查看关卡，并且放置许多体积，然后为体积中的所有Actor都生成一个新的网格体，例如在一个组有30个网格体，HLOD将他们转化为两到三个网格体，细节程度仍然不变，但它会获取这两到三个网格体，赋予它们两到三种材质和两到三张纹理</p>
+                <h1 id="UE4笔记（七"><a href="#UE4笔记（七" class="headerlink" title="UE4笔记（七)"></a>UE4笔记（七)</h1><h2 id="体积（Volumes）"><a href="#体积（Volumes）" class="headerlink" title="体积（Volumes）"></a>体积（Volumes）</h2><p>体积是一种特殊的Actor，它有很多的用途：限制玩家的移动范围，决定音响的混响效果等，UE4中很多交互机制都是由体积决定的。</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UTckrD.png" alt=""></p>
+<h3 id="Lightmass-Volume"><a href="#Lightmass-Volume" class="headerlink" title="Lightmass Volume"></a>Lightmass Volume</h3><p>它有两大作用：限定Lightmass的模拟范围、它允许动态对象（如玩家）了解静态光源环境。</p>
+<p>1.限定Lightmass的模拟范围。它决定了Lightmass计算过程中计算最密集和最简单的区域，如果没有Lightmass，你会把计算时间浪费在没有任何光线或无关紧要的场景区域，添加Lightmass体积能确保只有玩家能够看到或与之互动的区域才会被纳入光照计算，从而有助于减少场景的实际光照计算时间（减少需要计算的对象数量）。</p>
+<p>2.允许动态对象（如玩家）了解静态光源环境。当现实世界中有东西移动时，我们能看到光线在它的表面移动，因为光线是完全动态的，我们可以和他互动，但是电子游戏无法完全模拟动态光照的实时互动效果，我们需要使用光照贴图和阴影贴图，光照无法移动也无法更新。为解决该问题，整个场景中会添加“Lightmass重要取样”的小型光照探针</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UTcZad.png" alt=""></p>
+<p>上图所示的这些均匀分布色彩各异的小方块就是采样点，它记录了所在位置的光源烘焙信息，当动态对象靠近的时候就会计算这些采样点的数据来形成动态光照的效果。</p>
+<h3 id="Lightmass角色间接细节体积（Lightmass-Character-Indirect-Detail-Volumes）"><a href="#Lightmass角色间接细节体积（Lightmass-Character-Indirect-Detail-Volumes）" class="headerlink" title="Lightmass角色间接细节体积（Lightmass Character Indirect Detail Volumes）"></a>Lightmass角色间接细节体积（Lightmass Character Indirect Detail Volumes）</h3><p>间接细节体积的作用是增加该体积内的取样数量（增多采样点），它可以放置在电梯这样狭小、采样不足的环境之中，使得角色可以正确的获得光照的信息。</p>
+<p>在世界场景设置中搜索Lightmass设置-静态光照等级范围 也能改变光照体积取样的密度。</p>
+<h3 id="剔除距离体积（Cull-Distance-Volume）"><a href="#剔除距离体积（Cull-Distance-Volume）" class="headerlink" title="剔除距离体积（Cull Distance Volume）"></a>剔除距离体积（Cull Distance Volume）</h3><p>剔除距离体积是一种优化工具，允许你确保对象在超出特定大小和到摄像机的特定距离的时候不再被渲染。</p>
+<p>选中体积之后，使用细节（Details）面板访问剔除距离（Cull Distance）</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UTcAqe.png" alt=""></p>
+<p>这些参数表示，该体积中大小最接近100单位的对象会在它们距摄像机350单位或更远时被从视野中剔除。</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UTcVVH.png" alt=""></p>
+<p>该体积中大小最接近 1000 单位的对象将永不会被剔除。这可以确保尺寸极大的对象被视为无穷大，这意味着它们距摄像机的距离永不可能远到应将它们剔除的程度。</p>
+<p>如果希望某个对象持续被渲染，那可以在该网格体的Detail中搜索cull：</p>
+<p>将”允许剔除距离体积”禁用</p>
+<h5 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h5><p>关卡或蓝图中的所选Actor包含可通过其 细节（Details） 面板访问的距离设置。它们支持设置按实例距离，或者是否使用剔除距离体积来剔除Actor。</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/VisibilityCulling/VisibilityCullingReference/DetailsPanel-1.webp" alt=""></p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>最小绘制距离（Min Draw Distance）</strong></td>
+<td align="left">设置将在场景中渲染对象的最小绘制距离。该距离以场景空间单位（厘米）测量，具体是指从对象边界球体中心到摄像机位置。</td>
+</tr>
+<tr>
+<td align="center"><strong>所需最大绘制距离（Desired Max Draw Distance）</strong></td>
+<td align="left">设置关卡设计器的最大绘制距离。”真实”最大距离是 <strong>最小绘制距离（Min Draw Distance）</strong>（忽略0）。</td>
+</tr>
+<tr>
+<td align="center"><strong>当前最大绘制距离（Current Max Draw Distance）</strong></td>
+<td align="left">将开始剔除对象的只读距离。该值表示的是 <strong>最小绘制距离（Min Draw Distance）</strong> 或者剔除距离体积为参照而设置的 <strong>剔除距离（Cull Distances）</strong>。显示值0时，表示不应剔除该对象。</td>
+</tr>
+<tr>
+<td align="center"><strong>从不距离剔除（Never Distance Cull）</strong></td>
+<td align="left">启用时，该对象不会按距离剔除。如果它是层级细节层次（LOD）网格体的子代，也会被忽略。</td>
+</tr>
+<tr>
+<td align="center"><strong>允许剔除距离体积（Allow Cull Distance Volume）</strong></td>
+<td align="left">是否接受剔除距离体积的剔除距离值修改缓存的剔除距离。</td>
+</tr>
+<tr>
+<td align="center"><strong>视为遮挡背景（Treat as Background for Occlusion）</strong></td>
+<td align="left">允许将该对象视为部分背景以达到遮挡目的。这可以用作一种优化方法，降低天空盒、大型地面（远景的一部分）等内容的渲染开销。</td>
+</tr>
+<tr>
+<td align="center"><strong>用作遮挡物（Use as Occluder）</strong></td>
+<td align="left">是否渲染仅深度通道中的Primitive。这通常对于所有对象都是成立的，让渲染者决定是否渲染仅深度通道中的对象。</td>
+</tr>
+</tbody></table>
+<h1 id="照明阴影和后期处理"><a href="#照明阴影和后期处理" class="headerlink" title="照明阴影和后期处理"></a>照明阴影和后期处理</h1><h3 id="光照（Lighting）"><a href="#光照（Lighting）" class="headerlink" title="光照（Lighting）"></a>光照（Lighting）</h3><p>光照有三种可移动类型：静态（static）、固定（Stationary）、可移动（Movable）。其中静态（static）的开销最小。</p>
+<p>静态意味着：不会做任何运动，没有互动，光源信息完全靠烘焙，它不能以任何形式改变其形状或形式（状态）。</p>
+<p>固定（固定光源）：可以与场景互动，所以固定光源投射的阴影能够和动态对象融合到一起，但是它拥有一定的开销，因为你可以在运行时改变它的颜色和亮度，但是你不能移动它。</p>
+<p>动态：动态的开销是最大的，它可以随意的移动，其光影包括所有的效果完全是动态的</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UT2gv6.md.png" alt=""></p>
+<h4 id="构建光照"><a href="#构建光照" class="headerlink" title="构建光照"></a>构建光照</h4><p>在【构建→光照质量】中，可以选择4个级别的光照：制作（Production）、高级（High）、中级（Medium）、预览（Preview）。等级从高到低排序。</p>
+<p>预览：预览将会以最简陋的方式展现光照的信息，可能会出现奇怪的斑点、阴影，但是可以通过预览大体知道能否达到想要的效果，比如光照的范围等基础信息。其速度也是最快的。</p>
+<p>从中级到制作其实就是逐级提升的过程，一般在制作中使用中级和预览就可以，它能够保证基本的信息正确且拥有较快的渲染速度，我们可以通过调整光照贴图的分辨率来消除斑点，提升光照的效果。当项目发布时则需要使用“制作”，它可以提供最佳的渲染效果，但是也最耗时间。</p>
+<h3 id="阴影（Shadowing）"><a href="#阴影（Shadowing）" class="headerlink" title="阴影（Shadowing）"></a>阴影（Shadowing）</h3><p>阴影分为两大类：静态阴影和动态阴影。</p>
+<p>1.静态阴影源于静态光源，它开销极低，但是和场景没有任何互动。</p>
+<p>2.动态阴影源于固定光源和移动光源，它开销很大，但是具备完整的场景互动效果。</p>
+<p>UE4同时还提供了一些特殊的阴影：级联阴影（Cascaded Shadows）、距离场阴影（Distance Field Shadows）、接触阴影（Contact Shadows）。</p>
+<h5 id="静态阴影（静态光源产生的阴影）"><a href="#静态阴影（静态光源产生的阴影）" class="headerlink" title="静态阴影（静态光源产生的阴影）"></a>静态阴影（静态光源产生的阴影）</h5><p><img src="https://s1.ax1x.com/2020/07/22/UT2CnO.png" alt=""></p>
+<p>可以看到此时的阴影具有不错的效果，随着距离的变化阴影会逐渐的模糊化，柔化的阴影非常逼真，但是静态阴影是直接烘焙在贴图上的，即使我们将物体移开，地上的阴影也不会产生变化</p>
+<h5 id="动态阴影（固定光源产生的阴影）"><a href="#动态阴影（固定光源产生的阴影）" class="headerlink" title="动态阴影（固定光源产生的阴影）"></a>动态阴影（固定光源产生的阴影）</h5><p><img src="https://s1.ax1x.com/2020/07/22/UT2wbF.png" alt=""></p>
+<p>虽然这种阴影可以随着物体的移动而移动，但是可以看到阴影的效果不如静态阴影，菱角分明——衰减效果不够理想。</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UTgbBF.png" alt=""></p>
+<p>不但阴影会随着物体的移动而移动，就连物体（例如上面这个人物Actor）的变化都会影响到阴影。奔跑时的人的影子是实时变化的。</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UTgq74.png" alt=""></p>
+<p>当两块动态阴影重叠的时候会产生融合效果，这也是静态阴影所做不到的。这也是为什么固定光源位于静态光源与动态光源之间的原因，它融合了两者的优点。然而刚刚的静态方块在被移动后地上同样有一块阴影，这是因为对静态的物体进行了阴影烘焙。</p>
+<h5 id="动态阴影（动态光源产生的阴影）"><a href="#动态阴影（动态光源产生的阴影）" class="headerlink" title="动态阴影（动态光源产生的阴影）"></a>动态阴影（动态光源产生的阴影）</h5><p><img src="https://s1.ax1x.com/2020/07/22/UT2JCn.png" alt=""></p>
+<p>可以看到阴影完全没有柔化效果，但是阴影的融合却达到了极致。在静态的方块被移动后，地上并没有留下阴影，这是因为现在使用的都是动态光源，烘焙完全是实时动态的。</p>
+<h5 id="级联阴影"><a href="#级联阴影" class="headerlink" title="级联阴影"></a>级联阴影</h5><p><img src="https://s1.ax1x.com/2020/07/22/UT2Sc6.png" alt=""></p>
+<p>它融合了静态阴影和动态阴影的优点，当摄像机靠近物体时，阴影将会被切换到动态阴影，即阴影会随着物体的变化而变化。而当摄像机原理时，则会切换会静态阴影，无论物体如何运动阴影都不会产生变化。</p>
+<p>阴影切换距离的设置需要找到对应的光源，并在光源的细节中搜索“cas”找到csm（级联阴影的缩写）选项，即可调整阴影切换距离和数量。</p>
+<p>需要注意的是这种阴影只适用于定向光源。</p>
+<h5 id="距离场阴影"><a href="#距离场阴影" class="headerlink" title="距离场阴影"></a>距离场阴影</h5><p>距离场阴影使用了网格体距离场实现光源和阴影的互动效果，提供了出色的阴影衰减效果。</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UT2QHg.png" alt=""></p>
+<p>这个特性也非常的昂贵，它可以在点光源中使用，但是需要<strong>开启距离场</strong>才能使用：</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UT2mgP.png" alt=""></p>
+<h5 id="接触阴影"><a href="#接触阴影" class="headerlink" title="接触阴影"></a>接触阴影</h5><p>接触阴影比较特殊因为它是在屏幕空间中完成的阴影，但是其代价相当昂贵。</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UTgOAJ.png" alt=""></p>
+<p>当我们渲染面部等细节十分复杂的模型时阴影效果会变得很糟，因为没有足够的阴影缓存来存储这些阴影数据。一般来说十分精细的阴影效果多用于游戏过场动画和电影中，如果需要开启这个选项需要在光源→细节→搜索contact，从0到1效果逐渐变得细节化。但是当接近1的时候则需要强大的电脑性能，否则可能会崩溃，导致渲染的效果不如勾选之前<br><img src="https://s1.ax1x.com/2020/07/22/UTgx91.png" alt=""></p>
+<h3 id="后期处理体积"><a href="#后期处理体积" class="headerlink" title="后期处理体积"></a>后期处理体积</h3><p>后期处理由体积负责实现，但是也和渲染相关。它属于会快速消耗性能的内容：</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UT2WDO.png" alt=""></p>
+<p>打开后期处理体积设置</p>
+<p>Infinite Extent（无限范围），勾选了这个选项意味着整个场景中的所有对象即使没有被这个体积覆盖也会受到它的影响。如果没有勾选这个选项的话，那它就和传统的体积一样只会在当前的作用域内起作用，当玩家进入到这个体积之后就会出现后期处理效果。（即玩家进入到后期处理体积之后，画面会受到后期处理体积设置的影响）</p>
+<p>可以通过其他的选项控制整个场景的色温、着色、饱和度等等功能。通过蓝图可以实现爆炸以后的色温从高到正常等电影效果画面。</p>
+<p>用于控制场景的抗锯齿设置位于  编辑项目设置—渲染—默认设置—抗锯齿方法</p>
+<h2 id="反射（Reflections）"><a href="#反射（Reflections）" class="headerlink" title="反射（Reflections）"></a>反射（Reflections）</h2><p>UE4中主要有3种类型的反射：球体反射、盒体反射、平面反射。前两者开销最低。三种反射都是通过在场景中放置Actor来实现效果。</p>
+<h3 id="球体反射"><a href="#球体反射" class="headerlink" title="球体反射"></a>球体反射</h3><p>当前球形最为实用。其永远不会匹配被反射几何体的外形， 但不含间断或角落，因此错误一致。</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/ReflectionEnvironment/SphereShape.webp" alt=""></p>
+<p>球形拥有橙色的影响半径，控制会受立方体贴图影响的像素、 以及关卡将被重新投射到的球体。</p>
+<p>较小的采集将覆盖较大的采集，因此在关卡周围放置较小的采集能够进行提升。</p>
+<h3 id="盒体反射"><a href="#盒体反射" class="headerlink" title="盒体反射"></a>盒体反射</h3><p>盒形的实用性十分有限，通常只用于走廊和矩形房间。 其原因是只有盒体中的像素可看到反射，同时盒体中的所有几何体将投射到盒体上， 在很多情况下会出现重大瑕疵。</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/ReflectionEnvironment/BoxShape.webp" alt=""></p>
+<p>选中盒体后，投射形状将拥有一个橙色预览。 其只采集此盒体外盒体过渡距离之内的关卡。 此采集的影响也会在盒体中随过渡距离淡入。</p>
+<h3 id="平面反射"><a href="#平面反射" class="headerlink" title="平面反射"></a>平面反射</h3><p>UE4 支持实时平面反射，它比屏幕空间反射（SSR）更加精确，但渲染开销较高。渲染开销较高的原因来自平面反射的工作原理。因为平面反射实际上将从反射方向再次对关卡进行渲染。</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/PlanarReflections/planarReflections_Banner.webp" alt=""></p>
+<h4 id="启动平面反射"><a href="#启动平面反射" class="headerlink" title="启动平面反射"></a>启动平面反射</h4><p>执行下列操作即可在项目中启用并使用平面反射：</p>
+<p>1.在主工具栏中前往编辑（Edit）&gt; 项目设置（Project Settings），然后前往项目设置菜单下的 渲染（Rendering）&gt; 优化（Optimizations） 部分。</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/PlanarReflections/PR_Project_Settings_00.webp" alt=""></p>
+<p>2.点击 支持平面反射的全局裁剪平面（Support global clip plane for Planar Reflections）旁边的勾选框，在弹出提示后重启UE4编辑器。</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/PlanarReflections/PR_Enable_PR_00.webp" alt=""></p>
+<p><u>启用平面反射后如未重启UE4编辑器，可能导致平面反射无法使用。</u></p>
+<p>3.重启UE4编辑器后，前往模式（Modes）面板，从 视觉效果（Visual Effects）部分选择一个 平面反射Actor 并将其拖入关卡。</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/PlanarReflections/Adding_Planar_Reflection_Actor.webp" alt=""></p>
+<p>4.将平面反射Actor放进关卡后，即可使用 G 键隐藏或取消隐藏 Actor。可使用 移动、旋转和缩放工具更佳地放置平面反射Actor并设置大小，满足关卡需求。</p>
+<p>平面反射Actor有多个属性，当调整这些属性时，会大大影响反射的显示效果。</p>
+<p><a href="https://docs.unrealengine.com/zh-CN/Engine/Rendering/LightingAndShadows/PlanarReflections/index.html" target="_blank" rel="noopener">平面反射官方文档</a></p>
+<h3 id="屏幕空间反射—-SSR（Screen-Space-Reflections）"><a href="#屏幕空间反射—-SSR（Screen-Space-Reflections）" class="headerlink" title="屏幕空间反射—-SSR（Screen Space Reflections）"></a>屏幕空间反射—-SSR（Screen Space Reflections）</h3><p>在后期处理体积中。</p>
+<p>对于球体反射和盒体反射，任何动态的物体都不会纳入到考虑范围。如果你想要捕捉动态的网格体的反射，就需要SSR。</p>
+<p><img src="https://s1.ax1x.com/2020/07/22/UThBsx.png" alt=""></p>
+<p>屏幕空间反射效果默认启用，可改变材质表面物体的外观。下方列出了用于调整此效果的几个选项。</p>
+<p><strong>Intensity</strong>：按百分比启用/淡出/禁用屏幕空间反射功能（为保持一致性，不使用 0 到 1 之间的数字）。</p>
+<p><strong>Quality</strong>：0 为最低精度，100 为最高精度（50 为默认精度，性能较好）。</p>
+<p><strong>Max Roughness</strong>：用于确定屏幕空间反射淡出的平整度（0.8 效果较好，数值越小，运算越快）。</p>
+<h3 id="获得更高质量的反射效果"><a href="#获得更高质量的反射效果" class="headerlink" title="获得更高质量的反射效果"></a>获得更高质量的反射效果</h3><p>因为UE4是一款实时引擎，因此我们要尽可能降低整体的反射捕获频率，我们可以通过提高分辨率来获得更高质量的反射效果：</p>
+<p>项目设置→渲染→反射捕获分辨率</p>
+<p><img src="https://img-blog.csdnimg.cn/20200521230925662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>还有一种增加立方体贴图分辨率的方法是添加一个天空光源，其中有一个立方贴图分辨率的属性：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200521231257941.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>第三种提高反射效果的方式是“高精度静态网格体法线和切线编码”</p>
+<p><img src="https://img-blog.csdnimg.cn/20200521231608751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>左图即为开启了高精度静态网格体发现的图，它能使得线条更加的柔和流畅，如何开启呢？它位于网格体细节里面的LOD分级中：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200521231728667.png" alt=""></p>
+<p>然后到项目设置中</p>
+<p><img src="https://img-blog.csdnimg.cn/20200521231845564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>最后一种提高反射质量的方法是确保网格体的曲面细分程度足够高，网格体使用的顶点越多，像素之间的插值就越好</p>
 
             </div>
             <hr/>
@@ -514,7 +581,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/07/21/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">http://M1racle0-0.github.io/2020/07/21/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/07/22/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/">http://M1racle0-0.github.io/2020/07/22/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -721,9 +788,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/22/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/">
                     <div class="card-image">
@@ -743,9 +811,9 @@ Lightmass Volume它有两大作用：限定Lightmass的模拟
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -754,6 +822,7 @@ Lightmass Volume它有两大作用：限定Lightmass的模拟
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -772,25 +841,25 @@ Lightmass Volume它有两大作用：限定Lightmass的模拟
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/19/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">
+                <a href="/2020/07/21/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="UE4笔记（五）">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="UE4笔记（六）">
                         
-                        <span class="card-title">UE4笔记（五）</span>
+                        <span class="card-title">UE4笔记（六）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（五)材质PBRPBR的全称为 Physical Based Rendering(基于物理的渲染)，基于物理的渲染意味着我们根据事实模拟光线，而不是根据主观想法，光线的最终效果会更加准确且自然。
-PBR是两个做卡通渲染风格的工作室
+                            UE4笔记（六)性能与优化纹理流送（Texture Streaming）纹理流送能在摄影机接近场景对象或者远离场景对象时流送不同的细节层次。
+纹理流送设有一个缓存池：一片专门用于缓存多级渐进纹理的内存区域。随着纹理不断远离摄像机，他们会变得
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-21
                             </span>
                         <span class="publish-author">
                             
