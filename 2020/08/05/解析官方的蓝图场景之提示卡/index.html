@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="UE4笔记（十）, M1racle0-0">
+    <meta name="keywords" content="解析官方的蓝图场景之提示卡, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>UE4笔记（十） | M1racle0-0</title>
+    <title>解析官方的蓝图场景之提示卡 | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">UE4笔记（十）</h1>
+                    <h1 class="description center-align post-title">解析官方的蓝图场景之提示卡</h1>
                 </div>
             </div>
         </div>
@@ -391,21 +391,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-02
+                    2020-08-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-08-03
+                    2020-08-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2,024
+                    2,938
                 </div>
                 
 
@@ -422,93 +422,98 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4笔记（十）"><a href="#UE4笔记（十）" class="headerlink" title="UE4笔记（十）"></a>UE4笔记（十）</h1><p>首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。</p>
-<h2 id="蓝图"><a href="#蓝图" class="headerlink" title="蓝图"></a>蓝图</h2><p>Blueprint is <strong>Visual  Scripting</strong> (you are programming!)</p>
-<p>蓝图相当于游戏内容的容器，它们包含了许多基本单元，我们称之为“组件”         (汽车的例子)</p>
+                <h1 id="解析官方的蓝图场景之提示卡"><a href="#解析官方的蓝图场景之提示卡" class="headerlink" title="解析官方的蓝图场景之提示卡"></a>解析官方的蓝图场景之提示卡</h1><p>咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。</p>
+<h2 id="提示卡"><a href="#提示卡" class="headerlink" title="提示卡"></a>提示卡</h2><p><img src="https://s1.ax1x.com/2020/08/05/aDXZkD.png" alt=""></p>
+<p>一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物体看起来像是一个漂浮的圆盘，中间有一个”i”。玩家处于范围中时，圆盘将上下颠倒，显示为一个感叹号”！”，文本也将从其中扩展出来。此框固定朝向玩家。</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXmfH.md.png" alt=""></p>
+<p>打开蓝图</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXM6I.md.png" alt=""></p>
+<p>拆分组件</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXK1A.png" alt=""></p>
+<p>一开始我以为是动画蓝图做出来的效果，结果只是Actor蓝图实现的打开动画，一共有10个静态网格体组件，一个粒子系统组件，一个接收器</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXete.md.png" alt=""></p>
+<p>只有一个构造脚本，大体思路从蓝图都可以看出来，可以从图中看出大体分为三个模块。一个控制提示卡的方向一直面朝Play，一个控制粒子效果，还有一个控制打开关闭，显示文字。</p>
+<p>构造脚本是在外可视的。并不是你在脚本内写的全部东西在事件图表中就不写了</p>
+<p>逐个分析：</p>
+<h3 id="构造脚本"><a href="#构造脚本" class="headerlink" title="构造脚本"></a>构造脚本</h3><h4 id="建立触发器球体组件的大小"><a href="#建立触发器球体组件的大小" class="headerlink" title="建立触发器球体组件的大小"></a>建立触发器球体组件的大小</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXUpj.png" alt=""></p>
+<p><strong>Set Relative Scale 3D</strong> (设置相对范围3D) 球体碰撞范围接Target表明改变的为球体碰撞Volume，通过Get RrlativeScale3D得到Trigger矢量，与可设置变量float相乘得到新的球体碰撞范围。</p>
+<h4 id="追踪使用的行数，然后获取最长行的长度"><a href="#追踪使用的行数，然后获取最长行的长度" class="headerlink" title="追踪使用的行数，然后获取最长行的长度"></a>追踪使用的行数，然后获取最长行的长度</h4><p>首先，观察蓝图，发现没有文本组件，观察了细节面板法线用户需要通过Lines手动整理每行文本</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDX1nP.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXdcn.md.png" alt=""></p>
+<p>Lines为一个字符型的阵列，通过阵列Length计算用户添加了多少行文本（上图为9行）输入给Number Of Lines，进行for循环，循环次数按照行数-1（行数为9从0开始到8），通过循环获取最长行的长度</p>
+<h4 id="如用户已启用Preview-Mode变量，则扩展评论框"><a href="#如用户已启用Preview-Mode变量，则扩展评论框" class="headerlink" title="如用户已启用Preview Mode变量，则扩展评论框"></a>如用户已启用Preview Mode变量，则扩展评论框</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXwXq.md.png" alt=""></p>
+<p>检测浏览模式是否打开</p>
+<p><strong>SetRelativeLocation</strong>(设置相对位置)相当于Info Icon组件在蓝图中的X 1.0 Y 0.0 Z -10.0的位置，如果没有在外启用浏览模式，Info Icon向下移动了10个单位</p>
+<p>如果启用了浏览模式，位置不变，大小有轻微的改变</p>
+<p>这里位置的移动是为了配合评论框的显示。</p>
+<h4 id="缩放框并重调其位置以适应文本"><a href="#缩放框并重调其位置以适应文本" class="headerlink" title="缩放框并重调其位置以适应文本"></a>缩放框并重调其位置以适应文本</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXiOx.png" alt=""></p>
+<p>background组件连接，用新的大小来适应在Line中输入的文本。</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXETO.png" alt=""></p>
+<p>红绿蓝分别代表了background的XYZ轴。</p>
+<p>X轴似乎只决定了Background的厚度，可以不考虑所以拆分向量，然后考虑的就是如何规范框的长宽？</p>
+<p>框的宽度是由Y轴决定的，宽度大小决定于Longest Line Length，这里蓝图是</p>
+<p>Y = Longest Line Length * 0.9 + Longest Line Length * 0.9 * 边界宽度填充</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXP61.png" alt=""></p>
+<p>我的理解是，紫色为边框的左右，红色为Longest Line Length * 0.9 蓝色为后面一部分填充的值，红色应该是显示文本的Basic，这里的边界宽度填充是一个可以改变的变量，用户可以自行决定它的延长。</p>
+<p>Z轴决定了Background的高度</p>
+<p>Z = Number Of Lines * 2.5</p>
+<p>后面的Top Border、Bottom Border只改变Y轴，Left Border、Right Border只改变Z轴就是为了更加贴合Background改变后长宽的紫色区域。</p>
+<h4 id="创建必要的TextRenderComponents（文本渲染组件）"><a href="#创建必要的TextRenderComponents（文本渲染组件）" class="headerlink" title="创建必要的TextRenderComponents（文本渲染组件）"></a>创建必要的TextRenderComponents（文本渲染组件）</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXA0K.md.png" alt=""></p>
+<p>进入循环。</p>
+<p><strong>Get Socket Location</strong> ：这里获取Background的位置，输入要进行转换socket的或bone的名称，得到的矢量与Actor矢量相减，<strong>UnrotateVector</strong>返回向量A被旋转器B的逆旋转后的结果，拆分只取Y值</p>
+<p>Z = X * -10 + Number Of Lines *5 +5   （X = 0 –  Number Of Lines -1）</p>
+<p>创建的新变量 <strong>Make</strong> <strong>Transform **将位置，旋转和缩放的值给</strong>Add TextRenderComponents**，我认为做这些步骤的一切就是以为了让文字达到贴在Background上的效果。</p>
+<p>上面一部分应该是每次循环索引行，查看是否有文字，有文字的话就通过Add TextRenderComponents进行渲染设置为文本。</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXkm6.png" alt=""></p>
+<p>这一块看了很久，大体的意思应该是这样的。以后有能力了再仔细分析一下。</p>
+<h3 id="事件图表"><a href="#事件图表" class="headerlink" title="事件图表"></a>事件图表</h3><h4 id="提示卡的自动旋转面朝效果"><a href="#提示卡的自动旋转面朝效果" class="headerlink" title="提示卡的自动旋转面朝效果"></a>提示卡的自动旋转面朝效果</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXupd.md.png" alt=""></p>
+<p>我先给节点排了下序。</p>
+<p>虚幻引擎4有一个被称为“Tick”的事件，它产生于游戏的每一帧。例如，在一个运行在每秒60帧的游戏中，“Tick”事件会在每一秒产生60次。“Tick”事件提供了一个被称为“delta秒”的值，该值是自上一帧结束后的时间。使用事件“Tick”，我们可以精确控制在游戏中的蓝图的运动。</p>
+<p>有个例子，例如你这个游戏是50帧，delta Seconds= 1 sec /50  = 0.2 sec ,接着你的Actor每1 sec移动100 cm的距离 速度为 100cm/sec（1虚幻单位等于1厘米  1 UU = 1 CM）X= speed * Delta Seconds = 2cm 可以得到你的Actor每帧将移动2 cm。达到精确控制蓝图的运动问题。</p>
+<p>事件发生以后，先有一个If的分支判断是否有玩家，获取玩家摄像机管理器（Get Actor Camera Manager)，它默认的为Player Index 0，按世界大纲设置，然后得到摄像机位置输入Target（向量）并与XYZ做比较，如果没有位置，坐标轴都为0，右侧是一个矢量的比较，如果A！=B，返回True，表明有玩家，接着进行下一步。</p>
+<p><strong>Find Look At Rotation</strong>（寻找查看旋转）该节点有两个Vector类型参数，在Find Look At Rotation节点上分别传入物体的Location和摄像机的Location，节点会计算返回一个从Start到Target需要调整的角度</p>
+<p><strong>RInterp To</strong>能让物体调整角度的效果更有动感（不加的话会瞬间到达）。RInterp To这个节点实际上就是Rotation的一个插值的表述，该节点有四个参数，Current和Target分别表示当前角度和目的角度，DeltaTime为间隔时间，一般设置为我们计算机计算每帧的时间，Interp speed为调整的速度，越小速度越慢，一般调整为5左右效果比较好。再次输入当前Actor也就是提示卡的位置到Current，返回节点得到的调整角度连接到Target，这个时候可以看出，使用Tick事件可以快速刷新，几乎实时改变面朝方位。</p>
+<p>最后将最新的Actor位置输入给提示卡，完成Smoothly地转动。</p>
+<h4 id="游戏中粒子效果"><a href="#游戏中粒子效果" class="headerlink" title="游戏中粒子效果"></a>游戏中粒子效果</h4><p>粒子效果应该指的是在未靠近的时候出现的呈现波浪状态的提示。</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXZkD.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXQXt.png" alt=""></p>
+<p>游戏开始时先检查用户设置中是否打开粒子系统，下面的Disable Particle和Preview Mode为变量，可以在外面的细节面板设置是否打开，如果效果和浏览模式都没被禁用，那么OR函数返回的为false（OR函数无论何时只要一个输入中出现了真，输出就是真），后接一个Not(输出与输入相反)，相当于将ture输入Set Active，然后接下后面的逻辑。</p>
 <ul>
-<li>They can hold Components</li>
-<li>They can hold script,but dont have to</li>
-<li>They can hold Only data</li>
+<li><u>XOR是OR的变体。仅当一个输入或者另一个输入是真，但不是两者都为真（既如果输入是不同的），它的输出才为真。</u></li>
 </ul>
-<p>蓝图的本质是 将不同功能的节点链接在一起，编译之后能立马看到效果</p>
-<p><u>Works by stringing together nodes and connections and see results instantly</u></p>
-<p>Types of Blueprints: （大致上只有两种 关卡蓝图、类蓝图）</p>
-<ol>
-<li>Level Blueprint - One Per Level</li>
-<li>Class Blueprint - Multiple（Modular）</li>
-</ol>
-<p>需要多次重复使用某个蓝图，但是需要更改其功能中的多个次要部分。相较于每次都重新创建蓝图，采用哪种做法更为合适呢？</p>
-<ul>
-<li>将新Actor作为子蓝图（继承及蓝图从父蓝图继承属性的功能）</li>
-</ul>
-<h3 id="蓝图编辑器UI"><a href="#蓝图编辑器UI" class="headerlink" title="蓝图编辑器UI"></a>蓝图编辑器UI</h3><p>创建一个Actor蓝图类</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8ec6.md.png" alt=""></p>
-<p>左上角为组件，允许我们添加各类组件，组件是蓝图的基本单元，内涵音效、粒子特效、骨骼或者静态网格体、摄像机</p>
-<p>组件内置现成功能供使用、组件是构成蓝图的基本单元，还附有允许我们访问的功能或属性</p>
-<p>顶部是主工具栏，找到允许我们找到任何引用该蓝图的对象，查找为找到当前蓝图位置，类设置允许我们定义一些特定的设置，类默认设置也一样，用来设置该蓝图的默认属性，调试过滤器允许我们调试蓝图的不同实例，假设关卡中有多个光源蓝图，而我们只希望调试其中一个，我们可以选择任意一个进行调试。</p>
-<p>右侧为细节面板，定义和调整所有属性</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8V91.png" alt=""></p>
-<p>视口是基本选项还有构造脚本和事件图表</p>
-<p>构造脚本的基本作用是允许我们设置该蓝图的自定义参数或者预设 相当于写一个函数</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8Z1x.md.png" alt=""></p>
-<p>事件图表用于在运行时更新蓝图脚本，当应用程序运行时，大部分需要执行的脚本可能都位于这里，脚本在这会逐步被执行</p>
-<p>左侧的我的蓝图包含了所有图表、以及所有创建的函数（构造脚本），你还可以创建宏，创建并指定变量，事件分发器允许不同蓝图进行通信。</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8mjK.png" alt=""></p>
-<p>在蓝图的其他选项中</p>
-<p>蓝图函数库是函数的集合，允许你通过其他蓝图访问它</p>
-<p>蓝图接口是另一种通信工具，允许不同蓝图进行通信</p>
-<p>蓝图宏库类似于函数库，它是宏的集合，允许你在不同蓝图中使用</p>
-<p>枚举就是一种参数列表，你可以在蓝图中将他用于流控制（例如你可以将角色状态设置为枚举类型，所谓角色状态，可能是活着、死亡或者受伤，然后基于不同的状态在蓝图中切换执行不同的逻辑）</p>
-<p>结构是不同变量类型的集合（例如如果你的角色有个物品栏，你可以设置一个拾取物品结构，结构可能包含拾取物品的名称、UI中的缩略图、用于在场景中显示的静态网格体、拾取它时会播放的音效等等）</p>
-<h3 id="蓝图图表和事件图表"><a href="#蓝图图表和事件图表" class="headerlink" title="蓝图图表和事件图表"></a>蓝图图表和事件图表</h3><h5 id="蓝图图表"><a href="#蓝图图表" class="headerlink" title="蓝图图表"></a>蓝图图表</h5><p>Print String ：在输出日志中打印一个字符串，还可选择同时打印在屏幕上 （经常用它来调试并尝试我们的蓝图）</p>
-<p>可以在我的蓝图中的变量中通过变量旁的“眼睛”图标决定是否公开编辑变量</p>
-<h5 id="事件图表"><a href="#事件图表" class="headerlink" title="事件图表"></a>事件图表</h5><p>会在运行时提供信息更新蓝图脚本</p>
-<p>选中一些节点，<strong>重叠到函数</strong>（Collapase to Function）,可以将所有节点封装到一个节点中，会被放入左侧的函数列表中</p>
-<p>计算数值的一些节点可以框选选择<strong>重叠到宏</strong>（Collapase to Macro)</p>
-<ul>
-<li><u>宏没有输入，而函数有输入，宏只是为我们计算信息，然后返回这两个结果</u></li>
-</ul>
-<p><strong>重叠节点</strong>（Collapse Nodes）会重叠成一个图标 ，它纯粹是为了压缩体积，宏和函数都能反复调用</p>
-<h3 id="不同种类的蓝图"><a href="#不同种类的蓝图" class="headerlink" title="不同种类的蓝图"></a>不同种类的蓝图</h3><p>关卡蓝图：位于主工具栏，一种各关卡特有的图标，可以用于编写与关卡特有的功能</p>
-<p>关卡蓝图主要用于与关卡特有的功能，比如关卡初始化相关的脚本</p>
-<p>关卡蓝图没有”组件“选项卡，所以也没有”视口“选项卡，只有事件图表，供我们编写关卡的绑定功能，所谓的”关卡特有的功能“就是指该图标内的任何脚本都会与该关卡绑定</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8P74.png" alt=""></p>
-<p>这是个关卡脚本内部部分，途中5.1为负责控制按钮相关的脚本，一开始有一个触发盒用于检测我们何时与之重叠，一旦按下按钮就启动齿轮BP_button，离开就停止</p>
-<p>Actor类蓝图：可以在关卡里多次使用，或者多个关卡使用，在Actor类蓝图中编写的任何脚本都会和该Actor类相绑定，更加的模块化</p>
-<p>动画蓝图：我们可以在使用的Character中的细节中找到Animation模块中的Anim Class（动画蓝图），进行定位后可以找到动画蓝图的位置</p>
-<p>![](E:\Epic ue4\markdown\材料\BP\6.png)</p>
-<p>这类资源专门用于为角色创建动画逻辑，无论你是否控制他们，动画蓝图中的事件图表用于定义各种变量，变量会在应用运行时改变，一旦更新这些变量，角色姿势也会相应更新，可以在动画图表（AnimGraph）中更新动作，动画图标允许你混合不同的动画</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN89nU.png" alt=""></p>
-<p>比如设置状态机，以便在不同状态间切换</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8SXT.md.png" alt=""></p>
-<p>图中为待机、跑动、跳跃等状态</p>
-<p>动画图表本质上允许你定义各类“最终动画姿势”，而事件图表类似于Actor类蓝图，允许你在运行时实时更新变量</p>
-<p>控件蓝图（WIDGET BLUEPRINGT）/UMG UI：在项目中创建UI元素，它用到了UE4中的“虚幻动态图形”系统，属于一种控件蓝图</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN3zcV.png" alt=""></p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8AhR.md.png" alt=""></p>
-<p>它包含一个Graph</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8YgP.md.png" alt=""></p>
-<p>和其他蓝图中的事件图表非常相似，没有组件面板或组件窗口也没有视口，但有一个Designer选项卡（上上图），在这为项目设置UI的可视化布局方式，可以添加各类功能，比如动画，各类UI元素、按钮、复选框</p>
-<p>子类蓝图（Child Blueprints）:一般蓝图类的实例，会继承父类的所有功能</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8FAJ.md.png" alt="11"></p>
-<p>使用子蓝图可以针对不同的拾取物打印不同的信息，仅需修改一点点</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
-<li><p><strong>Cost</strong> associated with using Blueprintversus native C++ code</p>
-<ul>
-<li><strong>Avoid</strong> doing complex math or heavy operations <strong>every frame</strong></li>
-<li>Blueprint relies on a Virtual Machine(VM)</li>
-</ul>
-</li>
-<li><p>C++ is going to be faster and more powerful</p>
-</li>
-<li><p>Blueprint is <strong>Event Based</strong></p>
-</li>
-<li><p>Uses <strong>References</strong>（无效引用：设置蓝图时没有设置应用，例如按钮没有具体设置控制哪个Light，返回值为空） and possible <strong>Circular Dependency</strong> (循环依赖：两个蓝图不停的进行转化)  (蓝图通过引用来访问其他蓝图的数据和函数，稍不注意可能会获取无效的引用从而引发报错)</p>
-</li>
-</ul>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>Cast转换节点可以用来检测，例如检测是否为人物碰撞，这样可以避免其他Actor触发Volume</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8kN9.md.png" alt="12"></p>
-<p>这里的other actor为获取与体积发生重叠的对象，如果是就Turn on LIght，如果转换失败就print Failed</p>
+<p><strong>Set Active</strong> (设置激活) 设置组件是否是活动的，将脉冲效果组件接入Target控制粒子效果组件。</p>
+<p><strong>Activate</strong>（激活）：Actor组件对象引用至目标激活</p>
+<p>后面的if设置为如果你shift+F1开启管理员模式也可以选择是否打开Preview MODE和Disable Particle，通过返回为true关闭粒子系统。</p>
+<p>*<em>DestroyComponent *</em>（销毁组件）移除粒子组件</p>
+<h4 id="触发BOX"><a href="#触发BOX" class="headerlink" title="触发BOX"></a>触发BOX</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDX878.md.png" alt=""></p>
+<p>首先进入Trigger范围内检查是否打开了预览模式。</p>
+<p><strong>Do Once</strong>(只执行一次) 我的理解是： 如果你设置一个动作，是靠“L”触发的，你开始游戏后按”L“触发了一次，就再也不会触发了，但是你可以根据Reset设定一个新的值“P“，你按了”P“后就可以重置为最初状态，又可以按一次”L“，而”Start Closed“为布尔类型的参数，如果你勾选则这个系统将直接变为不可触发状态。这里Do once做的工作应为打开浏览模式，然后在Volume范围内保持浏览模式不变。</p>
+<p>不在Trigger范围内检查预览模式，进入序列函数（按顺序进行引脚）</p>
+<p>第一个引脚</p>
+<p>*<em>For Loop *</em>(for循环)该节点左边的按钮分别是循环计数的初始值和终止值，右边的Loop Body按钮是指该循环的循环体,也就是每次需要执行的代码.Index返回当前下标的值,Completed连接循环结束后的执行语句.</p>
+<p>这里的for loop循环体的目的是先检查文字行数组中是否还有文字，LENGTH &gt; 0的话（仍有文字）返回为false，销毁数组中的每个文本行，完成循环后再次检查数组中是否有文字，有的话重置，没有直接执行下一步。</p>
+<p>在EndOverlap中下一步应该就是将值全设为0，然后删除场景内的文本框，只留下感叹号。</p>
+<p>相当于把BeginOverlap重置还原。所以下面只看BeginOVerlap的分支。</p>
+<h4 id="玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小"><a href="#玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小" class="headerlink" title="玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小"></a>玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXYtg.md.png" alt=""></p>
+<p> <a href="https://docs.unrealengine.com/zh-CN/Engine/Blueprints/UserGuide/Timelines/index.html" target="_blank" rel="noopener">时间轴官方文档解释</a></p>
+<p>这里Simple Curve时间轴达到了打开文本框的动画效果目的。</p>
+<p><strong>Lerp</strong>（插值）一般与Timeline时间轴一起使用，<u>Alpha取值范围如果是浮点数0到1，当Alpha为0的时候返回的数值为A设置的值，当Alpha为1的时候，返回的数值为B设置的值。Alpha越靠近0返回值就越靠近A设置的值，Alpha越靠近1返回值就越靠近B设置的值。</u> 能使目标运动更平滑</p>
+<p>这里的时间轴控制一个用于在框的折叠/展开状态混合的值，它的时间轴如下</p>
+<p>V+ <u>添加新的向量轨道到时间轴，以对浮点向量值（例如旋转值或平移值）进行动画处理。</u></p>
+<p>使用最后一个关键帧：可以帮助防止动画循环时被跳过</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDX30f.md.png" alt=""></p>
+<p>这里设置为0.5s，为折叠/展开的时间，0代表进入了不在Trigger范围内，所以文本框大小很小且固定（隐藏），1代表了将文本框展开，根据实际的情况扩大Background和各个边</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXJAS.md.png" alt=""></p>
+<p>控制了Info Icon的位置，在0时 Z轴 -10，1时Z轴为 0，还控制了Info Icon的旋转角度，达到展开文本，感叹号旋转180度的目的。</p>
+<p>direction输出枚举数据，指明了时间轴的当前播放方向。</p>
+<h4 id="音乐组件"><a href="#音乐组件" class="headerlink" title="音乐组件"></a>音乐组件</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXthQ.md.png" alt=""></p>
+<p>这很明显，当进入Trigger以后盒子打开，会播放音乐，同时脉冲效果停止，盒子没打开的时候只会激活脉冲效果。</p>
+<h4 id="创建文本"><a href="#创建文本" class="headerlink" title="创建文本"></a>创建文本</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXa1s.md.png" alt=""></p>
+<p>这和构造脚本哪里很相似了。</p>
+<p>循环体写出了每一行的文字，然后将文字进行位置变动、旋转，达到印在Background上的效果。</p>
+<p>这和构造函数的区别是，构造函数是在外面的预览模式显示文本，然后这里是进入游戏后显示。</p>
+<p>结束。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>分析蓝图的好处还是很大的</p>
 
             </div>
             <hr/>
@@ -534,7 +539,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/08/02/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/">http://M1racle0-0.github.io/2020/08/02/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/08/05/%E8%A7%A3%E6%9E%90%E5%AE%98%E6%96%B9%E7%9A%84%E8%93%9D%E5%9B%BE%E5%9C%BA%E6%99%AF%E4%B9%8B%E6%8F%90%E7%A4%BA%E5%8D%A1/">http://M1racle0-0.github.io/2020/08/05/%E8%A7%A3%E6%9E%90%E5%AE%98%E6%96%B9%E7%9A%84%E8%93%9D%E5%9B%BE%E5%9C%BA%E6%99%AF%E4%B9%8B%E6%8F%90%E7%A4%BA%E5%8D%A1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -741,9 +746,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/08/05/%E8%A7%A3%E6%9E%90%E5%AE%98%E6%96%B9%E7%9A%84%E8%93%9D%E5%9B%BE%E5%9C%BA%E6%99%AF%E4%B9%8B%E6%8F%90%E7%A4%BA%E5%8D%A1/">
                     <div class="card-image">
@@ -763,9 +769,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -774,6 +780,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -792,27 +799,25 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/30/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89/">
+                <a href="/2020/08/02/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="UE4笔记（九）">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="UE4笔记（十）">
                         
-                        <span class="card-title">UE4笔记（九）</span>
+                        <span class="card-title">UE4笔记（十）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（九）角色
-Controller 可以由AI或玩家控制
-AI框架可以帮助AI Controller根据导航网格体来决定pawn或Character的行为还有去哪里做什么
-Character是一种特定类型的Pawn，它拥有Movem
+                            UE4笔记（十）首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
+蓝图Blueprint is Visual  Scripting (y
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-02
                             </span>
                         <span class="publish-author">
                             
