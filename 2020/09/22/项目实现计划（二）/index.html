@@ -391,21 +391,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-20
+                    2020-09-22
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-21
+                    2020-09-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    391
+                    570
                 </div>
                 
 
@@ -422,46 +422,39 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习–（1）"><a href="#关于第三人称魂类游戏个人学习–（1）" class="headerlink" title="关于第三人称魂类游戏个人学习–（1）"></a>关于第三人称魂类游戏个人学习–（1）</h1><h3 id="创建场景光源-1"><a href="#创建场景光源-1" class="headerlink" title="创建场景光源(1)"></a>创建场景光源(1)</h3><p>所需组件：</p>
-<p>Fog、skylight、DirectionalLight、Sky_Sphere</p>
-<p>添加cube作为地板</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JsmV.md.png" alt="1"></p>
-<p>材质纹理大小可根据Texcoord进行调整。</p>
-<h3 id="Mycharacter蓝图（1）"><a href="#Mycharacter蓝图（1）" class="headerlink" title="Mycharacter蓝图（1）"></a>Mycharacter蓝图（1）</h3><h4 id="实现角色基础操作"><a href="#实现角色基础操作" class="headerlink" title="实现角色基础操作"></a>实现角色基础操作</h4><p>创建GameMode蓝图，character蓝图。</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7J0ln.md.png" alt="2"></p>
-<p>打开project setting在input中设置WASD和视口移动。X Roll、Y Pitch、Z Yaw</p>
+                <h1 id="关于第三人称魂类游戏个人学习–（2）"><a href="#关于第三人称魂类游戏个人学习–（2）" class="headerlink" title="关于第三人称魂类游戏个人学习–（2）"></a>关于第三人称魂类游戏个人学习–（2）</h1><h3 id="Character蓝图（2）"><a href="#Character蓝图（2）" class="headerlink" title="Character蓝图（2）"></a>Character蓝图（2）</h3><h4 id="武器绑定"><a href="#武器绑定" class="headerlink" title="武器绑定"></a>武器绑定</h4><p><img src="https://s1.ax1x.com/2020/09/22/wqyLAe.png" alt="8"></p>
+<p>创建Sword和Shield插槽绑定到MyCharacter，具体位置可在Animation蓝图调整</p>
+<p><img src="https://s1.ax1x.com/2020/09/22/wq6CB8.md.png" alt="7"></p>
+<h4 id="武器攻击"><a href="#武器攻击" class="headerlink" title="武器攻击"></a>武器攻击</h4><p>操作映射加入左键攻击Attack，蓝图播放动作蒙太奇</p>
+<p><img src="https://s1.ax1x.com/2020/09/22/wqyoX6.png" alt="9"></p>
+<p>转换所需要的Rootmotion为蒙太奇动画加入到ABP中</p>
+<p><img src="https://s1.ax1x.com/2020/09/22/wqy7nK.png" alt="10"></p>
+<p>当你没有发出动画蒙太奇指令时，用ABS_Mycharacter,发出时用DefaultSlot动画，结束以后返回ABS_Mycharacter</p>
 <ul>
-<li><p>UE4按照ZXY轴顺序（C++中）计算物体朝向</p>
-</li>
-<li><p>UE4使用左手坐标系。</p>
-</li>
-<li><p>Z轴旋转的正方向遵循左手定则，X轴和Y轴旋转的正方向遵循右手定则</p>
-</li>
+<li>inPlace和RootMotion区别在于位移数据，rootmotion开启根运动后启动位移数据</li>
+<li>Blend in / Blend out混合方式</li>
 </ul>
-<p>避免视角朝下速度减慢，使用矢量的分量</p>
-<p><a href="https://en.wikipedia.org/wiki/Euler_angles#Proper_Euler_angles" target="_blank" rel="noopener">关于欧拉角的维基百科</a></p>
-<p>给人物蓝图中加Mesh和Camera，摄像机臂可以在有物体挡住时向前透过物体的作用。</p>
+<h4 id="连招系统（1）"><a href="#连招系统（1）" class="headerlink" title="连招系统（1）"></a>连招系统（1）</h4><p>2次普通1次重攻击</p>
+<p><img src="https://s1.ax1x.com/2020/09/22/wqyH0O.png" alt="11"></p>
+<p>初步完成连招模式，将蒙太奇动画放入hitgroup中使用，节省空间</p>
+<p><strong>存在的问题</strong></p>
+<ol>
+<li>是每次攻击固定动画1-2-3-1-2-3-1-2-3中间没有断开（应该为1-2-3，1-2，1-2-3）</li>
+<li>没有设置攻击限制。（一直左键会立刻重置蒙太奇动画</li>
+</ol>
+<h5 id="目前解决问题。-2-攻击间隔限制"><a href="#目前解决问题。-2-攻击间隔限制" class="headerlink" title="目前解决问题。 2.攻击间隔限制"></a>目前解决问题。 2.攻击间隔限制</h5><p>设定Attacking bool变量，</p>
+<p><img src="https://s1.ax1x.com/2020/09/22/wqyb7D.png" alt="12"></p>
+<p>Attacking判断是否处于攻击状态，进入攻击函数内</p>
+<p><img src="https://s1.ax1x.com/2020/09/22/wqyOtH.png" alt="13"></p>
+<p>从1-2-3-1-2-3的顺序播放蒙太奇动画</p>
+<p><img src="https://s1.ax1x.com/2020/09/22/wqyv9A.png" alt="14"></p>
+<p>在蒙太奇动画中打上通知设为Atk_end，在Atk_end前红色区域为必须要做完的动作，蓝色区域表示可以点击进入下一个动画，理解为挥刀、收刀两个部分（连续攻击中挥刀、挥刀、收刀）。</p>
+<p>红色动画部分表示Attacking打开，蓝色表示关闭，也可以等整个动画结束再点击，但是Attacking关闭时可以点击进入下一个动画。</p>
+<p><img src="https://s1.ax1x.com/2020/09/22/wqyXhd.png" alt="15"></p>
+<p>现在ABP中需要应用Mycharacter中的变量，所以要Cast to Mycharacter获取MyCharacter中的值，try get pawn可得到和Mycharacter中使用的一样的网格体，但是这两个为不同类，需要通过cast to进行类型转化，得到人物引用看，人物引用再存储在变量Char中，有需要的时候使用，</p>
+<p>例如Atk_end 结束动画的时候使用，将Attcking关闭，鼠标点击通过Mycharacter让下一个蒙太奇动画进行。</p>
 <ul>
-<li>SpringArm 中 Use Pawn Control Rotation 解决视口不能移动的问题</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JDO0.md.png" alt="3"></p>
-<h3 id="Character蓝图（1）"><a href="#Character蓝图（1）" class="headerlink" title="Character蓝图（1）"></a>Character蓝图（1）</h3><h4 id="ABP、ABS创建"><a href="#ABP、ABS创建" class="headerlink" title="ABP、ABS创建"></a>ABP、ABS创建</h4><p>创建ABP_Mycharacter和ABS_Mycharacter（动画蓝图和混合空间）</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JByq.md.png" alt="4"></p>
-<p>水平坐标设为Direction，垂直坐标为Speed。ABS水平坐标分8格，8个角度使用不同的动作让人物往不同方向进行移动，速度为0时idle，速度最大值参照CharacterMovement所继承的最大行走速度。</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JaWj.png" alt="5"></p>
-<p>在ABP中应用ABS，用变量通过蓝图逻辑去获取Speed、Direction</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JywT.md.png" alt="6"></p>
-<p>事件蓝图更新动画：每帧检测动画有没有需要发生的变化。</p>
-<hr>
-<ul>
-<li><p>Mesh中要绑定相应的ABP</p>
-</li>
-<li><p>欧拉角</p>
-</li>
-<li><p>创建ABP时注意骨骼的选用（ABS也要选择同样的骨骼）</p>
-</li>
-<li><p>动画蓝图不能使用get player controller/character</p>
-</li>
+<li>开始播放到结束通知这一段动画是一定会做完的，可以解决攻击间隔的问题。</li>
 </ul>
 
             </div>
@@ -488,7 +481,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/09/20/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%80%EF%BC%89/">http://M1racle0-0.github.io/2020/09/20/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%80%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/09/22/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%8C%EF%BC%89/">http://M1racle0-0.github.io/2020/09/22/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -695,9 +688,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/22/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%8C%EF%BC%89/">
                     <div class="card-image">
@@ -719,9 +713,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -730,6 +724,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -748,26 +743,29 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/05/%E8%A7%A3%E6%9E%90%E5%AE%98%E6%96%B9%E7%9A%84%E8%93%9D%E5%9B%BE%E5%9C%BA%E6%99%AF%E4%B9%8B%E6%8F%90%E7%A4%BA%E5%8D%A1/">
+                <a href="/2020/09/20/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%80%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="解析官方的蓝图场景之提示卡">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（1）">
                         
-                        <span class="card-title">解析官方的蓝图场景之提示卡</span>
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（1）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            解析官方的蓝图场景之提示卡咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
-提示卡
-一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物体看起来
+                            关于第三人称魂类游戏个人学习–（1）创建场景光源(1)所需组件：
+Fog、skylight、DirectionalLight、Sky_Sphere
+添加cube作为地板
+
+材质纹理大小可根据Texcoord进行调整。
+Mycharacter
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-20
                             </span>
                         <span class="publish-author">
                             
