@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（二）, M1racle0-0">
+    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（三）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于第三人称魂类游戏个人学习--（二） | M1racle0-0</title>
+    <title>关于第三人称魂类游戏个人学习--（三） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（二）</h1>
+                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（三）</h1>
                 </div>
             </div>
         </div>
@@ -391,21 +391,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-22
+                    2020-09-23
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-22
+                    2020-09-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    570
+                    414
                 </div>
                 
 
@@ -422,39 +422,28 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习–（2）"><a href="#关于第三人称魂类游戏个人学习–（2）" class="headerlink" title="关于第三人称魂类游戏个人学习–（2）"></a>关于第三人称魂类游戏个人学习–（2）</h1><h3 id="Character蓝图（2）"><a href="#Character蓝图（2）" class="headerlink" title="Character蓝图（2）"></a>Character蓝图（2）</h3><h4 id="武器绑定"><a href="#武器绑定" class="headerlink" title="武器绑定"></a>武器绑定</h4><p><img src="https://s1.ax1x.com/2020/09/22/wqyLAe.png" alt="8"></p>
-<p>创建Sword和Shield插槽绑定到MyCharacter，具体位置可在Animation蓝图调整</p>
-<p><img src="https://s1.ax1x.com/2020/09/22/wq6CB8.md.png" alt="7"></p>
-<h4 id="武器攻击"><a href="#武器攻击" class="headerlink" title="武器攻击"></a>武器攻击</h4><p>操作映射加入左键攻击Attack，蓝图播放动作蒙太奇</p>
-<p><img src="https://s1.ax1x.com/2020/09/22/wqyoX6.png" alt="9"></p>
-<p>转换所需要的Rootmotion为蒙太奇动画加入到ABP中</p>
-<p><img src="https://s1.ax1x.com/2020/09/22/wqy7nK.png" alt="10"></p>
-<p>当你没有发出动画蒙太奇指令时，用ABS_Mycharacter,发出时用DefaultSlot动画，结束以后返回ABS_Mycharacter</p>
+                <h1 id="关于第三人称魂类游戏个人学习–（三）"><a href="#关于第三人称魂类游戏个人学习–（三）" class="headerlink" title="关于第三人称魂类游戏个人学习–（三）"></a>关于第三人称魂类游戏个人学习–（三）</h1><h3 id="MyCharacter蓝图（3）"><a href="#MyCharacter蓝图（3）" class="headerlink" title="MyCharacter蓝图（3）"></a>MyCharacter蓝图（3）</h3><p>基于ActComponent实现的AttributeSystem</p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjrJuq.png" alt="16"></p>
+<p>设置需要的属性：Hp、Sta,设立最大值变量Max Hp、Max Sta和当前Hp、Sta变量，并先给一个默认值。</p>
+<p>创建一个函数Hp Change 判断收到伤害后是否Hp 减为0，为0以后bool值 Is Dead打开，通过事件分发器OnDead在MyCharacter中播放死亡动画。</p>
+<p>在MyCharacter中输入每次受到攻击造成的伤害，通过ActComponent组件的添加可以直接使用AttributeSystem中的Hp change函数，进行 Hp=Hp-Damage的计算然后进行判断是否Hp降为0或0以下。</p>
 <ul>
-<li>inPlace和RootMotion区别在于位移数据，rootmotion开启根运动后启动位移数据</li>
-<li>Blend in / Blend out混合方式</li>
+<li>限制（浮点）Clamp（float）确定了计算后的最小最大值，如果输入的是-20，Hp-（-20）可能会超过Max Hp（治疗效果）。</li>
 </ul>
-<h4 id="连招系统（1）"><a href="#连招系统（1）" class="headerlink" title="连招系统（1）"></a>连招系统（1）</h4><p>2次普通1次重攻击</p>
-<p><img src="https://s1.ax1x.com/2020/09/22/wqyH0O.png" alt="11"></p>
-<p>初步完成连招模式，将蒙太奇动画放入hitgroup中使用，节省空间</p>
-<p><strong>存在的问题</strong></p>
-<ol>
-<li>是每次攻击固定动画1-2-3-1-2-3-1-2-3中间没有断开（应该为1-2-3，1-2，1-2-3）</li>
-<li>没有设置攻击限制。（一直左键会立刻重置蒙太奇动画</li>
-</ol>
-<h5 id="目前解决问题。-2-攻击间隔限制"><a href="#目前解决问题。-2-攻击间隔限制" class="headerlink" title="目前解决问题。 2.攻击间隔限制"></a>目前解决问题。 2.攻击间隔限制</h5><p>设定Attacking bool变量，</p>
-<p><img src="https://s1.ax1x.com/2020/09/22/wqyb7D.png" alt="12"></p>
-<p>Attacking判断是否处于攻击状态，进入攻击函数内</p>
-<p><img src="https://s1.ax1x.com/2020/09/22/wqyOtH.png" alt="13"></p>
-<p>从1-2-3-1-2-3的顺序播放蒙太奇动画</p>
-<p><img src="https://s1.ax1x.com/2020/09/22/wqyv9A.png" alt="14"></p>
-<p>在蒙太奇动画中打上通知设为Atk_end，在Atk_end前红色区域为必须要做完的动作，蓝色区域表示可以点击进入下一个动画，理解为挥刀、收刀两个部分（连续攻击中挥刀、挥刀、收刀）。</p>
-<p>红色动画部分表示Attacking打开，蓝色表示关闭，也可以等整个动画结束再点击，但是Attacking关闭时可以点击进入下一个动画。</p>
-<p><img src="https://s1.ax1x.com/2020/09/22/wqyXhd.png" alt="15"></p>
-<p>现在ABP中需要应用Mycharacter中的变量，所以要Cast to Mycharacter获取MyCharacter中的值，try get pawn可得到和Mycharacter中使用的一样的网格体，但是这两个为不同类，需要通过cast to进行类型转化，得到人物引用看，人物引用再存储在变量Char中，有需要的时候使用，</p>
-<p>例如Atk_end 结束动画的时候使用，将Attcking关闭，鼠标点击通过Mycharacter让下一个蒙太奇动画进行。</p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjr13j.png" alt="17"></p>
+<p>ActorComponent的优势在于便于维护和观察，AttributeSystem中的函数能直接调用</p>
+<p>使用UE4中自带的伤害系统进行测试</p>
 <ul>
-<li>开始播放到结束通知这一段动画是一定会做完的，可以解决攻击间隔的问题。</li>
+<li>Event Any Damage </li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjr8vn.png" alt="18"></p>
+<h4 id="项目优化（1）"><a href="#项目优化（1）" class="headerlink" title="项目优化（1）"></a>项目优化（1）</h4><h5 id="根据上面的ActorCompnent优势对Attack进行优化管理"><a href="#根据上面的ActorCompnent优势对Attack进行优化管理" class="headerlink" title="根据上面的ActorCompnent优势对Attack进行优化管理"></a>根据上面的ActorCompnent优势对Attack进行优化管理</h5><p><img src="https://s1.ax1x.com/2020/09/23/wjr3gs.png" alt="19"></p>
+<p>优化之后的结果，将原先的Attack函数放入了新的FightSystem组件中，删除了不需要的变量，由于这里的Attacking是从Fight System中引用，所以相应的在ABP中的Attacking也要修改，不然就不会有攻击间隔</p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjrlCQ.png" alt="20"></p>
+<p>为了更近一步的优化达到让组件Fight Component变量不通过外部函数获取，降低耦合，可以将Attacking在ABP中选择private，建立一个set Attacking函数达到目的，（隐藏变量，利用函数，减少模块接口中的复杂度）</p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjrtbV.png" alt="22"></p>
+<ul>
+<li>完成属性系统基本，还有基于Actor蓝图的优化</li>
 </ul>
 
             </div>
@@ -481,7 +470,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/09/22/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%8C%EF%BC%89/">http://M1racle0-0.github.io/2020/09/22/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/09/23/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%89%EF%BC%89/">http://M1racle0-0.github.io/2020/09/23/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%89%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -688,9 +677,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/23/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%89%EF%BC%89/">
                     <div class="card-image">
@@ -710,9 +700,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -721,6 +711,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -739,29 +730,28 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/20/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%80%EF%BC%89/">
+                <a href="/2020/09/22/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%8C%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（一）">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（二）">
                         
-                        <span class="card-title">关于第三人称魂类游戏个人学习--（一）</span>
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（1）创建场景光源(1)所需组件：
-Fog、skylight、DirectionalLight、Sky_Sphere
-添加cube作为地板
+                            关于第三人称魂类游戏个人学习–（2）Character蓝图（2）武器绑定
+创建Sword和Shield插槽绑定到MyCharacter，具体位置可在Animation蓝图调整
 
-材质纹理大小可根据Texcoord进行调整。
-Mycharacter
+武器攻击操作映射加入左键攻击Attack，蓝图播放动作蒙太奇
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-22
                             </span>
                         <span class="publish-author">
                             
