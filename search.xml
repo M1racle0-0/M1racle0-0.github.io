@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>关于第三人称魂类游戏个人学习--（五）</title>
+      <link href="/2020/09/27/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%94%EF%BC%89/"/>
+      <url>/2020/09/27/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%94%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="关于第三人称魂类游戏个人学习–（五）"><a href="#关于第三人称魂类游戏个人学习–（五）" class="headerlink" title="关于第三人称魂类游戏个人学习–（五）"></a>关于第三人称魂类游戏个人学习–（五）</h1><h3 id="伤害检测系统"><a href="#伤害检测系统" class="headerlink" title="伤害检测系统"></a>伤害检测系统</h3><h4 id="伤害检测系统（二）"><a href="#伤害检测系统（二）" class="headerlink" title="伤害检测系统（二）"></a>伤害检测系统（二）</h4><p>利用Overlap实现的伤害检测</p><p>![35](E:\Epic ue4\markdown\材料\RPG\35.png)</p><p>在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞预设，就不用在蓝图中Switch</p><ul><li>确保你的武器是有碰撞体的</li></ul><p>![34](E:\Epic ue4\markdown\材料\RPG\34.png)</p><p>当重叠的时候Apply Damage，设置两个条件.</p><p>1.因为武器是拿在手里的，可能在动作的时候会碰到自己造成”自杀“，所以在接收伤害的时候要排除自己。</p><p>2.要在攻击动画进行的时候实现，不然走路你的武器撞到Actor也会造成伤害。</p><h4 id="伤害检测系统（三）"><a href="#伤害检测系统（三）" class="headerlink" title="伤害检测系统（三）"></a>伤害检测系统（三）</h4><p>LineTrace检测方式。</p><p>![36](E:\Epic ue4\markdown\材料\RPG\36.png)</p><p>在武器上加上插槽，先确定第一帧三个插槽的位置，根据第二帧插槽的位置连接画线，判断挥动过程中所触碰到的Actor</p><p>![37](E:\Epic ue4\markdown\材料\RPG\37.png)</p><p>创建变量Sword Socket Location存储插槽位置，每次使用前要清空数组，记录每个插槽的位置，然后把函数放在Attack攻击组件后面</p><p>![38](E:\Epic ue4\markdown\材料\RPG\38.png)</p><p>当事件发生时，先判断是否处于攻击状态，取出Sword中各个插槽的位置信息，Array Element里为存放的上一帧的位置，以此直接放入LineTraceForObjects中的Start中，将这一帧的插槽位置信息得出放入End，并且使用Init Sword Socket Location函数存储这一帧的位置信息。</p><p>将Start位置和End位置连线，选择Pawn类型，如果接触到Pawn，得到返回值，造成伤害。</p><p>![39](E:\Epic ue4\markdown\材料\RPG\39.png)</p><p>在Attacking中生成Line判断是否攻击到目标。</p><ul><li>这几天看了官方RPG的制作思路所以慢一点</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> UE4 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于第三人称魂类游戏个人学习--（四）</title>
       <link href="/2020/09/24/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
       <url>/2020/09/24/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
