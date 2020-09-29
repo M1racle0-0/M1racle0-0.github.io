@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（五）, M1racle0-0">
+    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（六）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于第三人称魂类游戏个人学习--（五） | M1racle0-0</title>
+    <title>关于第三人称魂类游戏个人学习--（六） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（五）</h1>
+                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（六）</h1>
                 </div>
             </div>
         </div>
@@ -391,21 +391,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-27
+                    2020-09-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-28
+                    2020-09-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    437
+                    300
                 </div>
                 
 
@@ -422,28 +422,20 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习–（五）"><a href="#关于第三人称魂类游戏个人学习–（五）" class="headerlink" title="关于第三人称魂类游戏个人学习–（五）"></a>关于第三人称魂类游戏个人学习–（五）</h1><h3 id="伤害检测系统"><a href="#伤害检测系统" class="headerlink" title="伤害检测系统"></a>伤害检测系统</h3><h4 id="伤害检测系统（二）"><a href="#伤害检测系统（二）" class="headerlink" title="伤害检测系统（二）"></a>伤害检测系统（二）</h4><p>利用Overlap实现的伤害检测</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A0ReS.png" alt="35"></p>
-<p>在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞预设，就不用在蓝图中Switch</p>
+                <h1 id="关于第三人称魂类游戏个人学习–（六）"><a href="#关于第三人称魂类游戏个人学习–（六）" class="headerlink" title="关于第三人称魂类游戏个人学习–（六）"></a>关于第三人称魂类游戏个人学习–（六）</h1><h3 id="蓝图优化（组件化）"><a href="#蓝图优化（组件化）" class="headerlink" title="蓝图优化（组件化）"></a>蓝图优化（组件化）</h3><p><img src="https://s1.ax1x.com/2020/09/29/0ZFRHg.png" alt="40"></p>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZFgu8.png" alt="41"></p>
+<p>将伤害判定和攻击放在一个Actor组件中，便于管理，再将FightSystem中的变量设置为私有，方便在MyCharacter中进行组件管理。</p>
+<h3 id="受击系统"><a href="#受击系统" class="headerlink" title="受击系统"></a>受击系统</h3><p><img src="https://s1.ax1x.com/2020/09/29/0ZF6jf.png" alt="42"></p>
+<p><strong>人物受到攻击时思考</strong>：人物的中心点到攻击位置的旋转角度，通过旋转的角度可知道是从哪边受到的伤害，根据不同的角度跳转到不同的动画蓝图，例如从攻击位置到Actor中心点的旋转角度为-90°，则可以判断为人物左侧受到的伤害，播放Hit_left蒙太奇动画。</p>
+<p>因为要得到攻击位置，所以要使用Apply Point Damage中的 Hit from Direction获取攻击位置。</p>
+<p>由于动画比较少，所以我只做了前方受到攻击和左右受到的攻击。</p>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZFygP.png" alt="43"></p>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZF2DS.png" alt="44"></p>
+<p>On Take Point Damage绑定，获取Hit location</p>
+<p>只需要知道一个360°旋转的平面，拆分rotation，Find Look at Rotation找到旋转角度的插值，然后判断hit location处在三个象限的什么位置。加上动画效果。</p>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZFfEQ.png" alt="45"></p>
 <ul>
-<li>确保你的武器是有碰撞体的</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A0foQ.png" alt="34"></p>
-<p>当重叠的时候Apply Damage，设置两个条件.</p>
-<p>1.因为武器是拿在手里的，可能在动作的时候会碰到自己造成”自杀“，所以在接收伤害的时候要排除自己。</p>
-<p>2.要在攻击动画进行的时候实现，不然走路你的武器撞到Actor也会造成伤害。</p>
-<h4 id="伤害检测系统（三）"><a href="#伤害检测系统（三）" class="headerlink" title="伤害检测系统（三）"></a>伤害检测系统（三）</h4><p>LineTrace检测方式。</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A0gL8.png" alt="36"></p>
-<p>在武器上加上插槽，先确定第一帧三个插槽的位置，根据第二帧插槽的位置连接画线，判断挥动过程中所触碰到的Actor</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A0Wdg.png" alt="37"></p>
-<p>创建变量Sword Socket Location存储插槽位置，每次使用前要清空数组，记录每个插槽的位置，然后把函数放在Attack攻击组件后面</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A04ij.png" alt="38"></p>
-<p>当事件发生时，先判断是否处于攻击状态，取出Sword中各个插槽的位置信息，Array Element里为存放的上一帧的位置，以此直接放入LineTraceForObjects中的Start中，将这一帧的插槽位置信息得出放入End，并且使用Init Sword Socket Location函数存储这一帧的位置信息。</p>
-<p>将Start位置和End位置连线，选择Pawn类型，如果接触到Pawn，得到返回值，造成伤害。</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A05Js.png" alt="39"></p>
-<p>在Attacking中生成Line判断是否攻击到目标。</p>
-<ul>
-<li>最近在深入研究攻击动作实行的文档。</li>
+<li>可在伤害获得后加入特效。</li>
 </ul>
 
             </div>
@@ -470,7 +462,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/09/27/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%94%EF%BC%89/">http://M1racle0-0.github.io/2020/09/27/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%94%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/09/28/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AD%EF%BC%89/">http://M1racle0-0.github.io/2020/09/28/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AD%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -677,9 +669,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/28/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AD%EF%BC%89/">
                     <div class="card-image">
@@ -701,9 +694,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -712,6 +705,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -730,28 +724,26 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/24/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%9B%9B%EF%BC%89/">
+                <a href="/2020/09/27/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%BA%94%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（四）">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（五）">
                         
-                        <span class="card-title">关于第三人称魂类游戏个人学习--（四）</span>
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（五）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（四）伤害检测系统三种不同的检测方式
-条件语句和循环语句
-伤害检测系统（一）使用MultiCapsuleTraceForObjects检测伤害
+                            关于第三人称魂类游戏个人学习–（五）伤害检测系统伤害检测系统（二）利用Overlap实现的伤害检测
 
-为了代码的可视性，创建ActorComponent命名为Dete
+在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞预设，就不用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-27
                             </span>
                         <span class="publish-author">
                             
