@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（七）, M1racle0-0">
+    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（九）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于第三人称魂类游戏个人学习--（七） | M1racle0-0</title>
+    <title>关于第三人称魂类游戏个人学习--（九） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（七）</h1>
+                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（九）</h1>
                 </div>
             </div>
         </div>
@@ -391,7 +391,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-02
+                    2020-10-05
                 </div>
                 
 
@@ -405,7 +405,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    152
+                    263
                 </div>
                 
 
@@ -422,20 +422,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习–（七）"><a href="#关于第三人称魂类游戏个人学习–（七）" class="headerlink" title="关于第三人称魂类游戏个人学习–（七）"></a>关于第三人称魂类游戏个人学习–（七）</h1><h3 id="优化攻击系统"><a href="#优化攻击系统" class="headerlink" title="优化攻击系统"></a>优化攻击系统</h3><p><img src="https://s1.ax1x.com/2020/10/03/03Shbq.png" alt="46"></p>
-<p>在攻击判定区域前加入判定。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03Sfrn.png" alt="47"></p>
-<p>如图，在Attacking为动画播放区间，然后中间加上两个通知，在区间内判定造成的伤害。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03SIaV.png" alt="51"></p>
-<h3 id="Mycharacter蓝图（3）"><a href="#Mycharacter蓝图（3）" class="headerlink" title="Mycharacter蓝图（3）"></a>Mycharacter蓝图（3）</h3><h4 id="翻滚"><a href="#翻滚" class="headerlink" title="翻滚"></a>翻滚</h4><p>Soul Dark怎么可以没有无敌的翻滚呢？</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03Sg2Q.png" alt="49"></p>
-<p>设置input x，y来获取前后左右的值。（无法使用MovementRight 和Movementforward）</p>
-<p>再设立input current x/y来获取值控制翻滚的方向。 </p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03SWKs.png" alt="48"></p>
-<p>当X、Y为0，后撤步，其他就根据方向进行翻滚。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03S2vj.png" alt="50"></p>
-<p>要在ABP中设置Roll的状态机。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03S5V0.png" alt="52"></p>
+                <h1 id="关于第三人称魂类游戏个人学习–（九）"><a href="#关于第三人称魂类游戏个人学习–（九）" class="headerlink" title="关于第三人称魂类游戏个人学习–（九）"></a>关于第三人称魂类游戏个人学习–（九）</h1><h3 id="锁定系统升级，利用-Z、C-来改变锁定对象"><a href="#锁定系统升级，利用-Z、C-来改变锁定对象" class="headerlink" title="锁定系统升级，利用 Z、C 来改变锁定对象"></a>锁定系统升级，利用 Z、C 来改变锁定对象</h3><p>上一次做了Get All enemy中获得所有enemy的rotation并且进行了排序</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0UNkCQ.md.png" alt="66"></p>
+<p>Switch Rotation，向左0，向右1</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0UNA3j.md.png" alt="67"></p>
+<p>keys遍历，Find找到Current Enemy在Enemy中的位置</p>
+<p>如果Current Enemy为0（第一个）,你要向左转if 就为true，或者Current Enemy为最后一个，你要向右转，也为true</p>
+<p>其他情况为false</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0UNEgs.md.png" alt="68"></p>
+<p>ture中，0向左，得到Last Index的值，输入到Lock ON中，</p>
+<p>或者Last Index向右，变为0，Enemy的第一个值输入到Lock On中，</p>
+<p>如果为false的情况</p>
+<p>向左就-1，向右就+1，然后get值输入到Lock ON中</p>
+<p>画个图更加直观</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0UNeuq.png" alt="69"></p>
+<p>就现在场景有4个敌人，你Get all enemy时候会排序，得到的最近的敌人为Current Enemy，Switch相当于在这个值中进行+1，-1，只有在最小0锁定转为3锁定，或者3锁定转为0锁定时，Ture，其他就Current Enemy +- 1得到。</p>
+<ul>
+<li>锁定系统全部完成</li>
+</ul>
 
             </div>
             <hr/>
@@ -461,7 +465,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/10/02/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%83%EF%BC%89/">http://M1racle0-0.github.io/2020/10/02/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%83%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/10/05/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B9%9D%EF%BC%89/">http://M1racle0-0.github.io/2020/10/05/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B9%9D%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -668,9 +672,60 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/10/05/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B9%9D%EF%BC%89/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（九）">
+                        
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（九）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            关于第三人称魂类游戏个人学习–（九）锁定系统升级，利用 Z、C 来改变锁定对象上一次做了Get All enemy中获得所有enemy的rotation并且进行了排序
+
+Switch Rotation，向左0，向右1
+
+keys遍历，Fin
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            M1racle
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/UE4/">
+                        <span class="chip bg-color">UE4</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/10/04/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AB%EF%BC%89/">
                     <div class="card-image">
@@ -690,57 +745,8 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            M1racle
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/UE4/">
-                        <span class="chip bg-color">UE4</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/09/28/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AD%EF%BC%89/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（六）">
-                        
-                        <span class="card-title">关于第三人称魂类游戏个人学习--（六）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            关于第三人称魂类游戏个人学习–（六）蓝图优化（组件化）
-
-将伤害判定和攻击放在一个Actor组件中，便于管理，再将FightSystem中的变量设置为私有，方便在MyCharacter中进行组件管理。
-受击系统
-人物受到攻击时思考：人物的中
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
                             </span>
                         <span class="publish-author">
                             

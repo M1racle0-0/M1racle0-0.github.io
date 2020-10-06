@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（七）, M1racle0-0">
+    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（八）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于第三人称魂类游戏个人学习--（七） | M1racle0-0</title>
+    <title>关于第三人称魂类游戏个人学习--（八） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（七）</h1>
+                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（八）</h1>
                 </div>
             </div>
         </div>
@@ -391,7 +391,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-02
+                    2020-10-04
                 </div>
                 
 
@@ -405,7 +405,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    152
+                    996
                 </div>
                 
 
@@ -422,20 +422,54 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习–（七）"><a href="#关于第三人称魂类游戏个人学习–（七）" class="headerlink" title="关于第三人称魂类游戏个人学习–（七）"></a>关于第三人称魂类游戏个人学习–（七）</h1><h3 id="优化攻击系统"><a href="#优化攻击系统" class="headerlink" title="优化攻击系统"></a>优化攻击系统</h3><p><img src="https://s1.ax1x.com/2020/10/03/03Shbq.png" alt="46"></p>
-<p>在攻击判定区域前加入判定。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03Sfrn.png" alt="47"></p>
-<p>如图，在Attacking为动画播放区间，然后中间加上两个通知，在区间内判定造成的伤害。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03SIaV.png" alt="51"></p>
-<h3 id="Mycharacter蓝图（3）"><a href="#Mycharacter蓝图（3）" class="headerlink" title="Mycharacter蓝图（3）"></a>Mycharacter蓝图（3）</h3><h4 id="翻滚"><a href="#翻滚" class="headerlink" title="翻滚"></a>翻滚</h4><p>Soul Dark怎么可以没有无敌的翻滚呢？</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03Sg2Q.png" alt="49"></p>
-<p>设置input x，y来获取前后左右的值。（无法使用MovementRight 和Movementforward）</p>
-<p>再设立input current x/y来获取值控制翻滚的方向。 </p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03SWKs.png" alt="48"></p>
-<p>当X、Y为0，后撤步，其他就根据方向进行翻滚。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03S2vj.png" alt="50"></p>
-<p>要在ABP中设置Roll的状态机。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03S5V0.png" alt="52"></p>
+                <h1 id="关于第三人称魂类游戏个人学习–（八）"><a href="#关于第三人称魂类游戏个人学习–（八）" class="headerlink" title="关于第三人称魂类游戏个人学习–（八）"></a>关于第三人称魂类游戏个人学习–（八）</h1><h3 id="Lock锁定系统（Q）"><a href="#Lock锁定系统（Q）" class="headerlink" title="Lock锁定系统（Q）"></a>Lock锁定系统（Q）</h3><p>这个写的比较久，直接放蓝图和思想了。</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>首先获取地图上范围内标签内所有的enemy，从人物的正前方为0°，后方为180°，获取每个位置敌人到人物前方的旋转角度。</p>
+<p>取最小的旋转角度，将这个旋转角度给摄像机和人物，然后把鼠标的视角转变关掉，完成对敌人一直地锁定。</p>
+<p>在锁定前还有两个判定：</p>
+<ul>
+<li>第一个是敌人需要在你的视线范围内</li>
+<li>第二个是敌人和你中间没有其他物体挡住，看不到就锁定不了。</li>
+</ul>
+<p>再次按Q要关掉锁定，摄像机要重新对焦，将摄像机的rotation设为0，回到正前方，reset camera</p>
+<p>在Locked打开的时候关闭鼠标的视角移动。</p>
+<h4 id="锁定"><a href="#锁定" class="headerlink" title="锁定"></a>锁定</h4><p>首先得到所有enemy旋转信息</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6dJ0.png" alt="53"></p>
+<p>用enemy映射和center rotation数组存储enemy信息和位置，还有enemy到self的旋转角度。</p>
+<p>中间的Distance Check和Line Of Sight Check检测目标是否在距离范围之内，实现范围之内，超出了会自动解除锁定。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6Non.png" alt="55"></p>
+<p>设为纯虚函数，是否在范围内</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6tds.png" alt="56"></p>
+<p>设为纯虚函数，在相机到enemy中间生成射线 ，遇到物体输出false，无法检测。</p>
+<p>相机到enemy的角度-相机到self的角度（为0）=需要旋转的角度，然后存储在local enemies临时映射中。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6YZj.png" alt="57"></p>
+<p>loop循环结束以后，遍历数组Local enemies从最小开始排序，放入enemies中，旋转所需的角度放入Center Rotation。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6aiq.png" alt="54"></p>
+<p>按下锁定时候的判定</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6wWV.png" alt="58"></p>
+<p>这里的球体检测是为了解决一个问题，当你很近的地方有一个enemy，你的正前方也有个enemy，但是这个enemy很远的情况下，我们应该是检测近点的人，但是根据rotation我们会检测到正前方远处的人。</p>
+<p>在self和检测对象中间生成一个球体检测，如果这个球体检测中间还有其他enemy，优先锁定他。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N60zT.png" alt="59"></p>
+<p>输出Out Hit Hit Actor为球体检测出来的enemy，原先的enemy通过Get从enemy映射中获取。</p>
+<h5 id="lock-on-和-lock-off"><a href="#lock-on-和-lock-off" class="headerlink" title="lock on 和 lock off"></a>lock on 和 lock off</h5><p><img src="https://s1.ax1x.com/2020/10/06/0N6DQU.png" alt="60"></p>
+<p>这里的时间轴相当于event Tick但是可以节省更多资源。作用为每一帧判断是否处于锁定状态，是否目标在距离视野范围内，然后通过Gate进行setCamera Rotation，一直锁定敌人。</p>
+<p>利用Gate的机制，开门就会运行门后面的函数，关门不运行。</p>
+<p>这里的可视性主要是设置enemy头顶上锁定的标签。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N66eJ.png" alt="61"></p>
+<p>锁定时显示，不锁定时隐藏。（一开始属于隐藏状态，锁定打开。）</p>
+<p>这里的Set Camera Rotation为，锁定时将视角平滑转移到enemy位置。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6sL4.png" alt="62"></p>
+<p>这里的Rinterp to可以基于现在的旋转，平滑达到目标旋转位置，speed可以控制旋转速度。</p>
+<p>在Lock off中会进入reset camera，将相机返回原来值。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N64SK.png" alt="63"></p>
+<p>XZ不变，Y改为0正视前方。</p>
+<p>在人物翻滚的时候，控制人物面朝方向。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6goR.png" alt="64"></p>
+<p>在locked打开的时候，关闭鼠标的视角移动。</p>
+<p><img src="https://s1.ax1x.com/2020/10/06/0N6RF1.png" alt="65"></p>
+<p>大致的Lock按钮就设定完成了。</p>
+<h5 id="中间遇到的一些问题"><a href="#中间遇到的一些问题" class="headerlink" title="中间遇到的一些问题"></a>中间遇到的一些问题</h5><p>enemy我是通过Mycharacter的拷贝得来的，里面有一个组件为Sword，他有物理碰撞，你在视线检测的时候可能会从self和enemy中间穿过Sword，这样系统会判断你的视野丢失，取消锁定，所以要把敌人中Sword的物理碰撞关了，或者在视线检测的时候忽视。</p>
+<p>然后就是Mycharacter中有太多变量了，将做好的Lock可以放入到一个新的Acotor组件中</p>
+<p>你要拷贝一个新的动画蓝图给Enemy，原来的ABP它自身的对象都是MyCharacter，所以如果用原来的，你的角色不会出现死亡动画。</p>
 
             </div>
             <hr/>
@@ -461,7 +495,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/10/02/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%83%EF%BC%89/">http://M1racle0-0.github.io/2020/10/02/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%83%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/10/04/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AB%EF%BC%89/">http://M1racle0-0.github.io/2020/10/04/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AB%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -672,26 +706,28 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/04/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AB%EF%BC%89/">
+                <a href="/2020/10/05/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B9%9D%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（八）">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（九）">
                         
-                        <span class="card-title">关于第三人称魂类游戏个人学习--（八）</span>
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（九）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（八）Lock锁定系统（Q）这个写的比较久，直接放蓝图和思想了。
-思路首先获取地图上范围内标签内所有的enemy，从人物的正前方为0°，后方为180°，获取每个位置敌人到人物前方的旋转角度。
-取最小的旋转角度，
+                            关于第三人称魂类游戏个人学习–（九）锁定系统升级，利用 Z、C 来改变锁定对象上一次做了Get All enemy中获得所有enemy的rotation并且进行了排序
+
+Switch Rotation，向左0，向右1
+
+keys遍历，Fin
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
                         </span>
                         <span class="publish-author">
                             
@@ -719,28 +755,29 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/28/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AD%EF%BC%89/">
+                <a href="/2020/10/02/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B8%83%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（六）">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（七）">
                         
-                        <span class="card-title">关于第三人称魂类游戏个人学习--（六）</span>
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（七）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（六）蓝图优化（组件化）
+                            关于第三人称魂类游戏个人学习–（七）优化攻击系统
+在攻击判定区域前加入判定。
 
-将伤害判定和攻击放在一个Actor组件中，便于管理，再将FightSystem中的变量设置为私有，方便在MyCharacter中进行组件管理。
-受击系统
-人物受到攻击时思考：人物的中
+如图，在Attacking为动画播放区间，然后中间加上两个通知，在区间内判定造成的伤害。
+
+Mycharacter蓝图（3）翻滚Soul Dark怎么可以没有无
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-02
                             </span>
                         <span class="publish-author">
                             
