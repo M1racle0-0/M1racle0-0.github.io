@@ -398,7 +398,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-19
+                    2020-10-20
                 </div>
                 
 
@@ -433,11 +433,10 @@
 <p><strong>感知</strong>：收集信息</p>
 <p><strong>思考</strong>：根据信息做出决策</p>
 <p><strong>行动</strong>：告诉AI做出行为</p>
-<p><img src="https://learn.unrealengine.com/cloudmedia/103905/scorm/6698657_5/scormcontent/assets/6YHWadMqhSAOlrQe_2ELI9sQ5uinpgoUX.png" alt=""></p>
 <p>每个阶段都依赖于前一阶段的信息；这种在不同阶段间循环的机制，能让玩家在场景中体验到一个栩栩如生的智能生命。这个框架有助于我们在设计和实现AI时关注最为重要的内容；它有助于我们确定目标以及达到目标所需的步骤，并能让我们知道何时达到了目标。</p>
 <h3 id="AI寻路"><a href="#AI寻路" class="headerlink" title="AI寻路"></a>AI寻路</h3><p>在场景中进行寻路是AI的基本功能，但这种寻路并非简单地从A点移动到B点。寻路有两个关键部分：计算路径和躲避障碍。</p>
 <p>如果要让AI在场景中移动，就需要用到<strong>寻路网格体</strong>。</p>
-<h4 id="寻路网格体"><a href="#寻路网格体" class="headerlink" title="寻路网格体"></a>寻路网格体</h4><p><img src="https://learn.unrealengine.com/cloudmedia/103905/scorm/6698660_5/scormcontent/assets/wMCuosfYGhUZoGmy_MMpZJHsCaIF0d7Ao.gif" alt=""></p>
+<h4 id="寻路网格体"><a href="#寻路网格体" class="headerlink" title="寻路网格体"></a>寻路网格体</h4><p><img src="https://s1.ax1x.com/2020/10/19/0zeLJs.md.gif" alt="5"></p>
 <p>寻路网格体用于帮助AI在场景中进行寻路。</p>
 <p>网格体由大量凸多边形组成，规定了AI可以哪些区域通行。</p>
 <h5 id="预计算数据"><a href="#预计算数据" class="headerlink" title="预计算数据"></a>预计算数据</h5><p>寻路网格体都是预先计算（“烘焙”）好的，这意味着在游戏开始前，以2D网格体形式表示的寻路网格体就已经包含了复杂的3D碰撞数据。这就使得寻路的开销更低。对于那些代理数量或类型不确定的实时体验来说，这点尤为明显。</p>
@@ -458,15 +457,15 @@
 <p>（在NavMeshBoundsVolume、NavModifierVolume的细节面板设置中都有调整X/Y/Z大小以及形状的选项.可以根据自己的需求来调整.）</p>
 <h3 id="AI感知理论"><a href="#AI感知理论" class="headerlink" title="AI感知理论"></a>AI感知理论</h3><p>虚幻引擎提供了一个<em>AI感知系统</em>，它能控制Actor的感知内容和能够感知到的场景区域。它提供一种事件驱动的系统来处理收集到的信息，使得整个系统变得简易而轻量。最后，它在蓝图中有着广泛的用途，并能应用于不同的情形。</p>
 <h4 id="AI感知系统的组成部分"><a href="#AI感知系统的组成部分" class="headerlink" title="AI感知系统的组成部分"></a>AI感知系统的组成部分</h4><h5 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h5><p>系统中有两个关键组件，分别是<strong>AI感知组件</strong>和<strong>AI感知刺激源</strong>。AI感知刺激源组件将决定Actor拥有哪些“可感知”属性，而AI感知组件则决定哪些感官可以使用或者被感知到。  </p>
-<h5 id="AI感知组件"><a href="#AI感知组件" class="headerlink" title="AI感知组件"></a>AI感知组件</h5><p><img src="https://learn.unrealengine.com/cloudmedia/103905/scorm/6698666_6/scormcontent/assets/Q9wNbtEOn7UBK1m-_pEefX5IRHSe3jR0t.png" alt=""></p>
+<h5 id="AI感知组件"><a href="#AI感知组件" class="headerlink" title="AI感知组件"></a>AI感知组件</h5><p><img src="https://s1.ax1x.com/2020/10/19/0ze7dg.png" alt="1"></p>
 <p>这个组件允许我们设置感知系统可以使用哪些感官或“看到”哪些内容。</p>
 <p>同一个组件中可以添加多种感官。此外，在确定被感知Actor的位置时，你可以通过“主导感官”属性指定优先使用哪种感官进行感知。例如，在视频游戏中，你可能会希望<strong>“视觉”</strong>优先于<strong>“听觉”</strong>。</p>
-<h5 id="AI感知刺激源"><a href="#AI感知刺激源" class="headerlink" title="AI感知刺激源"></a>AI感知刺激源</h5><p><img src="https://learn.unrealengine.com/cloudmedia/103905/scorm/6698666_6/scormcontent/assets/gBHnS38VvdGU3c_x_6kKgzmJNbdm8gVPl.png" alt=""></p>
+<h5 id="AI感知刺激源"><a href="#AI感知刺激源" class="headerlink" title="AI感知刺激源"></a>AI感知刺激源</h5><p><img src="https://s1.ax1x.com/2020/10/19/0zeHoQ.png" alt="2"></p>
 <p>为Actor添加这个组件将决定AI感知系统会注册哪些感官。</p>
 <p>例如，假如你将某个AI感知刺激源设置为只对<em>视觉</em>产生刺激，那么拥有视觉感官的AI就会感知到这个刺激源Actor。单个组件可以注册多个刺激。</p>
 <h5 id="事件和刺激"><a href="#事件和刺激" class="headerlink" title="事件和刺激"></a>事件和刺激</h5><p>在确定了场景中会生成哪些Actor作为刺激源后，AI就需要针对这些信息进行<em>思考</em>，并考虑基于它们感知到的信息可能要<em>采取哪些行动</em>。为此，你需要使用<strong>On Target Perception Updated</strong>事件。这个事件会通过AIStimulus结构体为我们提供有关被感知刺激源的实用信息。此外在项目中，你还会找到许多其他有用的感知事件。你可以在<a href="https://docs.unrealengine.com/en-US/Engine/ArtificialIntelligence/AIPerception/index.html" target="_blank" rel="noopener">AI感知文档页面</a>中找到这些事件的详细列表。</p>
-<p><img src="https://learn.unrealengine.com/cloudmedia/103905/scorm/6698666_6/scormcontent/assets/p_BrWP2wKAUATYaH_7JrE-P4KP6uwvj22.png" alt=""></p>
-<h5 id="感知刺激"><a href="#感知刺激" class="headerlink" title="感知刺激"></a>感知刺激</h5><p><img src="https://learn.unrealengine.com/cloudmedia/103905/scorm/6698666_6/scormcontent/assets/YUvsYT6K-_U5SZSd_KHzxlrJKd9-mvymz.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/10/19/0ze5sf.png" alt="3"></p>
+<h5 id="感知刺激"><a href="#感知刺激" class="headerlink" title="感知刺激"></a>感知刺激</h5><p><img src="https://s1.ax1x.com/2020/10/19/0zeWRI.png" alt="4"></p>
 <p>如果我们在玩家的AI感知组件中添加“视觉”感官，那么当AI角色看到玩家角色的时候，他就会检测AI感知组件。</p>
 <p>如果玩家角色拥有可以被感知的刺激，并且该刺激在AI感知组件中是有效的，那么玩家就会触发角色中的On Target Perception Updated事件。</p>
 <p><strong>AI感知组件</strong>：确定AI感知系统可以“感知”到哪些感官。</p>
