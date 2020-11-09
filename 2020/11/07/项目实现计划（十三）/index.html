@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（十一）, M1racle0-0">
+    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（十三）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于第三人称魂类游戏个人学习--（十一） | M1racle0-0</title>
+    <title>关于第三人称魂类游戏个人学习--（十三） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（十一）</h1>
+                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（十三）</h1>
                 </div>
             </div>
         </div>
@@ -391,21 +391,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-26
+                    2020-11-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-27
+                    2020-11-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    533
+                    525
                 </div>
                 
 
@@ -422,23 +422,59 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习–（十一）"><a href="#关于第三人称魂类游戏个人学习–（十一）" class="headerlink" title="关于第三人称魂类游戏个人学习–（十一）"></a>关于第三人称魂类游戏个人学习–（十一）</h1><h3 id="关于AI问题解决方法"><a href="#关于AI问题解决方法" class="headerlink" title="关于AI问题解决方法"></a>关于AI问题解决方法</h3><h4 id="1。攻击检测在受击后一直会打开的问题"><a href="#1。攻击检测在受击后一直会打开的问题" class="headerlink" title="1。攻击检测在受击后一直会打开的问题"></a>1。攻击检测在受击后一直会打开的问题</h4><p>在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Attacking和攻击检测TIme打开，因为动画没有运行完，所以在ABP中不会运行关闭的设置，所以在受击动画后关闭，加了一个delay，这样不会受到击打后第一时间攻击人物，做一个类似受击后的后摇效果。</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ28Gq.png" alt="13"></p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ2MZQ.png" alt="14"></p>
-<h4 id="2。攻击时间间隔问题。"><a href="#2。攻击时间间隔问题。" class="headerlink" title="2。攻击时间间隔问题。"></a>2。攻击时间间隔问题。</h4><p>在AI中，在Attacking加一个delay延时，根据NowAttack（现在的攻击动画）,还可以设置轻重攻击的间隔，轻攻击时间间隔短，重攻击时间间隔长。</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ23in.png" alt="15"></p>
-<p>攻击动画用的Hit Group存储，所以后期增加多个攻击后可以调每个攻击的攻击间隔。</p>
-<h4 id="3。关于AI死亡以后，仍会运行行为树问题。"><a href="#3。关于AI死亡以后，仍会运行行为树问题。" class="headerlink" title="3。关于AI死亡以后，仍会运行行为树问题。"></a>3。关于AI死亡以后，仍会运行行为树问题。</h4><p>在AI死亡以后，由于行为树没有关闭，所以尸体仍然会一直向着Player的位置转圈。在AttributeSystem组件中设置IsDead，通过AIC和设置的黑板bool值IsAlive关联。</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ2lIs.png" alt="16"></p>
-<p>在使用装饰器的时候发现一个问题。</p>
-<p>在使用装饰器的时候，我将装饰器赋在行为树根节点Root下的一个Selector上，发现没法进行有效判断。做了一个类似下面的实验。</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ2uqg.png" alt="17"></p>
-<p>正如你所看到的，尽管decorator被设置为阻塞执行，但仍在执行示例任务。</p>
-<p>原因是这里的装饰器为-1，这会造成错误，但官方文档并没有指出不能在第一个设置的Select中添加装饰器，所以弄了半天，（这个-1不仔细看还真容易错过.）</p>
-<p>解决的办法就是再创建一个Selector在下方，让装饰器&gt;0.</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ2Qaj.png" alt="18"></p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p><img src="https://s1.ax1x.com/2020/10/27/BQRmf1.md.png" alt="19"></p>
-<p>转换问题，如果直接从AIC受控的Pawn得到的AttributeSystem将会是一个新的独立于AI外的系统。</p>
+                <h1 id="关于第三人称魂类游戏个人学习–（十三）"><a href="#关于第三人称魂类游戏个人学习–（十三）" class="headerlink" title="关于第三人称魂类游戏个人学习–（十三）"></a>关于第三人称魂类游戏个人学习–（十三）</h1><h2 id="UMG"><a href="#UMG" class="headerlink" title="UMG"></a>UMG</h2><h3 id="UMG-PlayHUD-人物血量、精力槽"><a href="#UMG-PlayHUD-人物血量、精力槽" class="headerlink" title="UMG_PlayHUD(人物血量、精力槽)"></a>UMG_PlayHUD(人物血量、精力槽)</h3><p><img src="https://s1.ax1x.com/2020/11/06/Bhqp4K.png" alt="3"></p>
+<p>通过Widgets，使用进度条创建血量和能量条。</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqC9O.png" alt="4"></p>
+<p>每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP= current hp/Max hp，百分比赋值给进度条的百分比。</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhbzAx.png" alt="5"></p>
+<p>在my_Character中创建Veiw。</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/Bhqige.png" alt="6"></p>
+<p>写在事件开始运行中。</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqVHI.md.png" alt="7"></p>
+<h4 id="（UMG-enemy-hp）enemy-血量"><a href="#（UMG-enemy-hp）enemy-血量" class="headerlink" title="（UMG_enemy_hp）enemy 血量"></a>（UMG_enemy_hp）enemy 血量</h4><p>添加方式是在视口中显示</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqEDA.md.png" alt="8"></p>
+<p>屏幕的作用可以让血条一直朝向相机方向。</p>
+<p>输入控件UMG_enemy_hp</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqAud.png" alt="9"></p>
+<p>Hp Percent Change Enemy</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqFjH.png" alt="10"></p>
+<p>这里的HP change调用UMG中的函数控制血条</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqeEt.png" alt="11"></p>
+<p>实现</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqQgg.md.png" alt="12"></p>
+<h3 id="主界面（UMG-Main-Mune）"><a href="#主界面（UMG-Main-Mune）" class="headerlink" title="主界面（UMG Main Mune）"></a>主界面（UMG Main Mune）</h3><p>创建一个新的关卡和Widgets。</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqP3D.png" alt="1"></p>
+<p>简单图标，点击NEW game进入游戏关卡。点击Quit退出</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqSN6.png" alt="2"></p>
+<p>这个时候会显示Mycharacter的UI，因为没有更改游戏模式.创建GM</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqmUP.png" alt="13"></p>
+<p>打开空白关卡的关卡蓝图</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqKC8.png" alt="14"></p>
+<p>输入模式UI，可以点击图上的button。显示鼠标。</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/Bhqn4f.png" alt="15"></p>
+<p>进入关卡以后要关闭鼠标，关闭输入模式UI改为仅Game。</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqlvQ.png" alt="16"></p>
+<p>在主关卡更改默认pawn类。</p>
+<h3 id="暂停（Pause）"><a href="#暂停（Pause）" class="headerlink" title="暂停（Pause）"></a>暂停（Pause）</h3><p><img src="https://s1.ax1x.com/2020/11/06/BhqM8S.png" alt="17"></p>
+<p>input中设置为K Pause。</p>
+<p>问题。</p>
+<ol>
+<li>按下K的时候，游戏停止，显示Pasue Menu</li>
+<li>打开鼠标，暂时关闭血条UI</li>
+<li>按下resume恢复游戏，关闭鼠标，打开血条UI</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/11/06/Bhq8Ds.png" alt="19"></p>
+<p>Remove Hud函数，暂时移除血条UI，无论点那一个，self都会从父项移除（关闭Pause视口），并且暂停游戏。</p>
+<p>quit会打开鼠标控制，进入主菜单，继续会关闭鼠标控制，进入游戏模式。</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqGbn.png" alt="20"></p>
+<p>这里的UMG Reference是做MyCharacter的时候给UMG_PlayHUD的命名</p>
+<p><img src="https://s1.ax1x.com/2020/11/06/BhqYEq.png" alt="21"></p>
+<p>一直按K是可以实现Widgets的叠加，就是会有很多个Pause界面跌在一起，所以一开始要判断现在是否处于暂停阶段。</p>
+<p>IS valid，如果没有就创建UMG控件，如果有就直接打开鼠标控制。输入仅为UI模式，添加到视口，暂停游戏。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li>添加到视口很重要，如果不加就不会显示Widget。</li>
+<li>注意游戏模式中的HUD选择，还有默认的pawn类。</li>
+</ul>
 
             </div>
             <hr/>
@@ -464,7 +500,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/10/26/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/">http://M1racle0-0.github.io/2020/10/26/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/11/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">http://M1racle0-0.github.io/2020/11/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -671,29 +707,33 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/06/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">
+                <a href="/2020/11/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（十二）">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（十三）">
                         
-                        <span class="card-title">关于第三人称魂类游戏个人学习--（十二）</span>
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（十三）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（十二）AI基于EQS的AI躲藏EQSEQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简
+                            关于第三人称魂类游戏个人学习–（十三）UMGUMG_PlayHUD(人物血量、精力槽)
+通过Widgets，使用进度条创建血量和能量条。
+
+每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP= curre
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -702,6 +742,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -720,27 +761,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/24/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%EF%BC%89/">
+                <a href="/2020/11/06/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（十）">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（十二）">
                         
-                        <span class="card-title">关于第三人称魂类游戏个人学习--（十）</span>
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（十二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（十）AI实现AIC_enemy通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。
-最近写的有点多，直接放代码简单说下吧
-
-普通的攻
+                            关于第三人称魂类游戏个人学习–（十二）AI基于EQS的AI躲藏EQSEQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-06
                             </span>
                         <span class="publish-author">
                             

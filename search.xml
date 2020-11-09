@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>关于第三人称魂类游戏个人学习--（十三）</title>
+      <link href="/2020/11/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/"/>
+      <url>/2020/11/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="关于第三人称魂类游戏个人学习–（十三）"><a href="#关于第三人称魂类游戏个人学习–（十三）" class="headerlink" title="关于第三人称魂类游戏个人学习–（十三）"></a>关于第三人称魂类游戏个人学习–（十三）</h1><h2 id="UMG"><a href="#UMG" class="headerlink" title="UMG"></a>UMG</h2><h3 id="UMG-PlayHUD-人物血量、精力槽"><a href="#UMG-PlayHUD-人物血量、精力槽" class="headerlink" title="UMG_PlayHUD(人物血量、精力槽)"></a>UMG_PlayHUD(人物血量、精力槽)</h3><p><img src="https://s1.ax1x.com/2020/11/06/Bhqp4K.png" alt="3"></p><p>通过Widgets，使用进度条创建血量和能量条。</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqC9O.png" alt="4"></p><p>每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP= current hp/Max hp，百分比赋值给进度条的百分比。</p><p><img src="https://s1.ax1x.com/2020/11/06/BhbzAx.png" alt="5"></p><p>在my_Character中创建Veiw。</p><p><img src="https://s1.ax1x.com/2020/11/06/Bhqige.png" alt="6"></p><p>写在事件开始运行中。</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqVHI.md.png" alt="7"></p><h4 id="（UMG-enemy-hp）enemy-血量"><a href="#（UMG-enemy-hp）enemy-血量" class="headerlink" title="（UMG_enemy_hp）enemy 血量"></a>（UMG_enemy_hp）enemy 血量</h4><p>添加方式是在视口中显示</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqEDA.md.png" alt="8"></p><p>屏幕的作用可以让血条一直朝向相机方向。</p><p>输入控件UMG_enemy_hp</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqAud.png" alt="9"></p><p>Hp Percent Change Enemy</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqFjH.png" alt="10"></p><p>这里的HP change调用UMG中的函数控制血条</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqeEt.png" alt="11"></p><p>实现</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqQgg.md.png" alt="12"></p><h3 id="主界面（UMG-Main-Mune）"><a href="#主界面（UMG-Main-Mune）" class="headerlink" title="主界面（UMG Main Mune）"></a>主界面（UMG Main Mune）</h3><p>创建一个新的关卡和Widgets。</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqP3D.png" alt="1"></p><p>简单图标，点击NEW game进入游戏关卡。点击Quit退出</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqSN6.png" alt="2"></p><p>这个时候会显示Mycharacter的UI，因为没有更改游戏模式.创建GM</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqmUP.png" alt="13"></p><p>打开空白关卡的关卡蓝图</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqKC8.png" alt="14"></p><p>输入模式UI，可以点击图上的button。显示鼠标。</p><p><img src="https://s1.ax1x.com/2020/11/06/Bhqn4f.png" alt="15"></p><p>进入关卡以后要关闭鼠标，关闭输入模式UI改为仅Game。</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqlvQ.png" alt="16"></p><p>在主关卡更改默认pawn类。</p><h3 id="暂停（Pause）"><a href="#暂停（Pause）" class="headerlink" title="暂停（Pause）"></a>暂停（Pause）</h3><p><img src="https://s1.ax1x.com/2020/11/06/BhqM8S.png" alt="17"></p><p>input中设置为K Pause。</p><p>问题。</p><ol><li>按下K的时候，游戏停止，显示Pasue Menu</li><li>打开鼠标，暂时关闭血条UI</li><li>按下resume恢复游戏，关闭鼠标，打开血条UI</li></ol><p><img src="https://s1.ax1x.com/2020/11/06/Bhq8Ds.png" alt="19"></p><p>Remove Hud函数，暂时移除血条UI，无论点那一个，self都会从父项移除（关闭Pause视口），并且暂停游戏。</p><p>quit会打开鼠标控制，进入主菜单，继续会关闭鼠标控制，进入游戏模式。</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqGbn.png" alt="20"></p><p>这里的UMG Reference是做MyCharacter的时候给UMG_PlayHUD的命名</p><p><img src="https://s1.ax1x.com/2020/11/06/BhqYEq.png" alt="21"></p><p>一直按K是可以实现Widgets的叠加，就是会有很多个Pause界面跌在一起，所以一开始要判断现在是否处于暂停阶段。</p><p>IS valid，如果没有就创建UMG控件，如果有就直接打开鼠标控制。输入仅为UI模式，添加到视口，暂停游戏。</p><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul><li>添加到视口很重要，如果不加就不会显示Widget。</li><li>注意游戏模式中的HUD选择，还有默认的pawn类。</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> UE4 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于第三人称魂类游戏个人学习--（十二）</title>
+      <link href="/2020/11/06/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/"/>
+      <url>/2020/11/06/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="关于第三人称魂类游戏个人学习–（十二）"><a href="#关于第三人称魂类游戏个人学习–（十二）" class="headerlink" title="关于第三人称魂类游戏个人学习–（十二）"></a>关于第三人称魂类游戏个人学习–（十二）</h1><h2 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h2><h3 id="基于EQS的AI躲藏"><a href="#基于EQS的AI躲藏" class="headerlink" title="基于EQS的AI躲藏"></a>基于EQS的AI躲藏</h3><h4 id="EQS"><a href="#EQS" class="headerlink" title="EQS"></a>EQS</h4><p>EQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简单来说就是将场景环境划分，一般来说是按密度划分成一个一个点，当然也可以以场景元素Actor来进行划分，将环境划分好后，再按照相应的设定规则对划分项（点或Actor）进行打分，最后得分最高的Item即为系统所找到的最优查询结果。EQS系统将其最优查询结果告知AI,AI行为树则会对来其进行相应的决策及执行。</p><h4 id="EQSC-Player-EnvQueryContext"><a href="#EQSC-Player-EnvQueryContext" class="headerlink" title="EQSC_Player(EnvQueryContext)"></a>EQSC_Player(EnvQueryContext)</h4><p><img src="https://s1.ax1x.com/2020/11/04/B6dbrD.png" alt="10"></p><ul><li>Provide Single Actor 提供一个Actor在测试环节中与采样点进行比对；</li></ul><h4 id="EQS-HideNearPlayer-EnvironmentQuery"><a href="#EQS-HideNearPlayer-EnvironmentQuery" class="headerlink" title="EQS_HideNearPlayer(EnvironmentQuery)"></a>EQS_HideNearPlayer(<strong>EnvironmentQuery</strong>)</h4><p><img src="https://s1.ax1x.com/2020/11/04/B6dqqe.png" alt="11"></p><p>EQS资产就是一个可供AI使用的EQS实例。它相当于是一个容器，里面装着根据不同需求设计好的各种查询规则（即Genetators和Tests）。我们做好一个EQS资产后，最终，其会在AI的行为树节点中实例化，并在行为树节点运行时执行EQS相关功能，执行结果也会保存为黑板变量供行为树来决策使用。</p><p>获得MyCharacter视野不可见范围的最大值（敌人看不见你的位置，取权值最大的那个）</p><p><img src="https://s1.ax1x.com/2020/11/04/B6do26.png" alt="12"></p><p>躲藏角色的行为树，将得到的点给Targetlocation黑板键。</p><p><img src="https://s1.ax1x.com/2020/11/04/B6dHKO.png" alt="13"></p><ul><li>看到Mycharacter就躲起来。</li></ul><h3 id="基于EQS的寻找食物"><a href="#基于EQS的寻找食物" class="headerlink" title="基于EQS的寻找食物"></a>基于EQS的寻找食物</h3><p>创建食物空对象</p><p><img src="https://s1.ax1x.com/2020/11/04/B6d5P1.png" alt="14"></p><p>找到food</p><p><img src="https://s1.ax1x.com/2020/11/04/B6dTxK.png" alt="15"></p><p>获得距离值</p><p><img src="https://s1.ax1x.com/2020/11/04/B6dI8x.png" alt="16"></p><p>寻找food行为树</p><p><img src="https://s1.ax1x.com/2020/11/04/B6dzGt.png" alt="17"></p><p>在选择前加一个服务BTS_Hunger</p><h4 id="BTS-Hunger"><a href="#BTS-Hunger" class="headerlink" title="BTS_Hunger"></a>BTS_Hunger</h4><p><img src="https://s1.ax1x.com/2020/11/04/B6dxPI.png" alt="18"></p><p>每一帧加多少值（Hunger Increase Rate）</p><p>可以在外设置</p><p><img src="https://s1.ax1x.com/2020/11/04/B6djIA.png" alt="19"></p><p>这里为hunger(float),每帧增加0.1</p><p>然后再用一个装饰器，当hunger为1的时候，就会去寻找食物。在寻找到食物后，wait一会，将hunger值重新设为0，然后进行巡逻，再根据tick的增加，增加hunger值，到1，循环执行。</p><p><img src="https://s1.ax1x.com/2020/11/04/B6dXad.png" alt="20"></p><h4 id="整合"><a href="#整合" class="headerlink" title="整合"></a>整合</h4><p><img src="https://s1.ax1x.com/2020/11/04/B6dOVH.png" alt="21"></p><ol><li>是否能看见mycharacter，如果可以执行躲避行为</li><li>如果没看见，先判断hunger是否为1，如果不满足，执行随机移动BTT_FindNavigableLocation.</li><li>当系统时间增加，hunger为1，找食物。</li></ol><p>以躲避mycharacter为优先。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> UE4 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于第三人称魂类游戏个人学习--（十一）</title>
       <link href="/2020/10/26/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/"/>
       <url>/2020/10/26/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89/</url>
