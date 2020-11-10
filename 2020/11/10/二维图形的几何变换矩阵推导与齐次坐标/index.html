@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于第三人称魂类游戏个人学习--（十三）, M1racle0-0">
+    <meta name="keywords" content="二维图形的几何变换矩阵推导和齐次坐标系, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于第三人称魂类游戏个人学习--（十三） | M1racle0-0</title>
+    <title>二维图形的几何变换矩阵推导和齐次坐标系 | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于第三人称魂类游戏个人学习--（十三）</h1>
+                    <h1 class="description center-align post-title">二维图形的几何变换矩阵推导和齐次坐标系</h1>
                 </div>
             </div>
         </div>
@@ -375,8 +375,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/UE4/">
-                                <span class="chip bg-color">UE4</span>
+                            <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">
+                                <span class="chip bg-color">图形学</span>
                             </a>
                         
                     </div>
@@ -391,21 +391,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-07
+                    2020-11-10
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-09
+                    2020-11-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    525
+                    953
                 </div>
                 
 
@@ -422,59 +422,49 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习–（十三）"><a href="#关于第三人称魂类游戏个人学习–（十三）" class="headerlink" title="关于第三人称魂类游戏个人学习–（十三）"></a>关于第三人称魂类游戏个人学习–（十三）</h1><h2 id="UMG"><a href="#UMG" class="headerlink" title="UMG"></a>UMG</h2><h3 id="UMG-PlayHUD-人物血量、精力槽"><a href="#UMG-PlayHUD-人物血量、精力槽" class="headerlink" title="UMG_PlayHUD(人物血量、精力槽)"></a>UMG_PlayHUD(人物血量、精力槽)</h3><p><img src="https://s1.ax1x.com/2020/11/06/Bhqp4K.png" alt="3"></p>
-<p>通过Widgets，使用进度条创建血量和能量条。</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqC9O.png" alt="4"></p>
-<p>每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP= current hp/Max hp，百分比赋值给进度条的百分比。</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhbzAx.png" alt="5"></p>
-<p>在my_Character中创建Veiw。</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/Bhqige.png" alt="6"></p>
-<p>写在事件开始运行中。</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqVHI.md.png" alt="7"></p>
-<h4 id="（UMG-enemy-hp）enemy-血量"><a href="#（UMG-enemy-hp）enemy-血量" class="headerlink" title="（UMG_enemy_hp）enemy 血量"></a>（UMG_enemy_hp）enemy 血量</h4><p>添加方式是在视口中显示</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqEDA.md.png" alt="8"></p>
-<p>屏幕的作用可以让血条一直朝向相机方向。</p>
-<p>输入控件UMG_enemy_hp</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqAud.png" alt="9"></p>
-<p>Hp Percent Change Enemy</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqFjH.png" alt="10"></p>
-<p>这里的HP change调用UMG中的函数控制血条</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqeEt.png" alt="11"></p>
-<p>实现</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqQgg.md.png" alt="12"></p>
-<h3 id="主界面（UMG-Main-Mune）"><a href="#主界面（UMG-Main-Mune）" class="headerlink" title="主界面（UMG Main Mune）"></a>主界面（UMG Main Mune）</h3><p>创建一个新的关卡和Widgets。</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqP3D.png" alt="1"></p>
-<p>简单图标，点击NEW game进入游戏关卡。点击Quit退出</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqSN6.png" alt="2"></p>
-<p>这个时候会显示Mycharacter的UI，因为没有更改游戏模式.创建GM</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqmUP.png" alt="13"></p>
-<p>打开空白关卡的关卡蓝图</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqKC8.png" alt="14"></p>
-<p>输入模式UI，可以点击图上的button。显示鼠标。</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/Bhqn4f.png" alt="15"></p>
-<p>进入关卡以后要关闭鼠标，关闭输入模式UI改为仅Game。</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqlvQ.png" alt="16"></p>
-<p>在主关卡更改默认pawn类。</p>
-<h3 id="暂停（Pause）"><a href="#暂停（Pause）" class="headerlink" title="暂停（Pause）"></a>暂停（Pause）</h3><p><img src="https://s1.ax1x.com/2020/11/06/BhqM8S.png" alt="17"></p>
-<p>input中设置为K Pause。</p>
-<p>问题。</p>
+                <h1 id="二维图形的几何变换矩阵推导和齐次坐标系"><a href="#二维图形的几何变换矩阵推导和齐次坐标系" class="headerlink" title="二维图形的几何变换矩阵推导和齐次坐标系"></a>二维图形的几何变换矩阵推导和齐次坐标系</h1><h2 id="二维图形的几何变换（平移、缩放、旋转）"><a href="#二维图形的几何变换（平移、缩放、旋转）" class="headerlink" title="二维图形的几何变换（平移、缩放、旋转）"></a>二维图形的几何变换（平移、缩放、旋转）</h2><p>（X,Y）代表变换后的点，（x,y）是原来的</p>
 <ol>
-<li>按下K的时候，游戏停止，显示Pasue Menu</li>
-<li>打开鼠标，暂时关闭血条UI</li>
-<li>按下resume恢复游戏，关闭鼠标，打开血条UI</li>
+<li><p>平移<br>$$<br>X = x + dx\<br>Y = y + dy\<br>d为任意值<br>$$</p>
+</li>
+<li><p>缩放<br>$$<br>X=x\cdot S_x \<br>Y=y\cdot S_y \<br>S表示Scale<br>$$</p>
+</li>
+<li><p>旋转</p>
+</li>
 </ol>
-<p><img src="https://s1.ax1x.com/2020/11/06/Bhq8Ds.png" alt="19"></p>
-<p>Remove Hud函数，暂时移除血条UI，无论点那一个，self都会从父项移除（关闭Pause视口），并且暂停游戏。</p>
-<p>quit会打开鼠标控制，进入主菜单，继续会关闭鼠标控制，进入游戏模式。</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqGbn.png" alt="20"></p>
-<p>这里的UMG Reference是做MyCharacter的时候给UMG_PlayHUD的命名</p>
-<p><img src="https://s1.ax1x.com/2020/11/06/BhqYEq.png" alt="21"></p>
-<p>一直按K是可以实现Widgets的叠加，就是会有很多个Pause界面跌在一起，所以一开始要判断现在是否处于暂停阶段。</p>
-<p>IS valid，如果没有就创建UMG控件，如果有就直接打开鼠标控制。输入仅为UI模式，添加到视口，暂停游戏。</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
-<li>添加到视口很重要，如果不加就不会显示Widget。</li>
-<li>注意游戏模式中的HUD选择，还有默认的pawn类。</li>
+<p>旋转我们先看一个单位圆，以此来推导旋转</p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BLk14s.png" alt="1"><br>$$<br>x=r\cos\alpha\<br>y=r\sin\alpha\<br>X=r\cos(\alpha+\theta)\<br>=r(\cos\alpha\cdot\cos\theta-\sin\alpha\cdot\sin\theta)\<br>=x\cdot\cos\theta-y\cdot\sin\theta\<br>Y=r\sin(\alpha+\theta)\<br>=x·\sin\theta+y·cos\alpha<br>$$<br>通过计算得到<br>$$<br>X=x\cdot\cos\theta-y\cdot\sin\theta\<br>Y=x·\sin\theta+y·cos\alpha<br>$$</p>
+<ul>
+<li>这是二维图形的变换</li>
 </ul>
+<p>接下来要将它转换到齐次坐标</p>
+<h3 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h3><p>首先为什么要用齐次坐标？</p>
+<ol>
+<li>区分x，y的向量和坐标</li>
+<li>易于进行<strong>仿射变换</strong>（Affine Transformation）</li>
+</ol>
+<h4 id="区分向量和坐标"><a href="#区分向量和坐标" class="headerlink" title="区分向量和坐标"></a>区分向量和坐标</h4><p>向量是有长度和方向构成的，坐标为一个点</p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BLklNj.png" alt="2"></p>
+<p>这有三个向量和一个黑点表示的坐标，他们在坐标系上的表示均为（1,1），这就很难区别你给出的一个值是向量还是坐标。</p>
+<p>通过齐次坐标将向量和坐标转化为</p>
+<p>向量（x , y , 0）     坐标（x , y , 1)  （齐次坐标只是一种记法并不是把二维坐标转化为三维坐标，只是用三个量表示二维）</p>
+<p>这就很简单的区别了出来</p>
+<ul>
+<li>为什么他会称为“齐次”</li>
+</ul>
+<p>如果我们将欧式坐标的一个二维点（1,2）转化为齐次坐标，根据规则，可以选用（1,2,1）也可以选择（2,4,2），甚至（4,8,4）（8,16,8）等等，这些都是“合法”的齐次坐标表示，这些点具有<strong>尺度不变性</strong>(Scale Invariant)，是“齐性的”。</p>
+<p>同样线性系统的齐次性是指在输入量倍乘的情况下，输出同时倍乘同一因子。</p>
+<h4 id="易于进行仿射变换（Affine-Transformation）"><a href="#易于进行仿射变换（Affine-Transformation）" class="headerlink" title="易于进行仿射变换（Affine Transformation）"></a>易于进行仿射变换（Affine Transformation）</h4><p>仿射变换是一种二维坐标到二维坐标之间的线性变换，保持二维图形的<strong>“平直性”</strong>（译注：straightness，即变换后直线还是直线不会打弯，圆弧还是圆弧）和“平行性”（译注：parallelness，其实是指保<strong>二维图形间的相对位置关系不变，平行线还是平行线，相交直线的交角不变</strong>。）</p>
+<p>把上面写的XY变换的公式（X=x+dx），写成变换的矩阵，更有利于计算机运算。</p>
+<h4 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h4><p>X=x+dx   Y=y+dy  从（x，y，1）到（x+dx，y+dy，1）<br>$$<br>[x,y,1]<br>\left[<br> \begin{matrix}<br>   1 &amp; 0 &amp; 0 \<br>   0 &amp; 1 &amp; 0 \<br>   dx &amp; dy &amp; 1<br>  \end{matrix}<br>  \right]=<br>  [x+dx,y+dy,1]<br>$$<br>为什么中间要乘这个矩阵呢</p>
+<p>从矩阵的运算法则上看<br>$$<br>a1·x+b1·y+c1=x+dx\<br>a2·x+b2·y+c2=y+dy\<br>a3·x+b3·y+c3=1\<br>这里的abc对应每一列的值<br>\left[<br> \begin{matrix}<br>   a1 &amp; a2 &amp; a3 \<br>   b1 &amp; b2 &amp; b3 \<br>   c1 &amp; c2 &amp; c3<br>  \end{matrix}<br>  \right]<br>$$<br>通过矩阵可以看出平移影响的为矩阵中c1,c2</p>
+<h4 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h4><p>$$<br>X=x\cdot S_x\<br>Y=y\cdot S_y<br>$$</p>
+<p>$$<br>[x,y,1]<br>\left[<br> \begin{matrix}<br>   S_x &amp; 0 &amp; 0 \<br>   0 &amp; S_y &amp; 0 \<br>   0 &amp; 0 &amp; 1<br>  \end{matrix}<br>  \right]=<br>  [x·S_x,y·S_y,1]<br>$$</p>
+<p>通过矩阵的运算逆推，可以看出缩放影响的为a1,b2</p>
+<h4 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h4><p>$$<br>X=x\cdot\cos\theta-y\cdot\sin\theta\<br>Y=x·\sin\theta+y·cos\alpha<br>$$</p>
+<p>$$<br>[x,y,1]<br>\left[<br> \begin{matrix}<br>   cos\theta &amp; sin\theta &amp; 0 \<br>   -sin\theta &amp; cos\theta &amp; 0 \<br>   0 &amp; 0 &amp; 1<br>  \end{matrix}<br>  \right]=<br>  [x\cdot\cos\theta-y\cdot\sin\theta,x·\sin\theta+y·cos\alpha,1]\<br>$$</p>
+<p>$$<br>a1·x+b1·y+c1=x\cdot\cos\theta-y\cdot\sin\theta\<br>a2·x+b2·y+c2=x·\sin\theta+y·cos\alpha\<br>a3·x+b3·y+c3=1\<br>由此得出\<br>a1=cos\theta,b1=-\sin\theta\<br>a2=\sin\theta,b2=cos\alpha<br>$$</p>
+<p>通过矩阵的运算逆推，可以得出旋转影响的为a1,a2,b1,b2</p>
+<h3 id="关于齐次坐标其他"><a href="#关于齐次坐标其他" class="headerlink" title="关于齐次坐标其他"></a>关于齐次坐标其他</h3><p><a href="https://www.jianshu.com/p/80d0018ed24c" target="_blank" rel="noopener">齐次坐标系入门思想</a></p>
 
             </div>
             <hr/>
@@ -500,7 +490,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/11/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">http://M1racle0-0.github.io/2020/11/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2020/11/10/%E4%BA%8C%E7%BB%B4%E5%9B%BE%E5%BD%A2%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5%E6%8E%A8%E5%AF%BC%E4%B8%8E%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87/">http://M1racle0-0.github.io/2020/11/10/%E4%BA%8C%E7%BB%B4%E5%9B%BE%E5%BD%A2%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5%E6%8E%A8%E5%AF%BC%E4%B8%8E%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -538,8 +528,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/UE4/">
-                                    <span class="chip bg-color">UE4</span>
+                                <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">
+                                    <span class="chip bg-color">图形学</span>
                                 </a>
                             
                         </div>
@@ -707,9 +697,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/11/10/%E4%BA%8C%E7%BB%B4%E5%9B%BE%E5%BD%A2%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5%E6%8E%A8%E5%AF%BC%E4%B8%8E%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87/">
                     <div class="card-image">
@@ -731,9 +722,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -742,6 +733,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -760,24 +752,27 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/06/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/">
+                <a href="/2020/11/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（十二）">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（十三）">
                         
-                        <span class="card-title">关于第三人称魂类游戏个人学习--（十二）</span>
+                        <span class="card-title">关于第三人称魂类游戏个人学习--（十三）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（十二）AI基于EQS的AI躲藏EQSEQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简
+                            关于第三人称魂类游戏个人学习–（十三）UMGUMG_PlayHUD(人物血量、精力槽)
+通过Widgets，使用进度条创建血量和能量条。
+
+每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP= curre
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-07
                             </span>
                         <span class="publish-author">
                             
