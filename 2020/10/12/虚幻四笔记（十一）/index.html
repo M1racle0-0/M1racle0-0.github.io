@@ -438,26 +438,30 @@
 <p>左边紫色的部分，必须连接一个任务节点，可称这个任务为“主要任务”，右边灰色的部分可以连 Composites 节点或者任务节点，是与主要任务并行执行（同时执行）逻辑所在的位置。这也意味着你可以<strong>并行节点</strong>的并行部分再放<strong>并行节点</strong>。</p>
 <h4 id="Decorator装饰器和Service服务："><a href="#Decorator装饰器和Service服务：" class="headerlink" title="Decorator装饰器和Service服务："></a>Decorator装饰器和Service服务：</h4><p><strong>Decorator</strong>：也称为条件语句。这种节点附着于另一个节点，决定着树中的一个分支，甚至单个节点是否能够被执行。</p>
 <p><strong>Service</strong>：这类节点连接至 <strong>任务（Task）</strong> 节点和 <strong>合成（Composite）</strong> 节点，只要它们的分支正在执行，它们就会以所定义的频率执行。这些节点通常用于检查和更新 <strong>黑板</strong>。它们取代了其他行为树系统中的传统平行（Parallel）节点。</p>
-<h5 id="装饰器中的Observer-Aborts（观察者中止）："><a href="#装饰器中的Observer-Aborts（观察者中止）：" class="headerlink" title="装饰器中的Observer Aborts（观察者中止）："></a>装饰器中的Observer Aborts（观察者中止）：</h5><table>
+<h5 id="装饰器中的Observer-Aborts（观察者中止）："><a href="#装饰器中的Observer-Aborts（观察者中止）：" class="headerlink" title="装饰器中的Observer Aborts（观察者中止）："></a>装饰器中的Observer Aborts（观察者中止）：</h5><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">无（None）</th>
+<th style="text-align:left">无（None）</th>
 <th>不中止执行</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">自身（Self）</td>
+<tbody>
+<tr>
+<td style="text-align:left">自身（Self）</td>
 <td>中止此节点自身和在其下运行的所有子树</td>
 </tr>
 <tr>
-<td align="left">低优先级（Lower Priority）</td>
+<td style="text-align:left">低优先级（Lower Priority）</td>
 <td>中止此节点右侧的所有节点</td>
 </tr>
 <tr>
-<td align="left">两者(Both)</td>
+<td style="text-align:left">两者(Both)</td>
 <td>中止此节点自身和在其下运行的所有子树，以及此节点右侧的所有节点</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="二：Task节点"><a href="#二：Task节点" class="headerlink" title="二：Task节点"></a>二：Task节点</h3><p>Task 节点用于执行具体的动作，引擎内置的 Task 常用的有 Wait 、 Move To 、 Is At Location 等等，Task 一般是自行实现的AI具体的行为逻辑，其中的代码与普通蓝图代码一样</p>
 <p>可以把任务节点简单的分为2种：</p>
 <ul>
@@ -768,7 +772,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（九）锁定系统升级，利用 Z、C 来改变锁定对象上一次做了Get All enemy中获得所有enemy的rotation并且进行了排序
+                            关于第三人称魂类游戏个人学习—（九）锁定系统升级，利用 Z、C 来改变锁定对象上一次做了Get All enemy中获得所有enemy的rotation并且进行了排序
 
 Switch Rotation，向左0，向右1
 

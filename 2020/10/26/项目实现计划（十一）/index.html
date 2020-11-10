@@ -422,7 +422,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习–（十一）"><a href="#关于第三人称魂类游戏个人学习–（十一）" class="headerlink" title="关于第三人称魂类游戏个人学习–（十一）"></a>关于第三人称魂类游戏个人学习–（十一）</h1><h3 id="关于AI问题解决方法"><a href="#关于AI问题解决方法" class="headerlink" title="关于AI问题解决方法"></a>关于AI问题解决方法</h3><h4 id="1。攻击检测在受击后一直会打开的问题"><a href="#1。攻击检测在受击后一直会打开的问题" class="headerlink" title="1。攻击检测在受击后一直会打开的问题"></a>1。攻击检测在受击后一直会打开的问题</h4><p>在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Attacking和攻击检测TIme打开，因为动画没有运行完，所以在ABP中不会运行关闭的设置，所以在受击动画后关闭，加了一个delay，这样不会受到击打后第一时间攻击人物，做一个类似受击后的后摇效果。</p>
+                <h1 id="关于第三人称魂类游戏个人学习—（十一）"><a href="#关于第三人称魂类游戏个人学习—（十一）" class="headerlink" title="关于第三人称魂类游戏个人学习—（十一）"></a>关于第三人称魂类游戏个人学习—（十一）</h1><h3 id="关于AI问题解决方法"><a href="#关于AI问题解决方法" class="headerlink" title="关于AI问题解决方法"></a>关于AI问题解决方法</h3><h4 id="1。攻击检测在受击后一直会打开的问题"><a href="#1。攻击检测在受击后一直会打开的问题" class="headerlink" title="1。攻击检测在受击后一直会打开的问题"></a>1。攻击检测在受击后一直会打开的问题</h4><p>在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Attacking和攻击检测TIme打开，因为动画没有运行完，所以在ABP中不会运行关闭的设置，所以在受击动画后关闭，加了一个delay，这样不会受到击打后第一时间攻击人物，做一个类似受击后的后摇效果。</p>
 <p><img src="https://s1.ax1x.com/2020/10/27/BQ28Gq.png" alt="13"></p>
 <p><img src="https://s1.ax1x.com/2020/10/27/BQ2MZQ.png" alt="14"></p>
 <h4 id="2。攻击时间间隔问题。"><a href="#2。攻击时间间隔问题。" class="headerlink" title="2。攻击时间间隔问题。"></a>2。攻击时间间隔问题。</h4><p>在AI中，在Attacking加一个delay延时，根据NowAttack（现在的攻击动画）,还可以设置轻重攻击的间隔，轻攻击时间间隔短，重攻击时间间隔长。</p>
@@ -687,7 +687,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（十二）AI基于EQS的AI躲藏EQSEQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简
+                            关于第三人称魂类游戏个人学习—（十二）AI基于EQS的AI躲藏EQSEQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简
                         
                     </div>
                     <div class="publish-info">
@@ -732,7 +732,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（十）AI实现AIC_enemy通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。
+                            关于第三人称魂类游戏个人学习—（十）AI实现AIC_enemy通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。
 最近写的有点多，直接放代码简单说下吧
 
 普通的攻

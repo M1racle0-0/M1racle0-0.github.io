@@ -452,7 +452,7 @@
 <p>红绿蓝分别代表了background的XYZ轴。</p>
 <p>X轴似乎只决定了Background的厚度，可以不考虑所以拆分向量，然后考虑的就是如何规范框的长宽？</p>
 <p>框的宽度是由Y轴决定的，宽度大小决定于Longest Line Length，这里蓝图是</p>
-<p>Y = Longest Line Length * 0.9 + Longest Line Length * 0.9 * 边界宽度填充</p>
+<p>Y = Longest Line Length <em> 0.9 + Longest Line Length </em> 0.9 * 边界宽度填充</p>
 <p><img src="https://s1.ax1x.com/2020/08/05/aDXP61.png" alt=""></p>
 <p>我的理解是，紫色为边框的左右，红色为Longest Line Length * 0.9 蓝色为后面一部分填充的值，红色应该是显示文本的Basic，这里的边界宽度填充是一个可以改变的变量，用户可以自行决定它的延长。</p>
 <p>Z轴决定了Background的高度</p>
@@ -461,8 +461,8 @@
 <h4 id="创建必要的TextRenderComponents（文本渲染组件）"><a href="#创建必要的TextRenderComponents（文本渲染组件）" class="headerlink" title="创建必要的TextRenderComponents（文本渲染组件）"></a>创建必要的TextRenderComponents（文本渲染组件）</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXA0K.md.png" alt=""></p>
 <p>进入循环。</p>
 <p><strong>Get Socket Location</strong> ：这里获取Background的位置，输入要进行转换socket的或bone的名称，得到的矢量与Actor矢量相减，<strong>UnrotateVector</strong>返回向量A被旋转器B的逆旋转后的结果，拆分只取Y值</p>
-<p>Z = X * -10 + Number Of Lines *5 +5   （X = 0 –  Number Of Lines -1）</p>
-<p>创建的新变量 <strong>Make</strong> <strong>Transform **将位置，旋转和缩放的值给</strong>Add TextRenderComponents**，我认为做这些步骤的一切就是以为了让文字达到贴在Background上的效果。</p>
+<p>Z = X <em> -10 + Number Of Lines </em>5 +5   （X = 0 —  Number Of Lines -1）</p>
+<p>创建的新变量 <strong>Make</strong> <strong>Transform </strong>将位置，旋转和缩放的值给<strong>Add TextRenderComponents</strong>，我认为做这些步骤的一切就是以为了让文字达到贴在Background上的效果。</p>
 <p>上面一部分应该是每次循环索引行，查看是否有文字，有文字的话就通过Add TextRenderComponents进行渲染设置为文本。</p>
 <p><img src="https://s1.ax1x.com/2020/08/05/aDXkm6.png" alt=""></p>
 <p>这一块看了很久，大体的意思应该是这样的。以后有能力了再仔细分析一下。</p>
@@ -484,13 +484,13 @@
 <p><strong>Set Active</strong> (设置激活) 设置组件是否是活动的，将脉冲效果组件接入Target控制粒子效果组件。</p>
 <p><strong>Activate</strong>（激活）：Actor组件对象引用至目标激活</p>
 <p>后面的if设置为如果你shift+F1开启管理员模式也可以选择是否打开Preview MODE和Disable Particle，通过返回为true关闭粒子系统。</p>
-<p>*<em>DestroyComponent *</em>（销毁组件）移除粒子组件</p>
+<p><strong>DestroyComponent </strong>（销毁组件）移除粒子组件</p>
 <h4 id="触发BOX"><a href="#触发BOX" class="headerlink" title="触发BOX"></a>触发BOX</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDX878.md.png" alt=""></p>
 <p>首先进入Trigger范围内检查是否打开了预览模式。</p>
 <p><strong>Do Once</strong>(只执行一次) 我的理解是： 如果你设置一个动作，是靠“L”触发的，你开始游戏后按”L“触发了一次，就再也不会触发了，但是你可以根据Reset设定一个新的值“P“，你按了”P“后就可以重置为最初状态，又可以按一次”L“，而”Start Closed“为布尔类型的参数，如果你勾选则这个系统将直接变为不可触发状态。这里Do once做的工作应为打开浏览模式，然后在Volume范围内保持浏览模式不变。</p>
 <p>不在Trigger范围内检查预览模式，进入序列函数（按顺序进行引脚）</p>
 <p>第一个引脚</p>
-<p>*<em>For Loop *</em>(for循环)该节点左边的按钮分别是循环计数的初始值和终止值，右边的Loop Body按钮是指该循环的循环体,也就是每次需要执行的代码.Index返回当前下标的值,Completed连接循环结束后的执行语句.</p>
+<p><strong>For Loop </strong>(for循环)该节点左边的按钮分别是循环计数的初始值和终止值，右边的Loop Body按钮是指该循环的循环体,也就是每次需要执行的代码.Index返回当前下标的值,Completed连接循环结束后的执行语句.</p>
 <p>这里的for loop循环体的目的是先检查文字行数组中是否还有文字，LENGTH &gt; 0的话（仍有文字）返回为false，销毁数组中的每个文本行，完成循环后再次检查数组中是否有文字，有的话重置，没有直接执行下一步。</p>
 <p>在EndOverlap中下一步应该就是将值全设为0，然后删除场景内的文本框，只留下感叹号。</p>
 <p>相当于把BeginOverlap重置还原。所以下面只看BeginOVerlap的分支。</p>
@@ -762,7 +762,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习–（1）创建场景光源(1)所需组件：
+                            关于第三人称魂类游戏个人学习—（1）创建场景光源(1)所需组件：
 Fog、skylight、DirectionalLight、Sky_Sphere
 添加cube作为地板
 

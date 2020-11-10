@@ -441,42 +441,46 @@
 <p>将”允许剔除距离体积”禁用</p>
 <h5 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h5><p>关卡或蓝图中的所选Actor包含可通过其 细节（Details） 面板访问的距离设置。它们支持设置按实例距离，或者是否使用剔除距离体积来剔除Actor。</p>
 <p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/VisibilityCulling/VisibilityCullingReference/DetailsPanel-1.webp" alt=""></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">属性</th>
-<th align="left">说明</th>
+<th style="text-align:center">属性</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><strong>最小绘制距离（Min Draw Distance）</strong></td>
-<td align="left">设置将在场景中渲染对象的最小绘制距离。该距离以场景空间单位（厘米）测量，具体是指从对象边界球体中心到摄像机位置。</td>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>最小绘制距离（Min Draw Distance）</strong></td>
+<td style="text-align:left">设置将在场景中渲染对象的最小绘制距离。该距离以场景空间单位（厘米）测量，具体是指从对象边界球体中心到摄像机位置。</td>
 </tr>
 <tr>
-<td align="center"><strong>所需最大绘制距离（Desired Max Draw Distance）</strong></td>
-<td align="left">设置关卡设计器的最大绘制距离。”真实”最大距离是 <strong>最小绘制距离（Min Draw Distance）</strong>（忽略0）。</td>
+<td style="text-align:center"><strong>所需最大绘制距离（Desired Max Draw Distance）</strong></td>
+<td style="text-align:left">设置关卡设计器的最大绘制距离。”真实”最大距离是 <strong>最小绘制距离（Min Draw Distance）</strong>（忽略0）。</td>
 </tr>
 <tr>
-<td align="center"><strong>当前最大绘制距离（Current Max Draw Distance）</strong></td>
-<td align="left">将开始剔除对象的只读距离。该值表示的是 <strong>最小绘制距离（Min Draw Distance）</strong> 或者剔除距离体积为参照而设置的 <strong>剔除距离（Cull Distances）</strong>。显示值0时，表示不应剔除该对象。</td>
+<td style="text-align:center"><strong>当前最大绘制距离（Current Max Draw Distance）</strong></td>
+<td style="text-align:left">将开始剔除对象的只读距离。该值表示的是 <strong>最小绘制距离（Min Draw Distance）</strong> 或者剔除距离体积为参照而设置的 <strong>剔除距离（Cull Distances）</strong>。显示值0时，表示不应剔除该对象。</td>
 </tr>
 <tr>
-<td align="center"><strong>从不距离剔除（Never Distance Cull）</strong></td>
-<td align="left">启用时，该对象不会按距离剔除。如果它是层级细节层次（LOD）网格体的子代，也会被忽略。</td>
+<td style="text-align:center"><strong>从不距离剔除（Never Distance Cull）</strong></td>
+<td style="text-align:left">启用时，该对象不会按距离剔除。如果它是层级细节层次（LOD）网格体的子代，也会被忽略。</td>
 </tr>
 <tr>
-<td align="center"><strong>允许剔除距离体积（Allow Cull Distance Volume）</strong></td>
-<td align="left">是否接受剔除距离体积的剔除距离值修改缓存的剔除距离。</td>
+<td style="text-align:center"><strong>允许剔除距离体积（Allow Cull Distance Volume）</strong></td>
+<td style="text-align:left">是否接受剔除距离体积的剔除距离值修改缓存的剔除距离。</td>
 </tr>
 <tr>
-<td align="center"><strong>视为遮挡背景（Treat as Background for Occlusion）</strong></td>
-<td align="left">允许将该对象视为部分背景以达到遮挡目的。这可以用作一种优化方法，降低天空盒、大型地面（远景的一部分）等内容的渲染开销。</td>
+<td style="text-align:center"><strong>视为遮挡背景（Treat as Background for Occlusion）</strong></td>
+<td style="text-align:left">允许将该对象视为部分背景以达到遮挡目的。这可以用作一种优化方法，降低天空盒、大型地面（远景的一部分）等内容的渲染开销。</td>
 </tr>
 <tr>
-<td align="center"><strong>用作遮挡物（Use as Occluder）</strong></td>
-<td align="left">是否渲染仅深度通道中的Primitive。这通常对于所有对象都是成立的，让渲染者决定是否渲染仅深度通道中的对象。</td>
+<td style="text-align:center"><strong>用作遮挡物（Use as Occluder）</strong></td>
+<td style="text-align:left">是否渲染仅深度通道中的Primitive。这通常对于所有对象都是成立的，让渲染者决定是否渲染仅深度通道中的对象。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h1 id="照明阴影和后期处理"><a href="#照明阴影和后期处理" class="headerlink" title="照明阴影和后期处理"></a>照明阴影和后期处理</h1><h3 id="光照（Lighting）"><a href="#光照（Lighting）" class="headerlink" title="光照（Lighting）"></a>光照（Lighting）</h3><p>光照有三种可移动类型：静态（static）、固定（Stationary）、可移动（Movable）。其中静态（static）的开销最小。</p>
 <p>静态意味着：不会做任何运动，没有互动，光源信息完全靠烘焙，它不能以任何形式改变其形状或形式（状态）。</p>
 <p>固定（固定光源）：可以与场景互动，所以固定光源投射的阴影能够和动态对象融合到一起，但是它拥有一定的开销，因为你可以在运行时改变它的颜色和亮度，但是你不能移动它。</p>
@@ -515,7 +519,7 @@
 <p>打开后期处理体积设置</p>
 <p>Infinite Extent（无限范围），勾选了这个选项意味着整个场景中的所有对象即使没有被这个体积覆盖也会受到它的影响。如果没有勾选这个选项的话，那它就和传统的体积一样只会在当前的作用域内起作用，当玩家进入到这个体积之后就会出现后期处理效果。（即玩家进入到后期处理体积之后，画面会受到后期处理体积设置的影响）</p>
 <p>可以通过其他的选项控制整个场景的色温、着色、饱和度等等功能。通过蓝图可以实现爆炸以后的色温从高到正常等电影效果画面。</p>
-<p>用于控制场景的抗锯齿设置位于  编辑项目设置—渲染—默认设置—抗锯齿方法</p>
+<p>用于控制场景的抗锯齿设置位于  编辑项目设置—-渲染—-默认设置—-抗锯齿方法</p>
 <h2 id="反射（Reflections）"><a href="#反射（Reflections）" class="headerlink" title="反射（Reflections）"></a>反射（Reflections）</h2><p>UE4中主要有3种类型的反射：球体反射、盒体反射、平面反射。前两者开销最低。三种反射都是通过在场景中放置Actor来实现效果。</p>
 <h3 id="球体反射"><a href="#球体反射" class="headerlink" title="球体反射"></a>球体反射</h3><p>当前球形最为实用。其永远不会匹配被反射几何体的外形， 但不含间断或角落，因此错误一致。</p>
 <p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/ReflectionEnvironment/SphereShape.webp" alt=""></p>
@@ -537,7 +541,7 @@
 <p>4.将平面反射Actor放进关卡后，即可使用 G 键隐藏或取消隐藏 Actor。可使用 移动、旋转和缩放工具更佳地放置平面反射Actor并设置大小，满足关卡需求。</p>
 <p>平面反射Actor有多个属性，当调整这些属性时，会大大影响反射的显示效果。</p>
 <p><a href="https://docs.unrealengine.com/zh-CN/Engine/Rendering/LightingAndShadows/PlanarReflections/index.html" target="_blank" rel="noopener">平面反射官方文档</a></p>
-<h3 id="屏幕空间反射—-SSR（Screen-Space-Reflections）"><a href="#屏幕空间反射—-SSR（Screen-Space-Reflections）" class="headerlink" title="屏幕空间反射—-SSR（Screen Space Reflections）"></a>屏幕空间反射—-SSR（Screen Space Reflections）</h3><p>在后期处理体积中。</p>
+<h3 id="屏幕空间反射——SSR（Screen-Space-Reflections）"><a href="#屏幕空间反射——SSR（Screen-Space-Reflections）" class="headerlink" title="屏幕空间反射——SSR（Screen Space Reflections）"></a>屏幕空间反射——SSR（Screen Space Reflections）</h3><p>在后期处理体积中。</p>
 <p>对于球体反射和盒体反射，任何动态的物体都不会纳入到考虑范围。如果你想要捕捉动态的网格体的反射，就需要SSR。</p>
 <p><img src="https://s1.ax1x.com/2020/07/22/UThBsx.png" alt=""></p>
 <p>屏幕空间反射效果默认启用，可改变材质表面物体的外观。下方列出了用于调整此效果的几个选项。</p>
