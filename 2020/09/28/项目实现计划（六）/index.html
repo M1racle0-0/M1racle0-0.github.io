@@ -29,7 +29,11 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -422,18 +426,21 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习—（六）"><a href="#关于第三人称魂类游戏个人学习—（六）" class="headerlink" title="关于第三人称魂类游戏个人学习—（六）"></a>关于第三人称魂类游戏个人学习—（六）</h1><h3 id="蓝图优化（组件化）"><a href="#蓝图优化（组件化）" class="headerlink" title="蓝图优化（组件化）"></a>蓝图优化（组件化）</h3><p><img src="https://s1.ax1x.com/2020/09/29/0ZFRHg.png" alt="40"></p>
-<p><img src="https://s1.ax1x.com/2020/09/29/0ZFgu8.png" alt="41"></p>
+                <h1 id="关于第三人称魂类游戏个人学习六"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习六"></a> 关于第三人称魂类游戏个人学习–（六）</h1>
+<h3 id="蓝图优化组件化"><a class="markdownIt-Anchor" href="#蓝图优化组件化"></a> 蓝图优化（组件化）</h3>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZFRHg.png" alt="40" /></p>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZFgu8.png" alt="41" /></p>
 <p>将伤害判定和攻击放在一个Actor组件中，便于管理，再将FightSystem中的变量设置为私有，方便在MyCharacter中进行组件管理。</p>
-<h3 id="受击系统"><a href="#受击系统" class="headerlink" title="受击系统"></a>受击系统</h3><p><img src="https://s1.ax1x.com/2020/09/29/0ZF6jf.png" alt="42"></p>
+<h3 id="受击系统"><a class="markdownIt-Anchor" href="#受击系统"></a> 受击系统</h3>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZF6jf.png" alt="42" /></p>
 <p><strong>人物受到攻击时思考</strong>：人物的中心点到攻击位置的旋转角度，通过旋转的角度可知道是从哪边受到的伤害，根据不同的角度跳转到不同的动画蓝图，例如从攻击位置到Actor中心点的旋转角度为-90°，则可以判断为人物左侧受到的伤害，播放Hit_left蒙太奇动画。</p>
 <p>因为要得到攻击位置，所以要使用Apply Point Damage中的 Hit from Direction获取攻击位置。</p>
 <p>由于动画比较少，所以我只做了前方受到攻击和左右受到的攻击。</p>
-<p><img src="https://s1.ax1x.com/2020/09/29/0ZFygP.png" alt="43"></p>
-<p><img src="https://s1.ax1x.com/2020/09/29/0ZF2DS.png" alt="44"></p>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZFygP.png" alt="43" /></p>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZF2DS.png" alt="44" /></p>
 <p>On Take Point Damage绑定，获取Hit location</p>
 <p>只需要知道一个360°旋转的平面，拆分rotation，Find Look at Rotation找到旋转角度的插值，然后判断hit location处在三个象限的什么位置。加上动画效果。</p>
-<p><img src="https://s1.ax1x.com/2020/09/29/0ZFfEQ.png" alt="45"></p>
+<p><img src="https://s1.ax1x.com/2020/09/29/0ZFfEQ.png" alt="45" /></p>
 <ul>
 <li>可在伤害获得后加入特效。</li>
 </ul>
@@ -685,12 +692,16 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（七）优化攻击系统
+                             关于第三人称魂类游戏个人学习–（七）
+ 优化攻击系统
+
 在攻击判定区域前加入判定。
 
 如图，在Attacking为动画播放区间，然后中间加上两个通知，在区间内判定造成的伤害。
 
-Mycharacter蓝图（3）翻滚Soul Dark怎么可以没有无
+ Mycharacter蓝图（3）
+ 翻滚
+Soul Dar
                         
                     </div>
                     <div class="publish-info">
@@ -735,9 +746,12 @@ Mycharacter蓝图（3）翻滚Soul Dark怎么可以没有无
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（五）伤害检测系统伤害检测系统（二）利用Overlap实现的伤害检测
+                             关于第三人称魂类游戏个人学习–（五）
+ 伤害检测系统
+ 伤害检测系统（二）
+利用Overlap实现的伤害检测
 
-在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞预设，就不用
+在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞
                         
                     </div>
                     <div class="publish-info">

@@ -29,7 +29,11 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -411,11 +415,14 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（六）蓝图优化（组件化）
+                                     关于第三人称魂类游戏个人学习–（六）
+ 蓝图优化（组件化）
+
 
 将伤害判定和攻击放在一个Actor组件中，便于管理，再将FightSystem中的变量设置为私有，方便在MyCharacter中进行组件管理。
-受击系统
-人物受到攻击时思考：人物的中
+ 受击系统
+
+人物受到攻击时思
                                 
                             </div>
                             <div class="publish-info">
@@ -470,9 +477,12 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（五）伤害检测系统伤害检测系统（二）利用Overlap实现的伤害检测
+                                     关于第三人称魂类游戏个人学习–（五）
+ 伤害检测系统
+ 伤害检测系统（二）
+利用Overlap实现的伤害检测
 
-在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞预设，就不用
+在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞
                                 
                             </div>
                             <div class="publish-info">
@@ -527,11 +537,14 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（四）伤害检测系统三种不同的检测方式
+                                     关于第三人称魂类游戏个人学习–（四）
+ 伤害检测系统
+三种不同的检测方式
 条件语句和循环语句
-伤害检测系统（一）使用MultiCapsuleTraceForObjects检测伤害
+ 伤害检测系统（一）
+使用MultiCapsuleTraceForObjects检测伤害
 
-为了代码的可视性，创建ActorComponent命名为Dete
+为了代码的可视性，创建ActorComponent命
                                 
                             </div>
                             <div class="publish-info">
@@ -586,9 +599,11 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（三）MyCharacter蓝图（3）基于ActComponent实现的AttributeSystem
+                                     关于第三人称魂类游戏个人学习–（三）
+ MyCharacter蓝图（3）
+基于ActComponent实现的AttributeSystem
 
-设置需要的属性：Hp、Sta,设立最大值变量Max Hp、Max Sta和当前Hp、Sta变量，并先给一
+设置需要的属性：Hp、Sta,设立最大值变量Max Hp、Max Sta和当前Hp、Sta变量，
                                 
                             </div>
                             <div class="publish-info">
@@ -643,11 +658,14 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（2）Character蓝图（2）武器绑定
+                                     关于第三人称魂类游戏个人学习–（2）
+ Character蓝图（2）
+ 武器绑定
+
 创建Sword和Shield插槽绑定到MyCharacter，具体位置可在Animation蓝图调整
 
-武器攻击操作映射加入左键攻击Attack，蓝图播放动作蒙太奇
-
+ 武器攻击
+操作映射加入左键攻击Attack，蓝图
                                 
                             </div>
                             <div class="publish-info">
@@ -702,12 +720,14 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（1）创建场景光源(1)所需组件：
+                                     关于第三人称魂类游戏个人学习–（1）
+ 创建场景光源(1)
+所需组件：
 Fog、skylight、DirectionalLight、Sky_Sphere
 添加cube作为地板
 
 材质纹理大小可根据Texcoord进行调整。
-Mycharacter
+ Mychar
                                 
                             </div>
                             <div class="publish-info">
@@ -767,9 +787,11 @@ Mycharacter
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    解析官方的蓝图场景之提示卡咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
-提示卡
-一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物体看起来
+                                     解析官方的蓝图场景之提示卡
+咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
+ 提示卡
+
+一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物
                                 
                             </div>
                             <div class="publish-info">
@@ -824,8 +846,10 @@ Mycharacter
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    UE4笔记（十）首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
-蓝图Blueprint is Visual  Scripting (y
+                                     UE4笔记（十）
+首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
+ 蓝图
+Blueprint is Visual  Scriptin
                                 
                             </div>
                             <div class="publish-info">
@@ -885,10 +909,12 @@ Mycharacter
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    UE4笔记（九）角色
+                                     UE4笔记（九）
+ 角色
+
 Controller 可以由AI或玩家控制
 AI框架可以帮助AI Controller根据导航网格体来决定pawn或Character的行为还有去哪里做什么
-Character是一种特定类型的Pawn，它拥有Movem
+Character是一种特定类型的Pawn，它拥有M
                                 
                             </div>
                             <div class="publish-info">
@@ -943,8 +969,10 @@ Character是一种特定类型的Pawn，它拥有Movem
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    UE4笔记（八)蓝图入门(上)BP’s focus is on making it accessible,versatile and powerful to anyone in the team.
-It is meant to empowe
+                                     UE4笔记（八)
+ 蓝图入门(上)
+BP’s focus is on making it accessible,versatile and powerful to anyone in the team.
+It is meant to em
                                 
                             </div>
                             <div class="publish-info">

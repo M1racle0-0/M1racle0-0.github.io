@@ -29,7 +29,11 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -422,26 +426,30 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习—（三）"><a href="#关于第三人称魂类游戏个人学习—（三）" class="headerlink" title="关于第三人称魂类游戏个人学习—（三）"></a>关于第三人称魂类游戏个人学习—（三）</h1><h3 id="MyCharacter蓝图（3）"><a href="#MyCharacter蓝图（3）" class="headerlink" title="MyCharacter蓝图（3）"></a>MyCharacter蓝图（3）</h3><p>基于ActComponent实现的AttributeSystem</p>
-<p><img src="https://s1.ax1x.com/2020/09/23/wjrJuq.png" alt="16"></p>
+                <h1 id="关于第三人称魂类游戏个人学习三"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习三"></a> 关于第三人称魂类游戏个人学习–（三）</h1>
+<h3 id="mycharacter蓝图3"><a class="markdownIt-Anchor" href="#mycharacter蓝图3"></a> MyCharacter蓝图（3）</h3>
+<p>基于ActComponent实现的AttributeSystem</p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjrJuq.png" alt="16" /></p>
 <p>设置需要的属性：Hp、Sta,设立最大值变量Max Hp、Max Sta和当前Hp、Sta变量，并先给一个默认值。</p>
 <p>创建一个函数Hp Change 判断收到伤害后是否Hp 减为0，为0以后bool值 Is Dead打开，通过事件分发器OnDead在MyCharacter中播放死亡动画。</p>
 <p>在MyCharacter中输入每次受到攻击造成的伤害，通过ActComponent组件的添加可以直接使用AttributeSystem中的Hp change函数，进行 Hp=Hp-Damage的计算然后进行判断是否Hp降为0或0以下。</p>
 <ul>
 <li>限制（浮点）Clamp（float）确定了计算后的最小最大值，如果输入的是-20，Hp-（-20）可能会超过Max Hp（治疗效果）。</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/09/23/wjr13j.png" alt="17"></p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjr13j.png" alt="17" /></p>
 <p>ActorComponent的优势在于便于维护和观察，AttributeSystem中的函数能直接调用</p>
 <p>使用UE4中自带的伤害系统进行测试</p>
 <ul>
-<li>Event Any Damage </li>
+<li>Event Any Damage</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/09/23/wjr8vn.png" alt="18"></p>
-<h4 id="项目优化（1）"><a href="#项目优化（1）" class="headerlink" title="项目优化（1）"></a>项目优化（1）</h4><h5 id="根据上面的ActorCompnent优势对Attack进行优化管理"><a href="#根据上面的ActorCompnent优势对Attack进行优化管理" class="headerlink" title="根据上面的ActorCompnent优势对Attack进行优化管理"></a>根据上面的ActorCompnent优势对Attack进行优化管理</h5><p><img src="https://s1.ax1x.com/2020/09/23/wjr3gs.png" alt="19"></p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjr8vn.png" alt="18" /></p>
+<h4 id="项目优化1"><a class="markdownIt-Anchor" href="#项目优化1"></a> 项目优化（1）</h4>
+<h5 id="根据上面的actorcompnent优势对attack进行优化管理"><a class="markdownIt-Anchor" href="#根据上面的actorcompnent优势对attack进行优化管理"></a> 根据上面的ActorCompnent优势对Attack进行优化管理</h5>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjr3gs.png" alt="19" /></p>
 <p>优化之后的结果，将原先的Attack函数放入了新的FightSystem组件中，删除了不需要的变量，由于这里的Attacking是从Fight System中引用，所以相应的在ABP中的Attacking也要修改，不然就不会有攻击间隔</p>
-<p><img src="https://s1.ax1x.com/2020/09/23/wjrlCQ.png" alt="20"></p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjrlCQ.png" alt="20" /></p>
 <p>为了更近一步的优化达到让组件Fight Component变量不通过外部函数获取，降低耦合，可以将Attacking在ABP中选择private，建立一个set Attacking函数达到目的，（隐藏变量，利用函数，减少模块接口中的复杂度）</p>
-<p><img src="https://s1.ax1x.com/2020/09/23/wjrtbV.png" alt="22"></p>
+<p><img src="https://s1.ax1x.com/2020/09/23/wjrtbV.png" alt="22" /></p>
 <ul>
 <li>完成属性系统基本，还有基于Actor蓝图的优化</li>
 </ul>
@@ -693,11 +701,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（四）伤害检测系统三种不同的检测方式
+                             关于第三人称魂类游戏个人学习–（四）
+ 伤害检测系统
+三种不同的检测方式
 条件语句和循环语句
-伤害检测系统（一）使用MultiCapsuleTraceForObjects检测伤害
+ 伤害检测系统（一）
+使用MultiCapsuleTraceForObjects检测伤害
 
-为了代码的可视性，创建ActorComponent命名为Dete
+为了代码的可视性，创建ActorComponent命
                         
                     </div>
                     <div class="publish-info">
@@ -742,11 +753,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（2）Character蓝图（2）武器绑定
+                             关于第三人称魂类游戏个人学习–（2）
+ Character蓝图（2）
+ 武器绑定
+
 创建Sword和Shield插槽绑定到MyCharacter，具体位置可在Animation蓝图调整
 
-武器攻击操作映射加入左键攻击Attack，蓝图播放动作蒙太奇
-
+ 武器攻击
+操作映射加入左键攻击Attack，蓝图
                         
                     </div>
                     <div class="publish-info">

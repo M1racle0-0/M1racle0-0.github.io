@@ -29,7 +29,11 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -405,7 +409,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1,286
+                    1.3k
                 </div>
                 
 
@@ -422,23 +426,27 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4学习笔记（十一）"><a href="#UE4学习笔记（十一）" class="headerlink" title="UE4学习笔记（十一）"></a>UE4学习笔记（十一）</h1><h2 id="浅析行为树"><a href="#浅析行为树" class="headerlink" title="浅析行为树"></a>浅析行为树</h2><p>相当于AI的大脑，行为树的存储状态就是BlackBoard，还需要character类和Aicontroller，task</p>
-<h3 id="一-Composites节点"><a href="#一-Composites节点" class="headerlink" title="一.Composites节点"></a>一.Composites节点</h3><p><img src="https://pic2.zhimg.com/80/v2-101d465e79e3a5edc4472a40bc09be45_720w.png" alt="Selecter节点"></p>
+                <h1 id="ue4学习笔记十一"><a class="markdownIt-Anchor" href="#ue4学习笔记十一"></a> UE4学习笔记（十一）</h1>
+<h2 id="浅析行为树"><a class="markdownIt-Anchor" href="#浅析行为树"></a> 浅析行为树</h2>
+<p>相当于AI的大脑，行为树的存储状态就是BlackBoard，还需要character类和Aicontroller，task</p>
+<h3 id="一composites节点"><a class="markdownIt-Anchor" href="#一composites节点"></a> 一.Composites节点</h3>
+<p><img src="https://pic2.zhimg.com/80/v2-101d465e79e3a5edc4472a40bc09be45_720w.png" alt="Selecter节点" /></p>
 <p><strong>Selector</strong>节点:从左到右执行分支，通常用于在子树之间进行选择。当选择器找到能够成功执行的子树时，将停止在子树之间移动。举例而言，如果AI正在有效地追逐玩家，选择器将停留在那个分支中，直到它的执行结束，然后转到选择器的父合成节点，继续决策流。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-7d16bb9163e9b3f112686baf497b7ff4_720w.png" alt="Sequence节点"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-7d16bb9163e9b3f112686baf497b7ff4_720w.png" alt="Sequence节点" /></p>
 <p><strong>Sequence</strong>节点：从左到右执行分支，通常用于按顺序执行一系列子项。与选择器节点不同，序列节点会持续执行其子项，直到它遇到失败的节点。举例而言，如果我们有一个序列节点移动到玩家，则会检查他们是否在射程内，然后旋转并攻击。如果检查玩家是否在射程内便已失败，则不会执行旋转和攻击动作</p>
-<p><img src="https://pic4.zhimg.com/80/v2-c1d032e9666226452cfba2337c2c954b_720w.png" alt="ApplyDecoratorScope"></p>
-<p><img src="https://s1.ax1x.com/2020/10/13/0hP5PU.png" alt=""></p>
+<p><img src="https://pic4.zhimg.com/80/v2-c1d032e9666226452cfba2337c2c954b_720w.png" alt="ApplyDecoratorScope" /></p>
+<p><img src="https://s1.ax1x.com/2020/10/13/0hP5PU.png" alt="" /></p>
 <p>Sequence 和 Selector 都有 ApplyDecoratorScope 选项，意思是开启装饰器的作用域，当勾选 ApplyDecoratorScope 则这个Composites下级节点的装饰器，若执行状态不在所处的作用域，则装饰器是无效的。</p>
 <ul>
 <li>我理解的装饰器是UE4行为树的判定节点，简单来讲就是它用来判定行为节点是否执行，以及行为节点执行后的结果反馈和处理。task属于叶子。</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/10/13/0hPh5T.png" alt="Simple Parallel节点"></p>
-<p><strong>SimpleParallel节点</strong>：简单平行节点有两个”连接”。第一个是主任务，它只能分配一个任务节点（意味着没有合成节点）。第二个连接（后台分支）是主任务仍在运行时应该执行的活动。简单平行节点可能会在主任务完成后立即结束，或者等待后台分支的结束，具体依属性而定。</p>
+<p><img src="https://s1.ax1x.com/2020/10/13/0hPh5T.png" alt="Simple Parallel节点" /></p>
+<p><strong>SimpleParallel节点</strong>：简单平行节点有两个&quot;连接&quot;。第一个是主任务，它只能分配一个任务节点（意味着没有合成节点）。第二个连接（后台分支）是主任务仍在运行时应该执行的活动。简单平行节点可能会在主任务完成后立即结束，或者等待后台分支的结束，具体依属性而定。</p>
 <p>左边紫色的部分，必须连接一个任务节点，可称这个任务为“主要任务”，右边灰色的部分可以连 Composites 节点或者任务节点，是与主要任务并行执行（同时执行）逻辑所在的位置。这也意味着你可以<strong>并行节点</strong>的并行部分再放<strong>并行节点</strong>。</p>
-<h4 id="Decorator装饰器和Service服务："><a href="#Decorator装饰器和Service服务：" class="headerlink" title="Decorator装饰器和Service服务："></a>Decorator装饰器和Service服务：</h4><p><strong>Decorator</strong>：也称为条件语句。这种节点附着于另一个节点，决定着树中的一个分支，甚至单个节点是否能够被执行。</p>
+<h4 id="decorator装饰器和service服务"><a class="markdownIt-Anchor" href="#decorator装饰器和service服务"></a> Decorator装饰器和Service服务：</h4>
+<p><strong>Decorator</strong>：也称为条件语句。这种节点附着于另一个节点，决定着树中的一个分支，甚至单个节点是否能够被执行。</p>
 <p><strong>Service</strong>：这类节点连接至 <strong>任务（Task）</strong> 节点和 <strong>合成（Composite）</strong> 节点，只要它们的分支正在执行，它们就会以所定义的频率执行。这些节点通常用于检查和更新 <strong>黑板</strong>。它们取代了其他行为树系统中的传统平行（Parallel）节点。</p>
-<h5 id="装饰器中的Observer-Aborts（观察者中止）："><a href="#装饰器中的Observer-Aborts（观察者中止）：" class="headerlink" title="装饰器中的Observer Aborts（观察者中止）："></a>装饰器中的Observer Aborts（观察者中止）：</h5><div class="table-container">
+<h5 id="装饰器中的observer-aborts观察者中止"><a class="markdownIt-Anchor" href="#装饰器中的observer-aborts观察者中止"></a> 装饰器中的Observer Aborts（观察者中止）：</h5>
 <table>
 <thead>
 <tr>
@@ -461,21 +469,23 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="二：Task节点"><a href="#二：Task节点" class="headerlink" title="二：Task节点"></a>二：Task节点</h3><p>Task 节点用于执行具体的动作，引擎内置的 Task 常用的有 Wait 、 Move To 、 Is At Location 等等，Task 一般是自行实现的AI具体的行为逻辑，其中的代码与普通蓝图代码一样</p>
+<h3 id="二task节点"><a class="markdownIt-Anchor" href="#二task节点"></a> 二：Task节点</h3>
+<p>Task 节点用于执行具体的动作，引擎内置的 Task 常用的有 Wait 、 Move To 、 Is At Location 等等，Task 一般是自行实现的AI具体的行为逻辑，其中的代码与普通蓝图代码一样</p>
 <p>可以把任务节点简单的分为2种：</p>
 <ul>
 <li>瞬间执行完成的任务</li>
 <li>持续一段时间的任务</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/10/13/0hPIGF.png" alt="3"></p>
+<p><img src="https://s1.ax1x.com/2020/10/13/0hPIGF.png" alt="3" /></p>
 <p>上面就是打印完立刻结束,瞬间；下面为持续2s后结束，持续时间任务。</p>
-<h4 id="Task节点有以下事件在运行时会被触发"><a href="#Task节点有以下事件在运行时会被触发" class="headerlink" title="Task节点有以下事件在运行时会被触发"></a>Task节点有以下事件在运行时会被触发</h4><p><strong><img src="https://img-blog.csdnimg.cn/20190416191653583.png" alt=""></strong></p>
+<h4 id="task节点有以下事件在运行时会被触发"><a class="markdownIt-Anchor" href="#task节点有以下事件在运行时会被触发"></a> Task节点有以下事件在运行时会被触发</h4>
+<p><strong><img src="https://img-blog.csdnimg.cn/20190416191653583.png" alt="" /></strong></p>
 <p>当行为树搜索到该task节点，该节点的所有Decorator（装饰器）都满足时，将调用Receive Execute（AI）执行Task节点。这时候task节点就处于active状态，并一直保持到调用FinishExecute蓝图函数之前（注意：在既没有覆盖Receive Execute（AI）， 也没有覆盖Receive Tick （AI） 函数时，task 节点直接处于Failed状态，而不是active状态，task节点的执行就结束了 ）。这时行为树会一直运行于该task节点，直到该节点自己或者外部调用了FinishExecute，该函数根据输入，控制设置Task节点状态为Succeeded还是Failed。</p>
 <p>当外部中断该节点时，如果覆盖了Receive Abort(AI) 函数时，则节点在没有调用FinishAbort或FinishExecute（一般中断时，应该调用FinishAbort，如果有特殊需要可以调用FinishExecute）函数时，都将处于active状态。如果没有覆盖Receive Abort(AI) 函数，则直接设置为aborted状态或者是外部设置的状态。</p>
 <p>Receive Tick （AI） 将在active状态持续期间，一直调用，调用间隔与普通蓝图一致</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>在行为树的task中，如果调用Finish execute节点，并不会立刻结束任务并返回</p>
-<p><img src="https://img-blog.csdnimg.cn/20190725142506105.png" alt=""></p>
+<h4 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h4>
+<p>在行为树的task中，如果调用Finish execute节点，并不会立刻结束任务并返回</p>
+<p><img src="https://img-blog.csdnimg.cn/20190725142506105.png" alt="" /></p>
 <p>例如在loop中，某次循环调用了finish execute，并不会在这次循环时返回，而是会仍然执行到completed引脚之后的内容</p>
 
             </div>
@@ -725,9 +735,13 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（十二）AIAI理论我们所用的抽象模型会把AI划分成三个阶段：感知、思考和行动。
-感知SENSE感知旨在对AI的当前状态进行记录。
-尽管感知会涉及一些物理感官，例如视觉和触觉，但不排除一些更为抽象的感知信息，比如感知来自其他AI的
+                             UE4笔记（十二）
+ AI
+ AI理论
+我们所用的抽象模型会把AI划分成三个阶段：感知、思考和行动。
+ 感知SENSE
+感知旨在对AI的当前状态进行记录。
+尽管感知会涉及一些物理感官，例如视觉和触觉，但不排除一些更为抽象的感知信息，比如感
                         
                     </div>
                     <div class="publish-info">
@@ -772,11 +786,13 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（九）锁定系统升级，利用 Z、C 来改变锁定对象上一次做了Get All enemy中获得所有enemy的rotation并且进行了排序
+                             关于第三人称魂类游戏个人学习–（九）
+ 锁定系统升级，利用 Z、C 来改变锁定对象
+上一次做了Get All enemy中获得所有enemy的rotation并且进行了排序
 
 Switch Rotation，向左0，向右1
 
-keys遍历，Fin
+keys遍历
                         
                     </div>
                     <div class="publish-info">

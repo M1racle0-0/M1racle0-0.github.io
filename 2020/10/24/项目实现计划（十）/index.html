@@ -29,7 +29,11 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -405,7 +409,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    697
+                    691
                 </div>
                 
 
@@ -422,13 +426,16 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习—（十）"><a href="#关于第三人称魂类游戏个人学习—（十）" class="headerlink" title="关于第三人称魂类游戏个人学习—（十）"></a>关于第三人称魂类游戏个人学习—（十）</h1><h2 id="AI实现"><a href="#AI实现" class="headerlink" title="AI实现"></a>AI实现</h2><h3 id="AIC-enemy"><a href="#AIC-enemy" class="headerlink" title="AIC_enemy"></a>AIC_enemy</h3><p>通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。</p>
+                <h1 id="关于第三人称魂类游戏个人学习十"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习十"></a> 关于第三人称魂类游戏个人学习–（十）</h1>
+<h2 id="ai实现"><a class="markdownIt-Anchor" href="#ai实现"></a> AI实现</h2>
+<h3 id="aic_enemy"><a class="markdownIt-Anchor" href="#aic_enemy"></a> AIC_enemy</h3>
+<p>通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。</p>
 <p>最近写的有点多，直接放代码简单说下吧</p>
-<p><img src="https://s1.ax1x.com/2020/10/25/BmzMmn.png" alt="1"></p>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzMmn.png" alt="1" /></p>
 <p>普通的攻击AI取名为enemy_fight</p>
-<p><img src="https://s1.ax1x.com/2020/10/25/BmzlT0.png" alt="2"></p>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzlT0.png" alt="2" /></p>
 <p>这一步将视觉给AI，这一步还要给MyPlayer_BP中加上获取视觉感知的组件。</p>
-<p><img src="https://s1.ax1x.com/2020/10/25/Bmz8YT.png" alt="3"></p>
+<p><img src="https://s1.ax1x.com/2020/10/25/Bmz8YT.png" alt="3" /></p>
 <p>感知Player，获取EnemyActor和HasLineOfSight两个黑板件，得到玩家信息和是否看得见玩家，一个为Actor类型，一个为bool类型</p>
 <ol>
 <li>是否成功感知，有返回值，并且感知的对象为Player标签的Actor。</li>
@@ -436,44 +443,59 @@
 <li>失去感知目标（离开视野），建立定时器，执行委托前等待4秒，将等待的时间设为变量LineOFSightTimer，4秒后运行事件StartEnemyTimer，将HasLineOfSight改为假，失去玩家对象</li>
 <li>这样一轮下来，所以在2中要清除上一次留下的定时器</li>
 </ol>
-<h3 id="行为树实现"><a href="#行为树实现" class="headerlink" title="行为树实现"></a>行为树实现</h3><h4 id="黑板"><a href="#黑板" class="headerlink" title="黑板"></a>黑板</h4><p><img src="https://s1.ax1x.com/2020/10/25/BmzGfU.png" alt="4"></p>
+<h3 id="行为树实现"><a class="markdownIt-Anchor" href="#行为树实现"></a> 行为树实现</h3>
+<h4 id="黑板"><a class="markdownIt-Anchor" href="#黑板"></a> 黑板</h4>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzGfU.png" alt="4" /></p>
 <p>黑板值就4个，随机位置，看见敌人，玩家信息，自身</p>
-<h4 id="行为树"><a href="#行为树" class="headerlink" title="行为树"></a>行为树</h4><p><img src="https://s1.ax1x.com/2020/10/25/BmzYpF.png" alt="5"></p>
+<h4 id="行为树"><a class="markdownIt-Anchor" href="#行为树"></a> 行为树</h4>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzYpF.png" alt="5" /></p>
 <p>设置行为树</p>
 <ul>
-<li><p>是否看见敌人</p>
+<li>
+<p>是否看见敌人</p>
 <ul>
 <li>转向敌人，追逐敌人，移动到敌人面前，停留</li>
 </ul>
 </li>
-<li>巡逻<ul>
+<li>
+<p>巡逻</p>
+<ul>
 <li>随机获得地点，移动至目标TargetLocation，停留</li>
 </ul>
 </li>
-<li>等待</li>
+<li>
+<p>等待</p>
+</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/10/25/BmzuOs.png" alt="6"></p>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzuOs.png" alt="6" /></p>
 <p>在AIC中选择行为树</p>
-<h3 id="TASK"><a href="#TASK" class="headerlink" title="TASK"></a>TASK</h3><h5 id="BTT-ChasePlayer"><a href="#BTT-ChasePlayer" class="headerlink" title="BTT_ChasePlayer"></a>BTT_ChasePlayer</h5><p><img src="https://s1.ax1x.com/2020/10/25/Bmznyj.png" alt="7"></p>
+<h3 id="task"><a class="markdownIt-Anchor" href="#task"></a> TASK</h3>
+<h5 id="btt_chaseplayer"><a class="markdownIt-Anchor" href="#btt_chaseplayer"></a> BTT_ChasePlayer</h5>
+<p><img src="https://s1.ax1x.com/2020/10/25/Bmznyj.png" alt="7" /></p>
 <p>一般移动时候速度设为500，看见目标时增加到600从enemy_fight中调用函数Update更新速度大小</p>
-<p><img src="https://s1.ax1x.com/2020/10/25/BmzVfS.png" alt="8"></p>
-<h5 id="BBT-MovetoPlayer"><a href="#BBT-MovetoPlayer" class="headerlink" title="BBT_MovetoPlayer"></a>BBT_MovetoPlayer</h5><p>这个函数还是有必要的</p>
-<p><img src="https://s1.ax1x.com/2020/10/25/BmzeSg.png" alt="9"></p>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzVfS.png" alt="8" /></p>
+<h5 id="bbt_movetoplayer"><a class="markdownIt-Anchor" href="#bbt_movetoplayer"></a> BBT_MovetoPlayer</h5>
+<p>这个函数还是有必要的</p>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzeSg.png" alt="9" /></p>
 <p>实验时，直接用Moveto,由于获得的是你目标当前站的位置，AI会一直往你身上蹭？攻击也会被打断还会鬼畜，所以我们要他停留在Player前面的一点位置</p>
 <p>可以将这个半径设为变量，配合以后攻击触发trace来设置</p>
-<h5 id="BTT-FindRondomPatrol"><a href="#BTT-FindRondomPatrol" class="headerlink" title="BTT_FindRondomPatrol"></a>BTT_FindRondomPatrol</h5><p><img src="https://s1.ax1x.com/2020/10/25/BmzmlQ.png" alt="10"></p>
+<h5 id="btt_findrondompatrol"><a class="markdownIt-Anchor" href="#btt_findrondompatrol"></a> BTT_FindRondomPatrol</h5>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzmlQ.png" alt="10" /></p>
 <p>很简单的获取半径范围内的任意值，注意用Update Walk Speed将速度调回去。</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p><img src="https://s1.ax1x.com/2020/10/25/Bmz3kV.png" alt="11"></p>
+<h4 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h4>
+<p><img src="https://s1.ax1x.com/2020/10/25/Bmz3kV.png" alt="11" /></p>
 <ul>
 <li>利用NavMesh创建导航</li>
 <li>利用Gameplay Debugger查看行为树、EQS等实时数据</li>
 </ul>
-<h3 id="Attack"><a href="#Attack" class="headerlink" title="Attack"></a>Attack</h3><p>直接写在BP_Enemy_fight里</p>
-<p><img src="https://s1.ax1x.com/2020/10/25/BmzQwq.png" alt="12"></p>
+<h3 id="attack"><a class="markdownIt-Anchor" href="#attack"></a> Attack</h3>
+<p>直接写在BP_Enemy_fight里</p>
+<p><img src="https://s1.ax1x.com/2020/10/25/BmzQwq.png" alt="12" /></p>
 <p>行为树让AI靠近Player，检测到一定距离的时候触发攻击状态。</p>
 <p>先使用通道检测线条确定攻击开启，然后用LineTrace检测方式</p>
 <p>重新创建了一个新的BS，将里面的FightSystem改为Enemy设置相关END、START、ATTACKING，具体和MyCharacter中的攻击检测方式类似。</p>
-<h3 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a>待解决问题</h3><ol>
+<h3 id="待解决问题"><a class="markdownIt-Anchor" href="#待解决问题"></a> 待解决问题</h3>
+<ol>
 <li>攻击间隔问题，活尸剑神</li>
 <li>在攻击途中，被AI攻击，攻击检测中的Detect End无法顺利关闭，会一直保持射线检测状态</li>
 </ol>
@@ -725,7 +747,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（十一）关于AI问题解决方法1。攻击检测在受击后一直会打开的问题在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Attacking
+                             关于第三人称魂类游戏个人学习–（十一）
+ 关于AI问题解决方法
+ 1。攻击检测在受击后一直会打开的问题
+在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Att
                         
                     </div>
                     <div class="publish-info">
@@ -770,9 +795,13 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（十二）AIAI理论我们所用的抽象模型会把AI划分成三个阶段：感知、思考和行动。
-感知SENSE感知旨在对AI的当前状态进行记录。
-尽管感知会涉及一些物理感官，例如视觉和触觉，但不排除一些更为抽象的感知信息，比如感知来自其他AI的
+                             UE4笔记（十二）
+ AI
+ AI理论
+我们所用的抽象模型会把AI划分成三个阶段：感知、思考和行动。
+ 感知SENSE
+感知旨在对AI的当前状态进行记录。
+尽管感知会涉及一些物理感官，例如视觉和触觉，但不排除一些更为抽象的感知信息，比如感
                         
                     </div>
                     <div class="publish-info">

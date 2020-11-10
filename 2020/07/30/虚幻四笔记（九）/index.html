@@ -29,7 +29,11 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -405,7 +409,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1,047
+                    1k
                 </div>
                 
 
@@ -422,89 +426,111 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4笔记（九）"><a href="#UE4笔记（九）" class="headerlink" title="UE4笔记（九）"></a>UE4笔记（九）</h1><h2 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h2><p><img src="https://s1.ax1x.com/2020/07/31/a1M1Wd.png" alt=""></p>
+                <h1 id="ue4笔记九"><a class="markdownIt-Anchor" href="#ue4笔记九"></a> UE4笔记（九）</h1>
+<h2 id="角色"><a class="markdownIt-Anchor" href="#角色"></a> 角色</h2>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1M1Wd.png" alt="" /></p>
 <p>Controller 可以由AI或玩家控制</p>
 <p>AI框架可以帮助AI Controller根据导航网格体来决定pawn或Character的行为还有去哪里做什么</p>
 <p>Character是一种特定类型的Pawn，它拥有Movement组件以及基本代码中内嵌的动画</p>
 <p>Camera和Gameplay Framework与控制器和Pawn相关联</p>
-<h3 id="概览图"><a href="#概览图" class="headerlink" title="概览图"></a>概览图</h3><p><img src="https://s1.ax1x.com/2020/07/31/a1MGQI.png" alt=""></p>
-<h3 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h3><p>控制器是大脑，Pawn是身体，大脑做出决定，身体执行</p>
+<h3 id="概览图"><a class="markdownIt-Anchor" href="#概览图"></a> 概览图</h3>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MGQI.png" alt="" /></p>
+<h3 id="核心"><a class="markdownIt-Anchor" href="#核心"></a> 核心</h3>
+<p>控制器是大脑，Pawn是身体，大脑做出决定，身体执行</p>
 <p>控制器会在玩家（/AI）按下键盘后生成代码输入给Pawn完成指令(pawn是实例化的象征)</p>
 <p>Character相当于加强版的Pawn，具有自带的Movement组件和一个骨骼网格体（因此可以播放动画）</p>
-<p><img src="https://s1.ax1x.com/2020/07/31/a1MKoD.png" alt=""></p>
-<h3 id="input"><a href="#input" class="headerlink" title="input"></a>input</h3><p><img src="https://s1.ax1x.com/2020/07/31/a1MJyt.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MKoD.png" alt="" /></p>
+<h3 id="input"><a class="markdownIt-Anchor" href="#input"></a> input</h3>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MJyt.png" alt="" /></p>
 <p>要向控制器发送输入事件，你可以使用Actions事件和Axis事件节点</p>
-<p><img src="https://s1.ax1x.com/2020/07/31/a1MQFe.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MQFe.png" alt="" /></p>
 <p>Controller接受控制器转换为给Pawn的指令</p>
-<h3 id="Camera"><a href="#Camera" class="headerlink" title="Camera"></a>Camera</h3><p><img src="https://s1.ax1x.com/2020/07/31/a1MlJH.png" alt=""></p>
-<p>在Character中的Camera被附加在玩家身上，它使用弹簧臂组件（SpringArm)跟随在玩家旁边。有着内置的碰撞检测功能、内置的延迟功能     </p>
+<h3 id="camera"><a class="markdownIt-Anchor" href="#camera"></a> Camera</h3>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MlJH.png" alt="" /></p>
+<p>在Character中的Camera被附加在玩家身上，它使用弹簧臂组件（SpringArm)跟随在玩家旁边。有着内置的碰撞检测功能、内置的延迟功能</p>
 <p>Camera Manager可以在摄像机和过场动画摄像机中进行转换，它负责场景中所有的摄像机管理</p>
 <p>有两种控制方法（如果我们不适用弹簧臂组件</p>
 <p>CalcCamera 和 ViewTarget</p>
 <p>摄像机查询的Actor可以决定摄像机的行为，反之亦然</p>
-<h3 id="Behavior-Tree"><a href="#Behavior-Tree" class="headerlink" title="Behavior Tree"></a>Behavior Tree</h3><p><img src="https://s1.ax1x.com/2020/07/31/a1MaTS.png" alt=""></p>
+<h3 id="behavior-tree"><a class="markdownIt-Anchor" href="#behavior-tree"></a> Behavior Tree</h3>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MaTS.png" alt="" /></p>
 <p>AI驱动的AI控制器</p>
-<p><img src="https://s1.ax1x.com/2020/07/31/a1MNef.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MNef.png" alt="" /></p>
 <p>这是一个简单的行为树：向我们的敌人移动，然后面对它，攻击他，然后等待两秒</p>
 <p>它基于Blackbroad</p>
 <p>如果说行为树负责决策，Blackbroad就是变量，行为树访问它然后了解自己该如何决策</p>
 <p>Perception System(感知系统)也会读取行为树 例如用视觉感知来寻找玩家，有很多可以便于修改的函数，以及更多的感官：听觉、团队感知、触觉等</p>
 <p>Environment Query System（场景查询系统）可以帮助AI躲避玩家，可以以玩家的视觉来生成大量的蓝色小球和绿色小球，蓝色为摄像机可视，并且以AI的位置在蓝色球上赋予值，来计算玩家到AI的距离帮助AI充值器对玩家做出规避。</p>
-<p><img src="https://s1.ax1x.com/2020/07/31/a1MrSs.md.png" alt=""></p>
-<h3 id="Nav-Mesh"><a href="#Nav-Mesh" class="headerlink" title="Nav Mesh"></a>Nav Mesh</h3><p>要在导航网格体体积内生成，必须放置体积，有不同的导航网格体代理，所以导航网格体生成的位置取决于代理而你可以设置它</p>
-<p><img src="https://s1.ax1x.com/2020/07/31/a1MBWj.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MrSs.md.png" alt="" /></p>
+<h3 id="nav-mesh"><a class="markdownIt-Anchor" href="#nav-mesh"></a> Nav Mesh</h3>
+<p>要在导航网格体体积内生成，必须放置体积，有不同的导航网格体代理，所以导航网格体生成的位置取决于代理而你可以设置它</p>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MBWj.png" alt="" /></p>
 <p>如果在网格体上有一片水，然后我们希望AI不要走过水，我们可以增大这一片区域所需的开销  这叫做导航网格体权重</p>
 <p>其他见场景构建</p>
-<h3 id="Replication-Net"><a href="#Replication-Net" class="headerlink" title="Replication/Net"></a>Replication/Net</h3><p>需要在网络中与其他客户端共享的某个客户端变量需要将其复制</p>
-<p><img src="https://s1.ax1x.com/2020/07/31/a1MwFg.md.png" alt=""></p>
-<p>Character和—（往往是整个框架)  </p>
+<h3 id="replicationnet"><a class="markdownIt-Anchor" href="#replicationnet"></a> Replication/Net</h3>
+<p>需要在网络中与其他客户端共享的某个客户端变量需要将其复制</p>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1MwFg.md.png" alt="" /></p>
+<p>Character和–（往往是整个框架)</p>
 <p>基于拥有关系（ownership）</p>
 <p>标上复制的属性会遭到整体修正。</p>
-<h3 id="Gameplay-Framework"><a href="#Gameplay-Framework" class="headerlink" title="Gameplay Framework"></a>Gameplay Framework</h3><p><img src="https://s1.ax1x.com/2020/07/31/a1M0YQ.png" alt=""></p>
+<h3 id="gameplay-framework"><a class="markdownIt-Anchor" href="#gameplay-framework"></a> Gameplay Framework</h3>
+<p><img src="https://s1.ax1x.com/2020/07/31/a1M0YQ.png" alt="" /></p>
 <p>通常，Pawn的控制器由GameMode认定</p>
 <p>GameMode负责改变游戏的状态，它会关注每一个控制器，如果你需要为某个玩家赋予玩家控制器，你可以命令GameMode给这个ID添加一个玩家控制器</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>为了在导航网格体内移动，我们有了Movement组件，一个特定的MoveMent组件就是Character MoveMent，当我们有多个Character，并且要在某个空间中移动，而我们不希望他们碰撞，就有了Crowd Manager</p>
+<h3 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h3>
+<p>为了在导航网格体内移动，我们有了Movement组件，一个特定的MoveMent组件就是Character MoveMent，当我们有多个Character，并且要在某个空间中移动，而我们不希望他们碰撞，就有了Crowd Manager</p>
 <p>通过Movement我们可以创建自定义移动系统</p>
-<h3 id="Advice"><a href="#Advice" class="headerlink" title="Advice"></a>Advice</h3><h4 id="Controllers-and-Pawns"><a href="#Controllers-and-Pawns" class="headerlink" title="Controllers and Pawns"></a>Controllers and Pawns</h4><ul>
-<li><p>dont fight it :Understand it!</p>
+<h3 id="advice"><a class="markdownIt-Anchor" href="#advice"></a> Advice</h3>
+<h4 id="controllers-and-pawns"><a class="markdownIt-Anchor" href="#controllers-and-pawns"></a> Controllers and Pawns</h4>
+<ul>
+<li>
+<p>dont fight it :Understand it!</p>
 </li>
-<li><p>can have different controllers and swap for different control schemas</p>
+<li>
+<p>can have different controllers and swap for different control schemas</p>
 </li>
-<li><p>can be used for auto testing</p>
+<li>
+<p>can be used for auto testing</p>
 </li>
 </ul>
-<h4 id="Character-vs-Pawn"><a href="#Character-vs-Pawn" class="headerlink" title="Character vs Pawn"></a>Character vs Pawn</h4><p>Pawn是某个拥有行为的东西，如果它同时还有碰撞、骨骼网格体和Movement组件 它可能就是Character</p>
+<h4 id="character-vs-pawn"><a class="markdownIt-Anchor" href="#character-vs-pawn"></a> Character vs Pawn</h4>
+<p>Pawn是某个拥有行为的东西，如果它同时还有碰撞、骨骼网格体和Movement组件 它可能就是Character</p>
 <ul>
 <li>Behavior</li>
 <li>Collision and Skeletal Mesh</li>
 <li>Character Movement Component</li>
 </ul>
-<h4 id="Movement-Component"><a href="#Movement-Component" class="headerlink" title="Movement Component"></a>Movement Component</h4><ul>
+<h4 id="movement-component"><a class="markdownIt-Anchor" href="#movement-component"></a> Movement Component</h4>
+<ul>
 <li>losts of functionality</li>
 <li>Deeply configurable</li>
 <li>Decoupled from decisionmaking</li>
 <li>Room for creating custom movements modes</li>
 </ul>
-<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><ul>
+<h4 id="input-2"><a class="markdownIt-Anchor" href="#input-2"></a> Input</h4>
+<ul>
 <li>Group actions,separate reusable keys</li>
 <li>Easily user-configurable</li>
 <li>Avoid BP consumption</li>
 </ul>
-<h4 id="Behavior-Trees"><a href="#Behavior-Trees" class="headerlink" title="Behavior Trees"></a>Behavior Trees</h4><ul>
+<h4 id="behavior-trees"><a class="markdownIt-Anchor" href="#behavior-trees"></a> Behavior Trees</h4>
+<ul>
 <li>There can be more than one  比如进攻、躲避，可以设置两个状态在运行中切换</li>
-<li>can change in runtime  </li>
+<li>can change in runtime</li>
 <li>subtrees</li>
 <li>fast</li>
 <li>decouple data processing from decision</li>
 </ul>
-<h4 id="Workflow-with-Animations"><a href="#Workflow-with-Animations" class="headerlink" title="Workflow with Animations"></a>Workflow with Animations</h4><p>在蓝图中为Character创建一次性动画、例如翻滚</p>
+<h4 id="workflow-with-animations"><a class="markdownIt-Anchor" href="#workflow-with-animations"></a> Workflow with Animations</h4>
+<p>在蓝图中为Character创建一次性动画、例如翻滚</p>
 <ul>
-<li>React animations  </li>
+<li>React animations</li>
 <li>EventGraph</li>
 <li>sockets</li>
 <li>AnimNotifies</li>
 </ul>
-<h4 id="What-capsules-can-be-used-for"><a href="#What-capsules-can-be-used-for" class="headerlink" title="What capsules can be used for"></a>What capsules can be used for</h4><ul>
+<h4 id="what-capsules-can-be-used-for"><a class="markdownIt-Anchor" href="#what-capsules-can-be-used-for"></a> What capsules can be used for</h4>
+<ul>
 <li>Interaction and overlap</li>
 <li>Blocking</li>
 <li>Physics Behavior</li>
@@ -758,8 +784,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（十）首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
-蓝图Blueprint is Visual  Scripting (y
+                             UE4笔记（十）
+首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
+ 蓝图
+Blueprint is Visual  Scriptin
                         
                     </div>
                     <div class="publish-info">
@@ -804,8 +832,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（八)蓝图入门(上)BP’s focus is on making it accessible,versatile and powerful to anyone in the team.
-It is meant to empowe
+                             UE4笔记（八)
+ 蓝图入门(上)
+BP’s focus is on making it accessible,versatile and powerful to anyone in the team.
+It is meant to em
                         
                     </div>
                     <div class="publish-info">
