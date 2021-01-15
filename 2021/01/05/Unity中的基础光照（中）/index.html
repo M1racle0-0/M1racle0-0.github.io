@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Unity Shader Graph 2D水面, M1racle0-0">
+    <meta name="keywords" content="Unity Shader-基础光照（中）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Unity Shader Graph 2D水面 | M1racle0-0</title>
+    <title>Unity Shader-基础光照（中） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -249,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Unity Shader Graph 2D水面</h1>
+                    <h1 class="description center-align post-title">Unity Shader-基础光照（中）</h1>
                 </div>
             </div>
         </div>
@@ -379,8 +379,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Shader-Graph/">
-                                <span class="chip bg-color">Shader Graph</span>
+                            <a href="/tags/Unity-Shader/">
+                                <span class="chip bg-color">Unity Shader</span>
                             </a>
                         
                     </div>
@@ -395,21 +395,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-01
+                    2021-01-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-01-01
+                    2021-01-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    910
+                    1.3k
                 </div>
                 
 
@@ -426,73 +426,227 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="2d场景的水面效果upr"><a class="markdownIt-Anchor" href="#2d场景的水面效果upr"></a> 2D场景的水面效果–UPR</h1>
-<h2 id="水面倒影效果"><a class="markdownIt-Anchor" href="#水面倒影效果"></a> 水面倒影效果</h2>
-<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
-<p>用另外一个摄像机去获取画面，然后得出来的画面作为材质纹理给水面。</p>
-<h4 id="rendertexture"><a class="markdownIt-Anchor" href="#rendertexture"></a> RenderTexture</h4>
-<p>渲染纹理：一种可以在上面绘制，然后像使用其他 纹理/精灵 一样使用的纹理。可以将其作为相机的output texture，将使摄像机画面渲染到纹理，而不是渲染到屏幕。</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMBPx.png" alt="1" /></p>
-<p>创建的新摄像机，用来获取反射画面，注意透视和正交应该与Main Camera相同，然后output Texture给RenderTexture</p>
-<ul>
-<li>新创建的Camera要把AudioListener关闭</li>
-<li>Output Target要选择Texture</li>
-</ul>
-<h3 id="water-shadershader-graph"><a class="markdownIt-Anchor" href="#water-shadershader-graph"></a> Water Shader（Shader Graph）</h3>
-<p>让刚才得到的RenderTexture作为主纹理</p>
-<h4 id="翻转画面"><a class="markdownIt-Anchor" href="#翻转画面"></a> 翻转画面</h4>
-<p>Tiling And Offset</p>
-<p>Tiling：表示UV坐标的缩放倍数</p>
-<p>Offset：表示UV坐标的起始位置</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMDG6.png" alt="2" /></p>
-<p>Offset X控制波纹效果</p>
-<h4 id="波动效果"><a class="markdownIt-Anchor" href="#波动效果"></a> 波动效果</h4>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMsxO.png" alt="3" /></p>
-<p>将速度设为变量，Time和速度相乘加上渐变噪点的效果，让Simple Noise动起来。</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqM6MD.png" alt="4" /></p>
-<p>设置变量Strength，相乘-减小波动的强度，用一个Vector2将只影响Offset的X值。达到控制水波纹左右移动的效果。</p>
-<h4 id="颜色"><a class="markdownIt-Anchor" href="#颜色"></a> 颜色</h4>
-<p>最后通过一个Color控制水面颜色</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMrRK.png" alt="5" /></p>
-<h3 id="效果"><a class="markdownIt-Anchor" href="#效果"></a> 效果</h3>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3ECj.png" alt="6" /></p>
-<h2 id="水波流动效果"><a class="markdownIt-Anchor" href="#水波流动效果"></a> 水波流动效果</h2>
-<h3 id="思路-2"><a class="markdownIt-Anchor" href="#思路-2"></a> 思路</h3>
-<p>在Spirts上利用UV纹理滚动和噪点的叠加完成流动的水波</p>
-<p>能与灯光做反应，用Water的发现贴图</p>
-<h3 id="shader-graphlit-接受光照"><a class="markdownIt-Anchor" href="#shader-graphlit-接受光照"></a> Shader Graph（LIT 接受光照）</h3>
-<p>用一个渐变的矩形做为主材质</p>
-<h4 id="vertex-position"><a class="markdownIt-Anchor" href="#vertex-position"></a> Vertex Position</h4>
-<p>实现河面上下浮动，潮起潮落效果</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3iVS.png" alt="7" /></p>
-<p>设置Offset变量，为Vector3，只略微改变y值，与sine Time或Cosine Time相乘，让数值在y轴上来回变动。</p>
-<p>选择&quot;Object&quot;，输出顶点坐标位置</p>
-<h4 id="normal水面阴影"><a class="markdownIt-Anchor" href="#normal水面阴影"></a> Normal（水面阴影）</h4>
-<p>创建2D点光源，在里面勾选”Use Normal Map“，能与精灵的法线贴图互动（光照会使用精灵材质的法线贴图数据，来为其创造出阴影和景深效果）</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3k5Q.png" alt="8" /></p>
-<p>将Sample Texture 2D的类型选为Normal</p>
-<p>法线需要上下的来回变动，还要一直向右运动（想象水的阴影运动）。所以用Vector 2将offset的XY拆开，一个使用Time一直向右，一个用Sine Time做往复运动。在外部将水的Normal贴图选为Repeat播放。</p>
-<p>最后乘上Strength，可在外面改变法线强度。（水面阴影强度）</p>
-<h4 id="noise模拟光的折射"><a class="markdownIt-Anchor" href="#noise模拟光的折射"></a> Noise（模拟光的折射</h4>
-<p>通过Noise模拟焦散和折射，通过将颜色和各种滚动Noise纹理组合起来，让光就像在水中到处反射一样</p>
-<h4 id="primary-noise"><a class="markdownIt-Anchor" href="#primary-noise"></a> Primary Noise</h4>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3FUg.png" alt="9" /></p>
-<p>创建一个Gradient Noise：渐变噪点,基于输入的UV生成一个渐变噪点图（Perlin噪点）。Scale可以控制噪点图的大小。</p>
-<p>逐渐偏移X轴上的UV，能制作出条纹的效果。如下（像雾气一样一直往右移动）</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3Z2n.png" alt="10" /></p>
-<p>乘以主渐变纹理，MainTex。</p>
-<p>但是这样会有一些水体会在Noise较暗处消失，所以将结果添加到原纹理上，用Add。在这期间可以用Color加Multiply修改噪声的颜色，这样可以做出蓝湖的效果（创建Noise Color变量可在外部调整噪点颜色，如下图）。光照看起来像是穿透了水面下的区域，表面有颜色的对比。</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3nK0.png" alt="11" /></p>
-<h4 id="second-noise"><a class="markdownIt-Anchor" href="#second-noise"></a> Second Noise</h4>
-<p>增加水面细节，让水在光照下反光、闪烁。波光粼粼的效果</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3urV.png" alt="12" /></p>
-<p>用一个simple Noise，让他在y轴上下摆动，这个noise值可以大一些，波光粼粼应该是一些小斑点。新建颜色（Second Noise Color）形成对比。</p>
-<p>然后与MainTex相乘。</p>
-<p>最后将结果添加到组合好的纹理上。</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3evq.png" alt="13" /></p>
-<h3 id="效果-2"><a class="markdownIt-Anchor" href="#效果-2"></a> 效果</h3>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3V8s.png" alt="14" /></p>
-<p>可以与2D Point Light交互</p>
+                <h1 id="unity-shader-基础光照中"><a class="markdownIt-Anchor" href="#unity-shader-基础光照中"></a> Unity Shader-基础光照（中）</h1>
+<h2 id="shader编写"><a class="markdownIt-Anchor" href="#shader编写"></a> shader编写</h2>
+<h3 id="漫反射光照模型"><a class="markdownIt-Anchor" href="#漫反射光照模型"></a> 漫反射光照模型</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>d</mi><mi>i</mi><mi>f</mi><mi>f</mi><mi>u</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{diffuse}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> = （<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>m</mi><mrow><mi>d</mi><mi>i</mi><mi>f</mi><mi>f</mi><mi>u</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}·m_{diffuse}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.730558em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>）max（0 , <strong>n</strong> · <strong>l</strong>）</p>
+<p>4个参数：入射光线的颜色和强度，材质的漫反射系数，表面法线和光源方向。</p>
+<p><strong>函数</strong>：saturate（x）</p>
+<p><strong>描述</strong>：达到max（）的目的，x为用于操作的标量或矢量，float、float2、float3等，把x截取在[0,1]内，如果x为矢量，会将它每一个分量进行判定操作。</p>
+<h4 id="逐顶点光照模型"><a class="markdownIt-Anchor" href="#逐顶点光照模型"></a> 逐顶点光照模型</h4>
+<pre class="highlight"><code class="UnityShader">// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader &quot;Unity Shaders Book/Chapter 6/Diffuse Vertex-Level&quot;
+&#123;
+    Properties
+    &#123;
+        _Diffuse(&quot;Diffuse&quot;,Color)=(1,1,1,1)
+    &#125;
+    SubShader
+    &#123;
+        Pass
+        &#123;
+            Tags&#123;&quot;LightMode&quot;=&quot;ForwardBase&quot;&#125;
+
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;Lighting.cginc&quot;
+
+            fixed4 _Diffuse;
+
+            struct a2v&#123;
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+                //通过使用normal语义来告诉Unity要把模型顶点的法线信息存储到normal变量中
+            &#125;;
+
+            struct v2f&#123;
+                float4 pos : SV_POSITION;
+                //SV_POSITON语义告诉Unity，顶点着色器的输出是裁剪空间中的顶点坐标
+                fixed3 color : COLOR;
+                //将顶点着色器中计算得到的光照颜色传递给片元着色器
+            &#125;;
+
+            v2f vert(a2v v)&#123;
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                //把顶点位置从模型空间转换到裁剪空间中,顶点着色器的基本任务
+
+                fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
+                //得到环境光部分
+
+                fixed3 worldNormal = normalize(mul(v.normal,(float3x3)unity_WorldToObject));
+                fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
+                //选择世界坐标空间后进行法线和光源方向的点积
+                //normalize归一化处理
+                fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb * saturate(dot(worldNormal,worldLight));
+
+                o.color = ambient + diffuse;
+
+                return o;
+            &#125;
+
+            fixed4 frag(v2f i) : SV_Target&#123;
+                return fixed4(i.color, 1.0f);
+            &#125;
+
+            ENDCG
+        &#125;
+    &#125;
+    Fallback &quot;Diffuse&quot;
+&#125;
+
+</code></pre>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJ8l8.png" alt="1" /></p>
+<p>对于细分程度较高的模型，逐顶点光照已经可以得到比较好的效果，但对一些细分成都较低的模型，就会出现一些视觉问题（上方的图中在背光面和向光面交界处有一些锯齿）。</p>
+<p>为解决这个问题，使用逐像素的漫反射光照。</p>
+<h4 id="逐像素光照模型"><a class="markdownIt-Anchor" href="#逐像素光照模型"></a> 逐像素光照模型</h4>
+<pre class="highlight"><code class="unityshader">// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader &quot;Unity Shaders Book/Chapter 6/Diffuse Pixel-Level&quot;
+&#123;
+    Properties
+    &#123;
+        _Diffuse(&quot;Diffuse&quot;,Color)=(1,1,1,1)
+    &#125;
+    SubShader
+    &#123;
+        Pass
+        &#123;
+            Tags&#123;&quot;LightMode&quot;=&quot;ForwardBase&quot;&#125;
+
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;Lighting.cginc&quot;
+
+            fixed4 _Diffuse;
+
+            struct a2v&#123;
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            &#125;;
+
+            struct v2f&#123;
+                float4 pos : SV_POSITION;
+                fixed3 worldNormal : TEXCOORD0;
+            &#125;;
+            //修改顶点着色器的输出结构体
+
+            v2f vert(a2v v)&#123;
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
+                return o;
+            &#125;
+            //顶点着色器不需要计算光照模型，只需要把世界空间下的法线传递给片元着色器
+
+            fixed4 frag(v2f i) : SV_Target&#123;
+                fixed3 ambient =UNITY_LIGHTMODEL_AMBIENT.xyz;
+
+                fixed3 worldNormal = normalize(i.worldNormal);
+                fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
+
+                fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb *saturate(dot(worldNormal,worldLightDir));
+
+                fixed3 color = ambient + diffuse;
+
+                return fixed4(color, 1.0f);
+            &#125;
+            //片元着色器需要计算漫反射光照模型
+
+            ENDCG
+        &#125;
+    &#125;
+    Fallback &quot;Diffuse&quot;
+&#125;
+
+</code></pre>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJlfP.png" alt="2" /></p>
+<p>可以获得更加平滑的光照效果</p>
+<p>仍存在问题，在光照无法到达的区域，模型的外观是全黑的，没有任何明暗变化，使模型的背光区域看起来像是一个平面，失去模型的细节表现。改善方案，半兰伯特光照模型</p>
+<h4 id="半兰伯特光照模型"><a class="markdownIt-Anchor" href="#半兰伯特光照模型"></a> 半兰伯特光照模型</h4>
+<p>逐顶点光照的时候被称为兰伯特光照模型，因为符合兰伯特定律–在平面某点漫反射光的光强与该反射点的法向量和入射光角度的余弦值成正比。</p>
+<p>半兰伯特光照模型是在原型上进行一个简单的修改。公式如下</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>d</mi><mi>i</mi><mi>f</mi><mi>f</mi><mi>u</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{diffuse}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> = （<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>m</mi><mrow><mi>d</mi><mi>i</mi><mi>f</mi><mi>f</mi><mi>u</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}·m_{diffuse}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.730558em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>）（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span> (<strong>n</strong> · <strong>l</strong>)+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>）</p>
+<p>没有使用max操作防止点积为负值，而是对其结果进行了一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>倍的缩放再加上一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>大小的偏移。绝大多数情况下值均为0.5，即</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>d</mi><mi>i</mi><mi>f</mi><mi>f</mi><mi>u</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{diffuse}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> = （<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>m</mi><mrow><mi>d</mi><mi>i</mi><mi>f</mi><mi>f</mi><mi>u</mi><mi>s</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}·m_{diffuse}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.730558em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>）（0.5(<strong>n</strong> · <strong>l</strong>)+0.5）</p>
+<p>这样可以将点积的结果从[-1,1]映射到[0,1]，对于模型的背光面：<strong>在原兰伯特光照模型中点积结果将会映射到同一个值，即0值处；而在半兰伯特模型中，背光面也可以有明暗变化，不同的点积结果将映射到不同的值上。</strong></p>
+<p>半兰伯特模型没有任何物理依据，仅仅是一个<strong>视觉加强效果</strong></p>
+<pre class="highlight"><code class="US">// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader &quot;Unity Shaders Book/Chapter 6/HalfLambert&quot;
+&#123;
+    Properties
+    &#123;
+        _Diffuse(&quot;Diffuse&quot;,Color)=(1,1,1,1)
+    &#125;
+    SubShader
+    &#123;
+        Pass
+        &#123;
+            Tags&#123;&quot;LightMode&quot;=&quot;ForwardBase&quot;&#125;
+
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;Lighting.cginc&quot;
+
+            fixed4 _Diffuse;
+
+            struct a2v&#123;
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            &#125;;
+
+            struct v2f&#123;
+                float4 pos : SV_POSITION;
+                fixed3 worldNormal : TEXCOORD0;
+            &#125;;
+
+            v2f vert(a2v v)&#123;
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
+                return o;
+            &#125;
+
+            fixed4 frag(v2f i) : SV_Target&#123;
+                fixed3 ambient =UNITY_LIGHTMODEL_AMBIENT.xyz;
+
+                fixed3 worldNormal = normalize(i.worldNormal);
+                fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
+                fixed3 halfLambert = dot(worldNormal,worldLightDir)*0.5 + 0.5;
+                //半兰伯特光照模型
+
+                fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb * halfLambert;
+
+                fixed3 color = ambient + diffuse;
+
+                return fixed4(color, 1.0f);
+            &#125;
+
+            ENDCG
+        &#125;
+    &#125;
+    Fallback &quot;Diffuse&quot;
+&#125;
+
+</code></pre>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJ3Sf.png" alt="3" /></p>
+<p>三者比较，从左到右分别是半兰伯特光照模型、逐像素光照模型、逐顶点光照模型（正面）</p>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJMFI.png" alt="4" /></p>
+<p>三者比较，从左到右分别是逐顶点、逐光照、半兰伯特光照模型（背面）</p>
 
             </div>
             <hr/>
@@ -518,7 +672,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2021/01/01/2D%E6%B0%B4%E9%9D%A2Shader%20Graph/">http://M1racle0-0.github.io/2021/01/01/2D%E6%B0%B4%E9%9D%A2Shader%20Graph/</a>
+                    <a href="http://M1racle0-0.github.io/2021/01/05/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%AD%EF%BC%89/">http://M1racle0-0.github.io/2021/01/05/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%AD%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,8 +710,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Shader-Graph/">
-                                    <span class="chip bg-color">Shader Graph</span>
+                                <a href="/tags/Unity-Shader/">
+                                    <span class="chip bg-color">Unity Shader</span>
                                 </a>
                             
                         </div>
@@ -729,35 +883,27 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/01/03/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%8A%EF%BC%89/">
+                <a href="/2021/01/07/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%8B%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Unity Shader-基础光照（上）">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Unity Shader-基础光照（下）">
                         
-                        <span class="card-title">Unity Shader-基础光照（上）</span>
+                        <span class="card-title">Unity Shader-基础光照（下）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             Unity Shader-基础光照（上）
- 原理
-如何决定一个像素的颜色？
-从宏观来看，渲染包含两大部分：
-
-决定一个像素的可见性
-决定这个像素的光照计算
-
-光照模型就是用于决定在一个像素上进行怎样的光照计算
- 图像产生的物理现象
-
-首先
+                             Unity Shader-基础光照（下）
+ shader编写
+ 高光反射光照模型
+cspecularc_{specular}cspecular​ = （clight⋅mspecularc_{light}·m_{specular}cligh
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-07
                         </span>
                         <span class="publish-author">
                             
@@ -785,33 +931,35 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/10/%E4%BA%8C%E7%BB%B4%E5%9B%BE%E5%BD%A2%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5%E6%8E%A8%E5%AF%BC%E4%B8%8E%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87/">
+                <a href="/2021/01/03/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%8A%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="二维图形的几何变换矩阵推导和齐次坐标系">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Unity Shader-基础光照（上）">
                         
-                        <span class="card-title">二维图形的几何变换矩阵推导和齐次坐标系</span>
+                        <span class="card-title">Unity Shader-基础光照（上）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             二维图形的几何变换矩阵推导和齐次坐标系
- 二维图形的几何变换（平移、缩放、旋转）
-（X,Y）代表变换后的点，（x,y）是原来的
+                             Unity Shader-基础光照（上）
+ 原理
+如何决定一个像素的颜色？
+从宏观来看，渲染包含两大部分：
 
+决定一个像素的可见性
+决定这个像素的光照计算
 
-平移
-X=x+dxY=y+dyd为任意值X = x + dx\\
-Y = y + dy\\
-d为任意值
-X
+光照模型就是用于决定在一个像素上进行怎样的光照计算
+ 图像产生的物理现象
+
+首先
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-03
                             </span>
                         <span class="publish-author">
                             
@@ -824,8 +972,8 @@ X
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">
-                        <span class="chip bg-color">图形学</span>
+                    <a href="/tags/Unity-Shader/">
+                        <span class="chip bg-color">Unity Shader</span>
                     </a>
                     
                 </div>

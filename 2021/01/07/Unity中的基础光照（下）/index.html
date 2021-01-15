@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Unity Shader Graph 2D水面, M1racle0-0">
+    <meta name="keywords" content="Unity Shader-基础光照（下）, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Unity Shader Graph 2D水面 | M1racle0-0</title>
+    <title>Unity Shader-基础光照（下） | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -249,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Unity Shader Graph 2D水面</h1>
+                    <h1 class="description center-align post-title">Unity Shader-基础光照（下）</h1>
                 </div>
             </div>
         </div>
@@ -379,8 +379,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Shader-Graph/">
-                                <span class="chip bg-color">Shader Graph</span>
+                            <a href="/tags/Unity-Shader/">
+                                <span class="chip bg-color">Unity Shader</span>
                             </a>
                         
                     </div>
@@ -395,21 +395,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-01
+                    2021-01-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-01-01
+                    2021-01-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    910
+                    1.7k
                 </div>
                 
 
@@ -426,73 +426,295 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="2d场景的水面效果upr"><a class="markdownIt-Anchor" href="#2d场景的水面效果upr"></a> 2D场景的水面效果–UPR</h1>
-<h2 id="水面倒影效果"><a class="markdownIt-Anchor" href="#水面倒影效果"></a> 水面倒影效果</h2>
-<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
-<p>用另外一个摄像机去获取画面，然后得出来的画面作为材质纹理给水面。</p>
-<h4 id="rendertexture"><a class="markdownIt-Anchor" href="#rendertexture"></a> RenderTexture</h4>
-<p>渲染纹理：一种可以在上面绘制，然后像使用其他 纹理/精灵 一样使用的纹理。可以将其作为相机的output texture，将使摄像机画面渲染到纹理，而不是渲染到屏幕。</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMBPx.png" alt="1" /></p>
-<p>创建的新摄像机，用来获取反射画面，注意透视和正交应该与Main Camera相同，然后output Texture给RenderTexture</p>
+                <h1 id="unity-shader-基础光照下"><a class="markdownIt-Anchor" href="#unity-shader-基础光照下"></a> Unity Shader-基础光照（下）</h1>
+<h2 id="shader编写"><a class="markdownIt-Anchor" href="#shader编写"></a> shader编写</h2>
+<h3 id="高光反射光照模型"><a class="markdownIt-Anchor" href="#高光反射光照模型"></a> 高光反射光照模型</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> = （<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>m</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}·m_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.730558em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>）max（0 , <strong>v</strong> · <strong>r</strong>）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><msub><mi>m</mi><mrow><mi>g</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>s</mi></mrow></msub></msup></mrow><annotation encoding="application/x-tex">^{m_{gloss}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>需要四个参数：</p>
 <ul>
-<li>新创建的Camera要把AudioListener关闭</li>
-<li>Output Target要选择Texture</li>
+<li>入射光线的颜色和强度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>材质的高光反射系数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>m</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">m_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>视角方向<strong>v</strong> 以及反射方向<strong>r</strong></li>
 </ul>
-<h3 id="water-shadershader-graph"><a class="markdownIt-Anchor" href="#water-shadershader-graph"></a> Water Shader（Shader Graph）</h3>
-<p>让刚才得到的RenderTexture作为主纹理</p>
-<h4 id="翻转画面"><a class="markdownIt-Anchor" href="#翻转画面"></a> 翻转画面</h4>
-<p>Tiling And Offset</p>
-<p>Tiling：表示UV坐标的缩放倍数</p>
-<p>Offset：表示UV坐标的起始位置</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMDG6.png" alt="2" /></p>
-<p>Offset X控制波纹效果</p>
-<h4 id="波动效果"><a class="markdownIt-Anchor" href="#波动效果"></a> 波动效果</h4>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMsxO.png" alt="3" /></p>
-<p>将速度设为变量，Time和速度相乘加上渐变噪点的效果，让Simple Noise动起来。</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqM6MD.png" alt="4" /></p>
-<p>设置变量Strength，相乘-减小波动的强度，用一个Vector2将只影响Offset的X值。达到控制水波纹左右移动的效果。</p>
-<h4 id="颜色"><a class="markdownIt-Anchor" href="#颜色"></a> 颜色</h4>
-<p>最后通过一个Color控制水面颜色</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMrRK.png" alt="5" /></p>
-<h3 id="效果"><a class="markdownIt-Anchor" href="#效果"></a> 效果</h3>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3ECj.png" alt="6" /></p>
-<h2 id="水波流动效果"><a class="markdownIt-Anchor" href="#水波流动效果"></a> 水波流动效果</h2>
-<h3 id="思路-2"><a class="markdownIt-Anchor" href="#思路-2"></a> 思路</h3>
-<p>在Spirts上利用UV纹理滚动和噪点的叠加完成流动的水波</p>
-<p>能与灯光做反应，用Water的发现贴图</p>
-<h3 id="shader-graphlit-接受光照"><a class="markdownIt-Anchor" href="#shader-graphlit-接受光照"></a> Shader Graph（LIT 接受光照）</h3>
-<p>用一个渐变的矩形做为主材质</p>
-<h4 id="vertex-position"><a class="markdownIt-Anchor" href="#vertex-position"></a> Vertex Position</h4>
-<p>实现河面上下浮动，潮起潮落效果</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3iVS.png" alt="7" /></p>
-<p>设置Offset变量，为Vector3，只略微改变y值，与sine Time或Cosine Time相乘，让数值在y轴上来回变动。</p>
-<p>选择&quot;Object&quot;，输出顶点坐标位置</p>
-<h4 id="normal水面阴影"><a class="markdownIt-Anchor" href="#normal水面阴影"></a> Normal（水面阴影）</h4>
-<p>创建2D点光源，在里面勾选”Use Normal Map“，能与精灵的法线贴图互动（光照会使用精灵材质的法线贴图数据，来为其创造出阴影和景深效果）</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3k5Q.png" alt="8" /></p>
-<p>将Sample Texture 2D的类型选为Normal</p>
-<p>法线需要上下的来回变动，还要一直向右运动（想象水的阴影运动）。所以用Vector 2将offset的XY拆开，一个使用Time一直向右，一个用Sine Time做往复运动。在外部将水的Normal贴图选为Repeat播放。</p>
-<p>最后乘上Strength，可在外面改变法线强度。（水面阴影强度）</p>
-<h4 id="noise模拟光的折射"><a class="markdownIt-Anchor" href="#noise模拟光的折射"></a> Noise（模拟光的折射</h4>
-<p>通过Noise模拟焦散和折射，通过将颜色和各种滚动Noise纹理组合起来，让光就像在水中到处反射一样</p>
-<h4 id="primary-noise"><a class="markdownIt-Anchor" href="#primary-noise"></a> Primary Noise</h4>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3FUg.png" alt="9" /></p>
-<p>创建一个Gradient Noise：渐变噪点,基于输入的UV生成一个渐变噪点图（Perlin噪点）。Scale可以控制噪点图的大小。</p>
-<p>逐渐偏移X轴上的UV，能制作出条纹的效果。如下（像雾气一样一直往右移动）</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3Z2n.png" alt="10" /></p>
-<p>乘以主渐变纹理，MainTex。</p>
-<p>但是这样会有一些水体会在Noise较暗处消失，所以将结果添加到原纹理上，用Add。在这期间可以用Color加Multiply修改噪声的颜色，这样可以做出蓝湖的效果（创建Noise Color变量可在外部调整噪点颜色，如下图）。光照看起来像是穿透了水面下的区域，表面有颜色的对比。</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3nK0.png" alt="11" /></p>
-<h4 id="second-noise"><a class="markdownIt-Anchor" href="#second-noise"></a> Second Noise</h4>
-<p>增加水面细节，让水在光照下反光、闪烁。波光粼粼的效果</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3urV.png" alt="12" /></p>
-<p>用一个simple Noise，让他在y轴上下摆动，这个noise值可以大一些，波光粼粼应该是一些小斑点。新建颜色（Second Noise Color）形成对比。</p>
-<p>然后与MainTex相乘。</p>
-<p>最后将结果添加到组合好的纹理上。</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3evq.png" alt="13" /></p>
-<h3 id="效果-2"><a class="markdownIt-Anchor" href="#效果-2"></a> 效果</h3>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3V8s.png" alt="14" /></p>
-<p>可以与2D Point Light交互</p>
+<p><strong>r</strong>计算方式：</p>
+<p><strong>r</strong> = 2（<strong>n</strong> · <strong>l</strong>）<strong>n</strong> - <strong>l</strong></p>
+<p>函数：reflect（ i , n ）</p>
+<p>描述：i，入射方向；n，法线方向。可以是float、float2、float3类型。当给定入射方向i和法线方向n时，reflect可以返回反射方向（r）。</p>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJuTA.png" alt="5" /></p>
+<h4 id="逐顶点光照"><a class="markdownIt-Anchor" href="#逐顶点光照"></a> 逐顶点光照</h4>
+<pre class="highlight"><code class="">// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader &quot;Unity Shaders Book/Chapter 6/Specular Vertex-Level&quot;&#123;
+    Properties&#123;
+        _Diffuse(&quot;Diffuse&quot;,Color)=(1,1,1,1)
+        _Specular(&quot;Specular&quot;,Color)=(1,1,1,1)   //控制材质的高光反射颜色
+        _Gloss(&quot;Gloss&quot;,Range(8.0,256))=20        //控制高光区域的大小
+    &#125;
+
+    SubShader&#123;
+        Pass&#123;
+            Tags &#123;&quot;LightMode&quot;=&quot;ForwardBase&quot;&#125;
+
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+            #include &quot;Lighting.cginc&quot;
+
+            fixed4 _Diffuse;
+            fixed4 _Specular;
+            float _Gloss;
+            //颜色属性的范围在0到1之间，因此可以用fixed精度的变量来存储它。_Gloss范围大就用float
+
+            struct a2v&#123;
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            &#125;;
+
+            struct v2f&#123;
+                float4 pos : SV_POSITION;
+                fixed3 color : COLOR;
+            &#125;;
+
+            v2f vert(a2v v)&#123;
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+
+                fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
+
+                fixed3 worldNormal = normalize(mul(v.normal,(float3x3)unity_WorldToObject));
+                fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
+
+                fixed3 diffuse = _LightColor0.rgb * _Diffuse.rgb * saturate(dot(worldNormal,worldLightDir));
+                //漫反射部分与上面的逐顶点光照模型一致
+
+                /*高光反射部分*/
+                fixed3 reflectDir = normalize(reflect(-worldLightDir,worldNormal));
+                //入射光线方向关于表面法线的反射方向reflectDir，由于Cg的reflect函数的入射方向要求是由光源指向交点处，因此需要对WorldLightDir取反
+                fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld,v.vertex).xyz);
+                //通过_WorldSpaceCameraPos得到世界空间中的摄像机位置，再把顶点位置从模型空间变换到世界空间下，通过和_WorldSpaceCameraPos相减可得到世界空间下的视角方向
+
+
+                fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(saturate(dot(reflectDir,viewDir)), _Gloss);
+
+                o.color = ambient +diffuse +specular;
+
+                return o;
+            &#125;
+
+            fixed4 frag(v2f i) : SV_Target&#123;
+                return fixed4(i.color, 1.0);
+            &#125;
+
+            ENDCG
+        &#125;
+    &#125;
+    Fallback &quot;Specular&quot;
+&#125;
+</code></pre>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJG6S.png" alt="6" /></p>
+<p>问题很大。高光部分并不平滑，主要是因为高光反射的计算是非线性的，而在顶点着色器中计算光照再进行插值的过程是线性的，破坏了原计算的非线性关系，就会出现较大的视觉问题。</p>
+<p>所以需要逐像素来计算高光反射。</p>
+<h4 id="逐像素光照"><a class="markdownIt-Anchor" href="#逐像素光照"></a> 逐像素光照</h4>
+<pre class="highlight"><code class="">// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader &quot;Unity Shaders Book/Chapter 6/Specular PixelLevel&quot;&#123;
+    Properties&#123;
+        _Diffuse(&quot;Diffuse&quot;,Color)=(1,1,1,1)
+        _Specular(&quot;Specular&quot;,Color)=(1,1,1,1)
+        _Gloss(&quot;Gloss&quot;,Range(8.0,256))=20
+    &#125;
+
+    SubShader&#123;
+        Pass&#123;
+            Tags &#123;&quot;LightMode&quot;=&quot;ForwardBase&quot;&#125;
+
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+            #include &quot;Lighting.cginc&quot;
+
+            fixed4 _Diffuse;
+            fixed4 _Specular;
+            float _Gloss;
+
+            struct a2v&#123;
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            &#125;;
+
+            struct v2f&#123;
+                float4 pos : SV_POSITION;
+                float3 worldNormal : TEXCOORD0;
+                fixed3 worldPos : TEXCOORD1;
+            &#125;;
+
+            v2f vert(a2v v)&#123;
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                //把顶点位置从模型空间转换到裁剪空间中,顶点着色器的基本任务
+
+                o.worldNormal = mul(v.normal,(float3x3)unity_WorldToObject);
+                o.worldPos = mul(unity_ObjectToWorld,v.vertex).xyz;
+
+                return o;
+            &#125;
+            //顶点着色器只需要计算世界空间下的法线方向和顶点坐标，并把它们传递给片元着色器
+
+            fixed4 frag(v2f i) : SV_Target&#123;
+                fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
+
+                fixed3 worldNormal = normalize(i.worldNormal);
+                fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
+
+                fixed3 diffuse = _LightColor0.rgb *_Diffuse.rgb * saturate(dot(worldNormal,worldLightDir));
+
+                fixed3 reflectDir = normalize(reflect(-worldLightDir,worldNormal));
+                fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
+                fixed3 specular = _LightColor0.rgb * _Specular.rgb *pow(saturate(dot(reflectDir,viewDir)),_Gloss);
+
+                return fixed4(ambient + diffuse + specular,1.0);
+            &#125;
+
+            ENDCG
+        &#125;
+    &#125;
+    Fallback &quot;Specular&quot;
+&#125;
+</code></pre>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJJOg.png" alt="7" /></p>
+<p>更加平滑。</p>
+<h4 id="blinn-phong光照模型"><a class="markdownIt-Anchor" href="#blinn-phong光照模型"></a> Blinn-Phong光照模型</h4>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> = （<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>m</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}·m_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.730558em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>）max（0 , <strong>n</strong> · <strong>h</strong>）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><msub><mi>m</mi><mrow><mi>g</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>s</mi></mrow></msub></msup></mrow><annotation encoding="application/x-tex">^{m_{gloss}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>在Blinn模型中，没有使用反射方向，是引入新的矢量<strong>h</strong>，通过对视角方向<strong>v</strong>和光照方向<strong>l</strong>相加以后再归一化得到的。大体与上面代码相似。</p>
+<pre class="highlight"><code class="ShaderLab">// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader &quot;Unity Shaders Book/Chapter 6/Blinn-Phong&quot;&#123;
+    Properties&#123;
+        _Diffuse(&quot;Diffuse&quot;,Color)=(1,1,1,1)
+        _Specular(&quot;Specular&quot;,Color)=(1,1,1,1)
+        _Gloss(&quot;Gloss&quot;,Range(8.0,256))=20
+    &#125;
+
+    SubShader&#123;
+        Pass&#123;
+            Tags &#123;&quot;LightMode&quot;=&quot;ForwardBase&quot;&#125;
+
+            CGPROGRAM
+
+            #pragma vertex vert
+            #pragma fragment frag
+            #include &quot;Lighting.cginc&quot;
+
+            fixed4 _Diffuse;
+            fixed4 _Specular;
+            float _Gloss;
+
+            struct a2v&#123;
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            &#125;;
+
+            struct v2f&#123;
+                float4 pos : SV_POSITION;
+                float3 worldNormal : TEXCOORD0;
+                fixed3 worldPos : TEXCOORD1;
+            &#125;;
+
+            v2f vert(a2v v)&#123;
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                //把顶点位置从模型空间转换到裁剪空间中,顶点着色器的基本任务
+
+                o.worldNormal = mul(v.normal,(float3x3)unity_WorldToObject);
+                o.worldPos = mul(unity_ObjectToWorld,v.vertex).xyz;
+
+                return o;
+            &#125;
+
+            fixed4 frag(v2f i) : SV_Target&#123;
+                fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
+
+                fixed3 worldNormal = normalize(i.worldNormal);
+                fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
+
+                fixed3 diffuse = _LightColor0.rgb *_Diffuse.rgb * saturate(dot(worldNormal,worldLightDir));
+
+                //只修改片元着色器中对高光反射部分的计算代码
+                fixed3 viewDir = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
+                fixed3 halfDir = normalize(worldLightDir + viewDir);
+                fixed3 specular = _LightColor0.rgb * _Specular.rgb *pow(max(0,dot(worldNormal,halfDir)),_Gloss);
+
+                return fixed4(ambient + diffuse + specular,1.0);
+            &#125;
+
+            ENDCG
+        &#125;
+    &#125;
+    Fallback &quot;Specular&quot;
+&#125;
+</code></pre>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJtmQ.png" alt="8" /></p>
+<p>高光反射部分看起来更大、更亮一些，在实际的渲染中，绝大多数情况下会选择Blinn-Phong光照模型</p>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJNwj.png" alt="9" /></p>
+<p>从左往右依次为Blinn-Phong光照模型、逐像素光照、逐顶点光照</p>
+<h4 id="unitycgcginc中的一些常用函数"><a class="markdownIt-Anchor" href="#unitycgcginc中的一些常用函数"></a> UnityCG.cginc中的一些常用函数</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">float3 WorldSpaceViewDir(float4 v)</td>
+<td style="text-align:center">输入一个模型空间中的顶点位置，返回世界空间中从该点到摄像机的观察方向。内部实现使用了UnityWorldSpaceViewDir函数</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 UnityWorldSpaceViewDir(float4 v)</td>
+<td style="text-align:center">输入一个世界空间中的顶点位置，返回世界空间中从该点到摄像机的观察方向</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 ObjSpaceViewDir(float4 v)</td>
+<td style="text-align:center">输入一个模型空间中的顶点位置，返回模型空间中从该点到摄像机的观察方向</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 WorldSpaceLightDir(float4 v)</td>
+<td style="text-align:center"><strong>仅可用于前向渲染</strong>。输入一个模型空间中的顶点位置，返回世界空间中从该点到光源的光照方向。内部实现使用了UnityWorldSpaceLightDir函数。没有被归一化。</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 UnityWorldSpaceLightDir(float4 v)</td>
+<td style="text-align:center"><strong>仅可用于前向渲染</strong>。输入一个世界空间中的顶点位置，返回世界空间中从该点到光源的光照方向。没有被归一化。</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 ObjSpaceLightDir(float4 v)</td>
+<td style="text-align:center"><strong>仅可用于前向渲染</strong>。输入一个模型空间中的顶点位置，返回模型空间中从该点到光源的光照方向。没有被归一化</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 UnityObjectToWorldNormal(float3 norm)</td>
+<td style="text-align:center">把法线方向从模型空间转换到世界空间</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 UnityObjectToWorldDir(float3 dir)</td>
+<td style="text-align:center">把方向矢量从模型空间变换到世界空间</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 UnityWorldToObjectDir(float3 dir)</td>
+<td style="text-align:center">把方向矢量从世界空间变换到模型空间</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>由内置函数得到的方向是没有归一化的，因此我们需要使用normalize函数对结果进行归一化，再进行光照模型计算。</li>
+</ul>
 
             </div>
             <hr/>
@@ -518,7 +740,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2021/01/01/2D%E6%B0%B4%E9%9D%A2Shader%20Graph/">http://M1racle0-0.github.io/2021/01/01/2D%E6%B0%B4%E9%9D%A2Shader%20Graph/</a>
+                    <a href="http://M1racle0-0.github.io/2021/01/07/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%8B%EF%BC%89/">http://M1racle0-0.github.io/2021/01/07/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%8B%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,8 +778,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Shader-Graph/">
-                                    <span class="chip bg-color">Shader Graph</span>
+                                <a href="/tags/Unity-Shader/">
+                                    <span class="chip bg-color">Unity Shader</span>
                                 </a>
                             
                         </div>
@@ -725,40 +947,33 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/03/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%8A%EF%BC%89/">
+                <a href="/2021/01/07/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%8B%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Unity Shader-基础光照（上）">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Unity Shader-基础光照（下）">
                         
-                        <span class="card-title">Unity Shader-基础光照（上）</span>
+                        <span class="card-title">Unity Shader-基础光照（下）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             Unity Shader-基础光照（上）
- 原理
-如何决定一个像素的颜色？
-从宏观来看，渲染包含两大部分：
-
-决定一个像素的可见性
-决定这个像素的光照计算
-
-光照模型就是用于决定在一个像素上进行怎样的光照计算
- 图像产生的物理现象
-
-首先
+                             Unity Shader-基础光照（下）
+ shader编写
+ 高光反射光照模型
+cspecularc_{specular}cspecular​ = （clight⋅mspecularc_{light}·m_{specular}cligh
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -767,6 +982,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -785,33 +1001,27 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/10/%E4%BA%8C%E7%BB%B4%E5%9B%BE%E5%BD%A2%E7%9A%84%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5%E6%8E%A8%E5%AF%BC%E4%B8%8E%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87/">
+                <a href="/2021/01/05/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%AD%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="二维图形的几何变换矩阵推导和齐次坐标系">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Unity Shader-基础光照（中）">
                         
-                        <span class="card-title">二维图形的几何变换矩阵推导和齐次坐标系</span>
+                        <span class="card-title">Unity Shader-基础光照（中）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             二维图形的几何变换矩阵推导和齐次坐标系
- 二维图形的几何变换（平移、缩放、旋转）
-（X,Y）代表变换后的点，（x,y）是原来的
-
-
-平移
-X=x+dxY=y+dyd为任意值X = x + dx\\
-Y = y + dy\\
-d为任意值
-X
+                             Unity Shader-基础光照（中）
+ shader编写
+ 漫反射光照模型
+cdiffusec_{diffuse}cdiffuse​ = （clight⋅mdiffusec_{light}·m_{diffuse}clight​⋅mdi
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-05
                             </span>
                         <span class="publish-author">
                             
@@ -824,8 +1034,8 @@ X
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">
-                        <span class="chip bg-color">图形学</span>
+                    <a href="/tags/Unity-Shader/">
+                        <span class="chip bg-color">Unity Shader</span>
                     </a>
                     
                 </div>
