@@ -415,7 +415,13 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    Simple Shader```Unity Shader//给Shader命名Shader “SimpleS Shader”{    Properties{            //声明一个Color类型的属性            _C
+                                     Simple Shader
+
+//给Shader命名
+Shader &quot;SimpleS Shader&quot;&#123;
+    Properties&#123;
+            //声明一个Color类型的属性
+  
                                 
                             </div>
                             <div class="publish-info">
@@ -470,10 +476,10 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    Unity Shader-基础光照（下）shader编写高光反射光照模型$c_{specular}$ = （$c_{light}·m_{specular}$）max（0 , v · r）$^{m_{gloss}}$
-需要四个参数：
-
-入射光
+                                     Unity Shader-基础光照（下）
+ shader编写
+ 高光反射光照模型
+cspecularc_{specular}cspecular​ = （clight⋅mspecularc_{light}·m_{specular}cligh
                                 
                             </div>
                             <div class="publish-info">
@@ -528,8 +534,10 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    Unity Shader-基础光照（中）shader编写漫反射光照模型$c_{diffuse}$ = （$c_{light}·m_{diffuse}$）max（0 , n · l）  
-4个参数：入射光线的颜色和强度，材质的漫反射系数，表面
+                                     Unity Shader-基础光照（中）
+ shader编写
+ 漫反射光照模型
+cdiffusec_{diffuse}cdiffuse​ = （clight⋅mdiffusec_{light}·m_{diffuse}clight​⋅mdi
                                 
                             </div>
                             <div class="publish-info">
@@ -584,15 +592,18 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    Unity Shader-基础光照（上）原理如何决定一个像素的颜色？
+                                     Unity Shader-基础光照（上）
+ 原理
+如何决定一个像素的颜色？
 从宏观来看，渲染包含两大部分：
 
 决定一个像素的可见性
 决定这个像素的光照计算
 
 光照模型就是用于决定在一个像素上进行怎样的光照计算
-图像产生的物理现象
-首先，光线从光源
+ 图像产生的物理现象
+
+首先
                                 
                             </div>
                             <div class="publish-info">
@@ -647,8 +658,12 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    2D场景的水面效果—UPR水面倒影效果思路用另外一个摄像机去获取画面，然后得出来的画面作为材质纹理给水面。
-RenderTexture渲染纹理：一种可以在上面绘制，然后像使用其他 纹理/精灵 一样使用的纹理。可以将其作为相机的output 
+                                     2D场景的水面效果–UPR
+ 水面倒影效果
+ 思路
+用另外一个摄像机去获取画面，然后得出来的画面作为材质纹理给水面。
+ RenderTexture
+渲染纹理：一种可以在上面绘制，然后像使用其他 纹理/精灵 一样使用的纹理。可以将其作为相机
                                 
                             </div>
                             <div class="publish-info">
@@ -713,17 +728,16 @@ RenderTexture渲染纹理：一种可以在上面绘制，然后像使用其他 
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    二维图形的几何变换矩阵推导和齐次坐标系二维图形的几何变换（平移、缩放、旋转）（X,Y）代表变换后的点，（x,y）是原来的
+                                     二维图形的几何变换矩阵推导和齐次坐标系
+ 二维图形的几何变换（平移、缩放、旋转）
+（X,Y）代表变换后的点，（x,y）是原来的
 
-平移 
 
-X = x + dx\\
+平移
+X=x+dxY=y+dyd为任意值X = x + dx\\
 Y = y + dy\\
 d为任意值
-缩放 
-
-X=x\cdot S_x \\
-
+X
                                 
                             </div>
                             <div class="publish-info">
@@ -778,10 +792,13 @@ X=x\cdot S_x \\
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（十三）UMGUMG_PlayHUD(人物血量、精力槽)
+                                     关于第三人称魂类游戏个人学习–（十三）
+ UMG
+ UMG_PlayHUD(人物血量、精力槽)
+
 通过Widgets，使用进度条创建血量和能量条。
 
-每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP= curre
+每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP=
                                 
                             </div>
                             <div class="publish-info">
@@ -836,7 +853,11 @@ X=x\cdot S_x \\
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（十二）AI基于EQS的AI躲藏EQSEQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简
+                                     关于第三人称魂类游戏个人学习–（十二）
+ AI
+ 基于EQS的AI躲藏
+ EQS
+EQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原
                                 
                             </div>
                             <div class="publish-info">
@@ -896,7 +917,10 @@ X=x\cdot S_x \\
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（十一）关于AI问题解决方法1。攻击检测在受击后一直会打开的问题在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Attacking
+                                     关于第三人称魂类游戏个人学习–（十一）
+ 关于AI问题解决方法
+ 1。攻击检测在受击后一直会打开的问题
+在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Att
                                 
                             </div>
                             <div class="publish-info">
@@ -951,10 +975,11 @@ X=x\cdot S_x \\
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    关于第三人称魂类游戏个人学习—（十）AI实现AIC_enemy通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。
+                                     关于第三人称魂类游戏个人学习–（十）
+ AI实现
+ AIC_enemy
+通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。
 最近写的有点多，直接放代码简单说下吧
-
-普通的攻
                                 
                             </div>
                             <div class="publish-info">

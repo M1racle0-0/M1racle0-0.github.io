@@ -426,38 +426,45 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习—（四）"><a href="#关于第三人称魂类游戏个人学习—（四）" class="headerlink" title="关于第三人称魂类游戏个人学习—（四）"></a>关于第三人称魂类游戏个人学习—（四）</h1><h3 id="伤害检测系统"><a href="#伤害检测系统" class="headerlink" title="伤害检测系统"></a>伤害检测系统</h3><p>三种不同的检测方式</p>
+                <h1 id="关于第三人称魂类游戏个人学习四"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习四"></a> 关于第三人称魂类游戏个人学习–（四）</h1>
+<h3 id="伤害检测系统"><a class="markdownIt-Anchor" href="#伤害检测系统"></a> 伤害检测系统</h3>
+<p>三种不同的检测方式</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_15267341/article/details/81387883?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522160096657219195188341450%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=160096657219195188341450&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v3~pc_rank_v2-3-81387883.first_rank_ecpm_v3_pc_rank_v2&amp;utm_term=foreachloop+ue4&amp;spm=1018.2118.3001.4187">条件语句和循环语句</a></p>
-<h4 id="伤害检测系统（一）"><a href="#伤害检测系统（一）" class="headerlink" title="伤害检测系统（一）"></a>伤害检测系统（一）</h4><p>使用MultiCapsuleTraceForObjects检测伤害</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxFPI.png" alt="23"></p>
+<h4 id="伤害检测系统一"><a class="markdownIt-Anchor" href="#伤害检测系统一"></a> 伤害检测系统（一）</h4>
+<p>使用MultiCapsuleTraceForObjects检测伤害</p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxFPI.png" alt="23" /></p>
 <p>为了代码的可视性，创建ActorComponent命名为DetectDamageSystem。</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxCad.png" alt="24"></p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxCad.png" alt="24" /></p>
 <p>建立以MultiCapsuleTraceForObjects的多对象碰撞检测，radius为检测胶囊上下方的半圆球半径，Half Height为胶囊中间高度，获取初始值和结束值，查看是否其中有Pawn类型发生碰撞</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxARP.png" alt="25"></p>
-<p><strong>Start 和 End 获取：</strong>先获取character的location，获取character面朝前的向量，这个时候得到的向量为单位向量（0-1），由于root动画的前摇会向前移动一小部分距离，所以起始点和结束点应该往前移动。</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxExf.png" alt="26"></p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxARP.png" alt="25" /></p>
+<p>**Start 和 End 获取：**先获取character的location，获取character面朝前的向量，这个时候得到的向量为单位向量（0-1），由于root动画的前摇会向前移动一小部分距离，所以起始点和结束点应该往前移动。</p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxExf.png" alt="26" /></p>
 <p>所以得到的<strong>front vector*100+location</strong>为起始位置，结束位置要看root动画轨迹有多长=<strong>location+front vector*攻击距离</strong></p>
 <p>检测的对象类型数组选为Pawn类型</p>
 <p>这样写完后跟Apply damage可以完成基本的伤害检测</p>
-<h5 id="存在的问题："><a href="#存在的问题：" class="headerlink" title="存在的问题："></a>存在的问题：</h5><p>​    将在一个人物上多次出现检测点，导致砍一刀=999刀，因为MultiTrace对同一个Actor将在多个位置进行检测，所以一次攻击的会检测多次</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxPIA.png" alt="27"></p>
+<h5 id="存在的问题"><a class="markdownIt-Anchor" href="#存在的问题"></a> 存在的问题：</h5>
+<p>​	将在一个人物上多次出现检测点，导致砍一刀=999刀，因为MultiTrace对同一个Actor将在多个位置进行检测，所以一次攻击的会检测多次</p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxPIA.png" alt="27" /></p>
 <p>multi可以对多个Actor进行检测，看图一次攻击将造成多次检查点。</p>
-<h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><p>将一次攻击中，受到攻击的Actor记录并放入数组中，进行判断，攻击了的Actor将不受到伤害</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxkGt.png" alt="28"></p>
+<h5 id="解决方法"><a class="markdownIt-Anchor" href="#解决方法"></a> 解决方法：</h5>
+<p>将一次攻击中，受到攻击的Actor记录并放入数组中，进行判断，攻击了的Actor将不受到伤害</p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxkGt.png" alt="28" /></p>
 <p>创建Actor Array来存储hit Actor，每次攻击要Clear清空数组，For Each Loop进行遍历（MultiCapsuleTraceForObjects没法直接拆分）得到这次受到攻击的Hit Actor，如果这次攻击的Actor没有在Actor Array中，进行False语句，受到伤害30，加入Actor Array数组。如果在就结束，不受到第二次伤害。</p>
 <p>在蒙太奇动画中通知，标记从什么时候开始表示攻击发出。命名为Detect Damage</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxZM8.png" alt="30"></p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxmqg.png" alt="31"></p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxZM8.png" alt="30" /></p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxmqg.png" alt="31" /></p>
 <p>在ABP中使用Dectect Damage 1函数模块，完成第一个伤害检测。</p>
-<h3 id="MyCharacter蓝图-4"><a href="#MyCharacter蓝图-4" class="headerlink" title="MyCharacter蓝图(4)"></a>MyCharacter蓝图(4)</h3><h4 id="根据Attribute-System造成伤害、死亡"><a href="#根据Attribute-System造成伤害、死亡" class="headerlink" title="根据Attribute System造成伤害、死亡"></a>根据Attribute System造成伤害、死亡</h4><p><img src="https://s1.ax1x.com/2020/09/25/0pxesS.png" alt="29"></p>
+<h3 id="mycharacter蓝图4"><a class="markdownIt-Anchor" href="#mycharacter蓝图4"></a> MyCharacter蓝图(4)</h3>
+<h4 id="根据attribute-system造成伤害-死亡"><a class="markdownIt-Anchor" href="#根据attribute-system造成伤害-死亡"></a> 根据Attribute System造成伤害、死亡</h4>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxesS.png" alt="29" /></p>
 <p>在MyCharacter蓝图中写入受击系统。</p>
 <p>通过OnTakeAnyDamage从Detect Damage System中得到受伤的值，又通过Attribute System改变Hp。</p>
 <p>在Attribute System中通过Is Dead？变量检测是否死亡，得到的bool值为打开死亡动画的开关。</p>
 <p>在ABP中创建变量Is Dead接收Is Dead？的bool值。</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxuZQ.png" alt="32"></p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxuZQ.png" alt="32" /></p>
 <p>Is Valid的作用为避免无效检测，系统报错。</p>
 <p>在事件图表中添加状态机，创建Idle/Run和Dead状态</p>
-<p><img src="https://s1.ax1x.com/2020/09/25/0pxKaj.png" alt="33"></p>
+<p><img src="https://s1.ax1x.com/2020/09/25/0pxKaj.png" alt="33" /></p>
 <p>将原先的状态放入Idle/Run，到Dead的状态设立条件为当Is Dead打开时，播放角色死亡动画。</p>
 
             </div>
@@ -707,9 +714,12 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（五）伤害检测系统伤害检测系统（二）利用Overlap实现的伤害检测
+                             关于第三人称魂类游戏个人学习–（五）
+ 伤害检测系统
+ 伤害检测系统（二）
+利用Overlap实现的伤害检测
 
-在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞预设，就不用
+在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞
                         
                     </div>
                     <div class="publish-info">
@@ -754,9 +764,11 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（三）MyCharacter蓝图（3）基于ActComponent实现的AttributeSystem
+                             关于第三人称魂类游戏个人学习–（三）
+ MyCharacter蓝图（3）
+基于ActComponent实现的AttributeSystem
 
-设置需要的属性：Hp、Sta,设立最大值变量Max Hp、Max Sta和当前Hp、Sta变量，并先给一
+设置需要的属性：Hp、Sta,设立最大值变量Max Hp、Max Sta和当前Hp、Sta变量，
                         
                     </div>
                     <div class="publish-info">

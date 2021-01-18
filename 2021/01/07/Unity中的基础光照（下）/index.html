@@ -426,21 +426,25 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Unity-Shader-基础光照（下）"><a href="#Unity-Shader-基础光照（下）" class="headerlink" title="Unity Shader-基础光照（下）"></a>Unity Shader-基础光照（下）</h1><h2 id="shader编写"><a href="#shader编写" class="headerlink" title="shader编写"></a>shader编写</h2><h3 id="高光反射光照模型"><a href="#高光反射光照模型" class="headerlink" title="高光反射光照模型"></a>高光反射光照模型</h3><p>$c_{specular}$ = （$c_{light}·m_{specular}$）max（0 , <strong>v</strong> · <strong>r</strong>）$^{m_{gloss}}$</p>
+                <h1 id="unity-shader-基础光照下"><a class="markdownIt-Anchor" href="#unity-shader-基础光照下"></a> Unity Shader-基础光照（下）</h1>
+<h2 id="shader编写"><a class="markdownIt-Anchor" href="#shader编写"></a> shader编写</h2>
+<h3 id="高光反射光照模型"><a class="markdownIt-Anchor" href="#高光反射光照模型"></a> 高光反射光照模型</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> = （<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>m</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}·m_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.730558em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>）max（0 , <strong>v</strong> · <strong>r</strong>）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><msub><mi>m</mi><mrow><mi>g</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>s</mi></mrow></msub></msup></mrow><annotation encoding="application/x-tex">^{m_{gloss}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p>需要四个参数：</p>
 <ul>
-<li>入射光线的颜色和强度$c_{light}$</li>
-<li>材质的高光反射系数$m_{specular}$</li>
+<li>入射光线的颜色和强度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>材质的高光反射系数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>m</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">m_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></li>
 <li>视角方向<strong>v</strong> 以及反射方向<strong>r</strong></li>
 </ul>
 <p><strong>r</strong>计算方式：</p>
 <p><strong>r</strong> = 2（<strong>n</strong> · <strong>l</strong>）<strong>n</strong> - <strong>l</strong></p>
 <p>函数：reflect（ i , n ）</p>
-<p>描述：i，入射方向；n，法线方向。可以是float、float2、float3类型。当给定入射方向i和法线方向n时，reflect可以返回反射方向（r）。 </p>
-<p><img src="https://s3.ax1x.com/2021/01/13/sUJuTA.png" alt="5"></p>
-<h4 id="逐顶点光照"><a href="#逐顶点光照" class="headerlink" title="逐顶点光照"></a>逐顶点光照</h4><pre><code>// Upgrade NOTE: replaced &#39;_Object2World&#39; with &#39;unity_ObjectToWorld&#39;
-// Upgrade NOTE: replaced &#39;_World2Object&#39; with &#39;unity_WorldToObject&#39;
-// Upgrade NOTE: replaced &#39;mul(UNITY_MATRIX_MVP,*)&#39; with &#39;UnityObjectToClipPos(*)&#39;
+<p>描述：i，入射方向；n，法线方向。可以是float、float2、float3类型。当给定入射方向i和法线方向n时，reflect可以返回反射方向（r）。</p>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJuTA.png" alt="5" /></p>
+<h4 id="逐顶点光照"><a class="markdownIt-Anchor" href="#逐顶点光照"></a> 逐顶点光照</h4>
+<pre class="highlight"><code class="">// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader &quot;Unity Shaders Book/Chapter 6/Specular Vertex-Level&quot;&#123;
     Properties&#123;
@@ -509,12 +513,14 @@ Shader &quot;Unity Shaders Book/Chapter 6/Specular Vertex-Level&quot;&#123;
     &#125;
     Fallback &quot;Specular&quot;
 &#125;
-</code></pre><p><img src="https://s3.ax1x.com/2021/01/13/sUJG6S.png" alt="6"></p>
+</code></pre>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJG6S.png" alt="6" /></p>
 <p>问题很大。高光部分并不平滑，主要是因为高光反射的计算是非线性的，而在顶点着色器中计算光照再进行插值的过程是线性的，破坏了原计算的非线性关系，就会出现较大的视觉问题。</p>
 <p>所以需要逐像素来计算高光反射。</p>
-<h4 id="逐像素光照"><a href="#逐像素光照" class="headerlink" title="逐像素光照"></a>逐像素光照</h4><pre><code>// Upgrade NOTE: replaced &#39;_Object2World&#39; with &#39;unity_ObjectToWorld&#39;
-// Upgrade NOTE: replaced &#39;_World2Object&#39; with &#39;unity_WorldToObject&#39;
-// Upgrade NOTE: replaced &#39;mul(UNITY_MATRIX_MVP,*)&#39; with &#39;UnityObjectToClipPos(*)&#39;
+<h4 id="逐像素光照"><a class="markdownIt-Anchor" href="#逐像素光照"></a> 逐像素光照</h4>
+<pre class="highlight"><code class="">// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader &quot;Unity Shaders Book/Chapter 6/Specular PixelLevel&quot;&#123;
     Properties&#123;
@@ -580,30 +586,32 @@ Shader &quot;Unity Shaders Book/Chapter 6/Specular PixelLevel&quot;&#123;
     &#125;
     Fallback &quot;Specular&quot;
 &#125;
-</code></pre><p><img src="https://s3.ax1x.com/2021/01/13/sUJJOg.png" alt="7"></p>
+</code></pre>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJJOg.png" alt="7" /></p>
 <p>更加平滑。</p>
-<h4 id="Blinn-Phong光照模型"><a href="#Blinn-Phong光照模型" class="headerlink" title="Blinn-Phong光照模型"></a>Blinn-Phong光照模型</h4><p>$c_{specular}$ = （$c_{light}·m_{specular}$）max（0 , <strong>n</strong> · <strong>h</strong>）$^{m_{gloss}}$</p>
+<h4 id="blinn-phong光照模型"><a class="markdownIt-Anchor" href="#blinn-phong光照模型"></a> Blinn-Phong光照模型</h4>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> = （<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mrow><mi>l</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow></msub><mo separator="true">⋅</mo><msub><mi>m</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>l</mi><mi>a</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c_{light}·m_{specular}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.730558em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>）max（0 , <strong>n</strong> · <strong>h</strong>）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mrow></mrow><msub><mi>m</mi><mrow><mi>g</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>s</mi></mrow></msub></msup></mrow><annotation encoding="application/x-tex">^{m_{gloss}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p>在Blinn模型中，没有使用反射方向，是引入新的矢量<strong>h</strong>，通过对视角方向<strong>v</strong>和光照方向<strong>l</strong>相加以后再归一化得到的。大体与上面代码相似。</p>
-<pre class=" language-lang-ShaderLab"><code class="language-lang-ShaderLab">// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+<pre class="highlight"><code class="ShaderLab">// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Unity Shaders Book/Chapter 6/Blinn-Phong"&#123;
+Shader &quot;Unity Shaders Book/Chapter 6/Blinn-Phong&quot;&#123;
     Properties&#123;
-        _Diffuse("Diffuse",Color)=(1,1,1,1)
-        _Specular("Specular",Color)=(1,1,1,1)
-        _Gloss("Gloss",Range(8.0,256))=20
+        _Diffuse(&quot;Diffuse&quot;,Color)=(1,1,1,1)
+        _Specular(&quot;Specular&quot;,Color)=(1,1,1,1)
+        _Gloss(&quot;Gloss&quot;,Range(8.0,256))=20
     &#125;
 
     SubShader&#123;
         Pass&#123;
-            Tags &#123;"LightMode"="ForwardBase"&#125;
+            Tags &#123;&quot;LightMode&quot;=&quot;ForwardBase&quot;&#125;
 
             CGPROGRAM
 
             #pragma vertex vert
             #pragma fragment frag
-            #include "Lighting.cginc"
+            #include &quot;Lighting.cginc&quot;
 
             fixed4 _Diffuse;
             fixed4 _Specular;
@@ -650,14 +658,14 @@ Shader "Unity Shaders Book/Chapter 6/Blinn-Phong"&#123;
             ENDCG
         &#125;
     &#125;
-    Fallback "Specular"
+    Fallback &quot;Specular&quot;
 &#125;
 </code></pre>
-<p><img src="https://s3.ax1x.com/2021/01/13/sUJtmQ.png" alt="8"></p>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJtmQ.png" alt="8" /></p>
 <p>高光反射部分看起来更大、更亮一些，在实际的渲染中，绝大多数情况下会选择Blinn-Phong光照模型</p>
-<p><img src="https://s3.ax1x.com/2021/01/13/sUJNwj.png" alt="9"></p>
+<p><img src="https://s3.ax1x.com/2021/01/13/sUJNwj.png" alt="9" /></p>
 <p>从左往右依次为Blinn-Phong光照模型、逐像素光照、逐顶点光照</p>
-<h4 id="UnityCG-cginc中的一些常用函数"><a href="#UnityCG-cginc中的一些常用函数" class="headerlink" title="UnityCG.cginc中的一些常用函数"></a>UnityCG.cginc中的一些常用函数</h4><div class="table-container">
+<h4 id="unitycgcginc中的一些常用函数"><a class="markdownIt-Anchor" href="#unitycgcginc中的一些常用函数"></a> UnityCG.cginc中的一些常用函数</h4>
 <table>
 <thead>
 <tr>
@@ -704,7 +712,6 @@ Shader "Unity Shaders Book/Chapter 6/Blinn-Phong"&#123;
 </tr>
 </tbody>
 </table>
-</div>
 <ul>
 <li>由内置函数得到的方向是没有归一化的，因此我们需要使用normalize函数对结果进行归一化，再进行光照模型计算。</li>
 </ul>
@@ -956,7 +963,13 @@ Shader "Unity Shaders Book/Chapter 6/Blinn-Phong"&#123;
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Simple Shader```Unity Shader//给Shader命名Shader “SimpleS Shader”{    Properties{            //声明一个Color类型的属性            _C
+                             Simple Shader
+
+//给Shader命名
+Shader &quot;SimpleS Shader&quot;&#123;
+    Properties&#123;
+            //声明一个Color类型的属性
+  
                         
                     </div>
                     <div class="publish-info">
@@ -1001,8 +1014,10 @@ Shader "Unity Shaders Book/Chapter 6/Blinn-Phong"&#123;
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Unity Shader-基础光照（中）shader编写漫反射光照模型$c_{diffuse}$ = （$c_{light}·m_{diffuse}$）max（0 , n · l）  
-4个参数：入射光线的颜色和强度，材质的漫反射系数，表面
+                             Unity Shader-基础光照（中）
+ shader编写
+ 漫反射光照模型
+cdiffusec_{diffuse}cdiffuse​ = （clight⋅mdiffusec_{light}·m_{diffuse}clight​⋅mdi
                         
                     </div>
                     <div class="publish-info">

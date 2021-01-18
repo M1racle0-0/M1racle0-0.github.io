@@ -426,72 +426,83 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4笔记（六"><a href="#UE4笔记（六" class="headerlink" title="UE4笔记（六)"></a>UE4笔记（六)</h1><h2 id="性能与优化"><a href="#性能与优化" class="headerlink" title="性能与优化"></a>性能与优化</h2><h3 id="纹理流送（Texture-Streaming）"><a href="#纹理流送（Texture-Streaming）" class="headerlink" title="纹理流送（Texture Streaming）"></a>纹理流送（Texture Streaming）</h3><p>纹理流送能在摄影机接近场景对象或者远离场景对象时流送不同的细节层次。</p>
+                <h1 id="ue4笔记六"><a class="markdownIt-Anchor" href="#ue4笔记六"></a> UE4笔记（六)</h1>
+<h2 id="性能与优化"><a class="markdownIt-Anchor" href="#性能与优化"></a> 性能与优化</h2>
+<h3 id="纹理流送texture-streaming"><a class="markdownIt-Anchor" href="#纹理流送texture-streaming"></a> 纹理流送（Texture Streaming）</h3>
+<p>纹理流送能在摄影机接近场景对象或者远离场景对象时流送不同的细节层次。</p>
 <p>纹理流送设有一个缓存池：一片专门用于缓存多级渐进纹理的内存区域。随着纹理不断远离摄像机，他们会变得越来越小，在纹理流送池中占用的内存也越来越少直到不再占用任何内存，接近摄像头就会变得越来越大，所占内存也会越大。</p>
 <p>如果遇见纹理流送池的可用空间不足，就说明内存池预先分配的空间太少。如果要增加内存池大小：</p>
 <p>1.打开UE4控制台，点击“~”键打开控制台。</p>
-<p>2.输入“r.Streaming.PoolSize=5000”   (r.Streaming.PoolSize=SizeInMB(取决于你的项目情况))</p>
+<p>2.输入“r.Streaming.PoolSize=5000&quot;   (r.Streaming.PoolSize=SizeInMB(取决于你的项目情况))</p>
 <p>还能打开文件夹中的DefaultEngine.ini文件，在/Script/Engine.RendererSettings下输入“r.Streaming.PoolSize=5000”,这是一种方法在UE4每次启动后自动获得正确的流送池大小。</p>
-<h3 id="强制纹理不流送-Forcing-Textures-to-never-stream"><a href="#强制纹理不流送-Forcing-Textures-to-never-stream" class="headerlink" title="强制纹理不流送(Forcing Textures to never stream)"></a>强制纹理不流送(Forcing Textures to never stream)</h3><p>它能确保始终显示最高分辨率的纹理，可以将靠近用户体验的纹理使用“永不流送”，比如UI元素，文本元素。</p>
-<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><p>使你的纹理永远维持在最高分辨率</p>
+<h3 id="强制纹理不流送forcing-textures-to-never-stream"><a class="markdownIt-Anchor" href="#强制纹理不流送forcing-textures-to-never-stream"></a> 强制纹理不流送(Forcing Textures to never stream)</h3>
+<p>它能确保始终显示最高分辨率的纹理，可以将靠近用户体验的纹理使用“永不流送”，比如UI元素，文本元素。</p>
+<h4 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h4>
+<p>使你的纹理永远维持在最高分辨率</p>
 <p>1.打开一张纹理图</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U534l8.md.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U534l8.md.png" alt="" /></p>
 <p>2.在层次细节中勾选从不流送</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53WfP.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53WfP.png" alt="" /></p>
 <p>3.在压缩栏中 将压缩设置改为“用户界面”</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53RYt.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53RYt.png" alt="" /></p>
 <p>这会让它的渲染开销变得非常大，不仅是在内存中，而且屏幕绘制开销也会变大，因为他没有压缩，它永远都不会使用其他渐进纹理，即使它在屏幕中只占200或100像素和占2000像素的开销是一样的。</p>
 <p><u>让你获得最高质量的效果，影响性能</u></p>
-<h2 id="LOD与合并静态网格体"><a href="#LOD与合并静态网格体" class="headerlink" title="LOD与合并静态网格体"></a>LOD与合并静态网格体</h2><h3 id="LOD的自动创建工具（Automatic-LOD-Creation-Tools）"><a href="#LOD的自动创建工具（Automatic-LOD-Creation-Tools）" class="headerlink" title="LOD的自动创建工具（Automatic LOD Creation Tools）"></a>LOD的自动创建工具（Automatic LOD Creation Tools）</h3><p>1.选择一个静态网格体，打开静态网格编辑器</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53toR.md.png" alt=""></p>
+<h2 id="lod与合并静态网格体"><a class="markdownIt-Anchor" href="#lod与合并静态网格体"></a> LOD与合并静态网格体</h2>
+<h3 id="lod的自动创建工具automatic-lod-creation-tools"><a class="markdownIt-Anchor" href="#lod的自动创建工具automatic-lod-creation-tools"></a> LOD的自动创建工具（Automatic LOD Creation Tools）</h3>
+<p>1.选择一个静态网格体，打开静态网格编辑器</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53toR.md.png" alt="" /></p>
 <p>2.找到LOD setting分组（LOD设置），有一个属性“LOD Group”</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53ZZj.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53ZZj.png" alt="" /></p>
 <p>LOD中预存了许多类型的分组，比如Foliage、HightDetail等，当你选择其中一个的时候，UE4会读取BaseEngine.ini中的配置数据，并按照预设好的配置为该静态网格体生成指定规格的LOD数据；</p>
-<p><img src="https://img-blog.csdnimg.cn/20200518220609695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53Asg.png" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/20200518220609695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53Asg.png" alt="" /></p>
 <p>例如我这里选择了HighDetail的分组，它的LOD数量变为了6。LOD导入功能让你导入LOD级别</p>
-<h3 id="手动修改LOD参数（Manual-LOD-Setup）"><a href="#手动修改LOD参数（Manual-LOD-Setup）" class="headerlink" title="手动修改LOD参数（Manual LOD Setup）"></a>手动修改LOD参数（Manual LOD Setup）</h3><p>上面我们已经生成了六个LOD级别，通过LOD选取器选择我们想要调节的LOD级别</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U531QU.png" alt=""></p>
+<h3 id="手动修改lod参数manual-lod-setup"><a class="markdownIt-Anchor" href="#手动修改lod参数manual-lod-setup"></a> 手动修改LOD参数（Manual LOD Setup）</h3>
+<p>上面我们已经生成了六个LOD级别，通过LOD选取器选择我们想要调节的LOD级别</p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U531QU.png" alt="" /></p>
 <p>我这里选择的为LOD1，可以在下面的LOD1的参数配置修改中修改LOD1参数，比如融合阈值，它表示着当两个顶点（取决于你选择的内容）小于阈值时将会自动合并，从而减少渲染分支。</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U533yF.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U533yF.png" alt="" /></p>
 <p>上图表示当屏幕大小为多少倍时将会启用当前的LOD。此处是默认值，因为我们用的是系统自带的，可以手动修改定制。</p>
 <p>回到UE4中，点击一个指定的静态网格体，我们可以在细节面板中找到LOD，并将“Forced Lod Model”设置为指定值，这样就可以强制渲染该网格体为指定的LOD等级而不受到屏幕距离的影响。</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53JeJ.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53JeJ.png" alt="" /></p>
 <p>如果将重载最小LOD打开，将最小LOD调为2，意味着一开始使用LOD2，然后持续显示LOD直到看到最小的LOD，这样能根据关卡需求直接调整LOD而不用打开静态网格</p>
-<h3 id="Actor融合工具（Merge-Actor-Tool）"><a href="#Actor融合工具（Merge-Actor-Tool）" class="headerlink" title="Actor融合工具（Merge Actor Tool）"></a>Actor融合工具（Merge Actor Tool）</h3><p><img src="https://s1.ax1x.com/2020/07/21/U53Yw9.md.png" alt=""></p>
+<h3 id="actor融合工具merge-actor-tool"><a class="markdownIt-Anchor" href="#actor融合工具merge-actor-tool"></a> Actor融合工具（Merge Actor Tool）</h3>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53Yw9.md.png" alt="" /></p>
 <p>左边的图片有58个静态网格体，14种不同的材质，51K的三角形，使用过Actor融合工具后转换为一个静态网格体，一个材质，三角形不变。这有效的减少了整体的渲染消耗，无论是内存占用还是屏幕的渲染开销。（减少了13种材质，外加他们的漫反射、粗糙程度、法线贴图）</p>
 <p>融合Actor时，选中所有需要融合的网格体，然后在菜单栏中找到窗口→开发者工具→合并Actor</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53KJ0.png" alt=""></p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53QzT.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53KJ0.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53QzT.png" alt="" /></p>
 <p>简单说一下设置内容：</p>
 <p>1.零处的枢轴点（Pivot Point at Zero）:  它会保证合并后的枢纽点位于0点，从而方便操作</p>
 <p>2.合并物理数据  (Merge Physics Data) ：合并物理数据</p>
 <p>3.将顶点数据烘焙为网格体（Bake Vertex Data to Mesh）：它会合并顶点动画等Mesh数据，保证顶点动画等信息在合并后能正常使用</p>
 <p>下面关于LOD选项类型  <u>建议使用Use specific LOD level，这非常重要！</u></p>
-<p><img src="https://img-blog.csdnimg.cn/20200518224713113.png" alt=""></p>
-<p>Use all LOD levels:当前的使用所有LOD层级不允许我们选择或调整新材质的创建方式，它的作用是获取所有当前信息，创建一个完整的大网格体然后使用所有的LOD  </p>
+<p><img src="https://img-blog.csdnimg.cn/20200518224713113.png" alt="" /></p>
+<p>Use all LOD levels:当前的使用所有LOD层级不允许我们选择或调整新材质的创建方式，它的作用是获取所有当前信息，创建一个完整的大网格体然后使用所有的LOD</p>
 <p>Use specific LOD level：这样所有的网格体就会使用同一个LOD，尽量写0因为不确定是否所有的网格体都具有相同的LOD设置，只有LOD0是所有网格体都共同拥有的。</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53eds.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53eds.png" alt="" /></p>
 <p>在高级选项下有”生成光照贴图UV“和”目标光照贴图分辨率“</p>
 <p>用于确保光照贴图是根据光照计算并添加到UV通道中</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U538L4.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U538L4.png" alt="" /></p>
 <p>进行材质设置之前一定要在前面LOD设置中选择Use specific LOD level</p>
 <p>选择合并材质，按照所选的网格体进行材质的数据选择。</p>
-<p> 下面的地形剔除，选用地形剔除意味着任何与地形相交的网格体的不可见部分都会被剔除</p>
+<p>下面的地形剔除，选用地形剔除意味着任何与地形相交的网格体的不可见部分都会被剔除</p>
 <p>最后是”替换源Actor“：用新生成的网格体替换被选中和融合的Actor</p>
 <p>在融合时为了避免融合出错，我们可以选中要融合的网格体之后按Ctrl+C，此时这些网格体将会被以代码的形式储存下来：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200518225228214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/20200518225228214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
 <p>一旦出错只需要复制这些代码然后粘贴在世界大纲视图中即可</p>
-<h3 id="分层细节层级工具（Hierarchical-Level-of-Detail-Tool）HLOD"><a href="#分层细节层级工具（Hierarchical-Level-of-Detail-Tool）HLOD" class="headerlink" title="分层细节层级工具（Hierarchical Level of Detail Tool）HLOD"></a>分层细节层级工具（Hierarchical Level of Detail Tool）HLOD</h3><p>Actor融合工具虽然效果好，但是有一点不方便，我们需要一些额外的步骤用于在融合错误对象时进行补救，HLOD的优点在于你可以随时撤销和删除生成的群集或融合后的网格体，引擎在后台为你记录了所有的操作，你可以随时重新推倒再来一遍。</p>
+<h3 id="分层细节层级工具hierarchical-level-of-detail-toolhlod"><a class="markdownIt-Anchor" href="#分层细节层级工具hierarchical-level-of-detail-toolhlod"></a> 分层细节层级工具（Hierarchical Level of Detail Tool）HLOD</h3>
+<p>Actor融合工具虽然效果好，但是有一点不方便，我们需要一些额外的步骤用于在融合错误对象时进行补救，HLOD的优点在于你可以随时撤销和删除生成的群集或融合后的网格体，引擎在后台为你记录了所有的操作，你可以随时重新推倒再来一遍。</p>
 <p>窗口→世界设置→LOD System 确保在LOD系统分段中打开启动层级LOD系统</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53kQS.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53kQS.png" alt="" /></p>
 <p>点击窗口打开层级LOD大纲视图</p>
-<p><img src="https://img-blog.csdnimg.cn/2020051822594152.png" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/2020051822594152.png" alt="" /></p>
 <p>点击生成群集</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53uiq.png" alt=""></p>
-<p>这一步大体工作如下：在世界大体将这些网格体分组，然后将组内物体合并。网格体细节不变，但是将会赋予这几个分组（比如两三个）两三个纹理和材质，这样当摄像机远离的时候将极大的降低渲染相同对象的消耗<br>生成结束之后我们点击生成代理网格体<u>（这一步相当于融合Actor）</u></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53uiq.png" alt="" /></p>
+<p>这一步大体工作如下：在世界大体将这些网格体分组，然后将组内物体合并。网格体细节不变，但是将会赋予这几个分组（比如两三个）两三个纹理和材质，这样当摄像机远离的时候将极大的降低渲染相同对象的消耗<br />
+生成结束之后我们点击生成代理网格体<u>（这一步相当于融合Actor）</u></p>
 <p>一些层级LOD设置</p>
-<p><img src="https://s1.ax1x.com/2020/07/21/U53MWV.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/07/21/U53MWV.png" alt="" /></p>
 <p>群集生成设置（Cluster generation settings）：它的作用是HLOD系统会查看关卡，并且放置许多体积，然后为体积中的所有Actor都生成一个新的网格体，例如在一个组有30个网格体，HLOD将他们转化为两到三个网格体，细节程度仍然不变，但它会获取这两到三个网格体，赋予它们两到三种材质和两到三张纹理</p>
 
             </div>
@@ -741,9 +752,12 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（七)体积（Volumes）体积是一种特殊的Actor，它有很多的用途：限制玩家的移动范围，决定音响的混响效果等，UE4中很多交互机制都是由体积决定的。
+                             UE4笔记（七)
+ 体积（Volumes）
+体积是一种特殊的Actor，它有很多的用途：限制玩家的移动范围，决定音响的混响效果等，UE4中很多交互机制都是由体积决定的。
 
-Lightmass Volume它有两大作用：限定Lightmass的模拟
+ Lightmass Volume
+它有两大作用：限定Lightm
                         
                     </div>
                     <div class="publish-info">
@@ -788,8 +802,11 @@ Lightmass Volume它有两大作用：限定Lightmass的模拟
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（五)材质PBRPBR的全称为 Physical Based Rendering(基于物理的渲染)，基于物理的渲染意味着我们根据事实模拟光线，而不是根据主观想法，光线的最终效果会更加准确且自然。
-PBR是两个做卡通渲染风格的工作室
+                             UE4笔记（五)
+ 材质
+ PBR
+PBR的全称为 Physical Based Rendering(基于物理的渲染)，基于物理的渲染意味着我们根据事实模拟光线，而不是根据主观想法，光线的最终效果会更加准确且自然。
+PBR是两个做卡通渲染
                         
                     </div>
                     <div class="publish-info">

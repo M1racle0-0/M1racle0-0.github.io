@@ -426,20 +426,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习—（七）"><a href="#关于第三人称魂类游戏个人学习—（七）" class="headerlink" title="关于第三人称魂类游戏个人学习—（七）"></a>关于第三人称魂类游戏个人学习—（七）</h1><h3 id="优化攻击系统"><a href="#优化攻击系统" class="headerlink" title="优化攻击系统"></a>优化攻击系统</h3><p><img src="https://s1.ax1x.com/2020/10/03/03Shbq.png" alt="46"></p>
+                <h1 id="关于第三人称魂类游戏个人学习七"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习七"></a> 关于第三人称魂类游戏个人学习–（七）</h1>
+<h3 id="优化攻击系统"><a class="markdownIt-Anchor" href="#优化攻击系统"></a> 优化攻击系统</h3>
+<p><img src="https://s1.ax1x.com/2020/10/03/03Shbq.png" alt="46" /></p>
 <p>在攻击判定区域前加入判定。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03Sfrn.png" alt="47"></p>
+<p><img src="https://s1.ax1x.com/2020/10/03/03Sfrn.png" alt="47" /></p>
 <p>如图，在Attacking为动画播放区间，然后中间加上两个通知，在区间内判定造成的伤害。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03SIaV.png" alt="51"></p>
-<h3 id="Mycharacter蓝图（3）"><a href="#Mycharacter蓝图（3）" class="headerlink" title="Mycharacter蓝图（3）"></a>Mycharacter蓝图（3）</h3><h4 id="翻滚"><a href="#翻滚" class="headerlink" title="翻滚"></a>翻滚</h4><p>Soul Dark怎么可以没有无敌的翻滚呢？</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03Sg2Q.png" alt="49"></p>
+<p><img src="https://s1.ax1x.com/2020/10/03/03SIaV.png" alt="51" /></p>
+<h3 id="mycharacter蓝图3"><a class="markdownIt-Anchor" href="#mycharacter蓝图3"></a> Mycharacter蓝图（3）</h3>
+<h4 id="翻滚"><a class="markdownIt-Anchor" href="#翻滚"></a> 翻滚</h4>
+<p>Soul Dark怎么可以没有无敌的翻滚呢？</p>
+<p><img src="https://s1.ax1x.com/2020/10/03/03Sg2Q.png" alt="49" /></p>
 <p>设置input x，y来获取前后左右的值。（无法使用MovementRight 和Movementforward）</p>
-<p>再设立input current x/y来获取值控制翻滚的方向。 </p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03SWKs.png" alt="48"></p>
+<p>再设立input current x/y来获取值控制翻滚的方向。</p>
+<p><img src="https://s1.ax1x.com/2020/10/03/03SWKs.png" alt="48" /></p>
 <p>当X、Y为0，后撤步，其他就根据方向进行翻滚。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03S2vj.png" alt="50"></p>
+<p><img src="https://s1.ax1x.com/2020/10/03/03S2vj.png" alt="50" /></p>
 <p>要在ABP中设置Roll的状态机。</p>
-<p><img src="https://s1.ax1x.com/2020/10/03/03S5V0.png" alt="52"></p>
+<p><img src="https://s1.ax1x.com/2020/10/03/03S5V0.png" alt="52" /></p>
 
             </div>
             <hr/>
@@ -688,9 +692,12 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（八）Lock锁定系统（Q）这个写的比较久，直接放蓝图和思想了。
-思路首先获取地图上范围内标签内所有的enemy，从人物的正前方为0°，后方为180°，获取每个位置敌人到人物前方的旋转角度。
-取最小的旋转角度，
+                             关于第三人称魂类游戏个人学习–（八）
+ Lock锁定系统（Q）
+这个写的比较久，直接放蓝图和思想了。
+ 思路
+首先获取地图上范围内标签内所有的enemy，从人物的正前方为0°，后方为180°，获取每个位置敌人到人物前方的旋转角度。
+取最小
                         
                     </div>
                     <div class="publish-info">
@@ -735,11 +742,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（六）蓝图优化（组件化）
+                             关于第三人称魂类游戏个人学习–（六）
+ 蓝图优化（组件化）
+
 
 将伤害判定和攻击放在一个Actor组件中，便于管理，再将FightSystem中的变量设置为私有，方便在MyCharacter中进行组件管理。
-受击系统
-人物受到攻击时思考：人物的中
+ 受击系统
+
+人物受到攻击时思
                         
                     </div>
                     <div class="publish-info">

@@ -409,7 +409,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    944
+                    946
                 </div>
                 
 
@@ -426,11 +426,16 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4学习笔记（二）"><a href="#UE4学习笔记（二）" class="headerlink" title="UE4学习笔记（二）"></a>UE4学习笔记（二）</h1><h2 id="关于光照重建问题的解决方法"><a href="#关于光照重建问题的解决方法" class="headerlink" title="关于光照重建问题的解决方法"></a>关于光照重建问题的解决方法</h2><p>有两种解决方法。</p>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>点击构建中的仅构建光照(三角中）。<img src="https://img-blog.csdnimg.cn/20200301164635423.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Fsenp3,size_16,color_FFFFFF,t_70" alt=""></p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>右侧搜索light，在光照的变换中将固定改为可移动。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200217135620377.png" alt=""></p>
-<h3 id="光源的移动性差别："><a href="#光源的移动性差别：" class="headerlink" title="光源的移动性差别："></a>光源的移动性差别：</h3><p><strong>Stationary:</strong></p>
+                <h1 id="ue4学习笔记二"><a class="markdownIt-Anchor" href="#ue4学习笔记二"></a> UE4学习笔记（二）</h1>
+<h2 id="关于光照重建问题的解决方法"><a class="markdownIt-Anchor" href="#关于光照重建问题的解决方法"></a> 关于光照重建问题的解决方法</h2>
+<p>有两种解决方法。</p>
+<h3 id="方法一"><a class="markdownIt-Anchor" href="#方法一"></a> 方法一</h3>
+<p>点击构建中的仅构建光照(三角中）。<img src="https://img-blog.csdnimg.cn/20200301164635423.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Fsenp3,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h3 id="方法二"><a class="markdownIt-Anchor" href="#方法二"></a> 方法二</h3>
+<p>右侧搜索light，在光照的变换中将固定改为可移动。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200217135620377.png" alt="" /></p>
+<h3 id="光源的移动性差别"><a class="markdownIt-Anchor" href="#光源的移动性差别"></a> 光源的移动性差别：</h3>
+<p><strong>Stationary:</strong></p>
 <p>固定光源是保持固定位置不变的光源，但你可以改变光源的亮度和颜色等。这是与静态光源的主要不同之处，静态光源在gameplay期间不会改变。但是，如果在运行时更改亮度，请注意它仅影响直接光照。间接（反射）光照不会改变，因为它是在光照系统（Lightmass）中预先计算的。</p>
 <p><strong>Mobile:</strong></p>
 <p>可移动光源使用完全动态的光照，一切都可以在游戏中改变，但其性能消耗极大，通常而言与光源影响的范围成正比（投射完全动态的光照和阴影。可修改位置、旋转、颜色、亮度、衰减、半径等所有属性。其投射的光照不会烘焙到光照贴图中，在无全局光照方法时不支持间接光照。）</p>
@@ -438,25 +443,34 @@
 <p>在运行时完全无法更改或移动的光源。这些光源仅在光照贴图中计算，一旦处理完，对性能没有进一步影响。可移动对象不能与静态光源集成，因此静态光源的用途是有限的。</p>
 <p>静态照明仅使用光照贴图，因此它们的阴影会在游戏前烘焙。这意味着，它们不能让移动（动态）对象产生阴影。如果要照明的对象也是静态的，就能够产生面积（接触）阴影。</p>
 <p>主要应用对象是移动平台上的低性能设备。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200217135623122.png" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/20200217135623122.png" alt="" /></p>
 <p><a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/Engine/Rendering/LightingAndShadows/LightMobility/index.html">关于光源移动性的具体文档</a></p>
-<h2 id="Landscape室外地形创建（并使用第三人称游戏模式游玩）"><a href="#Landscape室外地形创建（并使用第三人称游戏模式游玩）" class="headerlink" title="Landscape室外地形创建（并使用第三人称游戏模式游玩）"></a>Landscape室外地形创建（并使用第三人称游戏模式游玩）</h2><p>landscape能为世界场景创建地形山脉、山谷、起伏或倾斜的地面，甚至洞穴的开口并通过一系列工具轻松修改其形状和外观</p>
-<h3 id="打开地形工具方法"><a href="#打开地形工具方法" class="headerlink" title="打开地形工具方法"></a>打开地形工具方法</h3><p>1.在模式中选中landscape （快捷键为shift+2）</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Landscape/Landscape_Modes.webp" alt=""></p>
+<h2 id="landscape室外地形创建并使用第三人称游戏模式游玩"><a class="markdownIt-Anchor" href="#landscape室外地形创建并使用第三人称游戏模式游玩"></a> Landscape室外地形创建（并使用第三人称游戏模式游玩）</h2>
+<p>landscape能为世界场景创建地形山脉、山谷、起伏或倾斜的地面，甚至洞穴的开口并通过一系列工具轻松修改其形状和外观</p>
+<h3 id="打开地形工具方法"><a class="markdownIt-Anchor" href="#打开地形工具方法"></a> 打开地形工具方法</h3>
+<p>1.在模式中选中landscape （快捷键为shift+2）</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Landscape/Landscape_Modes.webp" alt="" /></p>
 <p>2.在放置actors中的all classes（所有类中）选择地形landscape或通过搜索</p>
-<h3 id="地形创建"><a href="#地形创建" class="headerlink" title="地形创建"></a>地形创建</h3><p>manage中导入你的地形材质创建基础地形大小，Sculpt（雕刻）中修改地形形状，Paint中修改部分地形外观。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Landscape/Editing/Landscape_ManageMode.webp" alt=""></p>
+<h3 id="地形创建"><a class="markdownIt-Anchor" href="#地形创建"></a> 地形创建</h3>
+<p>manage中导入你的地形材质创建基础地形大小，Sculpt（雕刻）中修改地形形状，Paint中修改部分地形外观。</p>
+<p><img src="https://docs.unrealengine.com/Images/Engine/Landscape/Editing/Landscape_ManageMode.webp" alt="" /></p>
 <p><a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/Engine/Landscape/QuickStart/3/index.html">具体关于Sculpt工具使用方法</a></p>
-<h4 id="灰度图和高度图"><a href="#灰度图和高度图" class="headerlink" title="灰度图和高度图"></a>灰度图和高度图</h4><p>在PS中，将高度图的模式改为灰度，16位通道，UE4的格式只支持.RAW和.PNG。</p>
-<h3 id="植被的碰撞设置"><a href="#植被的碰撞设置" class="headerlink" title="植被的碰撞设置"></a>植被的碰撞设置</h3><p><a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/Engine/Foliage/index.html">笔刷使用方法</a></p>
+<h4 id="灰度图和高度图"><a class="markdownIt-Anchor" href="#灰度图和高度图"></a> 灰度图和高度图</h4>
+<p>在PS中，将高度图的模式改为灰度，16位通道，UE4的格式只支持.RAW和.PNG。</p>
+<h3 id="植被的碰撞设置"><a class="markdownIt-Anchor" href="#植被的碰撞设置"></a> 植被的碰撞设置</h3>
+<p><a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/Engine/Foliage/index.html">笔刷使用方法</a></p>
 <p>一开始用画笔刷上的物体是没有碰撞体积的。选中要加上碰撞的植物模型，先进入网格体界面，查看是否有简单碰撞，如果没有就用凸包分解创建碰撞模型（性能消耗大）或者直接用盒体等创建。模型碰撞完成之后，进入外部的碰撞预设，改为BlockAll或其他碰撞方式。</p>
-<h3 id="关于官方第三人称模型的使用方法"><a href="#关于官方第三人称模型的使用方法" class="headerlink" title="关于官方第三人称模型的使用方法"></a>关于官方第三人称模型的使用方法</h3><p>两种方式实现。</p>
-<h4 id="1添加第三人称标准模块"><a href="#1添加第三人称标准模块" class="headerlink" title="1添加第三人称标准模块"></a>1添加第三人称标准模块</h4><p>在ThirdPersonBP中选择Character加入场景。点击人体模型，在细节中选择ThirdPersonCharacter（自身）搜索possess,在Pawn中自动控制玩家设为玩家0。</p>
-<h4 id="2游戏模式设置"><a href="#2游戏模式设置" class="headerlink" title="2游戏模式设置"></a>2游戏模式设置</h4><p>在actor中搜索玩家出生点，放置在建立好的世界中。</p>
+<h3 id="关于官方第三人称模型的使用方法"><a class="markdownIt-Anchor" href="#关于官方第三人称模型的使用方法"></a> 关于官方第三人称模型的使用方法</h3>
+<p>两种方式实现。</p>
+<h4 id="1添加第三人称标准模块"><a class="markdownIt-Anchor" href="#1添加第三人称标准模块"></a> 1添加第三人称标准模块</h4>
+<p>在ThirdPersonBP中选择Character加入场景。点击人体模型，在细节中选择ThirdPersonCharacter（自身）搜索possess,在Pawn中自动控制玩家设为玩家0。</p>
+<h4 id="2游戏模式设置"><a class="markdownIt-Anchor" href="#2游戏模式设置"></a> 2游戏模式设置</h4>
+<p>在actor中搜索玩家出生点，放置在建立好的世界中。</p>
 <p>打开世界场景设置</p>
 <p>在Game Mode中建立游戏模式，例如第三人称游戏模式或者第一人称。</p>
 <p>在Default Pawn Class中选择操控人物</p>
-<h2 id="项目实现中其他遇到的问题"><a href="#项目实现中其他遇到的问题" class="headerlink" title="项目实现中其他遇到的问题"></a>项目实现中其他遇到的问题</h2><p>我建议看文档 ^_^</p>
+<h2 id="项目实现中其他遇到的问题"><a class="markdownIt-Anchor" href="#项目实现中其他遇到的问题"></a> 项目实现中其他遇到的问题</h2>
+<p>我建议看文档 <sup>_</sup></p>
 
             </div>
             <hr/>
@@ -705,8 +719,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4学习笔记（三）关于蓝图的概念虚幻引擎中的蓝图-可视化脚本系统，可视化意味着将代码变成了一个个可见的模块，蓝图就是封装了很多现成的逻辑，它方便了基础系统的创建和逻辑的工程化分层。小型游戏完全可以使用蓝图制作。
-UE4推出的蓝图系统，更深
+                             UE4学习笔记（三）
+ 关于蓝图的概念
+虚幻引擎中的蓝图-可视化脚本系统，可视化意味着将代码变成了一个个可见的模块，蓝图就是封装了很多现成的逻辑，它方便了基础系统的创建和逻辑的工程化分层。小型游戏完全可以使用蓝图制作。
+UE4推出的蓝图系
                         
                     </div>
                     <div class="publish-info">
@@ -751,40 +767,50 @@ UE4推出的蓝图系统，更深
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4学习笔记（一）UE4官方文档  
-界面系统  
-
-
-选卡栏和菜单栏  
-
-
-
-工具栏  
-
-
-
-模式  
-
-
-
-内容浏览器  
-
-
-
-视口  
-
-
-
-世界大纲视图  
-
-
-
-详细信息   
+                             UE4学习笔记（一）
+UE4官方文档
+ 界面系统
 
 
 
 
-选卡栏关卡编辑器的顶部有一个选卡，提
+选卡栏和菜单栏
+
+
+
+
+工具栏
+
+
+
+
+模式
+
+
+
+
+内容浏览器
+
+
+
+
+视口
+
+
+
+
+世界大纲视图
+
+
+
+
+详细信息
+
+
+
+
+ 选卡栏
+关卡编辑器的顶部有一个选卡，提供了当前正在
                         
                     </div>
                     <div class="publish-info">

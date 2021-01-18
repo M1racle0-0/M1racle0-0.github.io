@@ -409,7 +409,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    908
+                    910
                 </div>
                 
 
@@ -426,54 +426,72 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="2D场景的水面效果—UPR"><a href="#2D场景的水面效果—UPR" class="headerlink" title="2D场景的水面效果—UPR"></a>2D场景的水面效果—UPR</h1><h2 id="水面倒影效果"><a href="#水面倒影效果" class="headerlink" title="水面倒影效果"></a>水面倒影效果</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>用另外一个摄像机去获取画面，然后得出来的画面作为材质纹理给水面。</p>
-<h4 id="RenderTexture"><a href="#RenderTexture" class="headerlink" title="RenderTexture"></a>RenderTexture</h4><p>渲染纹理：一种可以在上面绘制，然后像使用其他 纹理/精灵 一样使用的纹理。可以将其作为相机的output texture，将使摄像机画面渲染到纹理，而不是渲染到屏幕。</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMBPx.png" alt="1"></p>
+                <h1 id="2d场景的水面效果upr"><a class="markdownIt-Anchor" href="#2d场景的水面效果upr"></a> 2D场景的水面效果–UPR</h1>
+<h2 id="水面倒影效果"><a class="markdownIt-Anchor" href="#水面倒影效果"></a> 水面倒影效果</h2>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>用另外一个摄像机去获取画面，然后得出来的画面作为材质纹理给水面。</p>
+<h4 id="rendertexture"><a class="markdownIt-Anchor" href="#rendertexture"></a> RenderTexture</h4>
+<p>渲染纹理：一种可以在上面绘制，然后像使用其他 纹理/精灵 一样使用的纹理。可以将其作为相机的output texture，将使摄像机画面渲染到纹理，而不是渲染到屏幕。</p>
+<p><img src="https://s3.ax1x.com/2020/12/29/rqMBPx.png" alt="1" /></p>
 <p>创建的新摄像机，用来获取反射画面，注意透视和正交应该与Main Camera相同，然后output Texture给RenderTexture</p>
 <ul>
 <li>新创建的Camera要把AudioListener关闭</li>
 <li>Output Target要选择Texture</li>
 </ul>
-<h3 id="Water-Shader（Shader-Graph）"><a href="#Water-Shader（Shader-Graph）" class="headerlink" title="Water Shader（Shader Graph）"></a>Water Shader（Shader Graph）</h3><p>让刚才得到的RenderTexture作为主纹理</p>
-<h4 id="翻转画面"><a href="#翻转画面" class="headerlink" title="翻转画面"></a>翻转画面</h4><p>Tiling And Offset</p>
+<h3 id="water-shadershader-graph"><a class="markdownIt-Anchor" href="#water-shadershader-graph"></a> Water Shader（Shader Graph）</h3>
+<p>让刚才得到的RenderTexture作为主纹理</p>
+<h4 id="翻转画面"><a class="markdownIt-Anchor" href="#翻转画面"></a> 翻转画面</h4>
+<p>Tiling And Offset</p>
 <p>Tiling：表示UV坐标的缩放倍数</p>
 <p>Offset：表示UV坐标的起始位置</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMDG6.png" alt="2"></p>
+<p><img src="https://s3.ax1x.com/2020/12/29/rqMDG6.png" alt="2" /></p>
 <p>Offset X控制波纹效果</p>
-<h4 id="波动效果"><a href="#波动效果" class="headerlink" title="波动效果"></a>波动效果</h4><p><img src="https://s3.ax1x.com/2020/12/29/rqMsxO.png" alt="3"></p>
+<h4 id="波动效果"><a class="markdownIt-Anchor" href="#波动效果"></a> 波动效果</h4>
+<p><img src="https://s3.ax1x.com/2020/12/29/rqMsxO.png" alt="3" /></p>
 <p>将速度设为变量，Time和速度相乘加上渐变噪点的效果，让Simple Noise动起来。</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqM6MD.png" alt="4"></p>
+<p><img src="https://s3.ax1x.com/2020/12/29/rqM6MD.png" alt="4" /></p>
 <p>设置变量Strength，相乘-减小波动的强度，用一个Vector2将只影响Offset的X值。达到控制水波纹左右移动的效果。</p>
-<h4 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h4><p>最后通过一个Color控制水面颜色</p>
-<p><img src="https://s3.ax1x.com/2020/12/29/rqMrRK.png" alt="5"></p>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://s3.ax1x.com/2020/12/31/rX3ECj.png" alt="6"></p>
-<h2 id="水波流动效果"><a href="#水波流动效果" class="headerlink" title="水波流动效果"></a>水波流动效果</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>在Spirts上利用UV纹理滚动和噪点的叠加完成流动的水波</p>
+<h4 id="颜色"><a class="markdownIt-Anchor" href="#颜色"></a> 颜色</h4>
+<p>最后通过一个Color控制水面颜色</p>
+<p><img src="https://s3.ax1x.com/2020/12/29/rqMrRK.png" alt="5" /></p>
+<h3 id="效果"><a class="markdownIt-Anchor" href="#效果"></a> 效果</h3>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3ECj.png" alt="6" /></p>
+<h2 id="水波流动效果"><a class="markdownIt-Anchor" href="#水波流动效果"></a> 水波流动效果</h2>
+<h3 id="思路-2"><a class="markdownIt-Anchor" href="#思路-2"></a> 思路</h3>
+<p>在Spirts上利用UV纹理滚动和噪点的叠加完成流动的水波</p>
 <p>能与灯光做反应，用Water的发现贴图</p>
-<h3 id="Shader-Graph（LIT-接受光照）"><a href="#Shader-Graph（LIT-接受光照）" class="headerlink" title="Shader Graph（LIT 接受光照）"></a>Shader Graph（LIT 接受光照）</h3><p>用一个渐变的矩形做为主材质</p>
-<h4 id="Vertex-Position"><a href="#Vertex-Position" class="headerlink" title="Vertex Position"></a>Vertex Position</h4><p>实现河面上下浮动，潮起潮落效果</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3iVS.png" alt="7"></p>
+<h3 id="shader-graphlit-接受光照"><a class="markdownIt-Anchor" href="#shader-graphlit-接受光照"></a> Shader Graph（LIT 接受光照）</h3>
+<p>用一个渐变的矩形做为主材质</p>
+<h4 id="vertex-position"><a class="markdownIt-Anchor" href="#vertex-position"></a> Vertex Position</h4>
+<p>实现河面上下浮动，潮起潮落效果</p>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3iVS.png" alt="7" /></p>
 <p>设置Offset变量，为Vector3，只略微改变y值，与sine Time或Cosine Time相乘，让数值在y轴上来回变动。</p>
-<p>选择”Object”，输出顶点坐标位置</p>
-<h4 id="Normal（水面阴影）"><a href="#Normal（水面阴影）" class="headerlink" title="Normal（水面阴影）"></a>Normal（水面阴影）</h4><p>创建2D点光源，在里面勾选”Use Normal Map“，能与精灵的法线贴图互动（光照会使用精灵材质的法线贴图数据，来为其创造出阴影和景深效果）</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3k5Q.png" alt="8"></p>
+<p>选择&quot;Object&quot;，输出顶点坐标位置</p>
+<h4 id="normal水面阴影"><a class="markdownIt-Anchor" href="#normal水面阴影"></a> Normal（水面阴影）</h4>
+<p>创建2D点光源，在里面勾选”Use Normal Map“，能与精灵的法线贴图互动（光照会使用精灵材质的法线贴图数据，来为其创造出阴影和景深效果）</p>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3k5Q.png" alt="8" /></p>
 <p>将Sample Texture 2D的类型选为Normal</p>
 <p>法线需要上下的来回变动，还要一直向右运动（想象水的阴影运动）。所以用Vector 2将offset的XY拆开，一个使用Time一直向右，一个用Sine Time做往复运动。在外部将水的Normal贴图选为Repeat播放。</p>
 <p>最后乘上Strength，可在外面改变法线强度。（水面阴影强度）</p>
-<h4 id="Noise（模拟光的折射"><a href="#Noise（模拟光的折射" class="headerlink" title="Noise（模拟光的折射"></a>Noise（模拟光的折射</h4><p>通过Noise模拟焦散和折射，通过将颜色和各种滚动Noise纹理组合起来，让光就像在水中到处反射一样</p>
-<h4 id="Primary-Noise"><a href="#Primary-Noise" class="headerlink" title="Primary Noise"></a>Primary Noise</h4><p><img src="https://s3.ax1x.com/2020/12/31/rX3FUg.png" alt="9"></p>
+<h4 id="noise模拟光的折射"><a class="markdownIt-Anchor" href="#noise模拟光的折射"></a> Noise（模拟光的折射</h4>
+<p>通过Noise模拟焦散和折射，通过将颜色和各种滚动Noise纹理组合起来，让光就像在水中到处反射一样</p>
+<h4 id="primary-noise"><a class="markdownIt-Anchor" href="#primary-noise"></a> Primary Noise</h4>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3FUg.png" alt="9" /></p>
 <p>创建一个Gradient Noise：渐变噪点,基于输入的UV生成一个渐变噪点图（Perlin噪点）。Scale可以控制噪点图的大小。</p>
 <p>逐渐偏移X轴上的UV，能制作出条纹的效果。如下（像雾气一样一直往右移动）</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3Z2n.png" alt="10"></p>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3Z2n.png" alt="10" /></p>
 <p>乘以主渐变纹理，MainTex。</p>
 <p>但是这样会有一些水体会在Noise较暗处消失，所以将结果添加到原纹理上，用Add。在这期间可以用Color加Multiply修改噪声的颜色，这样可以做出蓝湖的效果（创建Noise Color变量可在外部调整噪点颜色，如下图）。光照看起来像是穿透了水面下的区域，表面有颜色的对比。</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3nK0.png" alt="11"></p>
-<h4 id="Second-Noise"><a href="#Second-Noise" class="headerlink" title="Second Noise"></a>Second Noise</h4><p>增加水面细节，让水在光照下反光、闪烁。波光粼粼的效果</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3urV.png" alt="12"></p>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3nK0.png" alt="11" /></p>
+<h4 id="second-noise"><a class="markdownIt-Anchor" href="#second-noise"></a> Second Noise</h4>
+<p>增加水面细节，让水在光照下反光、闪烁。波光粼粼的效果</p>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3urV.png" alt="12" /></p>
 <p>用一个simple Noise，让他在y轴上下摆动，这个noise值可以大一些，波光粼粼应该是一些小斑点。新建颜色（Second Noise Color）形成对比。</p>
 <p>然后与MainTex相乘。</p>
 <p>最后将结果添加到组合好的纹理上。</p>
-<p><img src="https://s3.ax1x.com/2020/12/31/rX3evq.png" alt="13"></p>
-<h3 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h3><p><img src="https://s3.ax1x.com/2020/12/31/rX3V8s.png" alt="14"></p>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3evq.png" alt="13" /></p>
+<h3 id="效果-2"><a class="markdownIt-Anchor" href="#效果-2"></a> 效果</h3>
+<p><img src="https://s3.ax1x.com/2020/12/31/rX3V8s.png" alt="14" /></p>
 <p>可以与2D Point Light交互</p>
 
             </div>
@@ -723,15 +741,18 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Unity Shader-基础光照（上）原理如何决定一个像素的颜色？
+                             Unity Shader-基础光照（上）
+ 原理
+如何决定一个像素的颜色？
 从宏观来看，渲染包含两大部分：
 
 决定一个像素的可见性
 决定这个像素的光照计算
 
 光照模型就是用于决定在一个像素上进行怎样的光照计算
-图像产生的物理现象
-首先，光线从光源
+ 图像产生的物理现象
+
+首先
                         
                     </div>
                     <div class="publish-info">
@@ -776,17 +797,16 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            二维图形的几何变换矩阵推导和齐次坐标系二维图形的几何变换（平移、缩放、旋转）（X,Y）代表变换后的点，（x,y）是原来的
+                             二维图形的几何变换矩阵推导和齐次坐标系
+ 二维图形的几何变换（平移、缩放、旋转）
+（X,Y）代表变换后的点，（x,y）是原来的
 
-平移 
 
-X = x + dx\\
+平移
+X=x+dxY=y+dyd为任意值X = x + dx\\
 Y = y + dy\\
 d为任意值
-缩放 
-
-X=x\cdot S_x \\
-
+X
                         
                     </div>
                     <div class="publish-info">

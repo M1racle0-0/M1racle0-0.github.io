@@ -426,25 +426,29 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习—（五）"><a href="#关于第三人称魂类游戏个人学习—（五）" class="headerlink" title="关于第三人称魂类游戏个人学习—（五）"></a>关于第三人称魂类游戏个人学习—（五）</h1><h3 id="伤害检测系统"><a href="#伤害检测系统" class="headerlink" title="伤害检测系统"></a>伤害检测系统</h3><h4 id="伤害检测系统（二）"><a href="#伤害检测系统（二）" class="headerlink" title="伤害检测系统（二）"></a>伤害检测系统（二）</h4><p>利用Overlap实现的伤害检测</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A0ReS.png" alt="35"></p>
+                <h1 id="关于第三人称魂类游戏个人学习五"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习五"></a> 关于第三人称魂类游戏个人学习–（五）</h1>
+<h3 id="伤害检测系统"><a class="markdownIt-Anchor" href="#伤害检测系统"></a> 伤害检测系统</h3>
+<h4 id="伤害检测系统二"><a class="markdownIt-Anchor" href="#伤害检测系统二"></a> 伤害检测系统（二）</h4>
+<p>利用Overlap实现的伤害检测</p>
+<p><img src="https://s1.ax1x.com/2020/09/28/0A0ReS.png" alt="35" /></p>
 <p>在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞预设，就不用在蓝图中Switch</p>
 <ul>
 <li>确保你的武器是有碰撞体的</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A0foQ.png" alt="34"></p>
+<p><img src="https://s1.ax1x.com/2020/09/28/0A0foQ.png" alt="34" /></p>
 <p>当重叠的时候Apply Damage，设置两个条件.</p>
 <p>1.因为武器是拿在手里的，可能在动作的时候会碰到自己造成”自杀“，所以在接收伤害的时候要排除自己。</p>
 <p>2.要在攻击动画进行的时候实现，不然走路你的武器撞到Actor也会造成伤害。</p>
-<h4 id="伤害检测系统（三）"><a href="#伤害检测系统（三）" class="headerlink" title="伤害检测系统（三）"></a>伤害检测系统（三）</h4><p>LineTrace检测方式。</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A0gL8.png" alt="36"></p>
+<h4 id="伤害检测系统三"><a class="markdownIt-Anchor" href="#伤害检测系统三"></a> 伤害检测系统（三）</h4>
+<p>LineTrace检测方式。</p>
+<p><img src="https://s1.ax1x.com/2020/09/28/0A0gL8.png" alt="36" /></p>
 <p>在武器上加上插槽，先确定第一帧三个插槽的位置，根据第二帧插槽的位置连接画线，判断挥动过程中所触碰到的Actor</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A0Wdg.png" alt="37"></p>
+<p><img src="https://s1.ax1x.com/2020/09/28/0A0Wdg.png" alt="37" /></p>
 <p>创建变量Sword Socket Location存储插槽位置，每次使用前要清空数组，记录每个插槽的位置，然后把函数放在Attack攻击组件后面</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A04ij.png" alt="38"></p>
+<p><img src="https://s1.ax1x.com/2020/09/28/0A04ij.png" alt="38" /></p>
 <p>当事件发生时，先判断是否处于攻击状态，取出Sword中各个插槽的位置信息，Array Element里为存放的上一帧的位置，以此直接放入LineTraceForObjects中的Start中，将这一帧的插槽位置信息得出放入End，并且使用Init Sword Socket Location函数存储这一帧的位置信息。</p>
 <p>将Start位置和End位置连线，选择Pawn类型，如果接触到Pawn，得到返回值，造成伤害。</p>
-<p><img src="https://s1.ax1x.com/2020/09/28/0A05Js.png" alt="39"></p>
+<p><img src="https://s1.ax1x.com/2020/09/28/0A05Js.png" alt="39" /></p>
 <p>在Attacking中生成Line判断是否攻击到目标。</p>
 <ul>
 <li>最近在深入研究攻击动作实行的文档。</li>
@@ -697,11 +701,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（六）蓝图优化（组件化）
+                             关于第三人称魂类游戏个人学习–（六）
+ 蓝图优化（组件化）
+
 
 将伤害判定和攻击放在一个Actor组件中，便于管理，再将FightSystem中的变量设置为私有，方便在MyCharacter中进行组件管理。
-受击系统
-人物受到攻击时思考：人物的中
+ 受击系统
+
+人物受到攻击时思
                         
                     </div>
                     <div class="publish-info">
@@ -746,11 +753,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于第三人称魂类游戏个人学习—（四）伤害检测系统三种不同的检测方式
+                             关于第三人称魂类游戏个人学习–（四）
+ 伤害检测系统
+三种不同的检测方式
 条件语句和循环语句
-伤害检测系统（一）使用MultiCapsuleTraceForObjects检测伤害
+ 伤害检测系统（一）
+使用MultiCapsuleTraceForObjects检测伤害
 
-为了代码的可视性，创建ActorComponent命名为Dete
+为了代码的可视性，创建ActorComponent命
                         
                     </div>
                     <div class="publish-info">
