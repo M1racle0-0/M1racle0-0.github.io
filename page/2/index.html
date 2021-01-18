@@ -300,6 +300,53 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/10/05/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E4%B9%9D%EF%BC%89/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="关于第三人称魂类游戏个人学习--（九）">
+                            
+                            <span class="card-title">关于第三人称魂类游戏个人学习--（九）</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                关于第三人称魂类游戏个人学习—（九）锁定系统升级，利用 Z、C 来改变锁定对象上一次做了Get All enemy中获得所有enemy的rotation并且进行了排序
+
+Switch Rotation，向左0，向右1
+
+keys遍历，Fin
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-05
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                M1racle
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/UE4/">
+                            <span class="chip bg-color">UE4</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/10/04/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%8E%B0%E8%AE%A1%E5%88%92%EF%BC%88%E5%85%AB%EF%BC%89/">
                         <div class="card-image">
                             
@@ -313,12 +360,9 @@
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 关于第三人称魂类游戏个人学习–（八）
- Lock锁定系统（Q）
-这个写的比较久，直接放蓝图和思想了。
- 思路
-首先获取地图上范围内标签内所有的enemy，从人物的正前方为0°，后方为180°，获取每个位置敌人到人物前方的旋转角度。
-取最小
+                                关于第三人称魂类游戏个人学习—（八）Lock锁定系统（Q）这个写的比较久，直接放蓝图和思想了。
+思路首先获取地图上范围内标签内所有的enemy，从人物的正前方为0°，后方为180°，获取每个位置敌人到人物前方的旋转角度。
+取最小的旋转角度，
                             
                         </div>
                         <div class="publish-info">
@@ -361,16 +405,12 @@
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 关于第三人称魂类游戏个人学习–（七）
- 优化攻击系统
-
+                                关于第三人称魂类游戏个人学习—（七）优化攻击系统
 在攻击判定区域前加入判定。
 
 如图，在Attacking为动画播放区间，然后中间加上两个通知，在区间内判定造成的伤害。
 
- Mycharacter蓝图（3）
- 翻滚
-Soul Dar
+Mycharacter蓝图（3）翻滚Soul Dark怎么可以没有无
                             
                         </div>
                         <div class="publish-info">
@@ -413,14 +453,11 @@ Soul Dar
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 关于第三人称魂类游戏个人学习–（六）
- 蓝图优化（组件化）
-
+                                关于第三人称魂类游戏个人学习—（六）蓝图优化（组件化）
 
 将伤害判定和攻击放在一个Actor组件中，便于管理，再将FightSystem中的变量设置为私有，方便在MyCharacter中进行组件管理。
- 受击系统
-
-人物受到攻击时思
+受击系统
+人物受到攻击时思考：人物的中
                             
                         </div>
                         <div class="publish-info">
@@ -463,12 +500,9 @@ Soul Dar
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 关于第三人称魂类游戏个人学习–（五）
- 伤害检测系统
- 伤害检测系统（二）
-利用Overlap实现的伤害检测
+                                关于第三人称魂类游戏个人学习—（五）伤害检测系统伤害检测系统（二）利用Overlap实现的伤害检测
 
-在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞
+在武器中选择On Component Begin Overlap,当武器和对象Actor重叠的时候就会进行，直接设置相应的碰撞预设，就不用
                             
                         </div>
                         <div class="publish-info">
@@ -511,14 +545,11 @@ Soul Dar
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 关于第三人称魂类游戏个人学习–（四）
- 伤害检测系统
-三种不同的检测方式
+                                关于第三人称魂类游戏个人学习—（四）伤害检测系统三种不同的检测方式
 条件语句和循环语句
- 伤害检测系统（一）
-使用MultiCapsuleTraceForObjects检测伤害
+伤害检测系统（一）使用MultiCapsuleTraceForObjects检测伤害
 
-为了代码的可视性，创建ActorComponent命
+为了代码的可视性，创建ActorComponent命名为Dete
                             
                         </div>
                         <div class="publish-info">
@@ -561,11 +592,9 @@ Soul Dar
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 关于第三人称魂类游戏个人学习–（三）
- MyCharacter蓝图（3）
-基于ActComponent实现的AttributeSystem
+                                关于第三人称魂类游戏个人学习—（三）MyCharacter蓝图（3）基于ActComponent实现的AttributeSystem
 
-设置需要的属性：Hp、Sta,设立最大值变量Max Hp、Max Sta和当前Hp、Sta变量，
+设置需要的属性：Hp、Sta,设立最大值变量Max Hp、Max Sta和当前Hp、Sta变量，并先给一
                             
                         </div>
                         <div class="publish-info">
@@ -608,14 +637,11 @@ Soul Dar
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 关于第三人称魂类游戏个人学习–（2）
- Character蓝图（2）
- 武器绑定
-
+                                关于第三人称魂类游戏个人学习—（2）Character蓝图（2）武器绑定
 创建Sword和Shield插槽绑定到MyCharacter，具体位置可在Animation蓝图调整
 
- 武器攻击
-操作映射加入左键攻击Attack，蓝图
+武器攻击操作映射加入左键攻击Attack，蓝图播放动作蒙太奇
+
                             
                         </div>
                         <div class="publish-info">
@@ -658,14 +684,12 @@ Soul Dar
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 关于第三人称魂类游戏个人学习–（1）
- 创建场景光源(1)
-所需组件：
+                                关于第三人称魂类游戏个人学习—（1）创建场景光源(1)所需组件：
 Fog、skylight、DirectionalLight、Sky_Sphere
 添加cube作为地板
 
 材质纹理大小可根据Texcoord进行调整。
- Mychar
+Mycharacter
                             
                         </div>
                         <div class="publish-info">
@@ -708,11 +732,9 @@ Fog、skylight、DirectionalLight、Sky_Sphere
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 解析官方的蓝图场景之提示卡
-咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
- 提示卡
-
-一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物
+                                解析官方的蓝图场景之提示卡咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
+提示卡
+一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物体看起来
                             
                         </div>
                         <div class="publish-info">
@@ -755,10 +777,8 @@ Fog、skylight、DirectionalLight、Sky_Sphere
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 UE4笔记（十）
-首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
- 蓝图
-Blueprint is Visual  Scriptin
+                                UE4笔记（十）首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
+蓝图Blueprint is Visual  Scripting (y
                             
                         </div>
                         <div class="publish-info">
@@ -801,63 +821,15 @@ Blueprint is Visual  Scriptin
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                 UE4笔记（九）
- 角色
-
+                                UE4笔记（九）角色
 Controller 可以由AI或玩家控制
 AI框架可以帮助AI Controller根据导航网格体来决定pawn或Character的行为还有去哪里做什么
-Character是一种特定类型的Pawn，它拥有M
+Character是一种特定类型的Pawn，它拥有Movem
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2020-07-30
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                M1racle
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/UE4/">
-                            <span class="chip bg-color">UE4</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/07/25/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="UE4笔记（八）--蓝图（上）">
-                            
-                            <span class="card-title">UE4笔记（八）--蓝图（上）</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                 UE4笔记（八)
- 蓝图入门(上)
-BP’s focus is on making it accessible,versatile and powerful to anyone in the team.
-It is meant to em
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
                             </span>
                             <span class="publish-author">
                                 

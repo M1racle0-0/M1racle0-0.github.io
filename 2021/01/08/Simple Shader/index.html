@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="UE4笔记（七）, M1racle0-0">
+    <meta name="keywords" content="Simple Shader, M1racle0-0">
     <meta name="description" content="Let life be beautiful like summer flowers and death like autumn leaves.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>UE4笔记（七） | M1racle0-0</title>
+    <title>Simple Shader | M1racle0-0</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -249,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">UE4笔记（七）</h1>
+                    <h1 class="description center-align post-title">Simple Shader</h1>
                 </div>
             </div>
         </div>
@@ -379,8 +379,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/UE4/">
-                                <span class="chip bg-color">UE4</span>
+                            <a href="/tags/Unity-Shader/">
+                                <span class="chip bg-color">Unity Shader</span>
                             </a>
                         
                     </div>
@@ -395,21 +395,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-22
+                    2021-01-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-22
+                    2021-01-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    619
                 </div>
                 
 
@@ -426,144 +426,63 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="UE4笔记（七"><a href="#UE4笔记（七" class="headerlink" title="UE4笔记（七)"></a>UE4笔记（七)</h1><h2 id="体积（Volumes）"><a href="#体积（Volumes）" class="headerlink" title="体积（Volumes）"></a>体积（Volumes）</h2><p>体积是一种特殊的Actor，它有很多的用途：限制玩家的移动范围，决定音响的混响效果等，UE4中很多交互机制都是由体积决定的。</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UTckrD.png" alt=""></p>
-<h3 id="Lightmass-Volume"><a href="#Lightmass-Volume" class="headerlink" title="Lightmass Volume"></a>Lightmass Volume</h3><p>它有两大作用：限定Lightmass的模拟范围、它允许动态对象（如玩家）了解静态光源环境。</p>
-<p>1.限定Lightmass的模拟范围。它决定了Lightmass计算过程中计算最密集和最简单的区域，如果没有Lightmass，你会把计算时间浪费在没有任何光线或无关紧要的场景区域，添加Lightmass体积能确保只有玩家能够看到或与之互动的区域才会被纳入光照计算，从而有助于减少场景的实际光照计算时间（减少需要计算的对象数量）。</p>
-<p>2.允许动态对象（如玩家）了解静态光源环境。当现实世界中有东西移动时，我们能看到光线在它的表面移动，因为光线是完全动态的，我们可以和他互动，但是电子游戏无法完全模拟动态光照的实时互动效果，我们需要使用光照贴图和阴影贴图，光照无法移动也无法更新。为解决该问题，整个场景中会添加“Lightmass重要取样”的小型光照探针</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UTcZad.png" alt=""></p>
-<p>上图所示的这些均匀分布色彩各异的小方块就是采样点，它记录了所在位置的光源烘焙信息，当动态对象靠近的时候就会计算这些采样点的数据来形成动态光照的效果。</p>
-<h3 id="Lightmass角色间接细节体积（Lightmass-Character-Indirect-Detail-Volumes）"><a href="#Lightmass角色间接细节体积（Lightmass-Character-Indirect-Detail-Volumes）" class="headerlink" title="Lightmass角色间接细节体积（Lightmass Character Indirect Detail Volumes）"></a>Lightmass角色间接细节体积（Lightmass Character Indirect Detail Volumes）</h3><p>间接细节体积的作用是增加该体积内的取样数量（增多采样点），它可以放置在电梯这样狭小、采样不足的环境之中，使得角色可以正确的获得光照的信息。</p>
-<p>在世界场景设置中搜索Lightmass设置-静态光照等级范围 也能改变光照体积取样的密度。</p>
-<h3 id="剔除距离体积（Cull-Distance-Volume）"><a href="#剔除距离体积（Cull-Distance-Volume）" class="headerlink" title="剔除距离体积（Cull Distance Volume）"></a>剔除距离体积（Cull Distance Volume）</h3><p>剔除距离体积是一种优化工具，允许你确保对象在超出特定大小和到摄像机的特定距离的时候不再被渲染。</p>
-<p>选中体积之后，使用细节（Details）面板访问剔除距离（Cull Distance）</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UTcAqe.png" alt=""></p>
-<p>这些参数表示，该体积中大小最接近100单位的对象会在它们距摄像机350单位或更远时被从视野中剔除。</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UTcVVH.png" alt=""></p>
-<p>该体积中大小最接近 1000 单位的对象将永不会被剔除。这可以确保尺寸极大的对象被视为无穷大，这意味着它们距摄像机的距离永不可能远到应将它们剔除的程度。</p>
-<p>如果希望某个对象持续被渲染，那可以在该网格体的Detail中搜索cull：</p>
-<p>将”允许剔除距离体积”禁用</p>
-<h5 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h5><p>关卡或蓝图中的所选Actor包含可通过其 细节（Details） 面板访问的距离设置。它们支持设置按实例距离，或者是否使用剔除距离体积来剔除Actor。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/VisibilityCulling/VisibilityCullingReference/DetailsPanel-1.webp" alt=""></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">属性</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>最小绘制距离（Min Draw Distance）</strong></td>
-<td style="text-align:left">设置将在场景中渲染对象的最小绘制距离。该距离以场景空间单位（厘米）测量，具体是指从对象边界球体中心到摄像机位置。</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>所需最大绘制距离（Desired Max Draw Distance）</strong></td>
-<td style="text-align:left">设置关卡设计器的最大绘制距离。”真实”最大距离是 <strong>最小绘制距离（Min Draw Distance）</strong>（忽略0）。</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>当前最大绘制距离（Current Max Draw Distance）</strong></td>
-<td style="text-align:left">将开始剔除对象的只读距离。该值表示的是 <strong>最小绘制距离（Min Draw Distance）</strong> 或者剔除距离体积为参照而设置的 <strong>剔除距离（Cull Distances）</strong>。显示值0时，表示不应剔除该对象。</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>从不距离剔除（Never Distance Cull）</strong></td>
-<td style="text-align:left">启用时，该对象不会按距离剔除。如果它是层级细节层次（LOD）网格体的子代，也会被忽略。</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>允许剔除距离体积（Allow Cull Distance Volume）</strong></td>
-<td style="text-align:left">是否接受剔除距离体积的剔除距离值修改缓存的剔除距离。</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>视为遮挡背景（Treat as Background for Occlusion）</strong></td>
-<td style="text-align:left">允许将该对象视为部分背景以达到遮挡目的。这可以用作一种优化方法，降低天空盒、大型地面（远景的一部分）等内容的渲染开销。</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>用作遮挡物（Use as Occluder）</strong></td>
-<td style="text-align:left">是否渲染仅深度通道中的Primitive。这通常对于所有对象都是成立的，让渲染者决定是否渲染仅深度通道中的对象。</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="照明阴影和后期处理"><a href="#照明阴影和后期处理" class="headerlink" title="照明阴影和后期处理"></a>照明阴影和后期处理</h1><h3 id="光照（Lighting）"><a href="#光照（Lighting）" class="headerlink" title="光照（Lighting）"></a>光照（Lighting）</h3><p>光照有三种可移动类型：静态（static）、固定（Stationary）、可移动（Movable）。其中静态（static）的开销最小。</p>
-<p>静态意味着：不会做任何运动，没有互动，光源信息完全靠烘焙，它不能以任何形式改变其形状或形式（状态）。</p>
-<p>固定（固定光源）：可以与场景互动，所以固定光源投射的阴影能够和动态对象融合到一起，但是它拥有一定的开销，因为你可以在运行时改变它的颜色和亮度，但是你不能移动它。</p>
-<p>动态：动态的开销是最大的，它可以随意的移动，其光影包括所有的效果完全是动态的</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UT2gv6.md.png" alt=""></p>
-<h4 id="构建光照"><a href="#构建光照" class="headerlink" title="构建光照"></a>构建光照</h4><p>在【构建→光照质量】中，可以选择4个级别的光照：制作（Production）、高级（High）、中级（Medium）、预览（Preview）。等级从高到低排序。</p>
-<p>预览：预览将会以最简陋的方式展现光照的信息，可能会出现奇怪的斑点、阴影，但是可以通过预览大体知道能否达到想要的效果，比如光照的范围等基础信息。其速度也是最快的。</p>
-<p>从中级到制作其实就是逐级提升的过程，一般在制作中使用中级和预览就可以，它能够保证基本的信息正确且拥有较快的渲染速度，我们可以通过调整光照贴图的分辨率来消除斑点，提升光照的效果。当项目发布时则需要使用“制作”，它可以提供最佳的渲染效果，但是也最耗时间。</p>
-<h3 id="阴影（Shadowing）"><a href="#阴影（Shadowing）" class="headerlink" title="阴影（Shadowing）"></a>阴影（Shadowing）</h3><p>阴影分为两大类：静态阴影和动态阴影。</p>
-<p>1.静态阴影源于静态光源，它开销极低，但是和场景没有任何互动。</p>
-<p>2.动态阴影源于固定光源和移动光源，它开销很大，但是具备完整的场景互动效果。</p>
-<p>UE4同时还提供了一些特殊的阴影：级联阴影（Cascaded Shadows）、距离场阴影（Distance Field Shadows）、接触阴影（Contact Shadows）。</p>
-<h5 id="静态阴影（静态光源产生的阴影）"><a href="#静态阴影（静态光源产生的阴影）" class="headerlink" title="静态阴影（静态光源产生的阴影）"></a>静态阴影（静态光源产生的阴影）</h5><p><img src="https://s1.ax1x.com/2020/07/22/UT2CnO.png" alt=""></p>
-<p>可以看到此时的阴影具有不错的效果，随着距离的变化阴影会逐渐的模糊化，柔化的阴影非常逼真，但是静态阴影是直接烘焙在贴图上的，即使我们将物体移开，地上的阴影也不会产生变化</p>
-<h5 id="动态阴影（固定光源产生的阴影）"><a href="#动态阴影（固定光源产生的阴影）" class="headerlink" title="动态阴影（固定光源产生的阴影）"></a>动态阴影（固定光源产生的阴影）</h5><p><img src="https://s1.ax1x.com/2020/07/22/UT2wbF.png" alt=""></p>
-<p>虽然这种阴影可以随着物体的移动而移动，但是可以看到阴影的效果不如静态阴影，菱角分明——衰减效果不够理想。</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UTgbBF.png" alt=""></p>
-<p>不但阴影会随着物体的移动而移动，就连物体（例如上面这个人物Actor）的变化都会影响到阴影。奔跑时的人的影子是实时变化的。</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UTgq74.png" alt=""></p>
-<p>当两块动态阴影重叠的时候会产生融合效果，这也是静态阴影所做不到的。这也是为什么固定光源位于静态光源与动态光源之间的原因，它融合了两者的优点。然而刚刚的静态方块在被移动后地上同样有一块阴影，这是因为对静态的物体进行了阴影烘焙。</p>
-<h5 id="动态阴影（动态光源产生的阴影）"><a href="#动态阴影（动态光源产生的阴影）" class="headerlink" title="动态阴影（动态光源产生的阴影）"></a>动态阴影（动态光源产生的阴影）</h5><p><img src="https://s1.ax1x.com/2020/07/22/UT2JCn.png" alt=""></p>
-<p>可以看到阴影完全没有柔化效果，但是阴影的融合却达到了极致。在静态的方块被移动后，地上并没有留下阴影，这是因为现在使用的都是动态光源，烘焙完全是实时动态的。</p>
-<h5 id="级联阴影"><a href="#级联阴影" class="headerlink" title="级联阴影"></a>级联阴影</h5><p><img src="https://s1.ax1x.com/2020/07/22/UT2Sc6.png" alt=""></p>
-<p>它融合了静态阴影和动态阴影的优点，当摄像机靠近物体时，阴影将会被切换到动态阴影，即阴影会随着物体的变化而变化。而当摄像机原理时，则会切换会静态阴影，无论物体如何运动阴影都不会产生变化。</p>
-<p>阴影切换距离的设置需要找到对应的光源，并在光源的细节中搜索“cas”找到csm（级联阴影的缩写）选项，即可调整阴影切换距离和数量。</p>
-<p>需要注意的是这种阴影只适用于定向光源。</p>
-<h5 id="距离场阴影"><a href="#距离场阴影" class="headerlink" title="距离场阴影"></a>距离场阴影</h5><p>距离场阴影使用了网格体距离场实现光源和阴影的互动效果，提供了出色的阴影衰减效果。</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UT2QHg.png" alt=""></p>
-<p>这个特性也非常的昂贵，它可以在点光源中使用，但是需要<strong>开启距离场</strong>才能使用：</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UT2mgP.png" alt=""></p>
-<h5 id="接触阴影"><a href="#接触阴影" class="headerlink" title="接触阴影"></a>接触阴影</h5><p>接触阴影比较特殊因为它是在屏幕空间中完成的阴影，但是其代价相当昂贵。</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UTgOAJ.png" alt=""></p>
-<p>当我们渲染面部等细节十分复杂的模型时阴影效果会变得很糟，因为没有足够的阴影缓存来存储这些阴影数据。一般来说十分精细的阴影效果多用于游戏过场动画和电影中，如果需要开启这个选项需要在光源→细节→搜索contact，从0到1效果逐渐变得细节化。但是当接近1的时候则需要强大的电脑性能，否则可能会崩溃，导致渲染的效果不如勾选之前<br><img src="https://s1.ax1x.com/2020/07/22/UTgx91.png" alt=""></p>
-<h3 id="后期处理体积"><a href="#后期处理体积" class="headerlink" title="后期处理体积"></a>后期处理体积</h3><p>后期处理由体积负责实现，但是也和渲染相关。它属于会快速消耗性能的内容：</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UT2WDO.png" alt=""></p>
-<p>打开后期处理体积设置</p>
-<p>Infinite Extent（无限范围），勾选了这个选项意味着整个场景中的所有对象即使没有被这个体积覆盖也会受到它的影响。如果没有勾选这个选项的话，那它就和传统的体积一样只会在当前的作用域内起作用，当玩家进入到这个体积之后就会出现后期处理效果。（即玩家进入到后期处理体积之后，画面会受到后期处理体积设置的影响）</p>
-<p>可以通过其他的选项控制整个场景的色温、着色、饱和度等等功能。通过蓝图可以实现爆炸以后的色温从高到正常等电影效果画面。</p>
-<p>用于控制场景的抗锯齿设置位于  编辑项目设置—-渲染—-默认设置—-抗锯齿方法</p>
-<h2 id="反射（Reflections）"><a href="#反射（Reflections）" class="headerlink" title="反射（Reflections）"></a>反射（Reflections）</h2><p>UE4中主要有3种类型的反射：球体反射、盒体反射、平面反射。前两者开销最低。三种反射都是通过在场景中放置Actor来实现效果。</p>
-<h3 id="球体反射"><a href="#球体反射" class="headerlink" title="球体反射"></a>球体反射</h3><p>当前球形最为实用。其永远不会匹配被反射几何体的外形， 但不含间断或角落，因此错误一致。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/ReflectionEnvironment/SphereShape.webp" alt=""></p>
-<p>球形拥有橙色的影响半径，控制会受立方体贴图影响的像素、 以及关卡将被重新投射到的球体。</p>
-<p>较小的采集将覆盖较大的采集，因此在关卡周围放置较小的采集能够进行提升。</p>
-<h3 id="盒体反射"><a href="#盒体反射" class="headerlink" title="盒体反射"></a>盒体反射</h3><p>盒形的实用性十分有限，通常只用于走廊和矩形房间。 其原因是只有盒体中的像素可看到反射，同时盒体中的所有几何体将投射到盒体上， 在很多情况下会出现重大瑕疵。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/ReflectionEnvironment/BoxShape.webp" alt=""></p>
-<p>选中盒体后，投射形状将拥有一个橙色预览。 其只采集此盒体外盒体过渡距离之内的关卡。 此采集的影响也会在盒体中随过渡距离淡入。</p>
-<h3 id="平面反射"><a href="#平面反射" class="headerlink" title="平面反射"></a>平面反射</h3><p>UE4 支持实时平面反射，它比屏幕空间反射（SSR）更加精确，但渲染开销较高。渲染开销较高的原因来自平面反射的工作原理。因为平面反射实际上将从反射方向再次对关卡进行渲染。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/PlanarReflections/planarReflections_Banner.webp" alt=""></p>
-<h4 id="启动平面反射"><a href="#启动平面反射" class="headerlink" title="启动平面反射"></a>启动平面反射</h4><p>执行下列操作即可在项目中启用并使用平面反射：</p>
-<p>1.在主工具栏中前往编辑（Edit）&gt; 项目设置（Project Settings），然后前往项目设置菜单下的 渲染（Rendering）&gt; 优化（Optimizations） 部分。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/PlanarReflections/PR_Project_Settings_00.webp" alt=""></p>
-<p>2.点击 支持平面反射的全局裁剪平面（Support global clip plane for Planar Reflections）旁边的勾选框，在弹出提示后重启UE4编辑器。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/PlanarReflections/PR_Enable_PR_00.webp" alt=""></p>
-<p><u>启用平面反射后如未重启UE4编辑器，可能导致平面反射无法使用。</u></p>
-<p>3.重启UE4编辑器后，前往模式（Modes）面板，从 视觉效果（Visual Effects）部分选择一个 平面反射Actor 并将其拖入关卡。</p>
-<p><img src="https://docs.unrealengine.com/Images/Engine/Rendering/LightingAndShadows/PlanarReflections/Adding_Planar_Reflection_Actor.webp" alt=""></p>
-<p>4.将平面反射Actor放进关卡后，即可使用 G 键隐藏或取消隐藏 Actor。可使用 移动、旋转和缩放工具更佳地放置平面反射Actor并设置大小，满足关卡需求。</p>
-<p>平面反射Actor有多个属性，当调整这些属性时，会大大影响反射的显示效果。</p>
-<p><a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/Engine/Rendering/LightingAndShadows/PlanarReflections/index.html">平面反射官方文档</a></p>
-<h3 id="屏幕空间反射——SSR（Screen-Space-Reflections）"><a href="#屏幕空间反射——SSR（Screen-Space-Reflections）" class="headerlink" title="屏幕空间反射——SSR（Screen Space Reflections）"></a>屏幕空间反射——SSR（Screen Space Reflections）</h3><p>在后期处理体积中。</p>
-<p>对于球体反射和盒体反射，任何动态的物体都不会纳入到考虑范围。如果你想要捕捉动态的网格体的反射，就需要SSR。</p>
-<p><img src="https://s1.ax1x.com/2020/07/22/UThBsx.png" alt=""></p>
-<p>屏幕空间反射效果默认启用，可改变材质表面物体的外观。下方列出了用于调整此效果的几个选项。</p>
-<p><strong>Intensity</strong>：按百分比启用/淡出/禁用屏幕空间反射功能（为保持一致性，不使用 0 到 1 之间的数字）。</p>
-<p><strong>Quality</strong>：0 为最低精度，100 为最高精度（50 为默认精度，性能较好）。</p>
-<p><strong>Max Roughness</strong>：用于确定屏幕空间反射淡出的平整度（0.8 效果较好，数值越小，运算越快）。</p>
-<h3 id="获得更高质量的反射效果"><a href="#获得更高质量的反射效果" class="headerlink" title="获得更高质量的反射效果"></a>获得更高质量的反射效果</h3><p>因为UE4是一款实时引擎，因此我们要尽可能降低整体的反射捕获频率，我们可以通过提高分辨率来获得更高质量的反射效果：</p>
-<p>项目设置→渲染→反射捕获分辨率</p>
-<p><img src="https://img-blog.csdnimg.cn/20200521230925662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>还有一种增加立方体贴图分辨率的方法是添加一个天空光源，其中有一个立方贴图分辨率的属性：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200521231257941.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>第三种提高反射效果的方式是“高精度静态网格体法线和切线编码”</p>
-<p><img src="https://img-blog.csdnimg.cn/20200521231608751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>左图即为开启了高精度静态网格体发现的图，它能使得线条更加的柔和流畅，如何开启呢？它位于网格体细节里面的LOD分级中：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200521231728667.png" alt=""></p>
-<p>然后到项目设置中</p>
-<p><img src="https://img-blog.csdnimg.cn/20200521231845564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>最后一种提高反射质量的方法是确保网格体的曲面细分程度足够高，网格体使用的顶点越多，像素之间的插值就越好</p>
+                <h1 id="Simple-Shader"><a href="#Simple-Shader" class="headerlink" title="Simple Shader"></a>Simple Shader</h1><p>```Unity Shader<br>//给Shader命名<br>Shader “SimpleS Shader”{<br>    Properties{<br>            //声明一个Color类型的属性<br>            _Color(“Color Tint”,Color) = (1,1,1,1)<br>        }<br>    SubShader{<br>        pass{<br>            CGPROGRAM</p>
+<pre><code>        #pragma vertex vert
+        #pragma fragment frag
+
+        //在CG代码中，需要定义一个与属性名称和类型都匹配的变量
+        fixed4 _Color;
+
+        //使用一个结构体来定义顶点着色器的输入
+        struct a2v&#123;
+            //POSITION语义告诉unity，用模型空间的顶点坐标填充vertex变量
+            float4 vertex : POSITION;
+            //NORMAL语义告诉unity，用模型空间的法线方向填充normal变量
+            float3 normal : NORMAL;
+            //TEXCOORD语义告诉unity，用模型的第一套纹理坐标填充texcoord变量
+            float4 texcoord : TEXCOORD0;
+        &#125;;
+
+        //使用一个结构体来定义顶点着色器的输出
+        struct v2f&#123;
+            //SV_POSITION语义告诉unity，pos里包含了顶点在裁切空间中的位置信息
+            //必须包含SV_POSITION，否则渲染器将无法得到裁剪空间中的顶点坐标，也就无法把顶点渲染到屏幕上
+            float4 pos : SV_POSITION;
+            //COLOR0语义可以用于存储颜色信息
+            fixed3 color : COLOR0;
+        &#125;;
+
+        //语义中的数据由使用该材质的Mesh Render组件提供，在每帧调用Draw Call的时候，Mesh Render组件会把它负责渲染的模型数据发送给Unity Shader。
+        //顶点着色器和片元着色器之间的通信
+        //顶点着色器是逐顶点调用的，片元着色器是逐片元调动的
+        //片元着色器中的输入实际是把顶点着色器的输出进行插值后得到的结果
+
+        //声明输出结构
+        v2f vert(a2v v)&#123;
+            v2f o;
+            //用v.vertex来访问模型空间的顶点坐标
+            o.pos = UnityObjectToClipPos(v.vertex);
+            //v.normal包含了顶点的法线方向，其分量范围在[-1,1]
+            //下面的代码把分量范围映射到了[0,1]
+            //存储在o.color中传递给片元着色器
+            o.color = v.normal * 0.5 + fixed3(0.5,0.5,0.5);
+            return o;
+        &#125;
+
+        //SV_Target告诉渲染器，把用户的输出颜色存储到一个渲染目标（render target）中，这里将输出到默认的帧缓存中
+        fixed4 frag(v2f i) : SV_Target&#123;
+            fixed3 c = i.color;
+            //使用_Color属性来控制输出颜色
+            c *= _Color.rgb;
+            //在Unity Shader中uniform是可以省略的，时Cg中修饰变量和参数的一种修饰词，仅仅用于提供一些关于该变量的初始值是如何指定和存储的相关信息。
+            //将插值后的color显示到屏幕上
+            return fixed4(c,1.0);
+        &#125;
+
+        ENDCG
+    &#125;
+&#125;
+</code></pre><p>}<br>```</p>
 
             </div>
             <hr/>
@@ -589,7 +508,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://M1racle0-0.github.io/2020/07/22/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/">http://M1racle0-0.github.io/2020/07/22/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/</a>
+                    <a href="http://M1racle0-0.github.io/2021/01/08/Simple%20Shader/">http://M1racle0-0.github.io/2021/01/08/Simple%20Shader/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -627,8 +546,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/UE4/">
-                                    <span class="chip bg-color">UE4</span>
+                                <a href="/tags/Unity-Shader/">
+                                    <span class="chip bg-color">Unity Shader</span>
                                 </a>
                             
                         </div>
@@ -796,30 +715,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/25/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/">
+                <a href="/2021/01/08/Simple%20Shader/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="UE4笔记（八）--蓝图（上）">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Simple Shader">
                         
-                        <span class="card-title">UE4笔记（八）--蓝图（上）</span>
+                        <span class="card-title">Simple Shader</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（八)蓝图入门(上)BP’s focus is on making it accessible,versatile and powerful to anyone in the team.
-It is meant to empowe
+                            Simple Shader```Unity Shader//给Shader命名Shader “SimpleS Shader”{    Properties{            //声明一个Color类型的属性            _C
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -828,11 +747,12 @@ It is meant to empowe
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/UE4/">
-                        <span class="chip bg-color">UE4</span>
+                    <a href="/tags/Unity-Shader/">
+                        <span class="chip bg-color">Unity Shader</span>
                     </a>
                     
                 </div>
@@ -846,25 +766,27 @@ It is meant to empowe
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/21/%E8%99%9A%E5%B9%BB%E5%9B%9B%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">
+                <a href="/2021/01/07/Unity%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%EF%BC%88%E4%B8%8B%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="UE4笔记（六）">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Unity Shader-基础光照（下）">
                         
-                        <span class="card-title">UE4笔记（六）</span>
+                        <span class="card-title">Unity Shader-基础光照（下）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            UE4笔记（六)性能与优化纹理流送（Texture Streaming）纹理流送能在摄影机接近场景对象或者远离场景对象时流送不同的细节层次。
-纹理流送设有一个缓存池：一片专门用于缓存多级渐进纹理的内存区域。随着纹理不断远离摄像机，他们会变得
+                            Unity Shader-基础光照（下）shader编写高光反射光照模型$c_{specular}$ = （$c_{light}·m_{specular}$）max（0 , v · r）$^{m_{gloss}}$
+需要四个参数：
+
+入射光
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-07
                             </span>
                         <span class="publish-author">
                             
@@ -877,8 +799,8 @@ It is meant to empowe
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/UE4/">
-                        <span class="chip bg-color">UE4</span>
+                    <a href="/tags/Unity-Shader/">
+                        <span class="chip bg-color">Unity Shader</span>
                     </a>
                     
                 </div>

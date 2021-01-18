@@ -426,35 +426,31 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ue4笔记八"><a class="markdownIt-Anchor" href="#ue4笔记八"></a> UE4笔记（八)</h1>
-<h1 id="蓝图入门上"><a class="markdownIt-Anchor" href="#蓝图入门上"></a> 蓝图入门(上)</h1>
-<p>BP’s focus is on making it <strong>accessible</strong>,versatile and powerful to anyone in the team.</p>
+                <h1 id="UE4笔记（八"><a href="#UE4笔记（八" class="headerlink" title="UE4笔记（八)"></a>UE4笔记（八)</h1><h1 id="蓝图入门-上"><a href="#蓝图入门-上" class="headerlink" title="蓝图入门(上)"></a>蓝图入门(上)</h1><p>BP’s focus is on making it <strong>accessible</strong>,versatile and powerful to anyone in the team.</p>
 <p>It is meant to <strong>empower the entire team</strong> to make a maximum impact.</p>
 <p>While <strong>freeing up the programmers</strong> <strong>and engineers</strong> from simple tasks.(例如更改武器上的粒子效果)</p>
 <p>Easy to understand and build upon. <strong>Fast to iterate on</strong>. Invites experimentation.</p>
 <p>But also a <strong>robust scripting system</strong> that holds up even at large scale.</p>
-<p><img src="https://s1.ax1x.com/2020/07/26/aCaHc4.png" alt="" /></p>
-<p>首先C<ins>是一切的基础，所以BP和C</ins>有密切的关联。Framework Classes是框架类，他会影响到C++，通过扩展项，影响到蓝图，Replication(复制)不仅存在C++也存在BP中。</p>
+<p><img src="https://s1.ax1x.com/2020/07/26/aCaHc4.png" alt=""></p>
+<p>首先C++是一切的基础，所以BP和C++有密切的关联。Framework Classes是框架类，他会影响到C++，通过扩展项，影响到蓝图，Replication(复制)不仅存在C++也存在BP中。</p>
 <p>BP会通过Inheritance(继承)来继承C++代码中的函数，让这两者可以无缝对接。</p>
 <p>Data Features(数据特性)用来存储数据，并让C++或BP从特定资产中读取数据。</p>
 <p>BP本身包含Components(组件)，Timeline(时间轴)，Core BP Tools(核心BP工具)</p>
 <p>Additonal Features(额外功能) &amp; Editor Scripting(编辑脚本) 总的来说，蓝图不只是一个脚本系统，它不光用来编写Gameplay脚本或者各种东西，It is very extensively used in the whole engine.</p>
 <p>7+ Tools and sub-Editors 会以各种方式用到蓝图</p>
 <p>BP to BP Communication Features (蓝图间的通信)   Complication &amp; Execution(编译和执行)  Debuging and Performance Features (调试性能表现)</p>
-<h2 id="蓝图的图解概览"><a class="markdownIt-Anchor" href="#蓝图的图解概览"></a> 蓝图的图解概览</h2>
-<p>总浏览</p>
-<p><img src="https://s1.ax1x.com/2020/07/26/aCsJa9.png" alt="" /></p>
-<h2 id="core-c-bp-supporting-features"><a class="markdownIt-Anchor" href="#core-c-bp-supporting-features"></a> Core C++ BP Supporting Features</h2>
-<p><img src="https://s1.ax1x.com/2020/07/26/aCy9o9.md.png" alt="" /></p>
+<h2 id="蓝图的图解概览"><a href="#蓝图的图解概览" class="headerlink" title="蓝图的图解概览"></a>蓝图的图解概览</h2><p>总浏览</p>
+<p><img src="https://s1.ax1x.com/2020/07/26/aCsJa9.png" alt=""></p>
+<h2 id="Core-C-BP-Supporting-Features"><a href="#Core-C-BP-Supporting-Features" class="headerlink" title="Core C++ BP Supporting Features"></a>Core C++ BP Supporting Features</h2><p><img src="https://s1.ax1x.com/2020/07/26/aCy9o9.md.png" alt=""></p>
 <p>Interitance(继承): Classes derive and inherit from their parent classes(类从它们的父类派生和继承).基于继承系统，<strong>that is a core part of the functionality</strong></p>
-<p><img src="https://s1.ax1x.com/2020/07/26/aCcOzt.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/07/26/aCcOzt.png" alt=""></p>
 <p>象征继承的图标，上面是Actor、Pawn、Wheeled Vehicle or OurVehicles 这就是我们制作的类，这是框架的一部分，事实上这里有一个Pawn和多个带轮子的载具，然后你可以用一个自定的类或者说Vehicles or cars 来扩展它，然后在它下面又有一个蓝图类，基于C++创建，然后又有一个蓝图类基于上一个构建，叫做Sedan</p>
 <p>然后是Events/Functions/Var(事件函数 或者变量),作为蓝图的核心结构，能在蓝图中被创建，大部分来自于C++</p>
-<p><img src="https://s1.ax1x.com/2020/07/26/aCc3qS.md.png" alt="" /></p>
-<p>这是在C<ins>里定义新的蓝图函数或变量时所需的所有代码。这非常非常便于拓展，设计时就旨在无缝集成C</ins>、BP，它不是两个系统而是一个整体，相同的东西。只要一个说明符就能创建一个函数或新变量的新节点在蓝图中可见。</p>
+<p><img src="https://s1.ax1x.com/2020/07/26/aCc3qS.md.png" alt=""></p>
+<p>这是在C++里定义新的蓝图函数或变量时所需的所有代码。这非常非常便于拓展，设计时就旨在无缝集成C++、BP，它不是两个系统而是一个整体，相同的东西。只要一个说明符就能创建一个函数或新变量的新节点在蓝图中可见。</p>
 <p>Function Libraries(函数库) 它可以在蓝图中完成，也可以在C++里编写这些函数，然后向项目中任意的蓝图公开它们。</p>
 <p>Framework(框架) 我的理解是，你在使用UE4引擎的时候，会选择游戏的mode，例如你选择了第一人称游戏项目，UE4引擎就会给你一个生成第一人称游戏所需的最少信息，基本上，你可以以此在几乎没有函数的情况下完成一款第一人称游戏。</p>
-<p><img src="https://s1.ax1x.com/2020/07/26/aCWNwT.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/07/26/aCWNwT.png" alt=""></p>
 <p>关于第一人称的底层代码和函数都已经包含在了项目中，从movement component到 the game modes 到Replication等等，就像上方框选的，它只是总结了一些可能是最重要的一些类。这是虚幻引擎非常关键的一部分，这些函数默认存在，是你的基础。</p>
 <p>常见的父类</p>
 <ul>
@@ -464,13 +460,11 @@
 <li>PlayerController   角色控制器</li>
 <li>Game Mode  一个Game Mode 定义了游戏是如何被执行的，游戏规则，如何的分以及其他方面的内容。</li>
 </ul>
-<h3 id="optional-data-features"><a class="markdownIt-Anchor" href="#optional-data-features"></a> Optional Data Features</h3>
-<p><img src="https://s1.ax1x.com/2020/07/26/aCf4ET.md.png" alt="" /></p>
-<p>Data Tables(数据表)、Data Assets(资产)、Curves(曲线)</p>
+<h3 id="Optional-Data-Features"><a href="#Optional-Data-Features" class="headerlink" title="Optional Data Features"></a>Optional Data Features</h3><p><img src="https://s1.ax1x.com/2020/07/26/aCf4ET.md.png" alt=""></p>
+<p>Data Tables(数据表)、Data Assets(资产)、Curves(曲线) </p>
 <p>蓝图也可以使用它们在编程时作为引用</p>
-<h3 id="core-features-of-bp"><a class="markdownIt-Anchor" href="#core-features-of-bp"></a> Core Features of BP</h3>
-<p><img src="https://s1.ax1x.com/2020/07/26/aC55Uf.md.png" alt="" /></p>
-<p>待续…</p>
+<h3 id="Core-Features-of-BP"><a href="#Core-Features-of-BP" class="headerlink" title="Core Features of BP"></a>Core Features of BP</h3><p><img src="https://s1.ax1x.com/2020/07/26/aC55Uf.md.png" alt=""></p>
+<p>待续………….</p>
 
             </div>
             <hr/>
@@ -719,12 +713,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             UE4笔记（九）
- 角色
-
+                            UE4笔记（九）角色
 Controller 可以由AI或玩家控制
 AI框架可以帮助AI Controller根据导航网格体来决定pawn或Character的行为还有去哪里做什么
-Character是一种特定类型的Pawn，它拥有M
+Character是一种特定类型的Pawn，它拥有Movem
                         
                     </div>
                     <div class="publish-info">
@@ -769,12 +761,9 @@ Character是一种特定类型的Pawn，它拥有M
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             UE4笔记（七)
- 体积（Volumes）
-体积是一种特殊的Actor，它有很多的用途：限制玩家的移动范围，决定音响的混响效果等，UE4中很多交互机制都是由体积决定的。
+                            UE4笔记（七)体积（Volumes）体积是一种特殊的Actor，它有很多的用途：限制玩家的移动范围，决定音响的混响效果等，UE4中很多交互机制都是由体积决定的。
 
- Lightmass Volume
-它有两大作用：限定Lightm
+Lightmass Volume它有两大作用：限定Lightmass的模拟
                         
                     </div>
                     <div class="publish-info">

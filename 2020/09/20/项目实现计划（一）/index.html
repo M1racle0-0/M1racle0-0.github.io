@@ -409,7 +409,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    391
+                    390
                 </div>
                 
 
@@ -426,28 +426,20 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习1"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习1"></a> 关于第三人称魂类游戏个人学习–（1）</h1>
-<h3 id="创建场景光源1"><a class="markdownIt-Anchor" href="#创建场景光源1"></a> 创建场景光源(1)</h3>
-<p>所需组件：</p>
+                <h1 id="关于第三人称魂类游戏个人学习—（1）"><a href="#关于第三人称魂类游戏个人学习—（1）" class="headerlink" title="关于第三人称魂类游戏个人学习—（1）"></a>关于第三人称魂类游戏个人学习—（1）</h1><h3 id="创建场景光源-1"><a href="#创建场景光源-1" class="headerlink" title="创建场景光源(1)"></a>创建场景光源(1)</h3><p>所需组件：</p>
 <p>Fog、skylight、DirectionalLight、Sky_Sphere</p>
 <p>添加cube作为地板</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JsmV.md.png" alt="1" /></p>
+<p><img src="https://s1.ax1x.com/2020/09/20/w7JsmV.md.png" alt="1"></p>
 <p>材质纹理大小可根据Texcoord进行调整。</p>
-<h3 id="mycharacter蓝图1"><a class="markdownIt-Anchor" href="#mycharacter蓝图1"></a> Mycharacter蓝图（1）</h3>
-<h4 id="实现角色基础操作"><a class="markdownIt-Anchor" href="#实现角色基础操作"></a> 实现角色基础操作</h4>
-<p>创建GameMode蓝图，character蓝图。</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7J0ln.md.png" alt="2" /></p>
+<h3 id="Mycharacter蓝图（1）"><a href="#Mycharacter蓝图（1）" class="headerlink" title="Mycharacter蓝图（1）"></a>Mycharacter蓝图（1）</h3><h4 id="实现角色基础操作"><a href="#实现角色基础操作" class="headerlink" title="实现角色基础操作"></a>实现角色基础操作</h4><p>创建GameMode蓝图，character蓝图。</p>
+<p><img src="https://s1.ax1x.com/2020/09/20/w7J0ln.md.png" alt="2"></p>
 <p>打开project setting在input中设置WASD和视口移动。X Roll、Y Pitch、Z Yaw</p>
 <ul>
-<li>
-<p>UE4按照ZXY轴顺序（C++中）计算物体朝向</p>
+<li><p>UE4按照ZXY轴顺序（C++中）计算物体朝向</p>
 </li>
-<li>
-<p>UE4使用左手坐标系。</p>
+<li><p>UE4使用左手坐标系。</p>
 </li>
-<li>
-<p>Z轴旋转的正方向遵循左手定则，X轴和Y轴旋转的正方向遵循右手定则</p>
-</li>
+<li>Z轴旋转的正方向遵循左手定则，X轴和Y轴旋转的正方向遵循右手定则</li>
 </ul>
 <p>避免视角朝下速度减慢，使用矢量的分量</p>
 <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Euler_angles#Proper_Euler_angles">关于欧拉角的维基百科</a></p>
@@ -455,29 +447,21 @@
 <ul>
 <li>SpringArm 中 Use Pawn Control Rotation 解决视口不能移动的问题</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JDO0.md.png" alt="3" /></p>
-<h3 id="character蓝图1"><a class="markdownIt-Anchor" href="#character蓝图1"></a> Character蓝图（1）</h3>
-<h4 id="abp-abs创建"><a class="markdownIt-Anchor" href="#abp-abs创建"></a> ABP、ABS创建</h4>
-<p>创建ABP_Mycharacter和ABS_Mycharacter（动画蓝图和混合空间）</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JByq.md.png" alt="4" /></p>
+<p><img src="https://s1.ax1x.com/2020/09/20/w7JDO0.md.png" alt="3"></p>
+<h3 id="Character蓝图（1）"><a href="#Character蓝图（1）" class="headerlink" title="Character蓝图（1）"></a>Character蓝图（1）</h3><h4 id="ABP、ABS创建"><a href="#ABP、ABS创建" class="headerlink" title="ABP、ABS创建"></a>ABP、ABS创建</h4><p>创建ABP_Mycharacter和ABS_Mycharacter（动画蓝图和混合空间）</p>
+<p><img src="https://s1.ax1x.com/2020/09/20/w7JByq.md.png" alt="4"></p>
 <p>水平坐标设为Direction，垂直坐标为Speed。ABS水平坐标分8格，8个角度使用不同的动作让人物往不同方向进行移动，速度为0时idle，速度最大值参照CharacterMovement所继承的最大行走速度。</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JaWj.png" alt="5" /></p>
+<p><img src="https://s1.ax1x.com/2020/09/20/w7JaWj.png" alt="5"></p>
 <p>在ABP中应用ABS，用变量通过蓝图逻辑去获取Speed、Direction</p>
-<p><img src="https://s1.ax1x.com/2020/09/20/w7JywT.md.png" alt="6" /></p>
+<p><img src="https://s1.ax1x.com/2020/09/20/w7JywT.md.png" alt="6"></p>
 <p>事件蓝图更新动画：每帧检测动画有没有需要发生的变化。</p>
-<hr />
+<hr>
 <ul>
-<li>
-<p>Mesh中要绑定相应的ABP</p>
+<li>Mesh中要绑定相应的ABP</li>
+<li>欧拉角</li>
+<li><p>创建ABP时注意骨骼的选用（ABS也要选择同样的骨骼）</p>
 </li>
-<li>
-<p>欧拉角</p>
-</li>
-<li>
-<p>创建ABP时注意骨骼的选用（ABS也要选择同样的骨骼）</p>
-</li>
-<li>
-<p>动画蓝图不能使用get player controller/character</p>
+<li><p>动画蓝图不能使用get player controller/character</p>
 </li>
 </ul>
 
@@ -728,14 +712,11 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             关于第三人称魂类游戏个人学习–（2）
- Character蓝图（2）
- 武器绑定
-
+                            关于第三人称魂类游戏个人学习—（2）Character蓝图（2）武器绑定
 创建Sword和Shield插槽绑定到MyCharacter，具体位置可在Animation蓝图调整
 
- 武器攻击
-操作映射加入左键攻击Attack，蓝图
+武器攻击操作映射加入左键攻击Attack，蓝图播放动作蒙太奇
+
                         
                     </div>
                     <div class="publish-info">
@@ -780,11 +761,9 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             解析官方的蓝图场景之提示卡
-咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
- 提示卡
-
-一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物
+                            解析官方的蓝图场景之提示卡咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
+提示卡
+一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物体看起来
                         
                     </div>
                     <div class="publish-info">

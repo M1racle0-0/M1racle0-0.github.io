@@ -426,61 +426,51 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="解析官方的蓝图场景之提示卡"><a class="markdownIt-Anchor" href="#解析官方的蓝图场景之提示卡"></a> 解析官方的蓝图场景之提示卡</h1>
-<p>咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。</p>
-<h2 id="提示卡"><a class="markdownIt-Anchor" href="#提示卡"></a> 提示卡</h2>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXZkD.png" alt="" /></p>
-<p>一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物体看起来像是一个漂浮的圆盘，中间有一个&quot;i&quot;。玩家处于范围中时，圆盘将上下颠倒，显示为一个感叹号&quot;！&quot;，文本也将从其中扩展出来。此框固定朝向玩家。</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXmfH.md.png" alt="" /></p>
+                <h1 id="解析官方的蓝图场景之提示卡"><a href="#解析官方的蓝图场景之提示卡" class="headerlink" title="解析官方的蓝图场景之提示卡"></a>解析官方的蓝图场景之提示卡</h1><p>咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。</p>
+<h2 id="提示卡"><a href="#提示卡" class="headerlink" title="提示卡"></a>提示卡</h2><p><img src="https://s1.ax1x.com/2020/08/05/aDXZkD.png" alt=""></p>
+<p>一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物体看起来像是一个漂浮的圆盘，中间有一个”i”。玩家处于范围中时，圆盘将上下颠倒，显示为一个感叹号”！”，文本也将从其中扩展出来。此框固定朝向玩家。</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXmfH.md.png" alt=""></p>
 <p>打开蓝图</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXM6I.md.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXM6I.md.png" alt=""></p>
 <p>拆分组件</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXK1A.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXK1A.png" alt=""></p>
 <p>一开始我以为是动画蓝图做出来的效果，结果只是Actor蓝图实现的打开动画，一共有10个静态网格体组件，一个粒子系统组件，一个接收器</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXete.md.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXete.md.png" alt=""></p>
 <p>只有一个构造脚本，大体思路从蓝图都可以看出来，可以从图中看出大体分为三个模块。一个控制提示卡的方向一直面朝Play，一个控制粒子效果，还有一个控制打开关闭，显示文字。</p>
 <p>构造脚本是在外可视的。并不是你在脚本内写的全部东西在事件图表中就不写了</p>
 <p>逐个分析：</p>
-<h3 id="构造脚本"><a class="markdownIt-Anchor" href="#构造脚本"></a> 构造脚本</h3>
-<h4 id="建立触发器球体组件的大小"><a class="markdownIt-Anchor" href="#建立触发器球体组件的大小"></a> 建立触发器球体组件的大小</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXUpj.png" alt="" /></p>
+<h3 id="构造脚本"><a href="#构造脚本" class="headerlink" title="构造脚本"></a>构造脚本</h3><h4 id="建立触发器球体组件的大小"><a href="#建立触发器球体组件的大小" class="headerlink" title="建立触发器球体组件的大小"></a>建立触发器球体组件的大小</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXUpj.png" alt=""></p>
 <p><strong>Set Relative Scale 3D</strong> (设置相对范围3D) 球体碰撞范围接Target表明改变的为球体碰撞Volume，通过Get RrlativeScale3D得到Trigger矢量，与可设置变量float相乘得到新的球体碰撞范围。</p>
-<h4 id="追踪使用的行数然后获取最长行的长度"><a class="markdownIt-Anchor" href="#追踪使用的行数然后获取最长行的长度"></a> 追踪使用的行数，然后获取最长行的长度</h4>
-<p>首先，观察蓝图，发现没有文本组件，观察了细节面板法线用户需要通过Lines手动整理每行文本</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDX1nP.png" alt="" /></p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXdcn.md.png" alt="" /></p>
+<h4 id="追踪使用的行数，然后获取最长行的长度"><a href="#追踪使用的行数，然后获取最长行的长度" class="headerlink" title="追踪使用的行数，然后获取最长行的长度"></a>追踪使用的行数，然后获取最长行的长度</h4><p>首先，观察蓝图，发现没有文本组件，观察了细节面板法线用户需要通过Lines手动整理每行文本</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDX1nP.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXdcn.md.png" alt=""></p>
 <p>Lines为一个字符型的阵列，通过阵列Length计算用户添加了多少行文本（上图为9行）输入给Number Of Lines，进行for循环，循环次数按照行数-1（行数为9从0开始到8），通过循环获取最长行的长度</p>
-<h4 id="如用户已启用preview-mode变量则扩展评论框"><a class="markdownIt-Anchor" href="#如用户已启用preview-mode变量则扩展评论框"></a> 如用户已启用Preview Mode变量，则扩展评论框</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXwXq.md.png" alt="" /></p>
+<h4 id="如用户已启用Preview-Mode变量，则扩展评论框"><a href="#如用户已启用Preview-Mode变量，则扩展评论框" class="headerlink" title="如用户已启用Preview Mode变量，则扩展评论框"></a>如用户已启用Preview Mode变量，则扩展评论框</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXwXq.md.png" alt=""></p>
 <p>检测浏览模式是否打开</p>
 <p><strong>SetRelativeLocation</strong>(设置相对位置)相当于Info Icon组件在蓝图中的X 1.0 Y 0.0 Z -10.0的位置，如果没有在外启用浏览模式，Info Icon向下移动了10个单位</p>
 <p>如果启用了浏览模式，位置不变，大小有轻微的改变</p>
 <p>这里位置的移动是为了配合评论框的显示。</p>
-<h4 id="缩放框并重调其位置以适应文本"><a class="markdownIt-Anchor" href="#缩放框并重调其位置以适应文本"></a> 缩放框并重调其位置以适应文本</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXiOx.png" alt="" /></p>
+<h4 id="缩放框并重调其位置以适应文本"><a href="#缩放框并重调其位置以适应文本" class="headerlink" title="缩放框并重调其位置以适应文本"></a>缩放框并重调其位置以适应文本</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXiOx.png" alt=""></p>
 <p>background组件连接，用新的大小来适应在Line中输入的文本。</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXETO.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXETO.png" alt=""></p>
 <p>红绿蓝分别代表了background的XYZ轴。</p>
 <p>X轴似乎只决定了Background的厚度，可以不考虑所以拆分向量，然后考虑的就是如何规范框的长宽？</p>
 <p>框的宽度是由Y轴决定的，宽度大小决定于Longest Line Length，这里蓝图是</p>
-<p>Y = Longest Line Length * 0.9 + Longest Line Length * 0.9 * 边界宽度填充</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXP61.png" alt="" /></p>
+<p>Y = Longest Line Length <em> 0.9 + Longest Line Length </em> 0.9 * 边界宽度填充</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXP61.png" alt=""></p>
 <p>我的理解是，紫色为边框的左右，红色为Longest Line Length * 0.9 蓝色为后面一部分填充的值，红色应该是显示文本的Basic，这里的边界宽度填充是一个可以改变的变量，用户可以自行决定它的延长。</p>
 <p>Z轴决定了Background的高度</p>
 <p>Z = Number Of Lines * 2.5</p>
 <p>后面的Top Border、Bottom Border只改变Y轴，Left Border、Right Border只改变Z轴就是为了更加贴合Background改变后长宽的紫色区域。</p>
-<h4 id="创建必要的textrendercomponents文本渲染组件"><a class="markdownIt-Anchor" href="#创建必要的textrendercomponents文本渲染组件"></a> 创建必要的TextRenderComponents（文本渲染组件）</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXA0K.md.png" alt="" /></p>
+<h4 id="创建必要的TextRenderComponents（文本渲染组件）"><a href="#创建必要的TextRenderComponents（文本渲染组件）" class="headerlink" title="创建必要的TextRenderComponents（文本渲染组件）"></a>创建必要的TextRenderComponents（文本渲染组件）</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXA0K.md.png" alt=""></p>
 <p>进入循环。</p>
 <p><strong>Get Socket Location</strong> ：这里获取Background的位置，输入要进行转换socket的或bone的名称，得到的矢量与Actor矢量相减，<strong>UnrotateVector</strong>返回向量A被旋转器B的逆旋转后的结果，拆分只取Y值</p>
-<p>Z = X * -10 + Number Of Lines *5 +5   （X = 0 –  Number Of Lines -1）</p>
-<p>创建的新变量 <strong>Make</strong> <strong>Transform <strong>将位置，旋转和缩放的值给</strong>Add TextRenderComponents</strong>，我认为做这些步骤的一切就是以为了让文字达到贴在Background上的效果。</p>
+<p>Z = X <em> -10 + Number Of Lines </em>5 +5   （X = 0 —  Number Of Lines -1）</p>
+<p>创建的新变量 <strong>Make</strong> <strong>Transform </strong>将位置，旋转和缩放的值给<strong>Add TextRenderComponents</strong>，我认为做这些步骤的一切就是以为了让文字达到贴在Background上的效果。</p>
 <p>上面一部分应该是每次循环索引行，查看是否有文字，有文字的话就通过Add TextRenderComponents进行渲染设置为文本。</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXkm6.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXkm6.png" alt=""></p>
 <p>这一块看了很久，大体的意思应该是这样的。以后有能力了再仔细分析一下。</p>
-<h3 id="事件图表"><a class="markdownIt-Anchor" href="#事件图表"></a> 事件图表</h3>
-<h4 id="提示卡的自动旋转面朝效果"><a class="markdownIt-Anchor" href="#提示卡的自动旋转面朝效果"></a> 提示卡的自动旋转面朝效果</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXupd.md.png" alt="" /></p>
+<h3 id="事件图表"><a href="#事件图表" class="headerlink" title="事件图表"></a>事件图表</h3><h4 id="提示卡的自动旋转面朝效果"><a href="#提示卡的自动旋转面朝效果" class="headerlink" title="提示卡的自动旋转面朝效果"></a>提示卡的自动旋转面朝效果</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXupd.md.png" alt=""></p>
 <p>我先给节点排了下序。</p>
 <p>虚幻引擎4有一个被称为“Tick”的事件，它产生于游戏的每一帧。例如，在一个运行在每秒60帧的游戏中，“Tick”事件会在每一秒产生60次。“Tick”事件提供了一个被称为“delta秒”的值，该值是自上一帧结束后的时间。使用事件“Tick”，我们可以精确控制在游戏中的蓝图的运动。</p>
 <p>有个例子，例如你这个游戏是50帧，delta Seconds= 1 sec /50  = 0.2 sec ,接着你的Actor每1 sec移动100 cm的距离 速度为 100cm/sec（1虚幻单位等于1厘米  1 UU = 1 CM）X= speed * Delta Seconds = 2cm 可以得到你的Actor每帧将移动2 cm。达到精确控制蓝图的运动问题。</p>
@@ -488,10 +478,9 @@
 <p><strong>Find Look At Rotation</strong>（寻找查看旋转）该节点有两个Vector类型参数，在Find Look At Rotation节点上分别传入物体的Location和摄像机的Location，节点会计算返回一个从Start到Target需要调整的角度</p>
 <p><strong>RInterp To</strong>能让物体调整角度的效果更有动感（不加的话会瞬间到达）。RInterp To这个节点实际上就是Rotation的一个插值的表述，该节点有四个参数，Current和Target分别表示当前角度和目的角度，DeltaTime为间隔时间，一般设置为我们计算机计算每帧的时间，Interp speed为调整的速度，越小速度越慢，一般调整为5左右效果比较好。再次输入当前Actor也就是提示卡的位置到Current，返回节点得到的调整角度连接到Target，这个时候可以看出，使用Tick事件可以快速刷新，几乎实时改变面朝方位。</p>
 <p>最后将最新的Actor位置输入给提示卡，完成Smoothly地转动。</p>
-<h4 id="游戏中粒子效果"><a class="markdownIt-Anchor" href="#游戏中粒子效果"></a> 游戏中粒子效果</h4>
-<p>粒子效果应该指的是在未靠近的时候出现的呈现波浪状态的提示。</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXZkD.png" alt="" /></p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXQXt.png" alt="" /></p>
+<h4 id="游戏中粒子效果"><a href="#游戏中粒子效果" class="headerlink" title="游戏中粒子效果"></a>游戏中粒子效果</h4><p>粒子效果应该指的是在未靠近的时候出现的呈现波浪状态的提示。</p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXZkD.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXQXt.png" alt=""></p>
 <p>游戏开始时先检查用户设置中是否打开粒子系统，下面的Disable Particle和Preview Mode为变量，可以在外面的细节面板设置是否打开，如果效果和浏览模式都没被禁用，那么OR函数返回的为false（OR函数无论何时只要一个输入中出现了真，输出就是真），后接一个Not(输出与输入相反)，相当于将ture输入Set Active，然后接下后面的逻辑。</p>
 <ul>
 <li><u>XOR是OR的变体。仅当一个输入或者另一个输入是真，但不是两者都为真（既如果输入是不同的），它的输出才为真。</u></li>
@@ -499,41 +488,36 @@
 <p><strong>Set Active</strong> (设置激活) 设置组件是否是活动的，将脉冲效果组件接入Target控制粒子效果组件。</p>
 <p><strong>Activate</strong>（激活）：Actor组件对象引用至目标激活</p>
 <p>后面的if设置为如果你shift+F1开启管理员模式也可以选择是否打开Preview MODE和Disable Particle，通过返回为true关闭粒子系统。</p>
-<p>**DestroyComponent **（销毁组件）移除粒子组件</p>
-<h4 id="触发box"><a class="markdownIt-Anchor" href="#触发box"></a> 触发BOX</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDX878.md.png" alt="" /></p>
+<p><strong>DestroyComponent </strong>（销毁组件）移除粒子组件</p>
+<h4 id="触发BOX"><a href="#触发BOX" class="headerlink" title="触发BOX"></a>触发BOX</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDX878.md.png" alt=""></p>
 <p>首先进入Trigger范围内检查是否打开了预览模式。</p>
 <p><strong>Do Once</strong>(只执行一次) 我的理解是： 如果你设置一个动作，是靠“L”触发的，你开始游戏后按”L“触发了一次，就再也不会触发了，但是你可以根据Reset设定一个新的值“P“，你按了”P“后就可以重置为最初状态，又可以按一次”L“，而”Start Closed“为布尔类型的参数，如果你勾选则这个系统将直接变为不可触发状态。这里Do once做的工作应为打开浏览模式，然后在Volume范围内保持浏览模式不变。</p>
 <p>不在Trigger范围内检查预览模式，进入序列函数（按顺序进行引脚）</p>
 <p>第一个引脚</p>
-<p>**For Loop **(for循环)该节点左边的按钮分别是循环计数的初始值和终止值，右边的Loop Body按钮是指该循环的循环体,也就是每次需要执行的代码.Index返回当前下标的值,Completed连接循环结束后的执行语句.</p>
+<p><strong>For Loop </strong>(for循环)该节点左边的按钮分别是循环计数的初始值和终止值，右边的Loop Body按钮是指该循环的循环体,也就是每次需要执行的代码.Index返回当前下标的值,Completed连接循环结束后的执行语句.</p>
 <p>这里的for loop循环体的目的是先检查文字行数组中是否还有文字，LENGTH &gt; 0的话（仍有文字）返回为false，销毁数组中的每个文本行，完成循环后再次检查数组中是否有文字，有的话重置，没有直接执行下一步。</p>
 <p>在EndOverlap中下一步应该就是将值全设为0，然后删除场景内的文本框，只留下感叹号。</p>
 <p>相当于把BeginOverlap重置还原。所以下面只看BeginOVerlap的分支。</p>
-<h4 id="玩家进入球体组件触发器体积后对框组件设置动画使其缩放至正确的大小"><a class="markdownIt-Anchor" href="#玩家进入球体组件触发器体积后对框组件设置动画使其缩放至正确的大小"></a> 玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXYtg.md.png" alt="" /></p>
-<p><a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/Engine/Blueprints/UserGuide/Timelines/index.html">时间轴官方文档解释</a></p>
+<h4 id="玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小"><a href="#玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小" class="headerlink" title="玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小"></a>玩家进入球体组件触发器体积后对框组件设置动画，使其缩放至正确的大小</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXYtg.md.png" alt=""></p>
+<p> <a target="_blank" rel="noopener" href="https://docs.unrealengine.com/zh-CN/Engine/Blueprints/UserGuide/Timelines/index.html">时间轴官方文档解释</a></p>
 <p>这里Simple Curve时间轴达到了打开文本框的动画效果目的。</p>
 <p><strong>Lerp</strong>（插值）一般与Timeline时间轴一起使用，<u>Alpha取值范围如果是浮点数0到1，当Alpha为0的时候返回的数值为A设置的值，当Alpha为1的时候，返回的数值为B设置的值。Alpha越靠近0返回值就越靠近A设置的值，Alpha越靠近1返回值就越靠近B设置的值。</u> 能使目标运动更平滑</p>
 <p>这里的时间轴控制一个用于在框的折叠/展开状态混合的值，它的时间轴如下</p>
 <p>V+ <u>添加新的向量轨道到时间轴，以对浮点向量值（例如旋转值或平移值）进行动画处理。</u></p>
 <p>使用最后一个关键帧：可以帮助防止动画循环时被跳过</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDX30f.md.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDX30f.md.png" alt=""></p>
 <p>这里设置为0.5s，为折叠/展开的时间，0代表进入了不在Trigger范围内，所以文本框大小很小且固定（隐藏），1代表了将文本框展开，根据实际的情况扩大Background和各个边</p>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXJAS.md.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/05/aDXJAS.md.png" alt=""></p>
 <p>控制了Info Icon的位置，在0时 Z轴 -10，1时Z轴为 0，还控制了Info Icon的旋转角度，达到展开文本，感叹号旋转180度的目的。</p>
 <p>direction输出枚举数据，指明了时间轴的当前播放方向。</p>
-<h4 id="音乐组件"><a class="markdownIt-Anchor" href="#音乐组件"></a> 音乐组件</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXthQ.md.png" alt="" /></p>
+<h4 id="音乐组件"><a href="#音乐组件" class="headerlink" title="音乐组件"></a>音乐组件</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXthQ.md.png" alt=""></p>
 <p>这很明显，当进入Trigger以后盒子打开，会播放音乐，同时脉冲效果停止，盒子没打开的时候只会激活脉冲效果。</p>
-<h4 id="创建文本"><a class="markdownIt-Anchor" href="#创建文本"></a> 创建文本</h4>
-<p><img src="https://s1.ax1x.com/2020/08/05/aDXa1s.md.png" alt="" /></p>
+<h4 id="创建文本"><a href="#创建文本" class="headerlink" title="创建文本"></a>创建文本</h4><p><img src="https://s1.ax1x.com/2020/08/05/aDXa1s.md.png" alt=""></p>
 <p>这和构造脚本哪里很相似了。</p>
 <p>循环体写出了每一行的文字，然后将文字进行位置变动、旋转，达到印在Background上的效果。</p>
 <p>这和构造函数的区别是，构造函数是在外面的预览模式显示文本，然后这里是进入游戏后显示。</p>
 <p>结束。</p>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<p>分析蓝图的好处还是很大的</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>分析蓝图的好处还是很大的</p>
 
             </div>
             <hr/>
@@ -782,14 +766,12 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             关于第三人称魂类游戏个人学习–（1）
- 创建场景光源(1)
-所需组件：
+                            关于第三人称魂类游戏个人学习—（1）创建场景光源(1)所需组件：
 Fog、skylight、DirectionalLight、Sky_Sphere
 添加cube作为地板
 
 材质纹理大小可根据Texcoord进行调整。
- Mychar
+Mycharacter
                         
                     </div>
                     <div class="publish-info">
@@ -834,10 +816,8 @@ Fog、skylight、DirectionalLight、Sky_Sphere
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             UE4笔记（十）
-首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
- 蓝图
-Blueprint is Visual  Scriptin
+                            UE4笔记（十）首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。
+蓝图Blueprint is Visual  Scripting (y
                         
                     </div>
                     <div class="publish-info">

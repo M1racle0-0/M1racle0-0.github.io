@@ -426,97 +426,71 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ue4笔记五"><a class="markdownIt-Anchor" href="#ue4笔记五"></a> UE4笔记（五)</h1>
-<h2 id="材质"><a class="markdownIt-Anchor" href="#材质"></a> 材质</h2>
-<h3 id="pbr"><a class="markdownIt-Anchor" href="#pbr"></a> PBR</h3>
-<p>PBR的全称为 Physical Based Rendering(基于物理的渲染)，基于物理的渲染意味着我们根据事实模拟光线，而不是根据主观想法，光线的最终效果会更加准确且自然。</p>
+                <h1 id="UE4笔记（五"><a href="#UE4笔记（五" class="headerlink" title="UE4笔记（五)"></a>UE4笔记（五)</h1><h2 id="材质"><a href="#材质" class="headerlink" title="材质"></a>材质</h2><h3 id="PBR"><a href="#PBR" class="headerlink" title="PBR"></a>PBR</h3><p>PBR的全称为 Physical Based Rendering(基于物理的渲染)，基于物理的渲染意味着我们根据事实模拟光线，而不是根据主观想法，光线的最终效果会更加准确且自然。</p>
 <p>PBR是两个做卡通渲染风格的工作室合作的产物，因此PBR在卡通渲染方面也很不错，PBR有助于我们变准话美工管线，因为材质无论遇到怎样的光照都能做出相同反应（这意味着我们不需要根据物体的光照环境创建多个材质或者纹理）</p>
 <p><u>This is the same type of redering pipeline that you will find in programs like Vary.</u></p>
-<h3 id="材质域material-domain"><a class="markdownIt-Anchor" href="#材质域material-domain"></a> 材质域(Material Domain)</h3>
-<p>只需要改变材质域、混合模式和着色模式就可以变换材质来满足各种不同的需求。</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515160927312.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h3 id="材质域-Material-Domain"><a href="#材质域-Material-Domain" class="headerlink" title="材质域(Material Domain)"></a>材质域(Material Domain)</h3><p>只需要改变材质域、混合模式和着色模式就可以变换材质来满足各种不同的需求。</p>
+<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515160927312.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>Material Domain (材质域）决定了材质属性的评估方式</p>
 <p>Blend Mode（混合模式） 决定了材质的颜色，以及材质与背景融合的方式</p>
 <p>Shading Modeal（着色模型） 决定了输入将如何䄦来创建材质的最终颜色</p>
 <p><u>例如，如果你想实现玻璃材质，应该讲混合模式改为“透明”，根据你是否希望玻璃对光线做出反应，将着色模型改为“无光照”或者“默认带光照”</u></p>
 <p>材质域、混合模式和着色模型不能在运行时更改</p>
-<h3 id="what-is-a-material材质"><a class="markdownIt-Anchor" href="#what-is-a-material材质"></a> What is a Material？(材质)</h3>
-<p>材质是UE4用于表示并调整对象纹理外观的方式，使用材质编辑器创建。材质实际上是由一块一块的HLSL（高级着色器语言）组成，UE4材质编辑中的许多函数都是直接由HLSL函数构成的。</p>
+<h3 id="What-is-a-Material？-材质"><a href="#What-is-a-Material？-材质" class="headerlink" title="What is a Material？(材质)"></a>What is a Material？(材质)</h3><p>材质是UE4用于表示并调整对象纹理外观的方式，使用材质编辑器创建。材质实际上是由一块一块的HLSL（高级着色器语言）组成，UE4材质编辑中的许多函数都是直接由HLSL函数构成的。</p>
 <p>材质需要先编译才能在游戏中使用或者显示。一旦材质被编译好了，它就变成静态的了，不能在程序运行时更改。</p>
 <p>可以使用一种材质将其应用到项目中的各种不同材质上。</p>
-<h3 id="材质实例meterial-instance"><a class="markdownIt-Anchor" href="#材质实例meterial-instance"></a> 材质实例（Meterial Instance）</h3>
-<p>上个模块我们提到不可以在运行时更改材质，这个特性会对当下的游戏开发带了不少的困扰，例如动态的游戏场景，而材质实例就是为了解决这个问题存在的。</p>
+<h3 id="材质实例（Meterial-Instance）"><a href="#材质实例（Meterial-Instance）" class="headerlink" title="材质实例（Meterial Instance）"></a>材质实例（Meterial Instance）</h3><p>上个模块我们提到不可以在运行时更改材质，这个特性会对当下的游戏开发带了不少的困扰，例如动态的游戏场景，而材质实例就是为了解决这个问题存在的。</p>
 <p>材质实例是材质的特殊版本。它允许我们在游戏运行的时候修改材质中的参数和纹理而不需要重新编译材质，这让材质实例的迭代变得非常快，所以你几乎可以实时看到变化效果，你还可以通过时间轴和蓝图与材质实例进行交互。</p>
 <p>当你使用单独的材质实例的时候，其性能优势很有限，而当你使用大量的材质实例而不是材质的时候他的性能优势就会逐渐显示出来。</p>
 <p>材质实例非常的灵活，你可以设置一个主材质，然后在材质实例中设置许多的参数以便后期调整材质，而无需编写大量复杂的着色器代码（Shader Code）。</p>
-<h3 id="主材质master-material"><a class="markdownIt-Anchor" href="#主材质master-material"></a> 主材质（Master Material)</h3>
-<p>主材质是一种用未完成许多任务的材质，可以在项目中满足对象的不同材质需求</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164106538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164117415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h3 id="主材质（Master-Material"><a href="#主材质（Master-Material" class="headerlink" title="主材质（Master Material)"></a>主材质（Master Material)</h3><p>主材质是一种用未完成许多任务的材质，可以在项目中满足对象的不同材质需求</p>
+<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164106538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164117415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>左侧是Base_Color 可以使用取色器将材质设置成任意颜色</p>
 <p>右侧是纹理参数节点，它允许我们在材质实例中添加任意纹理</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164341431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515164341431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>标量参数，标量参数控制标量变量，允许我们更改材质实例中的参数，以便增加或者减少材质实例的某种效果</p>
-<h4 id="主材质的注意事项"><a class="markdownIt-Anchor" href="#主材质的注意事项"></a> 主材质的注意事项</h4>
-<p>不要尝试将一种主材质用于所有对象，它会让材质臃肿不堪，最终导致性能问题，可以所有的透明物体使用一种材质，所有的半透明使用一种，主角使用一种，武器使用一种。</p>
-<h2 id="主材质的概念"><a class="markdownIt-Anchor" href="#主材质的概念"></a> 主材质的概念</h2>
-<h3 id="材质函数material-function"><a class="markdownIt-Anchor" href="#材质函数material-function"></a> 材质函数（Material Function）</h3>
-<p>材质函数允许你共享并复用材质图标的部分内容。UE4自带了诸多材质函数，比如确定场景对象的位置、鼠标在屏幕中位置等函数。你可以方便地将代码封装成材质函数，然后通过材质库分享代码。</p>
+<h4 id="主材质的注意事项"><a href="#主材质的注意事项" class="headerlink" title="主材质的注意事项"></a>主材质的注意事项</h4><p>不要尝试将一种主材质用于所有对象，它会让材质臃肿不堪，最终导致性能问题，可以所有的透明物体使用一种材质，所有的半透明使用一种，主角使用一种，武器使用一种。</p>
+<h2 id="主材质的概念"><a href="#主材质的概念" class="headerlink" title="主材质的概念"></a>主材质的概念</h2><h3 id="材质函数（Material-Function）"><a href="#材质函数（Material-Function）" class="headerlink" title="材质函数（Material Function）"></a>材质函数（Material Function）</h3><p>材质函数允许你共享并复用材质图标的部分内容。UE4自带了诸多材质函数，比如确定场景对象的位置、鼠标在屏幕中位置等函数。你可以方便地将代码封装成材质函数，然后通过材质库分享代码。</p>
 <p>材质函数允许你共享材质代码，从而在你调整全局效果时减少维护代码的麻烦</p>
-<h3 id="rgb遮罩打包rgb-mask-packing"><a class="markdownIt-Anchor" href="#rgb遮罩打包rgb-mask-packing"></a> RGB遮罩打包（RGB Mask Packing）</h3>
-<p>将不同的纹理保存在同一张纹理的RGB通道中，能有效的减少纹理的占用量。</p>
+<h3 id="RGB遮罩打包（RGB-Mask-Packing）"><a href="#RGB遮罩打包（RGB-Mask-Packing）" class="headerlink" title="RGB遮罩打包（RGB Mask Packing）"></a>RGB遮罩打包（RGB Mask Packing）</h3><p>将不同的纹理保存在同一张纹理的RGB通道中，能有效的减少纹理的占用量。</p>
 <p>在使用RGB遮罩打包的时候要注明RGB通道中各自保存的纹理类型。</p>
-<h3 id="静态开关-static-switches"><a class="markdownIt-Anchor" href="#静态开关-static-switches"></a> 静态开关 (Static switches)</h3>
-<p>他允许你启用或者禁用材质中的整条代码路径。<br />
-<u>比如你可以将视差法线贴图放在静态开关内，因为其开销很大，所以可以只在需要的时候开启它就可以了。</u></p>
-<h3 id="特性层级开关feature-level-switch"><a class="markdownIt-Anchor" href="#特性层级开关feature-level-switch"></a> 特性层级开关（Feature Level Switch）</h3>
-<p>它可以让材质在任何目标设备上运行。</p>
+<h3 id="静态开关-Static-switches"><a href="#静态开关-Static-switches" class="headerlink" title="静态开关 (Static switches)"></a>静态开关 (Static switches)</h3><p>他允许你启用或者禁用材质中的整条代码路径。<br>        <u>比如你可以将视差法线贴图放在静态开关内，因为其开销很大，所以可以只在需要的时候开启它就可以了。</u></p>
+<h3 id="特性层级开关（Feature-Level-Switch）"><a href="#特性层级开关（Feature-Level-Switch）" class="headerlink" title="特性层级开关（Feature Level Switch）"></a>特性层级开关（Feature Level Switch）</h3><p>它可以让材质在任何目标设备上运行。</p>
 <p><u>例如ES2：用于安卓等移动设备。SM5可以获得最高等级的精细度</u></p>
-<h2 id="实践部分"><a class="markdownIt-Anchor" href="#实践部分"></a> 实践部分</h2>
-<h3 id="主材质"><a class="markdownIt-Anchor" href="#主材质"></a> 主材质</h3>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515223946279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
-<p>简单讲一下</p>
+<h2 id="实践部分"><a href="#实践部分" class="headerlink" title="实践部分"></a>实践部分</h2><h3 id="主材质"><a href="#主材质" class="headerlink" title="主材质"></a>主材质</h3><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200515223946279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>简单讲一下 </p>
 <p>在UE4中创建一个新的材质，完成相关的蓝图设计。</p>
-<p>这张图创建的材质包括了底色（Base Color)，金属(Metallic)，粗糙程度(Roughness)，法线贴图(Normal)</p>
+<p>这张图创建的材质包括了底色（Base Color)，金属(Metallic)，粗糙程度(Roughness)，法线贴图(Normal) </p>
 <p>在Base_color中有一个Swtich判断显示纹理还是显示取色器颜色。</p>
 <p>Meallic中添加一个参数控制金属光泽</p>
 <p>在Roughness中 lerp()函数为线性插值函数，能上调或调低粗糙度数值，先导入粗糙纹理，在纹理取样类型设置中改为“遮罩”并转换成参数，中间来获取遮罩参数，筛选纹理的RGB通道再连接至lerp函数中的阿尔法通道，通过两个参数的调节控制粗糙程度</p>
 <p>导入法线贴图，将采样类型设置为法线。</p>
 <p>完成主材质制作。 更名、分组对于后期管理很重要。</p>
-<h4 id="改为玻璃对象的主材质"><a class="markdownIt-Anchor" href="#改为玻璃对象的主材质"></a> 改为玻璃对象的主材质</h4>
-<p>玻璃的主要属性就是透明，然而我们发现现在主材质的Opacity属性是黑色的，即不可操作。而要打开这个参数我们需要将主材质的属性切换为Translucent，然后就会发现粗糙度相关的点变为了不可操作，而Opacity被打开了。我们按住1点击屏幕创建一个常量，将其链接到Opacity上，即可调整当前材质的透明度。</p>
-<h3 id="材质函数"><a class="markdownIt-Anchor" href="#材质函数"></a> 材质函数</h3>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122149422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h4 id="改为玻璃对象的主材质"><a href="#改为玻璃对象的主材质" class="headerlink" title="改为玻璃对象的主材质"></a>改为玻璃对象的主材质</h4><p>玻璃的主要属性就是透明，然而我们发现现在主材质的Opacity属性是黑色的，即不可操作。而要打开这个参数我们需要将主材质的属性切换为Translucent，然后就会发现粗糙度相关的点变为了不可操作，而Opacity被打开了。我们按住1点击屏幕创建一个常量，将其链接到Opacity上，即可调整当前材质的透明度。</p>
+<h3 id="材质函数"><a href="#材质函数" class="headerlink" title="材质函数"></a>材质函数</h3><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122149422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>创建材质函数，进入蓝图进行创建 <u>控制纹理缩放的材质函数</u></p>
-<p>TexCoord[0]是贴图坐标系，它反映的是只坐标的变化。<br />
-Input Texture_Scaling是一个输入节点，在这里我们用来表示坐标缩放的大小。<br />
-Multiply是相乘的意思，即将坐标与缩放相乘获得最终的坐标，然后相乘的坐标作为输出结果</p>
-<h4 id="材质函数的应用"><a class="markdownIt-Anchor" href="#材质函数的应用"></a> 材质函数的应用</h4>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122727116.png" alt="" /></p>
+<p>TexCoord[0]是贴图坐标系，它反映的是只坐标的变化。<br>        Input Texture_Scaling是一个输入节点，在这里我们用来表示坐标缩放的大小。<br>        Multiply是相乘的意思，即将坐标与缩放相乘获得最终的坐标，然后相乘的坐标作为输出结果</p>
+<h4 id="材质函数的应用"><a href="#材质函数的应用" class="headerlink" title="材质函数的应用"></a>材质函数的应用</h4><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122727116.png" alt=""></p>
 <p>将材质函数拖入主材质中，MF_Title 为拖入的材质函数，在左侧创建一个参数作为函数的输入，控制缩放的材质大小</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122852524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516122852524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>将函数的输出与纹理、粗糙度等建立联系，输入位置为UVs</p>
-<h3 id="材质实例"><a class="markdownIt-Anchor" href="#材质实例"></a> 材质实例</h3>
-<p>材质实例和主材质具有父子关系，子类只能继承或使用父类拥有的属性。</p>
-<h4 id="创建方法"><a class="markdownIt-Anchor" href="#创建方法"></a> 创建方法</h4>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516153410274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
-<p>1.左侧，右键点击一个材质，在弹出的菜单中选择创建材质实例<br />
-2.在内容浏览器的空白处右键可以在材质子菜单中找到材质实例</p>
-<h4 id="材质实例的使用"><a class="markdownIt-Anchor" href="#材质实例的使用"></a> 材质实例的使用</h4>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516160627181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<h3 id="材质实例"><a href="#材质实例" class="headerlink" title="材质实例"></a>材质实例</h3><p>材质实例和主材质具有父子关系，子类只能继承或使用父类拥有的属性。</p>
+<h4 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h4><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516153410274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>1.左侧，右键点击一个材质，在弹出的菜单中选择创建材质实例<br>        2.在内容浏览器的空白处右键可以在材质子菜单中找到材质实例</p>
+<h4 id="材质实例的使用"><a href="#材质实例的使用" class="headerlink" title="材质实例的使用"></a>材质实例的使用</h4><p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516160627181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>可以看见他包含了我刚才创建的Base_Color、Metallic、Normal、Roughness。</p>
 <p>Scalar Parameter Values中包含控制创建的材质函数输入值，相当于其他选项。（因为没有直接连接到主材质上</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516214329317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516214329317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>在通用字段下可以修改父材质的属性和函数。</p>
 <p>【two sides】：双面。如果勾选中了这个属性，则材质将会双面渲染，双面指的是内面和外面。</p>
 <p>【Dithered LODTransition】：颤化LOD过滤。它用于植被系统。（这个选项违背了父材质系统的初衷，因此请谨慎使用）</p>
 <p>【Shading Model】：如果不想创建材质又想快速的看到效果可以使用这个东西。</p>
-<h2 id="顶点动画"><a class="markdownIt-Anchor" href="#顶点动画"></a> 顶点动画</h2>
-<p>顶点动画以极低的开销实现复杂对象的微妙运动，如水面、树叶、布料等。顶点动画完全由GPU完成，完全不使用CPU。这使得每一帧的渲染开销都很低。</p>
+<h2 id="顶点动画"><a href="#顶点动画" class="headerlink" title="顶点动画"></a>顶点动画</h2><p>顶点动画以极低的开销实现复杂对象的微妙运动，如水面、树叶、布料等。顶点动画完全由GPU完成，完全不使用CPU。这使得每一帧的渲染开销都很低。</p>
 <p>缺点是其互动性低，即CPU和我们所处理的逻辑无法获取到动画的偏移量。因此无法用于任何与游戏互动相关的部分，比如交互和碰撞。</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516220152564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516220152564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>在这颗植物中，只有叶子在随风飘摇，而树干则没有动态的效果。因此我们需要将叶子与树干分离，使用两个静态网格体或者使用两个不同的材质，如上图。其中TreeBark材质为静态的材质，而下面的CherryTree_Wind则是设置了顶点动画的材质。</p>
-<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516220525736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p><img src="https://i2.wp.com/img-blog.csdnimg.cn/20200516220525736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjIyMDU1,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>其中上侧的TextureSample设置为Mask，将其RGB链接到BaseColor成为底色，而Alpha链接到OpacityMask上。同时拖入一张法线贴图，使其拥有法线效果。</p>
 <p>这样一张静态的材质就做好了。</p>
 <p>而动态的产生依赖于左边的3个模块，分别是两个常量和一个SimpleGrassWind效果，图中链接的3个常量点是必须要设置的参数，设置后将风模块链接到主材质的World Position Offset，即可将风的动态效果映射到世界坐标偏移上，从而产生动态的效果，注意选择双面。</p>
@@ -768,11 +742,8 @@ Multiply是相乘的意思，即将坐标与缩放相乘获得最终的坐标，
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             UE4笔记（六)
- 性能与优化
- 纹理流送（Texture Streaming）
-纹理流送能在摄影机接近场景对象或者远离场景对象时流送不同的细节层次。
-纹理流送设有一个缓存池：一片专门用于缓存多级渐进纹理的内存区域。随着纹理不断远离摄像机
+                            UE4笔记（六)性能与优化纹理流送（Texture Streaming）纹理流送能在摄影机接近场景对象或者远离场景对象时流送不同的细节层次。
+纹理流送设有一个缓存池：一片专门用于缓存多级渐进纹理的内存区域。随着纹理不断远离摄像机，他们会变得
                         
                     </div>
                     <div class="publish-info">
@@ -817,13 +788,10 @@ Multiply是相乘的意思，即将坐标与缩放相乘获得最终的坐标，
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             UE4学习笔记（四）
- 纹理
- 命名规范
-规范的命名可以节省大量的时间
+                            UE4学习笔记（四）纹理命名规范规范的命名可以节省大量的时间
 例如：
 SM_Rock_00  - Static Mesh for a Rock version 00  静态网格体的岩石   SM为静态网格体
-T_Rock__00
+T_Rock__00_BC - 
                         
                     </div>
                     <div class="publish-info">

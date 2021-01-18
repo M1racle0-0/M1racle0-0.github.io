@@ -409,7 +409,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    588
+                    585
                 </div>
                 
 
@@ -426,46 +426,37 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习十二"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习十二"></a> 关于第三人称魂类游戏个人学习–（十二）</h1>
-<h2 id="ai"><a class="markdownIt-Anchor" href="#ai"></a> AI</h2>
-<h3 id="基于eqs的ai躲藏"><a class="markdownIt-Anchor" href="#基于eqs的ai躲藏"></a> 基于EQS的AI躲藏</h3>
-<h4 id="eqs"><a class="markdownIt-Anchor" href="#eqs"></a> EQS</h4>
-<p>EQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简单来说就是将场景环境划分，一般来说是按密度划分成一个一个点，当然也可以以场景元素Actor来进行划分，将环境划分好后，再按照相应的设定规则对划分项（点或Actor）进行打分，最后得分最高的Item即为系统所找到的最优查询结果。EQS系统将其最优查询结果告知AI,AI行为树则会对来其进行相应的决策及执行。</p>
-<h4 id="eqsc_playerenvquerycontext"><a class="markdownIt-Anchor" href="#eqsc_playerenvquerycontext"></a> EQSC_Player(EnvQueryContext)</h4>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dbrD.png" alt="10" /></p>
+                <h1 id="关于第三人称魂类游戏个人学习—（十二）"><a href="#关于第三人称魂类游戏个人学习—（十二）" class="headerlink" title="关于第三人称魂类游戏个人学习—（十二）"></a>关于第三人称魂类游戏个人学习—（十二）</h1><h2 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h2><h3 id="基于EQS的AI躲藏"><a href="#基于EQS的AI躲藏" class="headerlink" title="基于EQS的AI躲藏"></a>基于EQS的AI躲藏</h3><h4 id="EQS"><a href="#EQS" class="headerlink" title="EQS"></a>EQS</h4><p>EQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简单来说就是将场景环境划分，一般来说是按密度划分成一个一个点，当然也可以以场景元素Actor来进行划分，将环境划分好后，再按照相应的设定规则对划分项（点或Actor）进行打分，最后得分最高的Item即为系统所找到的最优查询结果。EQS系统将其最优查询结果告知AI,AI行为树则会对来其进行相应的决策及执行。</p>
+<h4 id="EQSC-Player-EnvQueryContext"><a href="#EQSC-Player-EnvQueryContext" class="headerlink" title="EQSC_Player(EnvQueryContext)"></a>EQSC_Player(EnvQueryContext)</h4><p><img src="https://s1.ax1x.com/2020/11/04/B6dbrD.png" alt="10"></p>
 <ul>
 <li>Provide Single Actor 提供一个Actor在测试环节中与采样点进行比对；</li>
 </ul>
-<h4 id="eqs_hidenearplayerenvironmentquery"><a class="markdownIt-Anchor" href="#eqs_hidenearplayerenvironmentquery"></a> EQS_HideNearPlayer(<strong>EnvironmentQuery</strong>)</h4>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dqqe.png" alt="11" /></p>
+<h4 id="EQS-HideNearPlayer-EnvironmentQuery"><a href="#EQS-HideNearPlayer-EnvironmentQuery" class="headerlink" title="EQS_HideNearPlayer(EnvironmentQuery)"></a>EQS_HideNearPlayer(<strong>EnvironmentQuery</strong>)</h4><p><img src="https://s1.ax1x.com/2020/11/04/B6dqqe.png" alt="11"></p>
 <p>EQS资产就是一个可供AI使用的EQS实例。它相当于是一个容器，里面装着根据不同需求设计好的各种查询规则（即Genetators和Tests）。我们做好一个EQS资产后，最终，其会在AI的行为树节点中实例化，并在行为树节点运行时执行EQS相关功能，执行结果也会保存为黑板变量供行为树来决策使用。</p>
 <p>获得MyCharacter视野不可见范围的最大值（敌人看不见你的位置，取权值最大的那个）</p>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6do26.png" alt="12" /></p>
+<p><img src="https://s1.ax1x.com/2020/11/04/B6do26.png" alt="12"></p>
 <p>躲藏角色的行为树，将得到的点给Targetlocation黑板键。</p>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dHKO.png" alt="13" /></p>
+<p><img src="https://s1.ax1x.com/2020/11/04/B6dHKO.png" alt="13"></p>
 <ul>
 <li>看到Mycharacter就躲起来。</li>
 </ul>
-<h3 id="基于eqs的寻找食物"><a class="markdownIt-Anchor" href="#基于eqs的寻找食物"></a> 基于EQS的寻找食物</h3>
-<p>创建食物空对象</p>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6d5P1.png" alt="14" /></p>
+<h3 id="基于EQS的寻找食物"><a href="#基于EQS的寻找食物" class="headerlink" title="基于EQS的寻找食物"></a>基于EQS的寻找食物</h3><p>创建食物空对象</p>
+<p><img src="https://s1.ax1x.com/2020/11/04/B6d5P1.png" alt="14"></p>
 <p>找到food</p>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dTxK.png" alt="15" /></p>
+<p><img src="https://s1.ax1x.com/2020/11/04/B6dTxK.png" alt="15"></p>
 <p>获得距离值</p>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dI8x.png" alt="16" /></p>
+<p><img src="https://s1.ax1x.com/2020/11/04/B6dI8x.png" alt="16"></p>
 <p>寻找food行为树</p>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dzGt.png" alt="17" /></p>
+<p><img src="https://s1.ax1x.com/2020/11/04/B6dzGt.png" alt="17"></p>
 <p>在选择前加一个服务BTS_Hunger</p>
-<h4 id="bts_hunger"><a class="markdownIt-Anchor" href="#bts_hunger"></a> BTS_Hunger</h4>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dxPI.png" alt="18" /></p>
+<h4 id="BTS-Hunger"><a href="#BTS-Hunger" class="headerlink" title="BTS_Hunger"></a>BTS_Hunger</h4><p><img src="https://s1.ax1x.com/2020/11/04/B6dxPI.png" alt="18"></p>
 <p>每一帧加多少值（Hunger Increase Rate）</p>
 <p>可以在外设置</p>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6djIA.png" alt="19" /></p>
+<p><img src="https://s1.ax1x.com/2020/11/04/B6djIA.png" alt="19"></p>
 <p>这里为hunger(float),每帧增加0.1</p>
 <p>然后再用一个装饰器，当hunger为1的时候，就会去寻找食物。在寻找到食物后，wait一会，将hunger值重新设为0，然后进行巡逻，再根据tick的增加，增加hunger值，到1，循环执行。</p>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dXad.png" alt="20" /></p>
-<h4 id="整合"><a class="markdownIt-Anchor" href="#整合"></a> 整合</h4>
-<p><img src="https://s1.ax1x.com/2020/11/04/B6dOVH.png" alt="21" /></p>
+<p><img src="https://s1.ax1x.com/2020/11/04/B6dXad.png" alt="20"></p>
+<h4 id="整合"><a href="#整合" class="headerlink" title="整合"></a>整合</h4><p><img src="https://s1.ax1x.com/2020/11/04/B6dOVH.png" alt="21"></p>
 <ol>
 <li>是否能看见mycharacter，如果可以执行躲避行为</li>
 <li>如果没看见，先判断hunger是否为1，如果不满足，执行随机移动BTT_FindNavigableLocation.</li>
@@ -720,13 +711,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             关于第三人称魂类游戏个人学习–（十三）
- UMG
- UMG_PlayHUD(人物血量、精力槽)
-
+                            关于第三人称魂类游戏个人学习—（十三）UMGUMG_PlayHUD(人物血量、精力槽)
 通过Widgets，使用进度条创建血量和能量条。
 
-每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP=
+每帧获得当前血量，当前血量经过在BP_Mycharacter中计算赋值给show HP= curre
                         
                     </div>
                     <div class="publish-info">
@@ -771,10 +759,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             关于第三人称魂类游戏个人学习–（十一）
- 关于AI问题解决方法
- 1。攻击检测在受击后一直会打开的问题
-在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Att
+                            关于第三人称魂类游戏个人学习—（十一）关于AI问题解决方法1。攻击检测在受击后一直会打开的问题在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Attacking
                         
                     </div>
                     <div class="publish-info">

@@ -409,7 +409,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    534
+                    533
                 </div>
                 
 
@@ -426,28 +426,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="关于第三人称魂类游戏个人学习十一"><a class="markdownIt-Anchor" href="#关于第三人称魂类游戏个人学习十一"></a> 关于第三人称魂类游戏个人学习–（十一）</h1>
-<h3 id="关于ai问题解决方法"><a class="markdownIt-Anchor" href="#关于ai问题解决方法"></a> 关于AI问题解决方法</h3>
-<h4 id="1-攻击检测在受击后一直会打开的问题"><a class="markdownIt-Anchor" href="#1-攻击检测在受击后一直会打开的问题"></a> 1。攻击检测在受击后一直会打开的问题</h4>
-<p>在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Attacking和攻击检测TIme打开，因为动画没有运行完，所以在ABP中不会运行关闭的设置，所以在受击动画后关闭，加了一个delay，这样不会受到击打后第一时间攻击人物，做一个类似受击后的后摇效果。</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ28Gq.png" alt="13" /></p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ2MZQ.png" alt="14" /></p>
-<h4 id="2-攻击时间间隔问题"><a class="markdownIt-Anchor" href="#2-攻击时间间隔问题"></a> 2。攻击时间间隔问题。</h4>
-<p>在AI中，在Attacking加一个delay延时，根据NowAttack（现在的攻击动画）,还可以设置轻重攻击的间隔，轻攻击时间间隔短，重攻击时间间隔长。</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ23in.png" alt="15" /></p>
+                <h1 id="关于第三人称魂类游戏个人学习—（十一）"><a href="#关于第三人称魂类游戏个人学习—（十一）" class="headerlink" title="关于第三人称魂类游戏个人学习—（十一）"></a>关于第三人称魂类游戏个人学习—（十一）</h1><h3 id="关于AI问题解决方法"><a href="#关于AI问题解决方法" class="headerlink" title="关于AI问题解决方法"></a>关于AI问题解决方法</h3><h4 id="1。攻击检测在受击后一直会打开的问题"><a href="#1。攻击检测在受击后一直会打开的问题" class="headerlink" title="1。攻击检测在受击后一直会打开的问题"></a>1。攻击检测在受击后一直会打开的问题</h4><p>在攻击的过程中，如果受到伤害（AI、Player都是）因为设置了受击反应，所以会运行三种受击动画效果，这个时候，你攻击一开始会将Attacking和攻击检测TIme打开，因为动画没有运行完，所以在ABP中不会运行关闭的设置，所以在受击动画后关闭，加了一个delay，这样不会受到击打后第一时间攻击人物，做一个类似受击后的后摇效果。</p>
+<p><img src="https://s1.ax1x.com/2020/10/27/BQ28Gq.png" alt="13"></p>
+<p><img src="https://s1.ax1x.com/2020/10/27/BQ2MZQ.png" alt="14"></p>
+<h4 id="2。攻击时间间隔问题。"><a href="#2。攻击时间间隔问题。" class="headerlink" title="2。攻击时间间隔问题。"></a>2。攻击时间间隔问题。</h4><p>在AI中，在Attacking加一个delay延时，根据NowAttack（现在的攻击动画）,还可以设置轻重攻击的间隔，轻攻击时间间隔短，重攻击时间间隔长。</p>
+<p><img src="https://s1.ax1x.com/2020/10/27/BQ23in.png" alt="15"></p>
 <p>攻击动画用的Hit Group存储，所以后期增加多个攻击后可以调每个攻击的攻击间隔。</p>
-<h4 id="3-关于ai死亡以后仍会运行行为树问题"><a class="markdownIt-Anchor" href="#3-关于ai死亡以后仍会运行行为树问题"></a> 3。关于AI死亡以后，仍会运行行为树问题。</h4>
-<p>在AI死亡以后，由于行为树没有关闭，所以尸体仍然会一直向着Player的位置转圈。在AttributeSystem组件中设置IsDead，通过AIC和设置的黑板bool值IsAlive关联。</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ2lIs.png" alt="16" /></p>
+<h4 id="3。关于AI死亡以后，仍会运行行为树问题。"><a href="#3。关于AI死亡以后，仍会运行行为树问题。" class="headerlink" title="3。关于AI死亡以后，仍会运行行为树问题。"></a>3。关于AI死亡以后，仍会运行行为树问题。</h4><p>在AI死亡以后，由于行为树没有关闭，所以尸体仍然会一直向着Player的位置转圈。在AttributeSystem组件中设置IsDead，通过AIC和设置的黑板bool值IsAlive关联。</p>
+<p><img src="https://s1.ax1x.com/2020/10/27/BQ2lIs.png" alt="16"></p>
 <p>在使用装饰器的时候发现一个问题。</p>
 <p>在使用装饰器的时候，我将装饰器赋在行为树根节点Root下的一个Selector上，发现没法进行有效判断。做了一个类似下面的实验。</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ2uqg.png" alt="17" /></p>
+<p><img src="https://s1.ax1x.com/2020/10/27/BQ2uqg.png" alt="17"></p>
 <p>正如你所看到的，尽管decorator被设置为阻塞执行，但仍在执行示例任务。</p>
 <p>原因是这里的装饰器为-1，这会造成错误，但官方文档并没有指出不能在第一个设置的Select中添加装饰器，所以弄了半天，（这个-1不仔细看还真容易错过.）</p>
 <p>解决的办法就是再创建一个Selector在下方，让装饰器&gt;0.</p>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQ2Qaj.png" alt="18" /></p>
-<h4 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h4>
-<p><img src="https://s1.ax1x.com/2020/10/27/BQRmf1.md.png" alt="19" /></p>
+<p><img src="https://s1.ax1x.com/2020/10/27/BQ2Qaj.png" alt="18"></p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p><img src="https://s1.ax1x.com/2020/10/27/BQRmf1.md.png" alt="19"></p>
 <p>转换问题，如果直接从AIC受控的Pawn得到的AttributeSystem将会是一个新的独立于AI外的系统。</p>
 
             </div>
@@ -697,11 +691,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             关于第三人称魂类游戏个人学习–（十二）
- AI
- 基于EQS的AI躲藏
- EQS
-EQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原
+                            关于第三人称魂类游戏个人学习—（十二）AI基于EQS的AI躲藏EQSEQS（Environment Query System），直译为环境查询系统，可以理解成对当前场景状态的扫描或者检查，往往配合AI行为树一起使用。其实现原理比较好理解，简
                         
                     </div>
                     <div class="publish-info">
@@ -746,11 +736,10 @@ EQS（Environment Query System），直译为环境查询系统，可以理解�
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             关于第三人称魂类游戏个人学习–（十）
- AI实现
- AIC_enemy
-通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。
+                            关于第三人称魂类游戏个人学习—（十）AI实现AIC_enemy通过Ai视觉感知搜索敌人，感知到就走向Player，通过攻击检测（线条检测）攻击玩家，死亡后倒地，没有感知就在范围内做随机移动。
 最近写的有点多，直接放代码简单说下吧
+
+普通的攻
                         
                     </div>
                     <div class="publish-info">

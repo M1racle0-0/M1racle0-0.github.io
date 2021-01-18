@@ -426,10 +426,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ue4笔记十"><a class="markdownIt-Anchor" href="#ue4笔记十"></a> UE4笔记（十）</h1>
-<p>首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。</p>
-<h2 id="蓝图"><a class="markdownIt-Anchor" href="#蓝图"></a> 蓝图</h2>
-<p>Blueprint is <strong>Visual  Scripting</strong> (you are programming!)</p>
+                <h1 id="UE4笔记（十）"><a href="#UE4笔记（十）" class="headerlink" title="UE4笔记（十）"></a>UE4笔记（十）</h1><p>首先这是蓝图概念的笔记，上一次是蓝图的整体内部构成原理的入门，按照我现在需要的工程，我觉得先看蓝图概念的内容，后面结合C++一起看蓝图的内部组成比较好。</p>
+<h2 id="蓝图"><a href="#蓝图" class="headerlink" title="蓝图"></a>蓝图</h2><p>Blueprint is <strong>Visual  Scripting</strong> (you are programming!)</p>
 <p>蓝图相当于游戏内容的容器，它们包含了许多基本单元，我们称之为“组件”         (汽车的例子)</p>
 <ul>
 <li>They can hold Components</li>
@@ -447,84 +445,73 @@
 <ul>
 <li>将新Actor作为子蓝图（继承及蓝图从父蓝图继承属性的功能）</li>
 </ul>
-<h3 id="蓝图编辑器ui"><a class="markdownIt-Anchor" href="#蓝图编辑器ui"></a> 蓝图编辑器UI</h3>
-<p>创建一个Actor蓝图类</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8ec6.md.png" alt="" /></p>
+<h3 id="蓝图编辑器UI"><a href="#蓝图编辑器UI" class="headerlink" title="蓝图编辑器UI"></a>蓝图编辑器UI</h3><p>创建一个Actor蓝图类</p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8ec6.md.png" alt=""></p>
 <p>左上角为组件，允许我们添加各类组件，组件是蓝图的基本单元，内涵音效、粒子特效、骨骼或者静态网格体、摄像机</p>
 <p>组件内置现成功能供使用、组件是构成蓝图的基本单元，还附有允许我们访问的功能或属性</p>
 <p>顶部是主工具栏，找到允许我们找到任何引用该蓝图的对象，查找为找到当前蓝图位置，类设置允许我们定义一些特定的设置，类默认设置也一样，用来设置该蓝图的默认属性，调试过滤器允许我们调试蓝图的不同实例，假设关卡中有多个光源蓝图，而我们只希望调试其中一个，我们可以选择任意一个进行调试。</p>
 <p>右侧为细节面板，定义和调整所有属性</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8V91.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8V91.png" alt=""></p>
 <p>视口是基本选项还有构造脚本和事件图表</p>
 <p>构造脚本的基本作用是允许我们设置该蓝图的自定义参数或者预设 相当于写一个函数</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8Z1x.md.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8Z1x.md.png" alt=""></p>
 <p>事件图表用于在运行时更新蓝图脚本，当应用程序运行时，大部分需要执行的脚本可能都位于这里，脚本在这会逐步被执行</p>
 <p>左侧的我的蓝图包含了所有图表、以及所有创建的函数（构造脚本），你还可以创建宏，创建并指定变量，事件分发器允许不同蓝图进行通信。</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8mjK.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8mjK.png" alt=""></p>
 <p>在蓝图的其他选项中</p>
 <p>蓝图函数库是函数的集合，允许你通过其他蓝图访问它</p>
 <p>蓝图接口是另一种通信工具，允许不同蓝图进行通信</p>
 <p>蓝图宏库类似于函数库，它是宏的集合，允许你在不同蓝图中使用</p>
 <p>枚举就是一种参数列表，你可以在蓝图中将他用于流控制（例如你可以将角色状态设置为枚举类型，所谓角色状态，可能是活着、死亡或者受伤，然后基于不同的状态在蓝图中切换执行不同的逻辑）</p>
 <p>结构是不同变量类型的集合（例如如果你的角色有个物品栏，你可以设置一个拾取物品结构，结构可能包含拾取物品的名称、UI中的缩略图、用于在场景中显示的静态网格体、拾取它时会播放的音效等等）</p>
-<h3 id="蓝图图表和事件图表"><a class="markdownIt-Anchor" href="#蓝图图表和事件图表"></a> 蓝图图表和事件图表</h3>
-<h5 id="蓝图图表"><a class="markdownIt-Anchor" href="#蓝图图表"></a> 蓝图图表</h5>
-<p>Print String ：在输出日志中打印一个字符串，还可选择同时打印在屏幕上 （经常用它来调试并尝试我们的蓝图）</p>
+<h3 id="蓝图图表和事件图表"><a href="#蓝图图表和事件图表" class="headerlink" title="蓝图图表和事件图表"></a>蓝图图表和事件图表</h3><h5 id="蓝图图表"><a href="#蓝图图表" class="headerlink" title="蓝图图表"></a>蓝图图表</h5><p>Print String ：在输出日志中打印一个字符串，还可选择同时打印在屏幕上 （经常用它来调试并尝试我们的蓝图）</p>
 <p>可以在我的蓝图中的变量中通过变量旁的“眼睛”图标决定是否公开编辑变量</p>
-<h5 id="事件图表"><a class="markdownIt-Anchor" href="#事件图表"></a> 事件图表</h5>
-<p>会在运行时提供信息更新蓝图脚本</p>
+<h5 id="事件图表"><a href="#事件图表" class="headerlink" title="事件图表"></a>事件图表</h5><p>会在运行时提供信息更新蓝图脚本</p>
 <p>选中一些节点，<strong>重叠到函数</strong>（Collapase to Function）,可以将所有节点封装到一个节点中，会被放入左侧的函数列表中</p>
 <p>计算数值的一些节点可以框选选择<strong>重叠到宏</strong>（Collapase to Macro)</p>
 <ul>
 <li><u>宏没有输入，而函数有输入，宏只是为我们计算信息，然后返回这两个结果</u></li>
 </ul>
 <p><strong>重叠节点</strong>（Collapse Nodes）会重叠成一个图标 ，它纯粹是为了压缩体积，宏和函数都能反复调用</p>
-<h3 id="不同种类的蓝图"><a class="markdownIt-Anchor" href="#不同种类的蓝图"></a> 不同种类的蓝图</h3>
-<p>关卡蓝图：位于主工具栏，一种各关卡特有的图标，可以用于编写与关卡特有的功能</p>
+<h3 id="不同种类的蓝图"><a href="#不同种类的蓝图" class="headerlink" title="不同种类的蓝图"></a>不同种类的蓝图</h3><p>关卡蓝图：位于主工具栏，一种各关卡特有的图标，可以用于编写与关卡特有的功能</p>
 <p>关卡蓝图主要用于与关卡特有的功能，比如关卡初始化相关的脚本</p>
 <p>关卡蓝图没有”组件“选项卡，所以也没有”视口“选项卡，只有事件图表，供我们编写关卡的绑定功能，所谓的”关卡特有的功能“就是指该图标内的任何脚本都会与该关卡绑定</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8P74.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8P74.png" alt=""></p>
 <p>这是个关卡脚本内部部分，途中5.1为负责控制按钮相关的脚本，一开始有一个触发盒用于检测我们何时与之重叠，一旦按下按钮就启动齿轮BP_button，离开就停止</p>
 <p>Actor类蓝图：可以在关卡里多次使用，或者多个关卡使用，在Actor类蓝图中编写的任何脚本都会和该Actor类相绑定，更加的模块化</p>
 <p>动画蓝图：我们可以在使用的Character中的细节中找到Animation模块中的Anim Class（动画蓝图），进行定位后可以找到动画蓝图的位置</p>
-<p>![](E:\Epic ue4\markdown\材料\BP\6.png)</p>
+<p><img src="E:\Epic ue4\markdown\材料\BP\6.png" alt=""></p>
 <p>这类资源专门用于为角色创建动画逻辑，无论你是否控制他们，动画蓝图中的事件图表用于定义各种变量，变量会在应用运行时改变，一旦更新这些变量，角色姿势也会相应更新，可以在动画图表（AnimGraph）中更新动作，动画图标允许你混合不同的动画</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN89nU.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN89nU.png" alt=""></p>
 <p>比如设置状态机，以便在不同状态间切换</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8SXT.md.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8SXT.md.png" alt=""></p>
 <p>图中为待机、跑动、跳跃等状态</p>
 <p>动画图表本质上允许你定义各类“最终动画姿势”，而事件图表类似于Actor类蓝图，允许你在运行时实时更新变量</p>
 <p>控件蓝图（WIDGET BLUEPRINGT）/UMG UI：在项目中创建UI元素，它用到了UE4中的“虚幻动态图形”系统，属于一种控件蓝图</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN3zcV.png" alt="" /></p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8AhR.md.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN3zcV.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8AhR.md.png" alt=""></p>
 <p>它包含一个Graph</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8YgP.md.png" alt="" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8YgP.md.png" alt=""></p>
 <p>和其他蓝图中的事件图表非常相似，没有组件面板或组件窗口也没有视口，但有一个Designer选项卡（上上图），在这为项目设置UI的可视化布局方式，可以添加各类功能，比如动画，各类UI元素、按钮、复选框</p>
 <p>子类蓝图（Child Blueprints）:一般蓝图类的实例，会继承父类的所有功能</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8FAJ.md.png" alt="11" /></p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8FAJ.md.png" alt="11"></p>
 <p>使用子蓝图可以针对不同的拾取物打印不同的信息，仅需修改一点点</p>
-<h3 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h3>
-<ul>
-<li>
-<p><strong>Cost</strong> associated with using Blueprintversus native C++ code</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><p><strong>Cost</strong> associated with using Blueprintversus native C++ code</p>
 <ul>
 <li><strong>Avoid</strong> doing complex math or heavy operations <strong>every frame</strong></li>
 <li>Blueprint relies on a Virtual Machine(VM)</li>
 </ul>
 </li>
-<li>
-<p>C++ is going to be faster and more powerful</p>
+<li><p>C++ is going to be faster and more powerful</p>
 </li>
-<li>
-<p>Blueprint is <strong>Event Based</strong></p>
+<li><p>Blueprint is <strong>Event Based</strong></p>
 </li>
-<li>
-<p>Uses <strong>References</strong>（无效引用：设置蓝图时没有设置应用，例如按钮没有具体设置控制哪个Light，返回值为空） and possible <strong>Circular Dependency</strong> (循环依赖：两个蓝图不停的进行转化)  (蓝图通过引用来访问其他蓝图的数据和函数，稍不注意可能会获取无效的引用从而引发报错)</p>
+<li><p>Uses <strong>References</strong>（无效引用：设置蓝图时没有设置应用，例如按钮没有具体设置控制哪个Light，返回值为空） and possible <strong>Circular Dependency</strong> (循环依赖：两个蓝图不停的进行转化)  (蓝图通过引用来访问其他蓝图的数据和函数，稍不注意可能会获取无效的引用从而引发报错)</p>
 </li>
 </ul>
-<h4 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h4>
-<p>Cast转换节点可以用来检测，例如检测是否为人物碰撞，这样可以避免其他Actor触发Volume</p>
-<p><img src="https://s1.ax1x.com/2020/08/03/aN8kN9.md.png" alt="12" /></p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>Cast转换节点可以用来检测，例如检测是否为人物碰撞，这样可以避免其他Actor触发Volume</p>
+<p><img src="https://s1.ax1x.com/2020/08/03/aN8kN9.md.png" alt="12"></p>
 <p>这里的other actor为获取与体积发生重叠的对象，如果是就Turn on LIght，如果转换失败就print Failed</p>
 
             </div>
@@ -774,11 +761,9 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             解析官方的蓝图场景之提示卡
-咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
- 提示卡
-
-一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物
+                            解析官方的蓝图场景之提示卡咳咳，写的时候顺序有点问题，我是先分析的事件图表，分析到第三个Box的for loop时，再把构造函数分析完，再继续的。。。
+提示卡
+一个评论提示框，其在玩家进入特定半径后便会打开。从一个距离进行查看时，物体看起来
                         
                     </div>
                     <div class="publish-info">
@@ -823,12 +808,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             UE4笔记（九）
- 角色
-
+                            UE4笔记（九）角色
 Controller 可以由AI或玩家控制
 AI框架可以帮助AI Controller根据导航网格体来决定pawn或Character的行为还有去哪里做什么
-Character是一种特定类型的Pawn，它拥有M
+Character是一种特定类型的Pawn，它拥有Movem
                         
                     </div>
                     <div class="publish-info">
